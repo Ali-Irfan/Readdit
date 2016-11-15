@@ -7,6 +7,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var threadURL = ""
     var threadID = ""
     var arrayOfComments: [CommentData] = []
+    var hiddenChildren: [String] = []
     
     var bleh: [CommentData] = []
     var commentsArr: [CommentData] = []
@@ -94,24 +95,27 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
              //   let cell:CommentViewCell=UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "commentCell") as! CommentViewCell
                 let cell:CommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentViewCell
                 
-                if bleh[indexPath.row].hiddenComment == false {
-                cell.indentationLevel = bleh[indexPath.row].level
+                    if !alreadyHidden(id: bleh[indexPath.row].id) {
+                        cell.indentationLevel = bleh[indexPath.row].level
+                        
+                        
+                        cell.parent_id = bleh[indexPath.row].parent_id
+                        cell.id = bleh[indexPath.row].id
+                        
+                        cell.contentView.layoutMargins.left = CGFloat(bleh[indexPath.row].level * 10) + 10
+                        
+                        if bleh[indexPath.row].title != "" {
+                            cell.mainLabel?.text = bleh[indexPath.row].title + "\n\n" + bleh[indexPath.row].selftext
+                        } else {
+                            cell.mainLabel?.text = bleh[indexPath.row].body
+                            cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author + "   level: " + String(bleh[indexPath.row].level)
+                            cell.upvoteLabel?.text = String(bleh[indexPath.row].upvotes)
+                            
+                            
+                        }
+                    }
                 
-                
-                cell.parent_id = bleh[indexPath.row].parent_id
-                cell.id = bleh[indexPath.row].id
 
-                    cell.contentView.layoutMargins.left = CGFloat(bleh[indexPath.row].level * 10) + 10
-
-                if bleh[indexPath.row].title != "" {
-                    cell.mainLabel?.text = bleh[indexPath.row].title + "\n\n" + bleh[indexPath.row].selftext
-                } else {
-                    cell.mainLabel?.text = bleh[indexPath.row].body
-                    cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author + "   level: " + String(bleh[indexPath.row].level)
-                    cell.upvoteLabel?.text = String(bleh[indexPath.row].upvotes)
-
-                }
-                }
                // cell.mainLabel?.numberOfLines=0;
                 return cell
             }
@@ -122,7 +126,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let indexPath = commentTable.indexPathForSelectedRow //optional, to get from any UIButton for example
                 let currentCell = commentTable.cellForRow(at: indexPath!) as! CommentViewCell!
                 print("Selected cell with author: " + (currentCell?.authorLabel.text)! + " and ID of " + (currentCell?.id)! + " and parent ID of " + (currentCell?.parent_id)!)
-                hideTheChildren(id: (currentCell?.id)!)
+                toggleTheChildren(id: (currentCell?.id)!)
 
                 
                 commentTable.reloadData()
@@ -130,19 +134,40 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
             }
     
+    
+     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+        if bleh[indexPath.row].hiddenComment == true {
+            return 0.0
+        }
+        return 44.0
+    }
 
-    func hideTheChildren(id: String){
+    func toggleTheChildren(id: String){
         for (index, cell) in bleh.enumerated() {
-            if cell.parent_id == id {
+            if cell.parent_id == id && !alreadyHidden(id: cell.id) {
                 print("Hiding " + cell.body + " - because it's a child of " + cell.parent_id)
-                //cell.hiddenComment = true//Hide the child
-                cell.body = ""
-                cell.author = ""
-                hideTheChildren(id: cell.id)//Recurse to hide it's children
+                cell.hiddenComment = true//Hide the child
+
+                hiddenChildren.append(cell.id)
+                toggleTheChildren(id: cell.id)//Recurse to hide it's children
+            } else if (cell.parent_id == id && alreadyHidden(id: cell.id)) {
+                print("Showing " + cell.body + " - because it's a child of " + cell.parent_id)
+                cell.hiddenComment = false//Hide the child
+                hiddenChildren = hiddenChildren.filter() {$0 != cell.id}
+                toggleTheChildren(id: cell.id)//Recurse to hide it's children
             }
         }
     }
     
+    
+    func alreadyHidden(id: String) -> Bool {
+        for child in hiddenChildren {
+            if child == id {
+                return true
+            }
+        }
+        return false
+    }
     
 }
 
