@@ -26,6 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.table.dataSource = self
         for subreddit in arrayOfSubreddits {
             Downloader.downloadJSON(subreddit: subreddit)
+            print("Downloading \(subreddit)")
         }
 
         // Do any additional setup after loading the view, typically from a nib.
@@ -92,15 +93,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 txtSubreddit.text = ""
                 Downloader.downloadJSON(subreddit: subreddit)
                 //print("Sent " + subreddit + " to DownloaderJSON")
-
             }
         } else {
             print("Internet connection FAILED")
             sendAlert(TITLE: "No Internet Connection", MESSAGE: "Make sure your device is connected to the internet to initially add subreddits!", BUTTON: "OK")
-           
         }
     }
 
+    
+    @IBAction func downloadSubreddits(_ sender: Any) {
+        print("Clicked")
+        for subreddit in arrayOfSubreddits {
+            Downloader.downloadJSON(subreddit: subreddit)
+            print("Downloading \(subreddit)")
+        }
+    }
 
     
     func sendAlert(TITLE:String, MESSAGE:String, BUTTON:String) {

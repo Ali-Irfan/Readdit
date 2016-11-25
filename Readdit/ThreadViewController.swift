@@ -19,7 +19,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         commentTable.dataSource = self
         commentTable.delegate = self
-        commentTable.estimatedRowHeight = 140
+        commentTable.estimatedRowHeight = 140.0
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
         
@@ -31,8 +31,11 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let mainCommentSelftext = json[0]["data"]["children"][0]["data"]["selftext"].string!
                 let mainComment = CommentData()
                 mainComment.title = mainCommentTitle
+                mainComment.isMainComment = true
                 mainComment.selftext = mainCommentSelftext
                 mainComment.id = json[0]["data"]["children"][0]["data"]["id"].string!
+                mainComment.author = json[0]["data"]["children"][0]["data"]["author"].string!
+                mainComment.upvotes = json[0]["data"]["children"][0]["data"]["ups"].int!
                 bleh.append(mainComment)
                 recursion(object: json[1], level: 0)
             }
@@ -91,83 +94,90 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
             {
-                
+              
              //   let cell:CommentViewCell=UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "commentCell") as! CommentViewCell
                 let cell:CommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentViewCell
                 
-                    if !alreadyHidden(id: bleh[indexPath.row].id) {
+
+                if bleh[indexPath.row].isMainComment {
+                    cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
+                    cell.upvoteLabel?.text = ""
+                    cell.collapseLabel?.text = ""
+                    cell.mainLabel?.text = bleh[indexPath.row].title + bleh[indexPath.row].selftext
+                    
+                }
+                
+                if !bleh[indexPath.row].hiddenComment && !bleh[indexPath.row].isMainComment {
+                
                         cell.indentationLevel = bleh[indexPath.row].level
-                        
-                        
+                        cell.selectionStyle = .none
+
+                    
                         cell.parent_id = bleh[indexPath.row].parent_id
                         cell.id = bleh[indexPath.row].id
+                        cell.superParent = bleh[indexPath.row].superParent
                         
                         cell.contentView.layoutMargins.left = CGFloat(bleh[indexPath.row].level * 10) + 10
                         
-                        if bleh[indexPath.row].title != "" {
-                            cell.mainLabel?.text = bleh[indexPath.row].title + "\n\n" + bleh[indexPath.row].selftext
-                        } else {
+
                             cell.mainLabel?.text = bleh[indexPath.row].body
                             cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author + "   level: " + String(bleh[indexPath.row].level)
                             cell.upvoteLabel?.text = String(bleh[indexPath.row].upvotes)
-                            
-                            
-                        }
-                    }
+                            cell.collapseLabel?.text = bleh[indexPath.row].collapse
+                    
+                 
+                    
+                  } else {
+                    
+                }
+                return cell
                 
 
-               // cell.mainLabel?.numberOfLines=0;
-                return cell
+               
             }
     
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if bleh[indexPath.row].hiddenComment {
+            return 0.00
+        } else {
+            return UITableViewAutomaticDimension
+        }
+    }
     
             func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                let indexPath = commentTable.indexPathForSelectedRow //optional, to get from any UIButton for example
-                let currentCell = commentTable.cellForRow(at: indexPath!) as! CommentViewCell!
-                print("Selected cell with author: " + (currentCell?.authorLabel.text)! + " and ID of " + (currentCell?.id)! + " and parent ID of " + (currentCell?.parent_id)!)
-                toggleTheChildren(id: (currentCell?.id)!)
 
+                if indexPath.row != bleh.count-1 || indexPath.row == 0 {
+                    let currentIndentationLevel = bleh[indexPath.row].level
+                    
+                    if bleh[indexPath.row].collapse == "[+]" {
+                        bleh[indexPath.row].collapse = "[-]"
+                    } else {
+                        bleh[indexPath.row].collapse = "[+]"
+                    }
+                    var newIndex = indexPath.row + 1
+                    while bleh[newIndex].level > currentIndentationLevel && newIndex <= bleh.count{
+                        if bleh[newIndex].hiddenComment == true {
+                            bleh[newIndex].hiddenComment = false
+                            
+                        } else {
+                            bleh[newIndex].hiddenComment = true
+                            
+                        }
+                        
+                        newIndex = newIndex + 1
+                        if newIndex >= bleh.count {
+                            break
+                        }
+                    }
+                }
+                
                 
                 commentTable.reloadData()
-            
-    
+                
             }
-    
-    
-     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
-        if bleh[indexPath.row].hiddenComment == true {
-            return 0.0
-        }
-        return 44.0
-    }
 
-    func toggleTheChildren(id: String){
-        for (index, cell) in bleh.enumerated() {
-            if cell.parent_id == id && !alreadyHidden(id: cell.id) {
-                print("Hiding " + cell.body + " - because it's a child of " + cell.parent_id)
-                cell.hiddenComment = true//Hide the child
 
-                hiddenChildren.append(cell.id)
-                toggleTheChildren(id: cell.id)//Recurse to hide it's children
-            } else if (cell.parent_id == id && alreadyHidden(id: cell.id)) {
-                print("Showing " + cell.body + " - because it's a child of " + cell.parent_id)
-                cell.hiddenComment = false//Hide the child
-                hiddenChildren = hiddenChildren.filter() {$0 != cell.id}
-                toggleTheChildren(id: cell.id)//Recurse to hide it's children
-            }
-        }
-    }
-    
-    
-    func alreadyHidden(id: String) -> Bool {
-        for child in hiddenChildren {
-            if child == id {
-                return true
-            }
-        }
-        return false
-    }
     
 }
 

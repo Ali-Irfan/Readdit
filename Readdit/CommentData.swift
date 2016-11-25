@@ -13,5 +13,8 @@ class CommentData {
     var controversiality: Int = 0
     var level: Int = 0
     var hiddenComment = false
+    var superParent = ""
+    var collapse = "[-]"
+    var isMainComment = false
 
 }

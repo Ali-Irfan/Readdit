@@ -14,13 +14,18 @@ class CommentViewCell: UITableViewCell {
     var parent_id = ""
     var hiddenComment = false
     var id = ""
+    var superParent = ""
+    
+    @IBOutlet weak var collapseLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       mainLabel.text = ""
+        mainLabel.text = ""
         authorLabel.text = ""
         upvoteLabel.text = ""
         commentCountLabel.text = ""
+        collapseLabel.text = "[-]"
 
         // Initialization code
     }
