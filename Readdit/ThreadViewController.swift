@@ -19,7 +19,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         commentTable.dataSource = self
         commentTable.delegate = self
-        commentTable.estimatedRowHeight = 140.0
+        commentTable.estimatedRowHeight = 250.0
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
         
