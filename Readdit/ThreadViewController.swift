@@ -100,10 +100,16 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
 
                 if bleh[indexPath.row].isMainComment {
+                     cell.contentView.layoutMargins.left = 10
                     cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
                     cell.upvoteLabel?.text = ""
                     cell.collapseLabel?.text = ""
-                    cell.mainLabel?.text = bleh[indexPath.row].title + bleh[indexPath.row].selftext
+                    var titleText = bleh[indexPath.row].title
+                    var selftext = bleh[indexPath.row].selftext
+
+                    cell.mainLabel?.text = titleText
+                    
+
                     
                 }
                 
@@ -135,25 +141,34 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
                
             }
+
+    
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if bleh[indexPath.row].hiddenComment {
             return 0.00
+        } else if bleh[indexPath.row].minimized {
+            return 40.00
         } else {
             return UITableViewAutomaticDimension
         }
     }
     
             func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+                
+                
                 if indexPath.row != bleh.count-1 || indexPath.row == 0 {
                     let currentIndentationLevel = bleh[indexPath.row].level
                     
                     if bleh[indexPath.row].collapse == "[+]" {
                         bleh[indexPath.row].collapse = "[-]"
+                        bleh[indexPath.row].minimized = false
+
                     } else {
                         bleh[indexPath.row].collapse = "[+]"
+                        bleh[indexPath.row].minimized = true
+
                     }
                     var newIndex = indexPath.row + 1
                     while bleh[newIndex].level > currentIndentationLevel && newIndex <= bleh.count{

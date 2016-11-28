@@ -82,7 +82,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Z7A-iZ-ec7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="16" width="375" height="650"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="commentCell" rowHeight="85" id="6gE-G0-rWW" customClass="CommentViewCell" customModule="Readdit" customModuleProvider="target">
@@ -170,9 +170,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Z7A-iZ-ec7" firstAttribute="bottom" secondItem="E8i-2z-90x" secondAttribute="top" id="1Zz-dh-YZw"/>
+                            <constraint firstItem="Z7A-iZ-ec7" firstAttribute="bottom" secondItem="E8i-2z-90x" secondAttribute="top" constant="-1" id="1Zz-dh-YZw"/>
                             <constraint firstAttribute="trailing" secondItem="Z7A-iZ-ec7" secondAttribute="trailing" id="9km-7T-E1Y"/>
-                            <constraint firstItem="Z7A-iZ-ec7" firstAttribute="top" secondItem="uwJ-lK-fT9" secondAttribute="top" id="P21-qm-hy8"/>
+                            <constraint firstItem="Z7A-iZ-ec7" firstAttribute="top" secondItem="uwJ-lK-fT9" secondAttribute="top" constant="16" id="P21-qm-hy8"/>
                             <constraint firstItem="Z7A-iZ-ec7" firstAttribute="leading" secondItem="uwJ-lK-fT9" secondAttribute="leading" id="goJ-hx-Esh"/>
                         </constraints>
                     </view>

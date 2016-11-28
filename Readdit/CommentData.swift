@@ -16,5 +16,6 @@ class CommentData {
     var superParent = ""
     var collapse = "[-]"
     var isMainComment = false
+    var minimized = false
 
 }
