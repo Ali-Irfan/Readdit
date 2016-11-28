@@ -157,42 +157,47 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
             func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
                 
-                
+                let newIndex = indexPath.row + 1
                 if indexPath.row != bleh.count-1 || indexPath.row == 0 {
                     let currentIndentationLevel = bleh[indexPath.row].level
                     
-                    if bleh[indexPath.row].collapse == "[+]" {
+                    if bleh[indexPath.row].collapse == "[+]" { //We are now going to open it and all children
                         bleh[indexPath.row].collapse = "[-]"
                         bleh[indexPath.row].minimized = false
+                        openAllChildren(parentID: bleh[indexPath.row].id, newIndex: newIndex, currentIndentationLevel: currentIndentationLevel)
 
                     } else {
-                        bleh[indexPath.row].collapse = "[+]"
+                        bleh[indexPath.row].collapse = "[+]" // We are now closing it and all children
                         bleh[indexPath.row].minimized = true
-
-                    }
-                    var newIndex = indexPath.row + 1
-                    while bleh[newIndex].level > currentIndentationLevel && newIndex <= bleh.count{
-                        if bleh[newIndex].hiddenComment == true {
-                            bleh[newIndex].hiddenComment = false
-                            
-                        } else {
-                            bleh[newIndex].hiddenComment = true
-                            
-                        }
-                        
-                        newIndex = newIndex + 1
-                        if newIndex >= bleh.count {
-                            break
-                        }
+                        closeAllChildren(parentID: bleh[indexPath.row].id, newIndex: newIndex, currentIndentationLevel: currentIndentationLevel)
                     }
                 }
-                
-                
                 commentTable.reloadData()
-                
             }
 
-
+    func openAllChildren(parentID: String, newIndex: Int, currentIndentationLevel: Int){
+        var newIndex = newIndex
+        while bleh[newIndex].level > currentIndentationLevel && newIndex <= bleh.count{
+            bleh[newIndex].hiddenComment = false
+            bleh[newIndex].collapse = "[+]"
+            newIndex = newIndex + 1
+            if newIndex >= bleh.count {
+                break
+            }
+        }
+    }
+    
+    func closeAllChildren(parentID: String, newIndex: Int, currentIndentationLevel: Int){
+        var newIndex = newIndex
+        while bleh[newIndex].level > currentIndentationLevel && newIndex <= bleh.count{
+            bleh[newIndex].hiddenComment = true
+            bleh[newIndex].collapse = "[-]"
+            newIndex = newIndex + 1
+            if newIndex >= bleh.count {
+                break
+            }
+        }
+    }
     
 }
 
