@@ -4,4 +4,5 @@ use_frameworks!
 target 'Readdit' do
     pod 'SwiftyJSON'
     pod 'Dollar'
+    pod 'SideMenu'
 end

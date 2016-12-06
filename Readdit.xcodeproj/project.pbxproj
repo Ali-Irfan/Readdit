@@ -10,10 +10,18 @@
 		3636E2991DCFF8DC0030F77D /* ThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */; };
 		3636E29B1DD001530030F77D /* ThreadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3636E29A1DD001530030F77D /* ThreadData.swift */; };
 		366680BD1DCD3FB5005CD95E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366680BC1DCD3FB5005CD95E /* Reachability.swift */; };
+		366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D61DEFB9B000696250 /* SettingsViewController.swift */; };
+		366903DA1DEFBCC100696250 /* TextSizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */; };
+		366903DC1DEFBCE200696250 /* DarkModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903DB1DEFBCE200696250 /* DarkModeTableViewCell.swift */; };
+		366903DE1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903DD1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift */; };
+		366903E01DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */; };
+		366903E21DEFBD0200696250 /* ReportABugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */; };
+		366903E41DEFBD0C00696250 /* ClearAllDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */; };
 		368A4BEF1DD0CABF002D0480 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368A4BEE1DD0CABF002D0480 /* CommentData.swift */; };
 		368A4BF11DD0DFC7002D0480 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368A4BF01DD0DFC7002D0480 /* General.swift */; };
 		36970FFF1DE936E60070DC33 /* MainPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */; };
 		369710001DE936E60070DC33 /* MainPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36970FFE1DE936E60070DC33 /* MainPostTableViewCell.xib */; };
+		36982E3C1DF5386700336A3F /* THREADTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36982E3B1DF5386700336A3F /* THREADTableViewCell.swift */; };
 		36C451341DCD4A2F0066A76E /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C451331DCD4A2F0066A76E /* Downloader.swift */; };
 		36D255A41DCC3B2C00B1779E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D255A31DCC3B2C00B1779E /* AppDelegate.swift */; };
 		36D255A61DCC3B2C00B1779E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D255A51DCC3B2C00B1779E /* ViewController.swift */; };
@@ -50,10 +58,18 @@
 		3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; };
 		3636E29A1DD001530030F77D /* ThreadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadData.swift; sourceTree = "<group>"; };
 		366680BC1DCD3FB5005CD95E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		366903D61DEFB9B000696250 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../SettingsViewController.swift; sourceTree = "<group>"; };
+		366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSizeTableViewCell.swift; sourceTree = "<group>"; };
+		366903DB1DEFBCE200696250 /* DarkModeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkModeTableViewCell.swift; sourceTree = "<group>"; };
+		366903DD1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNSFWPostsTableViewCell.swift; sourceTree = "<group>"; };
+		366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportABugTableViewCell.swift; sourceTree = "<group>"; };
+		366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearAllDataTableViewCell.swift; sourceTree = "<group>"; };
 		368A4BEE1DD0CABF002D0480 /* CommentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentData.swift; sourceTree = "<group>"; };
 		368A4BF01DD0DFC7002D0480 /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPostTableViewCell.swift; sourceTree = "<group>"; };
 		36970FFE1DE936E60070DC33 /* MainPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPostTableViewCell.xib; sourceTree = "<group>"; };
+		36982E3B1DF5386700336A3F /* THREADTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THREADTableViewCell.swift; sourceTree = "<group>"; };
 		36C451331DCD4A2F0066A76E /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		36D255A01DCC3B2C00B1779E /* Readdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Readdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36D255A31DCC3B2C00B1779E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +123,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		366903D81DEFBC9A00696250 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				366903D61DEFB9B000696250 /* SettingsViewController.swift */,
+				366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */,
+				366903DB1DEFBCE200696250 /* DarkModeTableViewCell.swift */,
+				366903DD1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift */,
+				366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */,
+				366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */,
+				366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		36D255971DCC3B2B00B1779E = {
 			isa = PBXGroup;
 			children = (
@@ -133,8 +163,10 @@
 			isa = PBXGroup;
 			children = (
 				36D255A31DCC3B2C00B1779E /* AppDelegate.swift */,
+				366903D81DEFBC9A00696250 /* Settings */,
 				36D255A51DCC3B2C00B1779E /* ViewController.swift */,
 				36D255A71DCC3B2C00B1779E /* Main.storyboard */,
+				36982E3B1DF5386700336A3F /* THREADTableViewCell.swift */,
 				36D255AA1DCC3B2C00B1779E /* Assets.xcassets */,
 				36D255AC1DCC3B2C00B1779E /* LaunchScreen.storyboard */,
 				36D255AF1DCC3B2C00B1779E /* Info.plist */,
@@ -366,8 +398,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				366903DC1DEFBCE200696250 /* DarkModeTableViewCell.swift in Sources */,
 				36E7215D1DD6F43C004B5EAA /* CommentViewCell.swift in Sources */,
 				36D255A61DCC3B2C00B1779E /* ViewController.swift in Sources */,
+				366903DE1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift in Sources */,
 				36970FFF1DE936E60070DC33 /* MainPostTableViewCell.swift in Sources */,
 				368A4BEF1DD0CABF002D0480 /* CommentData.swift in Sources */,
 				36D255A41DCC3B2C00B1779E /* AppDelegate.swift in Sources */,
@@ -375,8 +409,14 @@
 				3636E2991DCFF8DC0030F77D /* ThreadViewController.swift in Sources */,
 				3636E29B1DD001530030F77D /* ThreadData.swift in Sources */,
 				36C451341DCD4A2F0066A76E /* Downloader.swift in Sources */,
+				366903DA1DEFBCC100696250 /* TextSizeTableViewCell.swift in Sources */,
+				36982E3C1DF5386700336A3F /* THREADTableViewCell.swift in Sources */,
 				366680BD1DCD3FB5005CD95E /* Reachability.swift in Sources */,
 				36DB561E1DCEB76200E7B764 /* ThreadListViewController.swift in Sources */,
+				366903E21DEFBD0200696250 /* ReportABugTableViewCell.swift in Sources */,
+				366903E01DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift in Sources */,
+				366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */,
+				366903E41DEFBD0C00696250 /* ClearAllDataTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

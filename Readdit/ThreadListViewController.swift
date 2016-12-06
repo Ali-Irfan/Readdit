@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import SideMenu
 
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -24,6 +25,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(updateThreads))
 
         
@@ -31,6 +33,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         threadTable.dataSource = self
         threadTable.rowHeight = UITableViewAutomaticDimension
         threadTable.estimatedRowHeight = 140
+        threadTable.backgroundColor = General.hexStringToUIColor(hex: "#dadada")
          jsonRaw = Downloader.getJSON(subreddit: subreddit)
         if (jsonRaw != "Error") {
             if let data = jsonRaw.data(using: String.Encoding.utf8) {
@@ -61,7 +64,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
        // print(arrayOfThreads)
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
+
     
     @IBAction func updateThreads() {
         for thread in arrayOfThreads {
@@ -85,9 +88,23 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "mycell2")
-        cell.textLabel?.text = arrayOfThreads[indexPath.row].title
-        cell.detailTextLabel?.text = "/u/" + arrayOfThreads[indexPath.row].author
+        let cell:THREADTableViewCell = tableView.dequeueReusableCell(withIdentifier: "mycell2") as! THREADTableViewCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.none; 
+        
+        cell.topViewBar.backgroundColor = General.hexStringToUIColor(hex: "#dadada")
+        cell.mainText?.text = arrayOfThreads[indexPath.row].title
+        cell.authorLabel?.text = "/u/" + arrayOfThreads[indexPath.row].author
+        let dateText = General.timeAgoSinceDate(date: NSDate(timeIntervalSince1970: Double(arrayOfThreads[indexPath.row].utcCreated)), numericDates: true)
+        cell.hoursText?.text = " • " + String(arrayOfThreads[indexPath.row].upvotes)
+        
+        let firstWord   = dateText
+        let secondWord = String(arrayOfThreads[indexPath.row].upvotes)
+        let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)]
+        let attributedText = NSMutableAttributedString(string:firstWord)
+        attributedText.append(NSMutableAttributedString(string: " • "))
+        attributedText.append(NSAttributedString(string: secondWord, attributes: attrs))
+        cell.hoursText?.attributedText = attributedText
+        
         cell.textLabel?.numberOfLines=0;
         return cell
     }
@@ -99,7 +116,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // Get Cell Label
         let indexPath = tableView.indexPathForSelectedRow!
-        let currentCell = tableView.cellForRow(at: indexPath)! as UITableViewCell
+        let currentCell = tableView.cellForRow(at: indexPath)! as! THREADTableViewCell
         
         var threadURL = ""
         var threadID = ""
@@ -110,7 +127,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 let threads = json["data"]["children"]
                 for (_, thread):(String, JSON) in threads {
                     let title = thread["data"]["title"]
-                    if title.string! == currentCell.textLabel?.text {
+                    if title.string! == currentCell.mainText?.text {
                         threadURL = ( thread["data"]["permalink"].string! )
                         threadID = thread["data"]["id"].string!
                     }

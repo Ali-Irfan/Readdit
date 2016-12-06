@@ -17,12 +17,12 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         commentTable.dataSource = self
         commentTable.delegate = self
         commentTable.estimatedRowHeight = 250.0
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
-        
         let jsonRaw = Downloader.getThreadJSON(threadURL: threadURL, threadID: threadID)
         if (jsonRaw != "Error") {
             if let data = jsonRaw.data(using: String.Encoding.utf8) {
@@ -60,7 +60,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 comment.parent_id = child["data"]["parent_id"].string!
                 let r = comment.parent_id.index(comment.parent_id.startIndex, offsetBy: 3)..<comment.parent_id.endIndex
                 comment.parent_id = comment.parent_id[r]
-                print(comment.parent_id)
+                //print(comment.parent_id)
                 comment.controversiality = child["data"]["controversiality"].int!
                 comment.score = child["data"]["score"].int!
                 comment.body_html = child["data"]["body_html"].string!
@@ -95,20 +95,31 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
             {
               
-             //   let cell:CommentViewCell=UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "commentCell") as! CommentViewCell
                 let cell:CommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentViewCell
-                
 
+                
                 if bleh[indexPath.row].isMainComment {
                      cell.contentView.layoutMargins.left = 10
                     cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
                     cell.upvoteLabel?.text = ""
                     cell.collapseLabel?.text = ""
-                    var titleText = bleh[indexPath.row].title
-                    var selftext = bleh[indexPath.row].selftext
-
-                    cell.mainLabel?.text = titleText
-                    
+                    let titleText = bleh[indexPath.row].title
+                    let selftext = bleh[indexPath.row].selftext
+                    if selftext != "" {
+                        let firstWord   = titleText
+                        let secondWord = "\n\n"
+                        let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)]
+                        let thirdWord   = selftext
+                        let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs)
+                        attributedText.append(NSAttributedString(string: secondWord))
+                        attributedText.append(NSAttributedString(string: thirdWord))
+                        cell.mainLabel?.attributedText = attributedText
+                    } else {
+                        let firstWord = titleText
+                        let attrs2 = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)]
+                        let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs2)
+                        cell.mainLabel?.attributedText = attributedText
+                    }
 
                     
                 }
@@ -117,6 +128,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
                         cell.indentationLevel = bleh[indexPath.row].level
                         cell.selectionStyle = .none
+                   // cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
+                    
 
                     
                         cell.parent_id = bleh[indexPath.row].parent_id
@@ -127,8 +140,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         
 
                             cell.mainLabel?.text = bleh[indexPath.row].body
-                            cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author + "   level: " + String(bleh[indexPath.row].level)
-                            cell.upvoteLabel?.text = String(bleh[indexPath.row].upvotes)
+                            cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author + " ☻ " + String(bleh[indexPath.row].upvotes)
+                    
+                            cell.upvoteLabel?.text = General.timeAgoSinceDate(date: NSDate(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)), numericDates: true)
                             cell.collapseLabel?.text = bleh[indexPath.row].collapse
                     
                  
@@ -154,11 +168,13 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return UITableViewAutomaticDimension
         }
     }
+
+    
     
             func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
                 
                 let newIndex = indexPath.row + 1
-                if indexPath.row != bleh.count-1 || indexPath.row == 0 {
+                if indexPath.row != bleh.count-1 && bleh[indexPath.row].title == "" {
                     let currentIndentationLevel = bleh[indexPath.row].level
                     
                     if bleh[indexPath.row].collapse == "[+]" { //We are now going to open it and all children
@@ -200,5 +216,33 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
 }
-
+extension CALayer {
+    
+    func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
+        
+        let border = CALayer()
+        
+        switch edge {
+        case UIRectEdge.top:
+            border.frame = CGRect(x: 0, y: 0, width: self.frame.height, height: thickness)
+            break
+        case UIRectEdge.bottom:
+            border.frame = CGRect(x: 0, y: self.frame.height - thickness, width: UIScreen.main.bounds.width, height: thickness)
+            break
+        case UIRectEdge.left:
+            border.frame = CGRect(x: 0, y: 0, width: thickness, height: self.frame.height)
+            break
+        case UIRectEdge.right:
+            border.frame = CGRect(x: self.frame.width - thickness, y: 0, width: thickness, height: self.frame.height)
+            break
+        default:
+            break
+        }
+        
+        border.backgroundColor = color.cgColor;
+        
+        self.addSublayer(border)
+    }
+    
+}
 

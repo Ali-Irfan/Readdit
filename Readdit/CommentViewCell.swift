@@ -9,8 +9,6 @@ class CommentViewCell: UITableViewCell {
     
     @IBOutlet weak var upvoteLabel: UILabel!
     
-    @IBOutlet weak var commentCountLabel: UILabel!
-    
     var parent_id = ""
     var hiddenComment = false
     var id = ""
@@ -24,7 +22,6 @@ class CommentViewCell: UITableViewCell {
         mainLabel.text = ""
         authorLabel.text = ""
         upvoteLabel.text = ""
-        commentCountLabel.text = ""
         collapseLabel.text = "[-]"
 
         // Initialization code
