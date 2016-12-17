@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		362104F31DF73925002E13D2 /* SubredditHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F21DF73925002E13D2 /* SubredditHeaderTableViewCell.swift */; };
+		362104F51DF73939002E13D2 /* SubredditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */; };
+		362104F71DF73944002E13D2 /* ScheduleHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F61DF73944002E13D2 /* ScheduleHeaderTableViewCell.swift */; };
+		362104F91DF73951002E13D2 /* SettingsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */; };
+		362104FB1DF73A11002E13D2 /* SidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104FA1DF73A11002E13D2 /* SidebarTableViewController.swift */; };
 		3636E2991DCFF8DC0030F77D /* ThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */; };
 		3636E29B1DD001530030F77D /* ThreadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3636E29A1DD001530030F77D /* ThreadData.swift */; };
+		365F1BD61DFA8D29007FBF9C /* IntroUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */; };
 		366680BD1DCD3FB5005CD95E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366680BC1DCD3FB5005CD95E /* Reachability.swift */; };
 		366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D61DEFB9B000696250 /* SettingsViewController.swift */; };
 		366903DA1DEFBCC100696250 /* TextSizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */; };
@@ -17,6 +23,7 @@
 		366903E01DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */; };
 		366903E21DEFBD0200696250 /* ReportABugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */; };
 		366903E41DEFBD0C00696250 /* ClearAllDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */; };
+		3678F4F91E04D4DB005A3F8A /* ThreadNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */; };
 		368A4BEF1DD0CABF002D0480 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368A4BEE1DD0CABF002D0480 /* CommentData.swift */; };
 		368A4BF11DD0DFC7002D0480 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368A4BF01DD0DFC7002D0480 /* General.swift */; };
 		36970FFF1DE936E60070DC33 /* MainPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */; };
@@ -55,8 +62,14 @@
 /* Begin PBXFileReference section */
 		29BFA7BC3305DC2A33E969C3 /* Pods_Readdit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Readdit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B222CAAF07D1AA4F9D5399E /* Pods-Readdit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readdit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Readdit/Pods-Readdit.debug.xcconfig"; sourceTree = "<group>"; };
+		362104F21DF73925002E13D2 /* SubredditHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubredditHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubredditTableViewCell.swift; sourceTree = "<group>"; };
+		362104F61DF73944002E13D2 /* ScheduleHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		362104FA1DF73A11002E13D2 /* SidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewController.swift; sourceTree = "<group>"; };
 		3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; };
 		3636E29A1DD001530030F77D /* ThreadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadData.swift; sourceTree = "<group>"; };
+		365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroUIView.swift; sourceTree = "<group>"; };
 		366680BC1DCD3FB5005CD95E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		366903D61DEFB9B000696250 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../SettingsViewController.swift; sourceTree = "<group>"; };
 		366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSizeTableViewCell.swift; sourceTree = "<group>"; };
@@ -65,6 +78,7 @@
 		366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNSFWPostsTableViewCell.swift; sourceTree = "<group>"; };
 		366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportABugTableViewCell.swift; sourceTree = "<group>"; };
 		366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearAllDataTableViewCell.swift; sourceTree = "<group>"; };
+		3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadNavigationController.swift; sourceTree = "<group>"; };
 		368A4BEE1DD0CABF002D0480 /* CommentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentData.swift; sourceTree = "<group>"; };
 		368A4BF01DD0DFC7002D0480 /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPostTableViewCell.swift; sourceTree = "<group>"; };
@@ -123,6 +137,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		362104F11DF738D6002E13D2 /* SidebarCells */ = {
+			isa = PBXGroup;
+			children = (
+				362104F21DF73925002E13D2 /* SubredditHeaderTableViewCell.swift */,
+				362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */,
+				362104F61DF73944002E13D2 /* ScheduleHeaderTableViewCell.swift */,
+				362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */,
+				362104FA1DF73A11002E13D2 /* SidebarTableViewController.swift */,
+			);
+			name = SidebarCells;
+			sourceTree = "<group>";
+		};
 		366903D81DEFBC9A00696250 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +159,7 @@
 				366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */,
 				366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */,
 				366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */,
+				365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -163,12 +190,14 @@
 			isa = PBXGroup;
 			children = (
 				36D255A31DCC3B2C00B1779E /* AppDelegate.swift */,
+				362104F11DF738D6002E13D2 /* SidebarCells */,
 				366903D81DEFBC9A00696250 /* Settings */,
 				36D255A51DCC3B2C00B1779E /* ViewController.swift */,
 				36D255A71DCC3B2C00B1779E /* Main.storyboard */,
 				36982E3B1DF5386700336A3F /* THREADTableViewCell.swift */,
 				36D255AA1DCC3B2C00B1779E /* Assets.xcassets */,
 				36D255AC1DCC3B2C00B1779E /* LaunchScreen.storyboard */,
+				3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */,
 				36D255AF1DCC3B2C00B1779E /* Info.plist */,
 				366680BC1DCD3FB5005CD95E /* Reachability.swift */,
 				36C451331DCD4A2F0066A76E /* Downloader.swift */,
@@ -398,17 +427,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3678F4F91E04D4DB005A3F8A /* ThreadNavigationController.swift in Sources */,
 				366903DC1DEFBCE200696250 /* DarkModeTableViewCell.swift in Sources */,
 				36E7215D1DD6F43C004B5EAA /* CommentViewCell.swift in Sources */,
 				36D255A61DCC3B2C00B1779E /* ViewController.swift in Sources */,
+				362104F71DF73944002E13D2 /* ScheduleHeaderTableViewCell.swift in Sources */,
 				366903DE1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift in Sources */,
 				36970FFF1DE936E60070DC33 /* MainPostTableViewCell.swift in Sources */,
+				362104F51DF73939002E13D2 /* SubredditTableViewCell.swift in Sources */,
 				368A4BEF1DD0CABF002D0480 /* CommentData.swift in Sources */,
+				362104FB1DF73A11002E13D2 /* SidebarTableViewController.swift in Sources */,
 				36D255A41DCC3B2C00B1779E /* AppDelegate.swift in Sources */,
 				368A4BF11DD0DFC7002D0480 /* General.swift in Sources */,
+				365F1BD61DFA8D29007FBF9C /* IntroUIView.swift in Sources */,
 				3636E2991DCFF8DC0030F77D /* ThreadViewController.swift in Sources */,
 				3636E29B1DD001530030F77D /* ThreadData.swift in Sources */,
+				362104F91DF73951002E13D2 /* SettingsHeaderTableViewCell.swift in Sources */,
 				36C451341DCD4A2F0066A76E /* Downloader.swift in Sources */,
+				362104F31DF73925002E13D2 /* SubredditHeaderTableViewCell.swift in Sources */,
 				366903DA1DEFBCC100696250 /* TextSizeTableViewCell.swift in Sources */,
 				36982E3C1DF5386700336A3F /* THREADTableViewCell.swift in Sources */,
 				366680BD1DCD3FB5005CD95E /* Reachability.swift in Sources */,
@@ -569,6 +605,7 @@
 			baseConfigurationReference = 2B222CAAF07D1AA4F9D5399E /* Pods-Readdit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4XHUDDQAMX;
 				INFOPLIST_FILE = Readdit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -584,6 +621,7 @@
 			baseConfigurationReference = D815F63645B2EAD205943E0A /* Pods-Readdit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4XHUDDQAMX;
 				INFOPLIST_FILE = Readdit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;

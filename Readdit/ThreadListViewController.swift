@@ -33,7 +33,12 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         threadTable.dataSource = self
         threadTable.rowHeight = UITableViewAutomaticDimension
         threadTable.estimatedRowHeight = 140
+        navigationController?.navigationItem.setHidesBackButton(true, animated: true)
         threadTable.backgroundColor = General.hexStringToUIColor(hex: "#dadada")
+        let leftButton = UIBarButtonItem(title: "Chiudi", style: .plain, target: self, action: #selector(showSidebar))
+        
+        navigationController?.navigationItem.leftBarButtonItem = leftButton
+        
          jsonRaw = Downloader.getJSON(subreddit: subreddit)
         if (jsonRaw != "Error") {
             if let data = jsonRaw.data(using: String.Encoding.utf8) {
@@ -65,6 +70,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+     func viewWillAppear(animated: Bool) {
+        self.navigationItem.hidesBackButton = true
+    }
+    
     
     @IBAction func updateThreads() {
         for thread in arrayOfThreads {
@@ -74,6 +83,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
 
+    
+    func showSidebar(){
+        present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -137,6 +150,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         let myVC = storyboard?.instantiateViewController(withIdentifier: "ThreadView") as! ThreadViewController
         myVC.threadURL = "https://reddit.com" + threadURL
             myVC.threadID = threadID
+            //present(myVC, animated: true, completion: nil)
         navigationController?.pushViewController(myVC, animated: true)
     }
     }
