@@ -7,15 +7,12 @@
 //
 
 import UIKit
-import SideMenu
 
 class IntroUIView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SideMenuManager.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
-        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
-        
+
         
     var image = General.resizeImage(image: UIImage(named: "menu-2")!, targetSize: CGSize(width: 15, height: 15))
     
@@ -29,7 +26,6 @@ class IntroUIView: UIViewController {
     
     func openSidebar(){
         print("Clicked")
-        present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
-        
+
     }
 }

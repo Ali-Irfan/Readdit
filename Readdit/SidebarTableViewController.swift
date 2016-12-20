@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SideMenu
 
 class SidebarTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -19,7 +18,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+
         
         self.sidebarTable.dataSource = self
         self.sidebarTable.delegate = self
@@ -42,22 +41,27 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt
-        indexPath: IndexPath){
+indexPath: IndexPath){
 
         print("You selected cell #\(indexPath.row)!")
         
         // Get Cell Label
         let indexPath = tableView.indexPathForSelectedRow!
         if let currentCell = tableView.cellForRow(at: indexPath)! as? SubredditTableViewCell{ //IF ITS A SUBREDDIT
+            print("Here")
             let subreddit = (currentCell.subredditTitle.text)
-            let myVC = storyboard?.instantiateViewController(withIdentifier: "ThreadNavigation") as! ThreadNavigationController
+            let myVC = self.storyboard?.instantiateViewController(withIdentifier: "ThreadNavigation") as! ThreadNavigationController
             let actualView = myVC.viewControllers.first as! ThreadListViewController
             actualView.subreddit = subreddit!
-            present(myVC, animated: true)
-            
             //present(myVC, animated: true, completion: nil)
+            self.revealViewController().pushFrontViewController(myVC, animated: true)
+        } else if tableView.cellForRow(at: indexPath)! is SettingsHeaderTableViewCell {
+            let myVC = self.storyboard?.instantiateViewController(withIdentifier: "Settings") as! UINavigationController
+            self.revealViewController().pushFrontViewController(myVC, animated: true)
+        } else if tableView.cellForRow(at: indexPath)! is ScheduleHeaderTableViewCell {
+            let myVC = self.storyboard?.instantiateViewController(withIdentifier: "Schedule") as! UINavigationController
+            self.revealViewController().pushFrontViewController(myVC, animated: true)
         }
-
     }
     
     

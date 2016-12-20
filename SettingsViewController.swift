@@ -3,14 +3,29 @@ import SwiftyJSON
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var menuButton: UIBarButtonItem!
 
     
-    let arrayOfSettings = ["Text Size", "Dark Mode", "Download Settings", "Hide NSFW Posts", "Report A Bug", "Clear All Data"]
+    let arrayOfSettings = ["Text Size", "Dark Mode", "Download Settings", "Hide NSFW Posts", "Default Sorting Type", "Report A Bug", "Clear All Data"]
     
     @IBOutlet weak var settingsTable: UITableView!
     var totalSize = 0
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        if revealViewController() != nil {
+            menuButton.target = revealViewController()
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            revealViewController().rightViewRevealWidth = 150
+            revealViewController().rearViewRevealWidth = 300
+            view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
+            
+            let revealController = self.revealViewController() as? RevealViewController
+            
+            revealController?.settingsController = self
+        }
+        
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         settingsTable.dataSource = self
         settingsTable.delegate = self
@@ -121,6 +136,51 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
 
+    func changeSortType(_ sender: UIButton!) {
+        
+        // 1
+        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
+        
+        // 2
+        let best = UIAlertAction(title: "Best", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("Best", for: .normal)
+        })
+        let top = UIAlertAction(title: "Top", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("Top", for: .normal)
+        })
+        
+        //
+        let new = UIAlertAction(title: "New", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("New", for: .normal)
+        })
+        
+        let controversial = UIAlertAction(title: "Controversial", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("Controversial", for: .normal)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
+        
+        
+        
+        // 4
+        optionMenu.addAction(best)
+        optionMenu.addAction(top)
+        optionMenu.addAction(new)
+        optionMenu.addAction(controversial)
+        optionMenu.addAction(cancelAction)
+        
+        // 5
+        
+        present(optionMenu, animated: true, completion: nil)
+        
+    }
     
     // Do any additional setup after loading the view.
     
@@ -170,6 +230,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
         case "Clear All Data":
             let cell:ClearAllDataTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "ClearAll") as! ClearAllDataTableViewCell
+            return cell
+            
+        case"Default Sorting Type":
+            let cell:DefaultSortingTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "defaultSort") as! DefaultSortingTableViewCell
+            cell.sortingButton.addTarget(self, action: #selector(changeSortType), for: .touchUpInside)
             return cell
 
         default:

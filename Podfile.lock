@@ -1,18 +1,18 @@
 PODS:
   - Dollar (6.1.0)
-  - SideMenu (2.0.5)
+  - SlideMenuControllerSwift (3.0.0)
   - SwiftyJSON (3.1.1)
 
 DEPENDENCIES:
   - Dollar
-  - SideMenu
+  - SlideMenuControllerSwift
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
-  SideMenu: 0ecfd407b24e7d36c57fc50ca7f5d7cedb7c8841
+  SlideMenuControllerSwift: 9c0a84f9a3fba51681debd7be77617094562ebcc
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
 
-PODFILE CHECKSUM: a47cf1b22e726e0fd3cd2e2d4ee7880324f147a3
+PODFILE CHECKSUM: 82cfa6e9123a637d9909a10dcd44b6810c89f672
 
 COCOAPODS: 1.1.1

@@ -1,15 +1,18 @@
 //
-//  HideNSFWPostsTableViewCell.swift
+//  MainSorrCell.swift
 //  Readdit
 //
-//  Created by Ali Irfan on 2016-11-30.
+//  Created by Ali Irfan on 2016-12-19.
 //  Copyright © 2016 Ali Irfan. All rights reserved.
 //
 
 import UIKit
 
-class HideNSFWPostsTableViewCell: UITableViewCell {
+class MainSortCell: UITableViewCell {
 
+    @IBOutlet weak var mainTextLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,5 +24,4 @@ class HideNSFWPostsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    
 }

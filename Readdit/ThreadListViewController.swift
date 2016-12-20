@@ -8,13 +8,13 @@
 
 import UIKit
 import SwiftyJSON
-import SideMenu
 
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var arrayOfThreads: [ThreadData] = []
     var subreddit = ""
     
+    @IBOutlet weak var menuButton: UIBarButtonItem!
 
     
     var arrayOfSubreddits: [String] = ["AskReddit", "AskScience"]
@@ -28,6 +28,12 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(updateThreads))
 
+        if revealViewController() != nil {
+            menuButton.target = revealViewController()
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
+            //view.removeGestureRecognizer(revealViewController().rightViewController.revealViewController().panGestureRecognizer())
+        }
         
        threadTable.delegate = self
         threadTable.dataSource = self
@@ -35,9 +41,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         threadTable.estimatedRowHeight = 140
         navigationController?.navigationItem.setHidesBackButton(true, animated: true)
         threadTable.backgroundColor = General.hexStringToUIColor(hex: "#dadada")
-        let leftButton = UIBarButtonItem(title: "Chiudi", style: .plain, target: self, action: #selector(showSidebar))
         
-        navigationController?.navigationItem.leftBarButtonItem = leftButton
         
          jsonRaw = Downloader.getJSON(subreddit: subreddit)
         if (jsonRaw != "Error") {
@@ -83,10 +87,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
 
-    
-    func showSidebar(){
-        present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
-    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

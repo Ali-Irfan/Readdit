@@ -24,6 +24,7 @@
 		366903E21DEFBD0200696250 /* ReportABugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */; };
 		366903E41DEFBD0C00696250 /* ClearAllDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */; };
 		3678F4F91E04D4DB005A3F8A /* ThreadNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */; };
+		3684C7CC1E071A9400754372 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3684C7CB1E071A9400754372 /* SWRevealViewController.m */; };
 		368A4BEF1DD0CABF002D0480 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368A4BEE1DD0CABF002D0480 /* CommentData.swift */; };
 		368A4BF11DD0DFC7002D0480 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368A4BF01DD0DFC7002D0480 /* General.swift */; };
 		36970FFF1DE936E60070DC33 /* MainPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */; };
@@ -39,6 +40,12 @@
 		36D255C41DCC3B2C00B1779E /* ReadditUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D255C31DCC3B2C00B1779E /* ReadditUITests.swift */; };
 		36DB561E1DCEB76200E7B764 /* ThreadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DB561D1DCEB76200E7B764 /* ThreadListViewController.swift */; };
 		36E7215D1DD6F43C004B5EAA /* CommentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E7215C1DD6F43C004B5EAA /* CommentViewCell.swift */; };
+		36EE38011E0889FE00AA5D48 /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE38001E0889FE00AA5D48 /* RevealViewController.swift */; };
+		36EE38031E08984A00AA5D48 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE38021E08984A00AA5D48 /* ScheduleViewController.swift */; };
+		36EE380A1E08A08600AA5D48 /* RightSidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE38091E08A08600AA5D48 /* RightSidebarViewController.swift */; };
+		36EE380C1E08A35900AA5D48 /* TypeOfSortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE380B1E08A35900AA5D48 /* TypeOfSortCell.swift */; };
+		36EE380E1E08A36F00AA5D48 /* MainSortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE380D1E08A36F00AA5D48 /* MainSortCell.swift */; };
+		36F608F11E09B3C400604B6D /* DefaultSortingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F608F01E09B3C400604B6D /* DefaultSortingTableViewCell.swift */; };
 		FE74C635AEA378F7BE8F9E78 /* Pods_Readdit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29BFA7BC3305DC2A33E969C3 /* Pods_Readdit.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,7 +74,7 @@
 		362104F61DF73944002E13D2 /* ScheduleHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		362104FA1DF73A11002E13D2 /* SidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewController.swift; sourceTree = "<group>"; };
-		3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; };
+		3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; tabWidth = 5; };
 		3636E29A1DD001530030F77D /* ThreadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadData.swift; sourceTree = "<group>"; };
 		365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroUIView.swift; sourceTree = "<group>"; };
 		366680BC1DCD3FB5005CD95E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -79,6 +86,9 @@
 		366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportABugTableViewCell.swift; sourceTree = "<group>"; };
 		366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearAllDataTableViewCell.swift; sourceTree = "<group>"; };
 		3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadNavigationController.swift; sourceTree = "<group>"; };
+		3684C7C91E071A9400754372 /* Readdit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Readdit-Bridging-Header.h"; sourceTree = "<group>"; };
+		3684C7CA1E071A9400754372 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
+		3684C7CB1E071A9400754372 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
 		368A4BEE1DD0CABF002D0480 /* CommentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentData.swift; sourceTree = "<group>"; };
 		368A4BF01DD0DFC7002D0480 /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPostTableViewCell.swift; sourceTree = "<group>"; };
@@ -100,6 +110,12 @@
 		36D255C51DCC3B2C00B1779E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36DB561D1DCEB76200E7B764 /* ThreadListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadListViewController.swift; sourceTree = "<group>"; };
 		36E7215C1DD6F43C004B5EAA /* CommentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewCell.swift; sourceTree = "<group>"; };
+		36EE38001E0889FE00AA5D48 /* RevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
+		36EE38021E08984A00AA5D48 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		36EE38091E08A08600AA5D48 /* RightSidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightSidebarViewController.swift; sourceTree = "<group>"; };
+		36EE380B1E08A35900AA5D48 /* TypeOfSortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeOfSortCell.swift; sourceTree = "<group>"; };
+		36EE380D1E08A36F00AA5D48 /* MainSortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSortCell.swift; sourceTree = "<group>"; };
+		36F608F01E09B3C400604B6D /* DefaultSortingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSortingTableViewCell.swift; sourceTree = "<group>"; };
 		D815F63645B2EAD205943E0A /* Pods-Readdit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readdit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Readdit/Pods-Readdit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,26 +169,27 @@
 			isa = PBXGroup;
 			children = (
 				366903D61DEFB9B000696250 /* SettingsViewController.swift */,
-				366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */,
-				366903DB1DEFBCE200696250 /* DarkModeTableViewCell.swift */,
-				366903DD1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift */,
-				366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */,
-				366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */,
-				366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */,
-				365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */,
+				36F608EF1E09B3A800604B6D /* Array of Settings */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		3684C7C81E071A8700754372 /* SWReveal */ = {
+			isa = PBXGroup;
+			children = (
+				3684C7CA1E071A9400754372 /* SWRevealViewController.h */,
+				3684C7CB1E071A9400754372 /* SWRevealViewController.m */,
+				3684C7C91E071A9400754372 /* Readdit-Bridging-Header.h */,
+				36EE38001E0889FE00AA5D48 /* RevealViewController.swift */,
+			);
+			name = SWReveal;
 			sourceTree = "<group>";
 		};
 		36D255971DCC3B2B00B1779E = {
 			isa = PBXGroup;
 			children = (
 				36D255A21DCC3B2C00B1779E /* Readdit */,
-				36D255B71DCC3B2C00B1779E /* ReadditTests */,
-				36D255C21DCC3B2C00B1779E /* ReadditUITests */,
-				36D255A11DCC3B2C00B1779E /* Products */,
-				FE463AF3CEC3FBAA157CBD1C /* Pods */,
-				193338652B5A4A9AEE0A25D8 /* Frameworks */,
+				36EE38071E089ADA00AA5D48 /* Other */,
 			);
 			sourceTree = "<group>";
 		};
@@ -189,26 +206,18 @@
 		36D255A21DCC3B2C00B1779E /* Readdit */ = {
 			isa = PBXGroup;
 			children = (
-				36D255A31DCC3B2C00B1779E /* AppDelegate.swift */,
+				36D255AA1DCC3B2C00B1779E /* Assets.xcassets */,
+				36D255AF1DCC3B2C00B1779E /* Info.plist */,
+				36D255AC1DCC3B2C00B1779E /* LaunchScreen.storyboard */,
+				36D255A71DCC3B2C00B1779E /* Main.storyboard */,
+				3684C7C81E071A8700754372 /* SWReveal */,
+				36EE38081E08A06E00AA5D48 /* Right Sidebar */,
 				362104F11DF738D6002E13D2 /* SidebarCells */,
 				366903D81DEFBC9A00696250 /* Settings */,
 				36D255A51DCC3B2C00B1779E /* ViewController.swift */,
-				36D255A71DCC3B2C00B1779E /* Main.storyboard */,
-				36982E3B1DF5386700336A3F /* THREADTableViewCell.swift */,
-				36D255AA1DCC3B2C00B1779E /* Assets.xcassets */,
-				36D255AC1DCC3B2C00B1779E /* LaunchScreen.storyboard */,
-				3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */,
-				36D255AF1DCC3B2C00B1779E /* Info.plist */,
-				366680BC1DCD3FB5005CD95E /* Reachability.swift */,
-				36C451331DCD4A2F0066A76E /* Downloader.swift */,
-				3636E29A1DD001530030F77D /* ThreadData.swift */,
-				368A4BEE1DD0CABF002D0480 /* CommentData.swift */,
-				36DB561D1DCEB76200E7B764 /* ThreadListViewController.swift */,
-				36E7215C1DD6F43C004B5EAA /* CommentViewCell.swift */,
-				3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */,
-				368A4BF01DD0DFC7002D0480 /* General.swift */,
-				36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */,
-				36970FFE1DE936E60070DC33 /* MainPostTableViewCell.xib */,
+				36EE38041E089A1400AA5D48 /* Schedule */,
+				36EE38051E089A3100AA5D48 /* Thread Lists */,
+				36EE38061E089A4200AA5D48 /* Misc. */,
 			);
 			path = Readdit;
 			sourceTree = "<group>";
@@ -229,6 +238,78 @@
 				36D255C51DCC3B2C00B1779E /* Info.plist */,
 			);
 			path = ReadditUITests;
+			sourceTree = "<group>";
+		};
+		36EE38041E089A1400AA5D48 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				36EE38021E08984A00AA5D48 /* ScheduleViewController.swift */,
+			);
+			name = Schedule;
+			sourceTree = "<group>";
+		};
+		36EE38051E089A3100AA5D48 /* Thread Lists */ = {
+			isa = PBXGroup;
+			children = (
+				36982E3B1DF5386700336A3F /* THREADTableViewCell.swift */,
+				3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */,
+				3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */,
+				36DB561D1DCEB76200E7B764 /* ThreadListViewController.swift */,
+			);
+			name = "Thread Lists";
+			sourceTree = "<group>";
+		};
+		36EE38061E089A4200AA5D48 /* Misc. */ = {
+			isa = PBXGroup;
+			children = (
+				36D255A31DCC3B2C00B1779E /* AppDelegate.swift */,
+				366680BC1DCD3FB5005CD95E /* Reachability.swift */,
+				36C451331DCD4A2F0066A76E /* Downloader.swift */,
+				3636E29A1DD001530030F77D /* ThreadData.swift */,
+				368A4BEE1DD0CABF002D0480 /* CommentData.swift */,
+				36E7215C1DD6F43C004B5EAA /* CommentViewCell.swift */,
+				368A4BF01DD0DFC7002D0480 /* General.swift */,
+				36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */,
+				36970FFE1DE936E60070DC33 /* MainPostTableViewCell.xib */,
+			);
+			name = Misc.;
+			sourceTree = "<group>";
+		};
+		36EE38071E089ADA00AA5D48 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				36D255B71DCC3B2C00B1779E /* ReadditTests */,
+				36D255C21DCC3B2C00B1779E /* ReadditUITests */,
+				36D255A11DCC3B2C00B1779E /* Products */,
+				FE463AF3CEC3FBAA157CBD1C /* Pods */,
+				193338652B5A4A9AEE0A25D8 /* Frameworks */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		36EE38081E08A06E00AA5D48 /* Right Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				36EE38091E08A08600AA5D48 /* RightSidebarViewController.swift */,
+				36EE380B1E08A35900AA5D48 /* TypeOfSortCell.swift */,
+				36EE380D1E08A36F00AA5D48 /* MainSortCell.swift */,
+			);
+			name = "Right Sidebar";
+			sourceTree = "<group>";
+		};
+		36F608EF1E09B3A800604B6D /* Array of Settings */ = {
+			isa = PBXGroup;
+			children = (
+				366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */,
+				366903DB1DEFBCE200696250 /* DarkModeTableViewCell.swift */,
+				366903DD1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift */,
+				366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */,
+				366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */,
+				366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */,
+				365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */,
+				36F608F01E09B3C400604B6D /* DefaultSortingTableViewCell.swift */,
+			);
+			name = "Array of Settings";
 			sourceTree = "<group>";
 		};
 		FE463AF3CEC3FBAA157CBD1C /* Pods */ = {
@@ -306,12 +387,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Ali Irfan";
 				TargetAttributes = {
 					36D2559F1DCC3B2C00B1779E = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 4XHUDDQAMX;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 					36D255B31DCC3B2C00B1779E = {
@@ -427,11 +509,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36EE38011E0889FE00AA5D48 /* RevealViewController.swift in Sources */,
 				3678F4F91E04D4DB005A3F8A /* ThreadNavigationController.swift in Sources */,
 				366903DC1DEFBCE200696250 /* DarkModeTableViewCell.swift in Sources */,
 				36E7215D1DD6F43C004B5EAA /* CommentViewCell.swift in Sources */,
+				36EE380A1E08A08600AA5D48 /* RightSidebarViewController.swift in Sources */,
 				36D255A61DCC3B2C00B1779E /* ViewController.swift in Sources */,
+				36EE38031E08984A00AA5D48 /* ScheduleViewController.swift in Sources */,
 				362104F71DF73944002E13D2 /* ScheduleHeaderTableViewCell.swift in Sources */,
+				3684C7CC1E071A9400754372 /* SWRevealViewController.m in Sources */,
 				366903DE1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift in Sources */,
 				36970FFF1DE936E60070DC33 /* MainPostTableViewCell.swift in Sources */,
 				362104F51DF73939002E13D2 /* SubredditTableViewCell.swift in Sources */,
@@ -439,6 +525,8 @@
 				362104FB1DF73A11002E13D2 /* SidebarTableViewController.swift in Sources */,
 				36D255A41DCC3B2C00B1779E /* AppDelegate.swift in Sources */,
 				368A4BF11DD0DFC7002D0480 /* General.swift in Sources */,
+				36F608F11E09B3C400604B6D /* DefaultSortingTableViewCell.swift in Sources */,
+				36EE380C1E08A35900AA5D48 /* TypeOfSortCell.swift in Sources */,
 				365F1BD61DFA8D29007FBF9C /* IntroUIView.swift in Sources */,
 				3636E2991DCFF8DC0030F77D /* ThreadViewController.swift in Sources */,
 				3636E29B1DD001530030F77D /* ThreadData.swift in Sources */,
@@ -446,6 +534,7 @@
 				36C451341DCD4A2F0066A76E /* Downloader.swift in Sources */,
 				362104F31DF73925002E13D2 /* SubredditHeaderTableViewCell.swift in Sources */,
 				366903DA1DEFBCC100696250 /* TextSizeTableViewCell.swift in Sources */,
+				36EE380E1E08A36F00AA5D48 /* MainSortCell.swift in Sources */,
 				36982E3C1DF5386700336A3F /* THREADTableViewCell.swift in Sources */,
 				366680BD1DCD3FB5005CD95E /* Reachability.swift in Sources */,
 				36DB561E1DCEB76200E7B764 /* ThreadListViewController.swift in Sources */,
@@ -525,6 +614,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -575,6 +665,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -604,7 +695,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2B222CAAF07D1AA4F9D5399E /* Pods-Readdit.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4XHUDDQAMX;
 				INFOPLIST_FILE = Readdit/Info.plist;
@@ -612,6 +705,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = aliirfan.Readdit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Readdit/Readdit-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -620,7 +715,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D815F63645B2EAD205943E0A /* Pods-Readdit.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4XHUDDQAMX;
 				INFOPLIST_FILE = Readdit/Info.plist;
@@ -628,6 +725,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = aliirfan.Readdit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Readdit/Readdit-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

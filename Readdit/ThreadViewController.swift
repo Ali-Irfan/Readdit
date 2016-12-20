@@ -17,12 +17,16 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "=", style: .plain, target: revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)))
+        view.addGestureRecognizer(self.revealViewController().rightViewController.revealViewController().panGestureRecognizer())
+self.revealViewController().rightViewRevealWidth = 150
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         commentTable.dataSource = self
         commentTable.delegate = self
         commentTable.estimatedRowHeight = 250.0
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
+        
         let jsonRaw = Downloader.getThreadJSON(threadURL: threadURL, threadID: threadID)
         if (jsonRaw != "Error") {
             if let data = jsonRaw.data(using: String.Encoding.utf8) {
