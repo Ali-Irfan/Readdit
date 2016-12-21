@@ -14,6 +14,11 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     var arrayOfSubreddits: [String] = ["AskReddit", "AskScience", "IAmA", "News", "ExplainLikeImFive", "Jokes"]
     var numberOfSubreddits = 0
 
+    
+    func getSubreddits() -> [String] {
+        return arrayOfSubreddits
+    }
+    
     @IBOutlet weak var sidebarTable: UITableView!
     override func viewDidLoad() {
         

@@ -3,7 +3,7 @@ import SwiftyJSON
 import Dollar
 
 class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    let defaults = UserDefaults.standard
     var threadURL = ""
     var threadID = ""
     var arrayOfComments: [CommentData] = []
@@ -26,8 +26,18 @@ self.revealViewController().rightViewRevealWidth = 150
         commentTable.estimatedRowHeight = 250.0
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
+
+        showThreadComments()
+
+        
+        
+    }
+
+    
+    func showThreadComments() {
         
         let jsonRaw = Downloader.getThreadJSON(threadURL: threadURL, threadID: threadID)
+        
         if (jsonRaw != "Error") {
             if let data = jsonRaw.data(using: String.Encoding.utf8) {
                 let json = JSON(data: data)
@@ -45,7 +55,28 @@ self.revealViewController().rightViewRevealWidth = 150
             }
         }
     }
-
+    
+    func sortBy(sortType: String) {
+        switch sortType {
+        case "Top":
+            print("Got top")
+        
+        case "Best":
+            print("Got best")
+            
+        case "Controversial":
+            print("Got controversial")
+            
+        case "Old":
+            print("Got old")
+            
+        case "New":
+            print("Got new")
+            
+        default:
+            print("Got default")
+        }
+    }
     
     func recursion(object: JSON, level: Int = 0){
         

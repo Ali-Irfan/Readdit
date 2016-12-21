@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 
 class General {
+
+    
 class func subredditExists(fileName: String) -> Bool {
     var filePath = "~/subreddits"
     // Read file content. Example in Swift
@@ -197,7 +199,7 @@ class func threadExists(fileName: String) -> Bool {
         return newImage!
     }
 
-    
+
 
 
 }

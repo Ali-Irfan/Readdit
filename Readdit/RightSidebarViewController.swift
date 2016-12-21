@@ -11,7 +11,8 @@ import UIKit
 class RightSidebarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var sortingTable: UITableView!
-    let arrayOfSortings:[String] = ["Sort by", "Top", "Best", "New", "Old", "Controversial", "Old"]
+    let defaults = UserDefaults.standard
+    let arrayOfSortings:[String] = ["Sort by", "Top", "Best", "New", "Old", "Controversial"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,13 @@ class RightSidebarViewController: UIViewController, UITableViewDelegate, UITable
             let currentCell = tableView.cellForRow(at: indexPath)! as! TypeOfSortCell
             print("Label: " + currentCell.mainTextLabel.text!)
             self.revealViewController().rightRevealToggle(animated: true)
+            //INSERT LOCAL SORT HERE
+            let currentNavigationView = self.revealViewController().frontViewController as! UINavigationController
+            let currentThreadView = currentNavigationView.visibleViewController as! ThreadViewController
+                currentThreadView.sortBy(sortType: currentCell.mainTextLabel.text!)
+            
+
+            
         } else {
             let currentCell = tableView.cellForRow(at: indexPath)! as! MainSortCell
             print("Label: " + currentCell.mainTextLabel.text!)
@@ -66,6 +74,9 @@ class RightSidebarViewController: UIViewController, UITableViewDelegate, UITable
             let cell:TypeOfSortCell = sortingTable.dequeueReusableCell(withIdentifier: "sort")! as! TypeOfSortCell
             cell.mainTextLabel.text = sortType
             return cell
+            
+            
+            
         } else {
             let cell:MainSortCell = sortingTable.dequeueReusableCell(withIdentifier: "sortBy") as! MainSortCell
             cell.mainTextLabel.text = "Sort By:"

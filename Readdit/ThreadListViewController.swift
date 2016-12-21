@@ -27,6 +27,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(updateThreads))
+        
+        navigationItem.title = "/r/" + subreddit
 
         if revealViewController() != nil {
             menuButton.target = revealViewController()
@@ -42,13 +44,25 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         navigationController?.navigationItem.setHidesBackButton(true, animated: true)
         threadTable.backgroundColor = General.hexStringToUIColor(hex: "#dadada")
         
+        displayThreads()
+    }
+
+     func viewWillAppear(animated: Bool) {
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    
+    func updateThreads() {
+
+        Downloader.downloadJSON(subreddit: subreddit)
         
-         jsonRaw = Downloader.getJSON(subreddit: subreddit)
+        jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "top")
+        arrayOfThreads.removeAll()
         if (jsonRaw != "Error") {
             if let data = jsonRaw.data(using: String.Encoding.utf8) {
                 let json = JSON(data: data)
                 let threads = json["data"]["children"]
-               // print(json)
+                // print(json)
                 for (_, thread):(String, JSON) in threads {
                     let thisThread = ThreadData()
                     thisThread.title = thread["data"]["title"].string!
@@ -61,31 +75,39 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                     //print(thisThread)
                     arrayOfThreads.append(thisThread)
                 }
-               // print(arrayOfThreads)
+                for thread in arrayOfThreads {
+                    Downloader.downloadThreadJSON(threadURL: thread.permalink, threadID: thread.id)
+                }
                 threadTable.reloadData()
-                //updateThreads()
             }
-            
-            
-            
-            
-        }
-       // print(arrayOfThreads)
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-     func viewWillAppear(animated: Bool) {
-        self.navigationItem.hidesBackButton = true
-    }
-    
-    
-    @IBAction func updateThreads() {
-        for thread in arrayOfThreads {
-            Downloader.downloadThreadJSON(threadURL: thread.permalink, threadID: thread.id)
-            //print("Downloaded \(thread.id)")
-            
         }
     }
+    	
+    
+    
+    func displayThreads() {
+        jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "top")
+        if (jsonRaw != "Error") {
+            if let data = jsonRaw.data(using: String.Encoding.utf8) {
+                let json = JSON(data: data)
+                let threads = json["data"]["children"]
+                // print(json)
+                for (_, thread):(String, JSON) in threads {
+                    let thisThread = ThreadData()
+                    thisThread.title = thread["data"]["title"].string!
+                    thisThread.author = thread["data"]["author"].string!
+                    thisThread.upvotes = thread["data"]["ups"].int!
+                    thisThread.commentCount = thread["data"]["num_comments"].int!
+                    thisThread.id = thread["data"]["id"].string!
+                    thisThread.permalink = thread["data"]["permalink"].string!
+                    //print(title)
+                    //print(thisThread)
+                    arrayOfThreads.append(thisThread)
+                }
+            }
+        }
+    }
+    
 
 
     
