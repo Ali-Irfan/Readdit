@@ -5,6 +5,7 @@ import Dollar
 class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let defaults = UserDefaults.standard
     var threadURL = ""
+    var subreddit = ""
     var threadID = ""
     var arrayOfComments: [CommentData] = []
     var hiddenChildren: [String] = []
@@ -17,9 +18,15 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "=", style: .plain, target: revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)))
+        
+        
+        revealViewController().rearViewRevealWidth = 0
         view.addGestureRecognizer(self.revealViewController().rightViewController.revealViewController().panGestureRecognizer())
-self.revealViewController().rightViewRevealWidth = 150
+        
+        self.revealViewController().rightViewRevealWidth = 150
+        
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         commentTable.dataSource = self
         commentTable.delegate = self
@@ -27,17 +34,17 @@ self.revealViewController().rightViewRevealWidth = 150
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
 
-        showThreadComments()
+        showThreadComments(sortType: "Best")
 
         
         
     }
 
     
-    func showThreadComments() {
+    func showThreadComments(sortType: String) {
         
-        let jsonRaw = Downloader.getThreadJSON(threadURL: threadURL, threadID: threadID)
-        
+        let jsonRaw = Downloader.getThreadJSON(threadURL: threadURL, threadID: threadID, sortType: sortType, subreddit: subreddit)
+        bleh.removeAll()
         if (jsonRaw != "Error") {
             if let data = jsonRaw.data(using: String.Encoding.utf8) {
                 let json = JSON(data: data)
@@ -52,30 +59,13 @@ self.revealViewController().rightViewRevealWidth = 150
                 mainComment.upvotes = json[0]["data"]["children"][0]["data"]["ups"].int!
                 bleh.append(mainComment)
                 recursion(object: json[1], level: 0)
+                commentTable.reloadData()
             }
         }
     }
     
     func sortBy(sortType: String) {
-        switch sortType {
-        case "Top":
-            print("Got top")
-        
-        case "Best":
-            print("Got best")
-            
-        case "Controversial":
-            print("Got controversial")
-            
-        case "Old":
-            print("Got old")
-            
-        case "New":
-            print("Got new")
-            
-        default:
-            print("Got default")
-        }
+        showThreadComments(sortType: sortType)
     }
     
     func recursion(object: JSON, level: Int = 0){

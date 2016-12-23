@@ -17,13 +17,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         if revealViewController() != nil {
             menuButton.target = revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            revealViewController().rightViewRevealWidth = 150
+            revealViewController().rightViewRevealWidth = 0
             revealViewController().rearViewRevealWidth = 300
-            view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
             
+            view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
             let revealController = self.revealViewController() as? RevealViewController
             
             revealController?.settingsController = self
+
         }
         
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")

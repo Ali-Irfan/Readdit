@@ -17,6 +17,9 @@ class ScheduleViewController: UIViewController {
             menuButton.target = revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
+            revealViewController().rightViewRevealWidth = 0
+            revealViewController().rearViewRevealWidth = 300
+
         }
         // Do any additional setup after loading the view.
     }

@@ -25,7 +25,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(updateThreads))
         
         navigationItem.title = "/r/" + subreddit
@@ -34,7 +34,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             menuButton.target = revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
-            //view.removeGestureRecognizer(revealViewController().rightViewController.revealViewController().panGestureRecognizer())
+            revealViewController().rightViewRevealWidth = 150
+            revealViewController().rearViewRevealWidth = 300
         }
         
        threadTable.delegate = self
@@ -56,7 +57,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         Downloader.downloadJSON(subreddit: subreddit)
         
-        jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "top")
+        jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Top")
         arrayOfThreads.removeAll()
         if (jsonRaw != "Error") {
             if let data = jsonRaw.data(using: String.Encoding.utf8) {
@@ -76,7 +77,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                     arrayOfThreads.append(thisThread)
                 }
                 for thread in arrayOfThreads {
-                    Downloader.downloadThreadJSON(threadURL: thread.permalink, threadID: thread.id)
+                    Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
                 }
                 threadTable.reloadData()
             }
@@ -86,7 +87,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func displayThreads() {
-        jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "top")
+        jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Top")
         if (jsonRaw != "Error") {
             if let data = jsonRaw.data(using: String.Encoding.utf8) {
                 let json = JSON(data: data)
@@ -173,6 +174,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         let myVC = storyboard?.instantiateViewController(withIdentifier: "ThreadView") as! ThreadViewController
         myVC.threadURL = "https://reddit.com" + threadURL
             myVC.threadID = threadID
+            myVC.subreddit = subreddit
             //present(myVC, animated: true, completion: nil)
         navigationController?.pushViewController(myVC, animated: true)
     }

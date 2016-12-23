@@ -1,8 +1,8 @@
 import Foundation
 import SwiftyJSON
 
-let arrayOfSubredditSort = ["hot", "controversial", "top", "rising", "new"]
-let arrayOfThreadSort    = ["top", "new", "controversial", "best", "old"]
+let arrayOfSubredditSort = ["Hot", "Controversial", "Top", "Rising", "New"]
+let arrayOfThreadSort    = ["Top", "New", "Controversial", "Best", "Old"]
 
 public class Downloader: UIViewController {
     
@@ -18,7 +18,7 @@ class func downloadJSON(subreddit:String){
     
     for sortType in arrayOfSubredditSort {
     
-    let urlString = "https://www.reddit.com/r/" + subreddit + "/" + sortType + "/.json?limit=" + threadNumber
+    let urlString = "https://www.reddit.com/r/" + subreddit + "/" + sortType.lowercased() + "/.json?limit=" + threadNumber
     print("Got fresh data from \(urlString)")
     if let url = URL(string: urlString) {
         if let data = try? Data(contentsOf: url) {
@@ -73,25 +73,34 @@ class func downloadJSON(subreddit:String){
     
     
     
-    class func downloadThreadJSON(threadURL:String, threadID: String) {//, sortBy: String){
+    class func downloadThreadJSON(subreddit: String, threadURL:String, threadID: String){
 
+        for sortType in arrayOfThreadSort {
 
             
-        let urlString = "https://reddit.com" + threadURL + "/.json"//?sort=" + sortBy
+        let urlString = "https://reddit.com" + threadURL + "/.json?sort=" + sortType
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
                 
                 let json = JSON(data:data)
                 
                 let fileName = threadID + ".txt"
-                var filePath = "~/threads"
+                var filePath = ""
                 
                 // Fine documents directory on device
                 let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
                 
                 if dirs.count > 0 {
                     let dir = dirs[0] //documents directory
-                    filePath = dir.appending("/" + fileName)
+                    let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+                    let commentSortPath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType)
+                    do {
+                        try FileManager.default.createDirectory(at: commentSortPath!, withIntermediateDirectories: true, attributes: nil)
+                    } catch let error as NSError {
+                        NSLog("Unable to create directory \(error.debugDescription)")
+                    }
+
+                    filePath = dir.appending("/" + subreddit + "/comments_" + sortType + "/" + fileName)
                       print("Local path = \(filePath)")
                     
                 } else {
@@ -107,11 +116,12 @@ class func downloadJSON(subreddit:String){
                     print("Successfully wrote data to " + filePath)
                 }
                 catch let error as NSError {
-                    print("An error took place: \(error)")
+                    print("An error took place(DownloadThread): \(error)")
                 }
                 
             }
         }
+        }//end of loop
     }
     
 
@@ -140,22 +150,22 @@ class func downloadJSON(subreddit:String){
             return contentFromFile as String
         }
         catch let error as NSError {
-            print("An error took place: \(error)")
+            print("An error took place(getJSON): \(error)")
             return "Error"
         }
     }
     
     
-    class func getThreadJSON(threadURL:String, threadID: String) -> String {
+    class func getThreadJSON(threadURL:String, threadID: String, sortType: String, subreddit: String) -> String {
         let fileName = threadID + ".txt"
-        var filePath = "~/threads"
+        var filePath = ""
         // Read file content. Example in Swift
         // Fine documents directory on device
         let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
         
         if dirs.count > 0 {
             let dir = dirs[0] //documents directory
-            filePath = dir.appending("/" + fileName)
+            filePath = dir.appending("/" + subreddit + "/comments_" + sortType + "/" + fileName)
             print("Local path = \(filePath)")
         } else {
             print("Could not find local directory to store file")
@@ -172,7 +182,7 @@ class func downloadJSON(subreddit:String){
             return contentFromFile as String
         }
         catch let error as NSError {
-            print("An error took place: \(error)")
+            print("An error took place(GetThread): \(error)")
             return "Error"
         }
     }

@@ -23,7 +23,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        print("View did load (front)")
         
         self.sidebarTable.dataSource = self
         self.sidebarTable.delegate = self
