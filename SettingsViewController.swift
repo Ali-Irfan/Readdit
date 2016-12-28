@@ -54,6 +54,30 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             //Set a default value because it was never set before
             defaults.set("wifi", forKey: "network")
         }
+        
+        if let key = defaults.url(forKey: "currentThreadURL") {
+            //Do nothing because it already exists
+        } else {
+            //Set a default value because it was never set before
+            let blankURL = URL(fileURLWithPath: "")
+            defaults.set(blankURL, forKey: "currentThreadURL")
+        }
+        
+        if let key = defaults.url(forKey: "currentThreadZipPath") {
+            //Do nothing because it already exists
+        } else {
+            //Set a default value because it was never set before
+            let blankURL = URL(fileURLWithPath: "")
+            defaults.set(blankURL, forKey: "currentThreadZipPath")
+        }
+        
+        if let key = defaults.url(forKey: "currentThreadtxtPath") {
+            //Do nothing because it already exists
+        } else {
+            //Set a default value because it was never set before
+            let blankURL = URL(fileURLWithPath: "")
+            defaults.set(blankURL, forKey: "currentThreadTxtPath")
+        }
     }
 
     func changeDownload(_ sender: UIButton!) {

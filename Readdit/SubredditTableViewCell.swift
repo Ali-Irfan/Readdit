@@ -66,6 +66,7 @@ class SubredditTableViewCell: UITableViewCell {
                     
                     Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
                 }
+                print("Done downloading.")
                 self.updateButton.isEnabled = true
             }
         }

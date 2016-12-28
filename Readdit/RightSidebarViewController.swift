@@ -14,7 +14,7 @@ class RightSidebarViewController: UIViewController, UITableViewDelegate, UITable
     let defaults = UserDefaults.standard
     let arrayOfThreadSortings:[String] = ["Top", "New", "Controversial", "Best", "Old"]
     let arrayOfSubredditSortings:[String] = ["Hot", "Controversial", "Top", "Rising", "New"]
-
+    var currentSortingStyle:[String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,25 +29,28 @@ class RightSidebarViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     
-    func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
-    {
+    override func viewDidAppear(_ animated: Bool) {
         let currentNavigationView = self.revealViewController().frontViewController as! UINavigationController
         let currentThreadView = currentNavigationView.visibleViewController
         if (currentThreadView?.isKind(of: ThreadViewController.self))! {
-            return arrayOfThreadSortings.count
+        currentSortingStyle = arrayOfThreadSortings
         } else if (currentThreadView?.isKind(of: ThreadListViewController.self))!{
-            return arrayOfSubredditSortings.count
-        } else {
-            return 0
+        currentSortingStyle = arrayOfSubredditSortings
         }
+        sortingTable.reloadData()
     }
+    
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return currentSortingStyle.count
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You selected cell #\(indexPath.row)!")
         
         // Get Cell Label
         let indexPath = tableView.indexPathForSelectedRow!
-        if indexPath.row > 0 {
+        if indexPath.row >= 0 {
             let currentCell = tableView.cellForRow(at: indexPath)! as! TypeOfSortCell
             print("Label: " + currentCell.mainTextLabel.text!)
             self.revealViewController().rightRevealToggle(animated: true)
@@ -86,16 +89,7 @@ class RightSidebarViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         var sortType = ""
-        let currentNavigationView = self.revealViewController().frontViewController as! UINavigationController
-        let currentThreadView = currentNavigationView.visibleViewController
-        if (currentThreadView?.isKind(of: ThreadViewController.self))! {
-            //Its on a comment thread
-            sortType = arrayOfThreadSortings[indexPath.row]
-        } else if (currentThreadView?.isKind(of: ThreadListViewController.self))!{
-            //Its on the thread list
-            sortType = arrayOfSubredditSort[indexPath.row]
-        }
-
+        sortType = currentSortingStyle[indexPath.row]
             let cell:TypeOfSortCell = sortingTable.dequeueReusableCell(withIdentifier: "sort")! as! TypeOfSortCell
             cell.mainTextLabel.text = sortType
             return cell

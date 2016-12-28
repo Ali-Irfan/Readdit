@@ -1,6 +1,7 @@
 import UIKit
 import SwiftyJSON
 import Dollar
+import Zip
 
 class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let defaults = UserDefaults.standard
@@ -27,7 +28,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         btn2.addTarget(revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)), for: .touchUpInside)
         let item2 = UIBarButtonItem(customView: btn2)
         navigationItem.rightBarButtonItem = item2
-       
+  
         
         revealViewController().rearViewRevealWidth = 0
         view.addGestureRecognizer(self.revealViewController().rightViewController.revealViewController().panGestureRecognizer())
@@ -48,6 +49,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         
     }
+
 
     
     func showThreadComments(sortType: String) {

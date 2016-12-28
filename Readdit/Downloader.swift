@@ -2,16 +2,31 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 import Alamofire_Synchronous
+import Zip
 
 let arrayOfSubredditSort = ["Hot", "Controversial", "Top", "Rising", "New"]
 let arrayOfThreadSort    = ["Top", "New", "Controversial", "Best", "Old"]
 
 public class Downloader: UIViewController {
-    
+
 
     
     class func downloadJSON(subreddit:String){
-
+        // get the default headers
+        var headers = Alamofire.SessionManager.defaultHTTPHeaders
+        // add your custom header
+        headers["Accept-Encoding"] = "gzip"
+        headers["UserAgent"] = "ios:com.dev.readdit:v1.0.0(by/u/thisbeali)"
+        
+        // create a custom session configuration
+        let configuration = URLSessionConfiguration.default
+        // add the headers
+        configuration.httpAdditionalHeaders = headers
+        
+        // create a session manager with the configuration
+        let sessionManager = Alamofire.SessionManager(configuration: configuration)
+        
+        
     var threadNumber = "30"
     if let x = UserDefaults.standard.string(forKey: "NumberOfThreads") {
         threadNumber = x
@@ -22,27 +37,13 @@ public class Downloader: UIViewController {
     
     let urlString = "https://www.reddit.com/r/" + subreddit + "/" + sortType.lowercased() + "/.json?limit=" + threadNumber
     print("Got fresh data from \(urlString)")
-        
-    if let url = URL(string: urlString) {
-        let headers: HTTPHeaders = ["Accept-Encoding": "gzip"]
-    
-     
-        
-        let response = Alamofire.request(urlString, headers: headers).responseJSON()
-        //Alamofire.request(urlString, headers: headers).responseJSON { response in
 
-            let json = JSON(response.result.value!)
+        let headers: HTTPHeaders = ["Accept-Encoding": "gzip", "User-Agent": "Readdit iOS App /u/thisbeali alpha"]
 
             let fileName = subreddit + ".txt"
-            
-            var filePath = ""
 
-        
-            
-            // Fine documents directory on device
             let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
-            
-            if dirs.count > 0 {
+
                 let dir = dirs[0] //documents directory
                 let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
                 let subredditPath = documentsPath.appendingPathComponent(subreddit)
@@ -53,29 +54,29 @@ public class Downloader: UIViewController {
                 } catch let error as NSError {
                     NSLog("Unable to create directory \(error.debugDescription)")
                 }
-                filePath = dir.appending("/" + subreddit + "/thread_" + sortType + "/" + fileName)
-                print("Local path = \(filePath)")
-            } else {
-                print("Could not find local directory to store file")
-                return
-            }
             
-            let fileContentToWrite = json.rawString()
+                let filePath = dir.appending("/" + subreddit + "/thread_" + sortType + "/" + fileName)
             
+                let response = Alamofire.request(urlString).responseJSON()
+        print(response.request)
+        print(response.result)
+        
+        print("Got the thread")
+            let fileContentToWrite = JSON(response.result.value).rawString()
+            
+
             do {
                 // Write contents to file
                 try fileContentToWrite?.write(toFile: filePath, atomically: false, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
                // print("Successfully wrote data to " + filePath)
-            }
+                let filePath2 = URL(fileURLWithPath: filePath)
+                //let unzipDirectory = try Zip.quickUnzipFile(filePath) // Unzip
+                let zipFilePath = try Zip.quickZipFiles([filePath2], fileName: filePath) // Zip
+           }
             catch let error as NSError {
                 print("An error took place (downloadJSON): \(error)")
-            }
-            
-
-           // }
-        }
-        }//END OF LOOP
-
+           }
+       } //END OF LOOP
     }
 
 
@@ -86,34 +87,15 @@ public class Downloader: UIViewController {
     class func downloadThreadJSON(subreddit: String, threadURL:String, threadID: String){
 
         for sortType in arrayOfThreadSort {
-
-            
         let urlString = "https://reddit.com" + threadURL + "/.json?sort=" + sortType
-            if let url = URL(string: urlString) {
-                let headers: HTTPHeaders = [
-                    "Accept-Encoding": "gzip"
-                ]
-                
-                let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                    var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                    documentsURL.appendPathComponent("pigcommments")
-                    
-                    return (documentsURL.appendingPathComponent(threadID + "_" + sortType + ".gz"), [.removePreviousFile, .createIntermediateDirectories])
-                }
-                
-                //Alamofire.download(urlString, to: destination)
-                //Alamofire.download(urlString, headers: headers, to: destination)
 
-                Alamofire.request(urlString, headers: headers).responseJSON { response in
-                let json = JSON(response.result.value!)
-                    
+        //let headers: HTTPHeaders = ["Accept-Encoding": "gzip", "User-Agent": "Readdit-iOS-App-/u/thisbeali-alpha"]
+
                 let fileName = threadID + ".txt"
-                var filePath = ""
                 
                 // Fine documents directory on device
                 let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
-                
-                if dirs.count > 0 {
+
                     let dir = dirs[0] //documents directory
                     let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
                     let commentSortPath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType)
@@ -123,28 +105,37 @@ public class Downloader: UIViewController {
                         NSLog("Unable to create directory \(error.debugDescription)")
                     }
 
-                    filePath = dir.appending("/" + subreddit + "/comments_" + sortType + "/" + fileName)
+                    let filePath = dir.appending("/" + subreddit + "/comments_" + sortType + "/" + fileName)
                       print("Local path = \(filePath)")
-                    
-                } else {
-                    print("Could not find local directory to store file")
-                    return
+                    let higherPath = dir.appending("/" + subreddit + "/comments_" + sortType)
+
+
+
+            let response = Alamofire.request(urlString).responseJSON()
+            
+            let fileContentToWrite = JSON(response.result.value).rawString()
+            
+            do {
+                // Write contents to file
+                try fileContentToWrite?.write(toFile: filePath, atomically: false, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+                // print("Successfully wrote data to " + filePath)
+   
+                let filePath2 = URL(fileURLWithPath: filePath)
+                let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
+                let zipFilePath = documentsFolder.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".zip")
+                let oldFilePath = documentsFolder.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".txt")
+                try Zip.zipFiles(paths: [filePath2], zipFilePath: zipFilePath!, password: nil, progress: nil)
+                try FileManager.default.removeItem(at: oldFilePath!)
+                let filemanager:FileManager = FileManager()
+                let files = filemanager.enumerator(atPath: (higherPath))
+                while let file = files?.nextObject() {
+                    print("Files in dir after download complete:")
+                    print(file)
                 }
-                
-                let fileContentToWrite = json.rawString()
-                
-                do {
-                    // Write contents to file
-                    try fileContentToWrite?.write(toFile: filePath, atomically: false, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-                    print("Successfully wrote data to " + filePath)
-                }
-                catch let error as NSError {
+                } catch let error as NSError {
                     print("An error took place(DownloadThread): \(error)")
                 }
-                
-            }
-        }
-        }//end of loop
+        }//end of loopZZZ
     }
     
 
@@ -156,6 +147,8 @@ public class Downloader: UIViewController {
         var filePath = ""
         // Read file content. Example in Swift
         // Fine documents directory on device
+        
+        
         let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
         
         if dirs.count > 0 {
@@ -186,24 +179,34 @@ public class Downloader: UIViewController {
         var filePath = ""
         // Read file content. Example in Swift
         // Fine documents directory on device
+        
+
         let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
         
-        if dirs.count > 0 {
+
             let dir = dirs[0] //documents directory
             filePath = dir.appending("/" + subreddit + "/comments_" + sortType + "/" + fileName)
             print("Local path = \(filePath)")
-        } else {
-            print("Could not find local directory to store file")
-            
-        }
+
         
+        let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
+        let zipFilePath = documentsFolder.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".zip")
+        let commentFolderPath = documentsFolder.appendingPathComponent(subreddit + "/comments_" + sortType + "/")
+        let txtPath = documentsFolder.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".txt")
+        
+        
+        do {
+            try Zip.unzipFile(zipFilePath!, destination: commentFolderPath!, overwrite: true, password: nil, progress: nil)
+        } catch let error as NSError {
+            print(error)
+        }
 
         do {
             // Read file content
             print("Trying to read content from \(filePath)")
-            let contentFromFile = try NSString(contentsOfFile: filePath, encoding: String.Encoding.utf8.rawValue)
-            
-           // print(contentFromFile)
+            let contentFromFile = try NSString(contentsOfFile: filePath , encoding: String.Encoding.utf8.rawValue)
+            let filemanager:FileManager = FileManager()
+            try filemanager.removeItem(at: txtPath!)
             return contentFromFile as String
         }
         catch let error as NSError {

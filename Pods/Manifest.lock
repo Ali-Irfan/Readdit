@@ -7,6 +7,7 @@ PODS:
   - ReachabilitySwift (3)
   - SlideMenuControllerSwift (3.0.0)
   - SwiftyJSON (3.1.1)
+  - Zip (0.6.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - ReachabilitySwift (~> 3)
   - SlideMenuControllerSwift
   - SwiftyJSON
+  - Zip (~> 0.6)
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
@@ -25,7 +27,8 @@ SPEC CHECKSUMS:
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SlideMenuControllerSwift: 9c0a84f9a3fba51681debd7be77617094562ebcc
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
+  Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 47bcd581b876aa9188fec849d596a93d69124434
+PODFILE CHECKSUM: 6b9ae697604dbb1e4c4aa035c3c4e7e172a548d2
 
 COCOAPODS: 1.1.1

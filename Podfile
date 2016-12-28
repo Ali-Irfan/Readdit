@@ -9,6 +9,7 @@ target 'Readdit' do
     pod 'ReachabilitySwift', '~> 3'
     pod 'Alamofire', '~> 4.0'
     pod 'Alamofire-Synchronous', '~> 4.0'
+    pod 'Zip', '~> 0.6'
 end
 
 post_install do |installer|
