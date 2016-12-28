@@ -16,6 +16,7 @@ class DownloadSettingsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        downloadSettingsButton.setTitle(UserDefaults().string(forKey: "network"), for: .normal)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

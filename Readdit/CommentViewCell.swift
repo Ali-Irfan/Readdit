@@ -16,6 +16,7 @@ class CommentViewCell: UITableViewCell {
     
     @IBOutlet weak var collapseLabel: UILabel!
     
+    @IBOutlet weak var seperatorView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

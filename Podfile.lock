@@ -1,18 +1,31 @@
 PODS:
+  - Alamofire (4.0.1)
+  - Alamofire-Synchronous (4.0.0):
+    - Alamofire (~> 4.0)
+  - AsyncSwift (2.0.0)
   - Dollar (6.1.0)
+  - ReachabilitySwift (3)
   - SlideMenuControllerSwift (3.0.0)
   - SwiftyJSON (3.1.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.0)
+  - Alamofire-Synchronous (~> 4.0)
+  - AsyncSwift
   - Dollar
+  - ReachabilitySwift (~> 3)
   - SlideMenuControllerSwift
   - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Alamofire-Synchronous: eedf1e6e961c3795a63c74990b3f7d9fbfac7e50
+  AsyncSwift: 6ba6ed9ecb51344458063f7c86fe447ab824e313
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SlideMenuControllerSwift: 9c0a84f9a3fba51681debd7be77617094562ebcc
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
 
-PODFILE CHECKSUM: 82cfa6e9123a637d9909a10dcd44b6810c89f672
+PODFILE CHECKSUM: 47bcd581b876aa9188fec849d596a93d69124434
 
 COCOAPODS: 1.1.1

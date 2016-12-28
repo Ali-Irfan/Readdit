@@ -14,8 +14,10 @@
 		362104FB1DF73A11002E13D2 /* SidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104FA1DF73A11002E13D2 /* SidebarTableViewController.swift */; };
 		3636E2991DCFF8DC0030F77D /* ThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */; };
 		3636E29B1DD001530030F77D /* ThreadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3636E29A1DD001530030F77D /* ThreadData.swift */; };
+		363916921E1086A70053EDCE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363916911E1086A70053EDCE /* Utils.swift */; };
+		363916941E120B7E0053EDCE /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363916931E120B7E0053EDCE /* Style.swift */; };
+		363916961E120DE70053EDCE /* FindSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363916951E120DE70053EDCE /* FindSize.swift */; };
 		365F1BD61DFA8D29007FBF9C /* IntroUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */; };
-		366680BD1DCD3FB5005CD95E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366680BC1DCD3FB5005CD95E /* Reachability.swift */; };
 		366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D61DEFB9B000696250 /* SettingsViewController.swift */; };
 		366903DA1DEFBCC100696250 /* TextSizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */; };
 		366903DC1DEFBCE200696250 /* DarkModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903DB1DEFBCE200696250 /* DarkModeTableViewCell.swift */; };
@@ -48,6 +50,7 @@
 		36F608F11E09B3C400604B6D /* DefaultSortingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F608F01E09B3C400604B6D /* DefaultSortingTableViewCell.swift */; };
 		36F608F31E09E96000604B6D /* NumberOfThreadsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F608F21E09E96000604B6D /* NumberOfThreadsTableViewCell.swift */; };
 		36F608F51E09F47D00604B6D /* ThreadNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F608F41E09F47D00604B6D /* ThreadNumberField.swift */; };
+		68180669B12880A96F527680 /* Pods_Readdit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D049A660F255986BFB3B0E /* Pods_Readdit.framework */; };
 		FE74C635AEA378F7BE8F9E78 /* Pods_Readdit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29BFA7BC3305DC2A33E969C3 /* Pods_Readdit.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02D049A660F255986BFB3B0E /* Pods_Readdit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Readdit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29BFA7BC3305DC2A33E969C3 /* Pods_Readdit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Readdit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B222CAAF07D1AA4F9D5399E /* Pods-Readdit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readdit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Readdit/Pods-Readdit.debug.xcconfig"; sourceTree = "<group>"; };
 		362104F21DF73925002E13D2 /* SubredditHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubredditHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -78,8 +82,10 @@
 		362104FA1DF73A11002E13D2 /* SidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewController.swift; sourceTree = "<group>"; };
 		3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; tabWidth = 5; };
 		3636E29A1DD001530030F77D /* ThreadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadData.swift; sourceTree = "<group>"; };
+		363916911E1086A70053EDCE /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		363916931E120B7E0053EDCE /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		363916951E120DE70053EDCE /* FindSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindSize.swift; sourceTree = "<group>"; };
 		365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroUIView.swift; sourceTree = "<group>"; };
-		366680BC1DCD3FB5005CD95E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		366903D61DEFB9B000696250 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../SettingsViewController.swift; sourceTree = "<group>"; };
 		366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSizeTableViewCell.swift; sourceTree = "<group>"; };
 		366903DB1DEFBCE200696250 /* DarkModeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkModeTableViewCell.swift; sourceTree = "<group>"; };
@@ -120,6 +126,8 @@
 		36F608F01E09B3C400604B6D /* DefaultSortingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSortingTableViewCell.swift; sourceTree = "<group>"; };
 		36F608F21E09E96000604B6D /* NumberOfThreadsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfThreadsTableViewCell.swift; sourceTree = "<group>"; };
 		36F608F41E09F47D00604B6D /* ThreadNumberField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadNumberField.swift; sourceTree = "<group>"; };
+		57D2EB049756634C1DDCEB5B /* Pods-Readdit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readdit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Readdit/Pods-Readdit.release.xcconfig"; sourceTree = "<group>"; };
+		B6D74F8D3EB95EE81462434F /* Pods-Readdit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readdit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Readdit/Pods-Readdit.debug.xcconfig"; sourceTree = "<group>"; };
 		D815F63645B2EAD205943E0A /* Pods-Readdit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readdit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Readdit/Pods-Readdit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE74C635AEA378F7BE8F9E78 /* Pods_Readdit.framework in Frameworks */,
+				68180669B12880A96F527680 /* Pods_Readdit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +203,8 @@
 			children = (
 				36D255A21DCC3B2C00B1779E /* Readdit */,
 				36EE38071E089ADA00AA5D48 /* Other */,
+				A6CE08D5DB484D264305D71D /* Pods */,
+				446FEBDAB1BC946B193DDD36 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -267,7 +278,6 @@
 			isa = PBXGroup;
 			children = (
 				36D255A31DCC3B2C00B1779E /* AppDelegate.swift */,
-				366680BC1DCD3FB5005CD95E /* Reachability.swift */,
 				36C451331DCD4A2F0066A76E /* Downloader.swift */,
 				3636E29A1DD001530030F77D /* ThreadData.swift */,
 				368A4BEE1DD0CABF002D0480 /* CommentData.swift */,
@@ -275,6 +285,9 @@
 				368A4BF01DD0DFC7002D0480 /* General.swift */,
 				36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */,
 				36970FFE1DE936E60070DC33 /* MainPostTableViewCell.xib */,
+				363916911E1086A70053EDCE /* Utils.swift */,
+				363916931E120B7E0053EDCE /* Style.swift */,
+				363916951E120DE70053EDCE /* FindSize.swift */,
 			);
 			name = Misc.;
 			sourceTree = "<group>";
@@ -316,6 +329,23 @@
 				36F608F41E09F47D00604B6D /* ThreadNumberField.swift */,
 			);
 			name = "Array of Settings";
+			sourceTree = "<group>";
+		};
+		446FEBDAB1BC946B193DDD36 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				02D049A660F255986BFB3B0E /* Pods_Readdit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A6CE08D5DB484D264305D71D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B6D74F8D3EB95EE81462434F /* Pods-Readdit.debug.xcconfig */,
+				57D2EB049756634C1DDCEB5B /* Pods-Readdit.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		FE463AF3CEC3FBAA157CBD1C /* Pods */ = {
@@ -505,7 +535,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -526,6 +556,7 @@
 				3684C7CC1E071A9400754372 /* SWRevealViewController.m in Sources */,
 				366903DE1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift in Sources */,
 				36970FFF1DE936E60070DC33 /* MainPostTableViewCell.swift in Sources */,
+				363916921E1086A70053EDCE /* Utils.swift in Sources */,
 				362104F51DF73939002E13D2 /* SubredditTableViewCell.swift in Sources */,
 				36F608F51E09F47D00604B6D /* ThreadNumberField.swift in Sources */,
 				368A4BEF1DD0CABF002D0480 /* CommentData.swift in Sources */,
@@ -533,7 +564,9 @@
 				36D255A41DCC3B2C00B1779E /* AppDelegate.swift in Sources */,
 				368A4BF11DD0DFC7002D0480 /* General.swift in Sources */,
 				36F608F11E09B3C400604B6D /* DefaultSortingTableViewCell.swift in Sources */,
+				363916941E120B7E0053EDCE /* Style.swift in Sources */,
 				36EE380C1E08A35900AA5D48 /* TypeOfSortCell.swift in Sources */,
+				363916961E120DE70053EDCE /* FindSize.swift in Sources */,
 				365F1BD61DFA8D29007FBF9C /* IntroUIView.swift in Sources */,
 				3636E2991DCFF8DC0030F77D /* ThreadViewController.swift in Sources */,
 				3636E29B1DD001530030F77D /* ThreadData.swift in Sources */,
@@ -544,7 +577,6 @@
 				366903DA1DEFBCC100696250 /* TextSizeTableViewCell.swift in Sources */,
 				36EE380E1E08A36F00AA5D48 /* MainSortCell.swift in Sources */,
 				36982E3C1DF5386700336A3F /* THREADTableViewCell.swift in Sources */,
-				366680BD1DCD3FB5005CD95E /* Reachability.swift in Sources */,
 				36DB561E1DCEB76200E7B764 /* ThreadListViewController.swift in Sources */,
 				366903E21DEFBD0200696250 /* ReportABugTableViewCell.swift in Sources */,
 				366903E01DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift in Sources */,

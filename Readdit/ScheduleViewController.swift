@@ -10,17 +10,24 @@ import UIKit
 
 class ScheduleViewController: UIViewController {
 
-    @IBOutlet weak var menuButton: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if revealViewController() != nil {
-            menuButton.target = revealViewController()
-            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+
             view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
             revealViewController().rightViewRevealWidth = 0
-            revealViewController().rearViewRevealWidth = 300
-
+            revealViewController().rearViewRevealWidth = 250
+            let btn1 = UIButton(type: .custom)
+            btn1.setImage(#imageLiteral(resourceName: "menu-2"), for: .normal)
+            btn1.frame = CGRect(x: 0, y: 0, width: 25, height: 20)
+            btn1.addTarget(revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+            let item1 = UIBarButtonItem(customView: btn1)
+            navigationItem.leftBarButtonItem = item1
         }
+        
+        
+        
         // Do any additional setup after loading the view.
     }
 

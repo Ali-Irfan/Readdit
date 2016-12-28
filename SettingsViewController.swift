@@ -3,22 +3,20 @@ import SwiftyJSON
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var menuButton: UIBarButtonItem!
     let defaults = UserDefaults.standard
     
-    let arrayOfSettings = ["Text Size", "Dark Mode", "Download Settings", "Hide NSFW Posts", "Default Sorting Type", "Report A Bug", "Clear All Data", "Threads per Subreddit"]
+    let arrayOfSettings = ["Text Size", "Download Settings", "Default Sorting Type", "Threads per Subreddit", "Dark Mode", "Hide NSFW Content", "Report A Bug", "Clear All Data"]
     
     @IBOutlet weak var settingsTable: UITableView!
     var totalSize = 0
     override func viewDidLoad() {
         
         super.viewDidLoad()
+
         
         if revealViewController() != nil {
-            menuButton.target = revealViewController()
-            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             revealViewController().rightViewRevealWidth = 0
-            revealViewController().rearViewRevealWidth = 300
+            revealViewController().rearViewRevealWidth = 250
             
             view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
             let revealController = self.revealViewController() as? RevealViewController
@@ -27,14 +25,36 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
         }
         
+
+       
+        
+        let btn1 = UIButton(type: .custom)
+        btn1.setImage(#imageLiteral(resourceName: "menu-2"), for: .normal)
+        btn1.frame = CGRect(x: 0, y: 0, width: 25, height: 20)
+        btn1.addTarget(revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+        let item1 = UIBarButtonItem(customView: btn1)
+        navigationItem.leftBarButtonItem = item1
+
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         settingsTable.dataSource = self
         settingsTable.delegate = self
-        settingsTable.estimatedRowHeight = 250.0
-        settingsTable.rowHeight = UITableViewAutomaticDimension
+        //settingsTable.estimatedRowHeight = 250.0
+        //settingsTable.rowHeight = UITableViewAutomaticDimension
+        settingsTable.rowHeight = 75.0
         settingsTable.allowsSelection = false
+        
+        setDefaults()
     }
     
+    
+    func setDefaults() {
+        if let key = defaults.string(forKey: "network") {
+            //Do nothing because it already exists
+        } else {
+            //Set a default value because it was never set before
+            defaults.set("wifi", forKey: "network")
+        }
+    }
 
     func changeDownload(_ sender: UIButton!) {
         
@@ -221,8 +241,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.downloadSettingsButton.addTarget(self, action: #selector(changeDownload), for: .touchUpInside)
             return cell
 
-        case "Hide NSFW Posts":
+        case "Hide NSFW Content":
             let cell:HideNSFWPostsTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "HideNSFW") as! HideNSFWPostsTableViewCell
+            if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
+                cell.nsfwSwitch.isOn = key
+            } else { //Default is not hiding
+                cell.nsfwSwitch.isOn = false
+            }
+
             return cell
 
         case "Report A Bug":
@@ -231,6 +257,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
         case "Clear All Data":
             let cell:ClearAllDataTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "ClearAll") as! ClearAllDataTableViewCell
+            cell.clearData.setTitle("Clear All Data (" + getCacheSize() + ")", for: .normal)
             return cell
             
         case "Default Sorting Type":

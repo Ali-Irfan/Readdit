@@ -11,7 +11,7 @@ import UIKit
 class SidebarTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var arrayOfIdentifiers: [String] = []
-    var arrayOfSubreddits: [String] = ["AskReddit", "AskScience", "IAmA", "News", "ExplainLikeImFive", "Jokes"]
+    var arrayOfSubreddits: [String] = ["AskReddit", "AskScience", "IAmA", "News", "ExplainLikeImFive", "Jokes", "NSFW"]
     var numberOfSubreddits = 0
 
     
@@ -31,9 +31,12 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         sidebarTable.rowHeight = UITableViewAutomaticDimension
         sidebarTable.allowsSelection = true
         
+
+
+        
         
         arrayOfIdentifiers.append("subredditHeader")
-        for identifier in arrayOfSubreddits {
+        for _ in arrayOfSubreddits {
             arrayOfIdentifiers.append("subreddit")
             numberOfSubreddits = numberOfSubreddits + 1
         }
@@ -92,32 +95,37 @@ indexPath: IndexPath){
         let identifier = arrayOfIdentifiers[indexPath.row]
         
         sidebarTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
         switch identifier {
         case "subredditHeader":
             let cell:SubredditHeaderTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subredditHeader") as! SubredditHeaderTableViewCell
            // cell.textSizeButton.addTarget(self, action: #selector(changeTextSize), for: .touchUpInside)
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         case "subreddit":
             let cell:SubredditTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subreddit") as! SubredditTableViewCell
             cell.subredditTitle.text? = arrayOfSubreddits[indexPath.row-1]
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
             
         case "scheduleHeader":
             let cell:ScheduleHeaderTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "scheduleHeader") as! ScheduleHeaderTableViewCell
             //cell.downloadSettingsButton.addTarget(self, action: #selector(changeDownload), for: .touchUpInside)
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
             
         case "settingsHeader":
             let cell:SettingsHeaderTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "settingsHeader") as! SettingsHeaderTableViewCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
 
         default:
             let cell:UITableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "settingsCell")! as UITableViewCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
             
         }
     }
-    
     
 
     /*

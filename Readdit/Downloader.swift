@@ -1,5 +1,7 @@
 import Foundation
 import SwiftyJSON
+import Alamofire
+import Alamofire_Synchronous
 
 let arrayOfSubredditSort = ["Hot", "Controversial", "Top", "Rising", "New"]
 let arrayOfThreadSort    = ["Top", "New", "Controversial", "Best", "Old"]
@@ -8,7 +10,7 @@ public class Downloader: UIViewController {
     
 
     
-class func downloadJSON(subreddit:String){
+    class func downloadJSON(subreddit:String){
 
     var threadNumber = "30"
     if let x = UserDefaults.standard.string(forKey: "NumberOfThreads") {
@@ -20,13 +22,17 @@ class func downloadJSON(subreddit:String){
     
     let urlString = "https://www.reddit.com/r/" + subreddit + "/" + sortType.lowercased() + "/.json?limit=" + threadNumber
     print("Got fresh data from \(urlString)")
+        
     if let url = URL(string: urlString) {
-        if let data = try? Data(contentsOf: url) {
-            
-            let json = JSON(data:data)
-            
-            
-            
+        let headers: HTTPHeaders = ["Accept-Encoding": "gzip"]
+    
+     
+        
+        let response = Alamofire.request(urlString, headers: headers).responseJSON()
+        //Alamofire.request(urlString, headers: headers).responseJSON { response in
+
+            let json = JSON(response.result.value!)
+
             let fileName = subreddit + ".txt"
             
             var filePath = ""
@@ -66,12 +72,16 @@ class func downloadJSON(subreddit:String){
             }
             
 
+           // }
         }
+        }//END OF LOOP
+
     }
-    }//END OF LOOP
-}
-    
-    
+
+
+
+
+
     
     class func downloadThreadJSON(subreddit: String, threadURL:String, threadID: String){
 
@@ -79,11 +89,24 @@ class func downloadJSON(subreddit:String){
 
             
         let urlString = "https://reddit.com" + threadURL + "/.json?sort=" + sortType
-        if let url = URL(string: urlString) {
-            if let data = try? Data(contentsOf: url) {
+            if let url = URL(string: urlString) {
+                let headers: HTTPHeaders = [
+                    "Accept-Encoding": "gzip"
+                ]
                 
-                let json = JSON(data:data)
+                let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                    var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                    documentsURL.appendPathComponent("pigcommments")
+                    
+                    return (documentsURL.appendingPathComponent(threadID + "_" + sortType + ".gz"), [.removePreviousFile, .createIntermediateDirectories])
+                }
                 
+                //Alamofire.download(urlString, to: destination)
+                //Alamofire.download(urlString, headers: headers, to: destination)
+
+                Alamofire.request(urlString, headers: headers).responseJSON { response in
+                let json = JSON(response.result.value!)
+                    
                 let fileName = threadID + ".txt"
                 var filePath = ""
                 
@@ -128,6 +151,7 @@ class func downloadJSON(subreddit:String){
     
     
     class func getJSON(subreddit:String, sortType: String) -> String {
+        
         let fileName = subreddit + ".txt"
         var filePath = ""
         // Read file content. Example in Swift
@@ -153,6 +177,7 @@ class func downloadJSON(subreddit:String){
             print("An error took place(getJSON): \(error)")
             return "Error"
         }
+        
     }
     
     

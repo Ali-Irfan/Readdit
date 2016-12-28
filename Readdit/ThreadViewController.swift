@@ -9,21 +9,29 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var threadID = ""
     var arrayOfComments: [CommentData] = []
     var hiddenChildren: [String] = []
+
     
     var bleh: [CommentData] = []
     var commentsArr: [CommentData] = []
     var arrayOfEverything: [AnyObject] = []
     @IBOutlet weak var commentTable: UITableView!
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "=", style: .plain, target: revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)))
-        
+        //self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "=", style: .plain, target: revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)))
+
+        let btn2 = UIButton(type: .custom)
+        btn2.setImage(#imageLiteral(resourceName: "more"), for: .normal)
+        btn2.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        btn2.addTarget(revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)), for: .touchUpInside)
+        let item2 = UIBarButtonItem(customView: btn2)
+        navigationItem.rightBarButtonItem = item2
+       
         
         revealViewController().rearViewRevealWidth = 0
         view.addGestureRecognizer(self.revealViewController().rightViewController.revealViewController().panGestureRecognizer())
+        
         
         self.revealViewController().rightViewRevealWidth = 150
         
@@ -33,10 +41,11 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         commentTable.estimatedRowHeight = 250.0
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
+        
+        
 
         showThreadComments(sortType: "Best")
 
-        
         
     }
 
@@ -122,6 +131,12 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
               
                 let cell:CommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentViewCell
 
+                for view in self.view.subviews {
+                    if view.tag == 1 {
+                        view.removeFromSuperview()
+                    }
+                }
+                
                 
                 if bleh[indexPath.row].isMainComment {
                      cell.contentView.layoutMargins.left = 10
@@ -145,7 +160,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs2)
                         cell.mainLabel?.attributedText = attributedText
                     }
-
+                    
                     
                 }
                 
@@ -155,26 +170,41 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         cell.selectionStyle = .none
                    // cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
                     
-
+                    if cell.indentationLevel > 0 {
+                        //cell.seperatorView.isHidden = true
+                    }
                     
                         cell.parent_id = bleh[indexPath.row].parent_id
                         cell.id = bleh[indexPath.row].id
                         cell.superParent = bleh[indexPath.row].superParent
                         
-                        cell.contentView.layoutMargins.left = CGFloat(bleh[indexPath.row].level * 10) + 10
-                        
+                    
+
 
                             cell.mainLabel?.text = bleh[indexPath.row].body
-                            cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author + " ☻ " + String(bleh[indexPath.row].upvotes)
+                            cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
                     
-                            cell.upvoteLabel?.text = General.timeAgoSinceDate(date: NSDate(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)), numericDates: true)
+                            cell.upvoteLabel?.text = (General.timeAgoSinceDate(date: NSDate(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)), numericDates: true)) + " ● " + String(bleh[indexPath.row].upvotes)
                             cell.collapseLabel?.text = bleh[indexPath.row].collapse
                     
-                 
+                 cell.contentView.layoutMargins.left = CGFloat(bleh[indexPath.row].level * 10) + 10
+                    
+                    
                     
                   } else {
                     
                 }
+                
+                var initialX = 0
+                for i in 0...cell.indentationLevel {
+                    print("Cell with author: \(cell.authorLabel?.text) has X: " + String(initialX))
+                    let seperatorView = UIView(frame: CGRect(x: initialX, y: 0, width: 1, height: Int(cell.frame.height)))
+                    seperatorView.backgroundColor = UIColor.black
+                    seperatorView.tag = 1
+                    cell.addSubview(seperatorView)
+                    initialX = initialX + 10
+                }
+
                 return cell
                 
 

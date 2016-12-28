@@ -8,16 +8,15 @@
 
 import UIKit
 import SwiftyJSON
+import Async
 
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var arrayOfThreads: [ThreadData] = []
     var subreddit = ""
     
-    @IBOutlet weak var menuButton: UIBarButtonItem!
 
     
-    var arrayOfSubreddits: [String] = ["AskReddit", "AskScience"]
     @IBOutlet weak var threadTable: UITableView!
     var jsonRaw = ""
    
@@ -25,18 +24,32 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(updateThreads))
-        
         navigationItem.title = "/r/" + subreddit
+        
+        
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .done, target: self, action: #selector(updateThreads))
 
+        navigationItem.hidesBackButton = true
+        
+        print("Got past this")
+        
         if revealViewController() != nil {
-            menuButton.target = revealViewController()
-            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
+            view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
+
+           
             revealViewController().rightViewRevealWidth = 150
-            revealViewController().rearViewRevealWidth = 300
-        }
+            revealViewController().rearViewRevealWidth = 250
+                    }
+        
+        
+        
+        let btn1 = UIButton(type: .custom)
+        btn1.setImage(#imageLiteral(resourceName: "menu-2"), for: .normal)
+        btn1.frame = CGRect(x: 0, y: 0, width: 25, height: 20)
+        btn1.addTarget(revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+        let item1 = UIBarButtonItem(customView: btn1)
+        navigationItem.leftBarButtonItem = item1
         
        threadTable.delegate = self
         threadTable.dataSource = self
@@ -46,21 +59,35 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         threadTable.backgroundColor = General.hexStringToUIColor(hex: "#dadada")
         
         displayThreads()
+        
     }
 
-     func viewWillAppear(animated: Bool) {
+ 
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("View appeared")
         self.navigationItem.hidesBackButton = true
+        revealViewController().rearViewRevealWidth = 250
+        view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
     }
     
+    
+    func addTapped(){
+        print("Tapped")
+    }
     
     func updateThreads() {
-
-        Downloader.downloadJSON(subreddit: subreddit)
         
-        jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Top")
-        arrayOfThreads.removeAll()
-        if (jsonRaw != "Error") {
-            if let data = jsonRaw.data(using: String.Encoding.utf8) {
+        if Utils.hasAppropriateConnection() {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+            Async.background {
+        Downloader.downloadJSON(subreddit: self.subreddit)
+        
+        self.jsonRaw = Downloader.getJSON(subreddit: self.subreddit, sortType: "Top")
+        self.arrayOfThreads.removeAll()
+        if (self.jsonRaw != "Error") {
+            if let data = self.jsonRaw.data(using: String.Encoding.utf8) {
                 let json = JSON(data: data)
                 let threads = json["data"]["children"]
                 // print(json)
@@ -71,19 +98,33 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                     thisThread.upvotes = thread["data"]["ups"].int!
                     thisThread.commentCount = thread["data"]["num_comments"].int!
                     thisThread.id = thread["data"]["id"].string!
+                    thisThread.nsfw = Bool(thread["data"]["over_18"].boolValue)
                     thisThread.permalink = thread["data"]["permalink"].string!
-                    //print(title)
-                    //print(thisThread)
-                    arrayOfThreads.append(thisThread)
+                    
+                    if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
+                        
+                        if !key {
+                            self.arrayOfThreads.append(thisThread)
+                        }
+                        
+                    } else { //Default is not hiding
+                        self.arrayOfThreads.append(thisThread)
+                    }
                 }
-                for thread in arrayOfThreads {
-                    Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
+                for thread in self.arrayOfThreads {
+                    Downloader.downloadThreadJSON(subreddit: self.subreddit, threadURL: thread.permalink, threadID: thread.id)
                 }
-                threadTable.reloadData()
+                self.threadTable.reloadData()
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
             }
         }
+        } //END ASYNC
+        } else {
+            Utils.displayTheAlert(targetVC: (UIApplication.shared.keyWindow?.rootViewController)!, title: "Error", message: "You need a valid/appropriate internet connection to download threads.")
+        }
     }
-    	
+    
+    
     
     
     func displayThreads() {
@@ -100,10 +141,19 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                     thisThread.upvotes = thread["data"]["ups"].int!
                     thisThread.commentCount = thread["data"]["num_comments"].int!
                     thisThread.id = thread["data"]["id"].string!
+                    thisThread.nsfw = Bool(thread["data"]["over_18"].boolValue)
                     thisThread.permalink = thread["data"]["permalink"].string!
-                    //print(title)
-                    //print(thisThread)
-                    arrayOfThreads.append(thisThread)
+                    
+                    if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
+                        
+                        if !key {
+                            arrayOfThreads.append(thisThread)
+                        }
+                        
+                    } else { //Default is not hiding
+                        arrayOfThreads.append(thisThread)
+                    }
+                    
                 }
             }
         }

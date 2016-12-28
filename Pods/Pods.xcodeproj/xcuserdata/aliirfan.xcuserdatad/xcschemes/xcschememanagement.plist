@@ -4,12 +4,32 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire-Synchronous.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AsyncSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Dollar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-Readdit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ReachabilitySwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,7 +47,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2ACC2967AAEA23548A29F4F259DB4401</key>
+		<key>2F4EFFB27453C6951CA043CA4E471FC7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7F45F2F21482C3777494ACE42307212D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8A066CF23BC8F1003C15E01E1A7A6FC2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -37,12 +72,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E08C2351AC5C6FDADB76A5300F657486</key>
+		<key>98CEBA166642DAC2CB8645ECBDE3832A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FE79A88BD419F4694A02FE52C897E4DC</key>
+		<key>EBE460D3E3A3CF1AFBBDFA387940E5E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ED9A3C8E871D0985650E5C6D38838473</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReachabilitySwift
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -83,17 +84,46 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     @IBAction func addSubreddit(_ sender: Any) {
-        if Reachability.isConnectedToNetwork() == true {
-            print("Internet connection OK")
-            if (txtSubreddit.text != nil && txtSubreddit.text != ""){
-                var subreddit = txtSubreddit.text!.capitalized
-                 subreddit = subreddit.replacingOccurrences(of: " ", with: "")
-                arrayOfSubreddits.append(subreddit)
-                self.table.reloadData()
-                txtSubreddit.text = ""
-                Downloader.downloadJSON(subreddit: subreddit)
-                //print("Sent " + subreddit + " to DownloaderJSON")
-            }
+            if Reachability()!.isReachable {
+                
+            let connectionSetting = UserDefaults.standard.string(forKey: "network")
+                
+                if connectionSetting == "wifi" && Reachability()!.isReachableViaWiFi {
+                    print("Internet connection OK - wifi only")
+                    if (txtSubreddit.text != nil && txtSubreddit.text != ""){
+                        var subreddit = txtSubreddit.text!.capitalized
+                        subreddit = subreddit.replacingOccurrences(of: " ", with: "")
+                        arrayOfSubreddits.append(subreddit)
+                        self.table.reloadData()
+                        txtSubreddit.text = ""
+                        Downloader.downloadJSON(subreddit: subreddit)
+                    }
+                } else if connectionSetting == "data" && !Reachability()!.isReachableViaWiFi {
+                    print("Internet connection OK - data only")
+                    if (txtSubreddit.text != nil && txtSubreddit.text != ""){
+                        var subreddit = txtSubreddit.text!.capitalized
+                        subreddit = subreddit.replacingOccurrences(of: " ", with: "")
+                        arrayOfSubreddits.append(subreddit)
+                        self.table.reloadData()
+                        txtSubreddit.text = ""
+                        Downloader.downloadJSON(subreddit: subreddit)
+                    }
+                } else if connectionSetting == "both" {
+                    print("Internet connection OK - both")
+                    if (txtSubreddit.text != nil && txtSubreddit.text != ""){
+                        var subreddit = txtSubreddit.text!.capitalized
+                        subreddit = subreddit.replacingOccurrences(of: " ", with: "")
+                        arrayOfSubreddits.append(subreddit)
+                        self.table.reloadData()
+                        txtSubreddit.text = ""
+                        Downloader.downloadJSON(subreddit: subreddit)
+                    }
+                }
+            
+
+                
+                
+                
         } else {
             print("Internet connection FAILED")
             sendAlert(TITLE: "No Internet Connection", MESSAGE: "Make sure your device is connected to the internet to initially add subreddits!", BUTTON: "OK")

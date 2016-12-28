@@ -10,6 +10,8 @@ import UIKit
 
 class HideNSFWPostsTableViewCell: UITableViewCell {
 
+
+    @IBOutlet weak var nsfwSwitch: UISwitch!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +21,17 @@ class HideNSFWPostsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    @IBAction func switchChanged(_ sender: Any) {
+        
+        if nsfwSwitch.isOn {
+            UserDefaults.standard.set(true, forKey: "hideNSFW")
+            print("Hide NSFW = ON")
+        } else {
+            UserDefaults.standard.set(false, forKey: "hideNSFW")
+            print("Hide NSFW = OFF")
+        }
+        
     }
 
     

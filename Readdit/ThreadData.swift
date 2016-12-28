@@ -7,6 +7,6 @@ class ThreadData {
     var id = ""
     var permalink = ""
     var utcCreated: Int = 0
-
+    var nsfw = false
 
 }
