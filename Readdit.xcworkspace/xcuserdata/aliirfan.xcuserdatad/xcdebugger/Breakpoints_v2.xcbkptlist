@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "504607777.655014"
+            timestampString = "504638542.516435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "Downloader"
             landmarkType = "3">
          </BreakpointContent>
@@ -666,11 +666,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "504633139.841561"
+            timestampString = "504638987.703199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "downloadThreadJSON(subreddit:threadURL:threadID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -682,11 +682,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "504633139.841561"
+            timestampString = "504638987.703199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "downloadThreadJSON(subreddit:threadURL:threadID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -698,11 +698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "504633139.841561"
+            timestampString = "504638987.703199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "downloadThreadJSON(subreddit:threadURL:threadID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -714,11 +714,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "504633139.841561"
+            timestampString = "504638987.703199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "Downloader"
             landmarkType = "3">
          </BreakpointContent>
@@ -730,11 +730,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "504633139.841561"
+            timestampString = "504638987.703199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "getJSON(subreddit:sortType:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -746,11 +746,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "504633139.841561"
+            timestampString = "504638987.703199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "getJSON(subreddit:sortType:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -925,54 +925,6 @@
             timestampString = "504607777.655014"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "downloadJSON(subreddit:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Readdit/Downloader.swift"
-            timestampString = "504607777.655014"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "downloadJSON(subreddit:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Readdit/Downloader.swift"
-            timestampString = "504607777.655014"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "downloadJSON(subreddit:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Readdit/Downloader.swift"
-            timestampString = "504607777.655014"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "12"
             endingLineNumber = "12"
             landmarkName = "Downloader"
@@ -1002,12 +954,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "504635166.179448"
+            timestampString = "504638987.703199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "getThreadJSON(threadURL:threadID:sortType:subreddit:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Readdit/Downloader.swift"
+            timestampString = "504638987.703199"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "downloadThreadJSON(subreddit:threadURL:threadID:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
