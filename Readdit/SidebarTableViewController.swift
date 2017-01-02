@@ -62,7 +62,7 @@ indexPath: IndexPath){
             let actualView = myVC.viewControllers.first as! ThreadListViewController
             actualView.subreddit = subreddit!
             //present(myVC, animated: true, completion: nil)
-            self.revealViewController().pushFrontViewController(myVC, animated: true)
+             self.revealViewController().pushFrontViewController(myVC, animated: true)
         } else if tableView.cellForRow(at: indexPath)! is SettingsHeaderTableViewCell {
             let myVC = self.storyboard?.instantiateViewController(withIdentifier: "Settings") as! UINavigationController
             self.revealViewController().pushFrontViewController(myVC, animated: true)
@@ -71,6 +71,7 @@ indexPath: IndexPath){
             self.revealViewController().pushFrontViewController(myVC, animated: true)
         }
     }
+    
     
     
     override func didReceiveMemoryWarning() {

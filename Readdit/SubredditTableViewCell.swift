@@ -12,11 +12,13 @@ import Async
 
 class SubredditTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var subredditTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        loadingIndicator.isHidden = true
         updateButton.setImage(#imageLiteral(resourceName: "cloud-computing"), for: .normal)
         updateButton.frame = CGRect(x: self.frame.width-50, y: self.frame.height/2 - 12, width: 30, height: 30)
         updateButton.addTarget(self, action: #selector(updateSubreddit), for: .touchUpInside)
@@ -27,12 +29,24 @@ class SubredditTableViewCell: UITableViewCell {
         if Utils.hasAppropriateConnection() {
         Async.background {
             
-        self.updateButton.isEnabled = false
+        
         var arrayOfThreads:[ThreadData] = []
         let subreddit = self.subredditTitle.text!
         print("Downloading subreddits")
-        
+            
+            Async.main {
+            var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
+            downloadsInProgress.append(subreddit)
+            UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
+            self.loadingIndicator.isHidden = false
+            self.loadingIndicator.startAnimating()
+            self.updateButton.isHidden = true
+            }
+            
+            
         Downloader.downloadJSON(subreddit: subreddit)
+
+            
             
         print("Getting subreddits")
         let jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Top")
@@ -67,17 +81,29 @@ class SubredditTableViewCell: UITableViewCell {
                     Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
                 }
                 print("Done downloading.")
-                self.updateButton.isEnabled = true
-            }
-        }
+                Async.main {
+                var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
+                self.loadingIndicator.stopAnimating()
+                self.loadingIndicator.isHidden = true
+                self.updateButton.isHidden = false
+                downloadsInProgress = downloadsInProgress.filter { $0 != subreddit }
+                UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
+                    let nc = NotificationCenter.default
+                    let myNotification = Notification.Name(rawValue:"MyNotification")
+
+                    nc.post(name:myNotification,
+                            object: nil,
+                            userInfo:["message":"Hello there!", "date":Date()])                }
         }//ASYNC
         } else {
             
             Utils.displayTheAlert(targetVC: (UIApplication.shared.keyWindow?.rootViewController)!, title: "Error", message: "You need a valid internet connection to download threads.")
         }
     }
+        }
     
-    
+}
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -85,4 +111,22 @@ class SubredditTableViewCell: UITableViewCell {
     }
 
 
+}
+
+
+extension UIApplication {
+    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
+    }
 }

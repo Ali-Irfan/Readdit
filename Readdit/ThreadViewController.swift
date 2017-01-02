@@ -3,6 +3,7 @@ import SwiftyJSON
 import Dollar
 import Zip
 
+
 class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let defaults = UserDefaults.standard
     var threadURL = ""

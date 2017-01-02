@@ -1,20 +1,16 @@
-//
-//  ThreadListViewController.swift
-//  Readdit
-//
-//  Created by Ali Irfan on 2016-11-05.
-//  Copyright © 2016 Ali Irfan. All rights reserved.
-//
 
 import UIKit
 import SwiftyJSON
 import Async
 
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var overlay : UIView? // This should be a class variable
     
+
     var arrayOfThreads: [ThreadData] = []
     var subreddit = ""
     
+    let myNotification = Notification.Name(rawValue:"MyNotification")
 
     
     @IBOutlet weak var threadTable: UITableView!
@@ -23,11 +19,23 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let nc = NotificationCenter.default
+        nc.addObserver(forName:myNotification, object:nil, queue:nil, using:catchNotification)
+        
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.darkGray
+        overlay!.alpha = 0.8
+        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityView.center = self.view.center
+        activityView.startAnimating()
+        
+        overlay?.addSubview(activityView)
+        view.addSubview(overlay!)
+        
+        checkCurrentDownloads()
         
         navigationItem.title = "/r/" + subreddit
-        
-        
-        
+    
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .done, target: self, action: #selector(updateThreads))
 
         navigationItem.hidesBackButton = true
@@ -41,8 +49,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             revealViewController().rightViewRevealWidth = 150
             revealViewController().rearViewRevealWidth = 250
                     }
-        
-        
         
         let btn1 = UIButton(type: .custom)
         btn1.setImage(#imageLiteral(resourceName: "menu-2"), for: .normal)
@@ -62,7 +68,27 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
 
- 
+    func catchNotification(notification:Notification) -> Void {
+        checkCurrentDownloads()
+    }
+    
+    func checkCurrentDownloads() {
+        print("GOT IT")
+        let downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
+        print(downloadsInProgress)
+        print("This subreddit: " + subreddit)
+        print("Checking to see if \(subreddit) is in  \(downloadsInProgress)")
+        
+
+        if downloadsInProgress.contains(subreddit) {
+            overlay?.isHidden = false
+        } else {
+            overlay?.isHidden = true
+        }
+        
+        }
+    
+    
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,13 +96,9 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navigationItem.hidesBackButton = true
         revealViewController().rearViewRevealWidth = 250
         view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
+        checkCurrentDownloads()
     }
-    
-    
-    func addTapped(){
-        print("Tapped")
-    }
-    
+
     func updateThreads() {
         
         if Utils.hasAppropriateConnection() {
