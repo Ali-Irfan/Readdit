@@ -6,7 +6,7 @@ class ThreadData {
     var upvotes: Int = 0
     var id = ""
     var permalink = ""
-    var utcCreated: Int = 0
+    var utcCreated: Double = 0.0
     var nsfw = false
 
 }

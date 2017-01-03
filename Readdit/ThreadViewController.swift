@@ -78,6 +78,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func sortBy(sortType: String) {
         showThreadComments(sortType: sortType)
+        print("Showing thread comments based off of \(sortType)")
     }
     
     func recursion(object: JSON, level: Int = 0){
@@ -101,7 +102,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 comment.controversiality = child["data"]["controversiality"].int!
                 comment.score = child["data"]["score"].int!
                 comment.body_html = child["data"]["body_html"].string!
-                comment.utcCreated = child["data"]["created_utc"].int!
+                comment.utcCreated = child["data"]["created_utc"].double!
                 comment.level = level
                 bleh.append(comment)
                 recursion(object: replies, level: level + 1)
@@ -173,14 +174,11 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         cell.selectionStyle = .none
                    // cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
                     
-                    if cell.indentationLevel > 0 {
-                        //cell.seperatorView.isHidden = true
+                    if cell.indentationLevel > 0 && !bleh[indexPath.row].minimized {
+                        cell.seperatorView.isHidden = true
 
                     }
                     cell.contentView.layoutMargins.left = CGFloat(cell.indentationLevel * 10) + 10
-                    cell.upvoteLabel.frame = CGRect(x: cell.mainLabel.frame.origin.x, y: cell.upvoteLabel.frame.origin.y, width: cell.upvoteLabel.frame.width, height: cell.upvoteLabel.frame.height)
-                    print("Author X: \(cell.upvoteLabel.frame.origin.x)")
-                    print("Main X: \(cell.mainLabel.frame.origin.x)")
                     
                     
                         cell.parent_id = bleh[indexPath.row].parent_id
@@ -191,8 +189,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
                             cell.mainLabel?.text = bleh[indexPath.row].body
                             cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
-                    
-                            cell.upvoteLabel?.text = (General.timeAgoSinceDate(date: NSDate(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)), numericDates: true)) + " ● " + String(bleh[indexPath.row].upvotes)
+                    cell.upvoteLabel?.text = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)))
+                                    
                             cell.collapseLabel?.text = bleh[indexPath.row].collapse
                     
 
@@ -270,6 +268,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
 }
+
+
 extension CALayer {
     
     func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
@@ -299,4 +299,3 @@ extension CALayer {
     }
     
 }
-

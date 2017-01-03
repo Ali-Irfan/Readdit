@@ -46,7 +46,7 @@ class func threadExists(fileName: String) -> Bool {
     
 }
 
-    class func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
+    func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
         let calendar = NSCalendar.current
         let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfYear, .month, .year, .second]
         let now = NSDate()
@@ -109,6 +109,7 @@ class func threadExists(fileName: String) -> Bool {
         }
         
     }
+
     
     
     

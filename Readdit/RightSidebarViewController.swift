@@ -12,7 +12,7 @@ class RightSidebarViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var sortingTable: UITableView!
     let defaults = UserDefaults.standard
-    let arrayOfThreadSortings:[String] = ["Top", "New", "Controversial", "Best", "Old"]
+    let arrayOfThreadSortings:[String] = ["Top", "New", "Controversial", "Best", "Old", "QA"]
     let arrayOfSubredditSortings:[String] = ["Hot", "Controversial", "Top", "Rising", "New"]
     var currentSortingStyle:[String] = []
     override func viewDidLoad() {

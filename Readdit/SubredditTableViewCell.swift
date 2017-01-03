@@ -53,6 +53,7 @@ class SubredditTableViewCell: UITableViewCell {
             
             
         Downloader.downloadJSON(subreddit: subreddit)
+            
 
             
             

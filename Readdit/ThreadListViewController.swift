@@ -122,7 +122,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                     thisThread.id = thread["data"]["id"].string!
                     thisThread.nsfw = Bool(thread["data"]["over_18"].boolValue)
                     thisThread.permalink = thread["data"]["permalink"].string!
-                    
+                    thisThread.utcCreated = thread["data"]["created_utc"].double!
+
                     if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
                         
                         if !key {
@@ -165,6 +166,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                     thisThread.id = thread["data"]["id"].string!
                     thisThread.nsfw = Bool(thread["data"]["over_18"].boolValue)
                     thisThread.permalink = thread["data"]["permalink"].string!
+                    thisThread.utcCreated = thread["data"]["created_utc"].double!
                     
                     if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
                         
@@ -203,7 +205,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.topViewBar.backgroundColor = General.hexStringToUIColor(hex: "#dadada")
         cell.mainText?.text = arrayOfThreads[indexPath.row].title
         cell.authorLabel?.text = "/u/" + arrayOfThreads[indexPath.row].author
-        let dateText = General.timeAgoSinceDate(date: NSDate(timeIntervalSince1970: Double(arrayOfThreads[indexPath.row].utcCreated)), numericDates: true)
+        let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(arrayOfThreads[indexPath.row].utcCreated)))
         cell.hoursText?.text = " • " + String(arrayOfThreads[indexPath.row].upvotes)
         
         let firstWord   = dateText
@@ -260,3 +262,4 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
 }
+

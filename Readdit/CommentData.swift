@@ -9,7 +9,7 @@ class CommentData {
     var parent_id = ""
     var body_html = ""
     var score: Int = 0
-    var utcCreated: Int = 0
+    var utcCreated: Double = 0.0
     var controversiality: Int = 0
     var level: Int = 0
     var hiddenComment = false
