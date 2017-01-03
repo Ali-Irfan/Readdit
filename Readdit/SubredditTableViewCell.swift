@@ -18,12 +18,14 @@ class SubredditTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.contentView.layoutMargins = UIEdgeInsets.zero
         loadingIndicator.isHidden = true
         updateButton.setImage(#imageLiteral(resourceName: "cloud-computing"), for: .normal)
         updateButton.frame = CGRect(x: self.frame.width-50, y: self.frame.height/2 - 12, width: 30, height: 30)
         updateButton.addTarget(self, action: #selector(updateSubreddit), for: .touchUpInside)
     }
 
+    
     func updateSubreddit() {
         
         if Utils.hasAppropriateConnection() {
@@ -38,6 +40,12 @@ class SubredditTableViewCell: UITableViewCell {
             var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
             downloadsInProgress.append(subreddit)
             UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
+                let nc = NotificationCenter.default
+                let myNotification = Notification.Name(rawValue:"MyNotification")
+                
+                nc.post(name:myNotification,
+                        object: nil,
+                        userInfo:["message":"Hello there!", "date":Date()])
             self.loadingIndicator.isHidden = false
             self.loadingIndicator.startAnimating()
             self.updateButton.isHidden = true

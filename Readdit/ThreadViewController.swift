@@ -175,7 +175,13 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     if cell.indentationLevel > 0 {
                         //cell.seperatorView.isHidden = true
+
                     }
+                    cell.contentView.layoutMargins.left = CGFloat(cell.indentationLevel * 10) + 10
+                    cell.upvoteLabel.frame = CGRect(x: cell.mainLabel.frame.origin.x, y: cell.upvoteLabel.frame.origin.y, width: cell.upvoteLabel.frame.width, height: cell.upvoteLabel.frame.height)
+                    print("Author X: \(cell.upvoteLabel.frame.origin.x)")
+                    print("Main X: \(cell.mainLabel.frame.origin.x)")
+                    
                     
                         cell.parent_id = bleh[indexPath.row].parent_id
                         cell.id = bleh[indexPath.row].id
@@ -183,29 +189,20 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         
                     
 
-
                             cell.mainLabel?.text = bleh[indexPath.row].body
                             cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
                     
                             cell.upvoteLabel?.text = (General.timeAgoSinceDate(date: NSDate(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)), numericDates: true)) + " ● " + String(bleh[indexPath.row].upvotes)
                             cell.collapseLabel?.text = bleh[indexPath.row].collapse
                     
-                 cell.contentView.layoutMargins.left = CGFloat(bleh[indexPath.row].level * 10) + 10
+
+                    
+                    
                     
                     
                     
                   } else {
                     
-                }
-                
-                var initialX = 0
-                for i in 0...cell.indentationLevel {
-                    print("Cell with author: \(cell.authorLabel?.text) has X: " + String(initialX))
-                    let seperatorView = UIView(frame: CGRect(x: initialX, y: 0, width: 1, height: Int(cell.frame.height)))
-                    seperatorView.backgroundColor = UIColor.black
-                    seperatorView.tag = 1
-                    cell.addSubview(seperatorView)
-                    initialX = initialX + 10
                 }
 
                 return cell
@@ -214,7 +211,6 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                
             }
 
-    
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

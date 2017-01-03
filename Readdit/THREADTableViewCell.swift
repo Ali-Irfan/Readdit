@@ -14,9 +14,11 @@ class THREADTableViewCell: UITableViewCell {
     @IBOutlet weak var hoursText: UILabel!
     @IBOutlet weak var mainText: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    var seperatorGroupView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
         
 
     }

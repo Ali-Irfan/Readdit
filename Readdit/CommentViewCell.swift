@@ -17,8 +17,7 @@ class CommentViewCell: UITableViewCell {
     @IBOutlet weak var collapseLabel: UILabel!
     
     @IBOutlet weak var seperatorView: UIView!
-    
-    override func awakeFromNib() {
+        override func awakeFromNib() {
         super.awakeFromNib()
         mainLabel.text = ""
         authorLabel.text = ""

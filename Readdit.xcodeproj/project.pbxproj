@@ -270,6 +270,7 @@
 				3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */,
 				3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */,
 				36DB561D1DCEB76200E7B764 /* ThreadListViewController.swift */,
+				36E7215C1DD6F43C004B5EAA /* CommentViewCell.swift */,
 			);
 			name = "Thread Lists";
 			sourceTree = "<group>";
@@ -281,7 +282,6 @@
 				36C451331DCD4A2F0066A76E /* Downloader.swift */,
 				3636E29A1DD001530030F77D /* ThreadData.swift */,
 				368A4BEE1DD0CABF002D0480 /* CommentData.swift */,
-				36E7215C1DD6F43C004B5EAA /* CommentViewCell.swift */,
 				368A4BF01DD0DFC7002D0480 /* General.swift */,
 				36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */,
 				36970FFE1DE936E60070DC33 /* MainPostTableViewCell.xib */,
@@ -535,7 +535,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
