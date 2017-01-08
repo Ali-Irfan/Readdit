@@ -7,11 +7,11 @@
 //
 
 import UIKit
+var arrayOfSubreddits: [String] = ["AskReddit", "AskScience", "IAmA", "News", "ExplainLikeImFive", "Jokes", "NSFW"]
 
 class SidebarTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var arrayOfIdentifiers: [String] = []
-    var arrayOfSubreddits: [String] = ["AskReddit", "AskScience", "IAmA", "News", "ExplainLikeImFive", "Jokes", "NSFW"]
     var numberOfSubreddits = 0
 
     

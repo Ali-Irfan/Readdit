@@ -8,7 +8,8 @@
 
 import UIKit
 import SlideMenuControllerSwift
-
+import Async
+import SwiftyJSON
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -44,9 +45,85 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
+        //Send Notification (PUSH)
         print("bg")
-completionHandler(.newData)
+        
+        if Utils.hasAppropriateConnection() {
+            for subreddit in arrayOfSubreddits {
+                var arrayOfThreads:[ThreadData] = []
+                print("Downloading subreddits")
+                
+                Async.background {
+                    var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
+                    downloadsInProgress.append(subreddit)
+                    UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
+                    let nc = NotificationCenter.default
+                    let myNotification = Notification.Name(rawValue:"MyNotification")
+                    
+                    nc.post(name:myNotification,
+                            object: nil,
+                            userInfo:["message":"Hello there!", "date":Date()])
+
+                }
+                
+                
+                Downloader.downloadJSON(subreddit: subreddit)
+                
+                
+                
+                
+                print("Getting subreddits")
+                let jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Top")
+                arrayOfThreads.removeAll()
+                if (jsonRaw != "Error") {
+                    if let data = jsonRaw.data(using: String.Encoding.utf8) {
+                        let json = JSON(data: data)
+                        let threads = json["data"]["children"]
+                        for (_, thread):(String, JSON) in threads {
+                            let thisThread = ThreadData()
+                            thisThread.title = thread["data"]["title"].string!
+                            thisThread.author = thread["data"]["author"].string!
+                            thisThread.upvotes = thread["data"]["ups"].int!
+                            thisThread.commentCount = thread["data"]["num_comments"].int!
+                            thisThread.id = thread["data"]["id"].string!
+                            thisThread.nsfw = Bool(thread["data"]["over_18"].boolValue)
+                            thisThread.permalink = thread["data"]["permalink"].string!
+                            
+                            if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
+                                
+                                if !key {
+                                    arrayOfThreads.append(thisThread)
+                                }
+                                
+                            } else { //Default is not hiding
+                                arrayOfThreads.append(thisThread)
+                            }
+                        }
+                        print("Downloading threads")
+                        for thread in arrayOfThreads {
+                            
+                            Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
+                        }
+                        print("Done downloading.")
+                        Async.main {
+                            var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
+
+                            downloadsInProgress = downloadsInProgress.filter { $0 != subreddit }
+                            UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
+                            let nc = NotificationCenter.default
+                            let myNotification = Notification.Name(rawValue:"MyNotification")
+                            
+                            nc.post(name:myNotification,
+                                    object: nil,
+                                    userInfo:["message":"Hello there!", "date":Date()])                }
+                } else {
+                    
+                    completionHandler(.noData)
+                }
+            }
+        }
+        }
+        completionHandler(.newData)
     }
         
 
