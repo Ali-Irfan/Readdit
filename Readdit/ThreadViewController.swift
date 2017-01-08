@@ -135,14 +135,11 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
               
                 let cell:CommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentViewCell
 
-                for view in self.view.subviews {
-                    if view.tag == 1 {
-                        view.removeFromSuperview()
-                    }
-                }
+
                 
                 
                 if bleh[indexPath.row].isMainComment {
+                    cell.seperatorView.isHidden = true
                      cell.contentView.layoutMargins.left = 10
                     cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
                     cell.upvoteLabel?.text = ""
@@ -174,12 +171,20 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         cell.selectionStyle = .none
                    // cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
                     
-                    if cell.indentationLevel > 0 && !bleh[indexPath.row].minimized {
+                    if cell.indentationLevel > 0 {// && !bleh[indexPath.row].minimized {
                         cell.seperatorView.isHidden = true
 
+                    } else {
+                        cell.seperatorView.isHidden = false
                     }
-                    cell.contentView.layoutMargins.left = CGFloat(cell.indentationLevel * 10) + 10
-                    
+
+                    for view in cell.subviews {
+                        if view.tag == 1 {
+                            view.removeFromSuperview()
+                        }
+                    }
+                    cell.contentView.layoutMargins.left = CGFloat(cell.indentationLevel * 15) + 10
+
                     
                         cell.parent_id = bleh[indexPath.row].parent_id
                         cell.id = bleh[indexPath.row].id
@@ -188,13 +193,25 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     
 
                             cell.mainLabel?.text = bleh[indexPath.row].body
-                            cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
-                    cell.upvoteLabel?.text = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)))
-                                    
+  
+                        cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
+                    cell.authorLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
+                    
+                    let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)))
+                    cell.upvoteLabel?.text = " • " + String(bleh[indexPath.row].upvotes)
+                    
+                    let firstWord   = dateText
+                    let secondWord = String(bleh[indexPath.row].upvotes)
+                    let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)]
+                    let attributedText = NSMutableAttributedString(string:firstWord)
+                    attributedText.append(NSMutableAttributedString(string: " • "))
+                    attributedText.append(NSAttributedString(string: secondWord, attributes: attrs))
+                    cell.upvoteLabel?.attributedText = attributedText
+                    cell.upvoteLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
                             cell.collapseLabel?.text = bleh[indexPath.row].collapse
                     
 
-                    
+
                     
                     
                     
@@ -210,8 +227,24 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
 
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        for cell in commentTable.visibleCells {
+        
+        if cell.indentationLevel > 0 {
+            for i in 1...cell.indentationLevel {
+                let uiview = UIView(frame: CGRect(x: i * 15, y: 0, width: 1, height: Int(cell.bounds.height)))
+                uiview.backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
+                uiview.tag = 13
+                cell.addSubview(uiview)
+            }
+        }
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        
         if bleh[indexPath.row].hiddenComment {
             return 0.00
         } else if bleh[indexPath.row].minimized {
@@ -224,6 +257,11 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
             func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                let indexPath = tableView.indexPathForSelectedRow! //optional, to get from any UIButton for example
+                let currentCell = tableView.cellForRow(at: indexPath) as! CommentViewCell
+
+                print("I clicked on cell with author: \(currentCell.authorLabel.text)")
+
                 
                 let newIndex = indexPath.row + 1
                 if indexPath.row != bleh.count-1 && bleh[indexPath.row].title == "" {
@@ -232,6 +270,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     if bleh[indexPath.row].collapse == "[+]" { //We are now going to open it and all children
                         bleh[indexPath.row].collapse = "[-]"
                         bleh[indexPath.row].minimized = false
+                        
+                        //currentCell.seperatorView.isHidden = false
+                        //print("Seperatorview for author \(currentCell.authorLabel.text) is now hidden: \(currentCell.seperatorView.isHidden) with width val: \(currentCell.seperatorView.frame.width) and height \(currentCell.seperatorView.frame.height)")
                         openAllChildren(parentID: bleh[indexPath.row].id, newIndex: newIndex, currentIndentationLevel: currentIndentationLevel)
 
                     } else {
@@ -240,8 +281,15 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         closeAllChildren(parentID: bleh[indexPath.row].id, newIndex: newIndex, currentIndentationLevel: currentIndentationLevel)
                     }
                 }
-                commentTable.reloadData()
+                //commentTable.beginUpdates()
+                //commentTable.endUpdates()
+                //commentTable.reloadData()
+                commentTable.reloadRows(at: [indexPath], with: .automatic)
+
             }
+    
+    
+    
 
     func openAllChildren(parentID: String, newIndex: Int, currentIndentationLevel: Int){
         var newIndex = newIndex

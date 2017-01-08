@@ -1,16 +1,16 @@
 //
-//  DefaultSortingTableViewCell.swift
+//  TimeCell.swift
 //  Readdit
 //
-//  Created by Ali Irfan on 2016-12-20.
-//  Copyright © 2016 Ali Irfan. All rights reserved.
+//  Created by Ali Irfan on 2017-01-06.
+//  Copyright © 2017 Ali Irfan. All rights reserved.
 //
 
 import UIKit
 
-class DefaultSortingTableViewCell: UITableViewCell {
+class TimeCell: UITableViewCell {
 
-    @IBOutlet weak var sortingButton: UIButton!
+    @IBOutlet weak var timeLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

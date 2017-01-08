@@ -62,7 +62,7 @@ class RightSidebarViewController: UIViewController, UITableViewDelegate, UITable
                 let vc = currentThreadView as! ThreadViewController
                 vc.sortBy(sortType: currentCell.mainTextLabel.text!)
             } else if (currentThreadView?.isKind(of: ThreadListViewController.self))!{
-                print("Was not on the correct VC")
+                    
             }
             
             

@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import DatePickerDialog
 
-class ScheduleViewController: UIViewController {
+class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var scheduleTable: UITableView!
 
-
+    var arrayOfTimings: [Date] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        scheduleTable.delegate = self
+        scheduleTable.dataSource = self
+        scheduleTable.rowHeight = 75.0
         if revealViewController() != nil {
 
             view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
@@ -37,14 +43,61 @@ class ScheduleViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
+    
 
+    // MARK: - Table view data source
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return arrayOfTimings.count + 1
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(indexPath.row)
+        if indexPath.row == 0 {
+        let cell = scheduleTable.dequeueReusableCell(withIdentifier: "addCell", for: indexPath) as! AddTimeCell
+            cell.addTimeButton.addTarget(self, action: #selector(addTime), for: .touchUpInside)
+            
+            return cell
+        } else {
+            let cell = scheduleTable.dequeueReusableCell(withIdentifier: "timeCell", for: indexPath) as! TimeCell
+            print(indexPath.row)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "h:mm a"
+            let time = dateFormatter.string(from: arrayOfTimings[indexPath.row-1])
+            cell.timeLabel.text = time
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete && indexPath.row != 0) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            arrayOfTimings.remove(at: indexPath.row-1)
+            scheduleTable.reloadData()
+        }
+    }
+    
+    
+    func addTime() {
+        DatePickerDialog().show(title: "Schedule A Time", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .time) {
+            (date) -> Void in
+            self.arrayOfTimings.append(date!)
+            self.scheduleTable.reloadData()
+            print(date)
+        }
+    }
 }

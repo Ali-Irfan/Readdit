@@ -11,6 +11,7 @@ class CommentViewCell: UITableViewCell {
     
     var parent_id = ""
     var hiddenComment = false
+    var leftSideSet = false
     var id = ""
     var superParent = ""
     
@@ -23,6 +24,7 @@ class CommentViewCell: UITableViewCell {
         authorLabel.text = ""
         upvoteLabel.text = ""
         collapseLabel.text = "[-]"
+            
 
         // Initialization code
     }

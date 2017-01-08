@@ -12,6 +12,8 @@
 		362104F71DF73944002E13D2 /* ScheduleHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F61DF73944002E13D2 /* ScheduleHeaderTableViewCell.swift */; };
 		362104F91DF73951002E13D2 /* SettingsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */; };
 		362104FB1DF73A11002E13D2 /* SidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104FA1DF73A11002E13D2 /* SidebarTableViewController.swift */; };
+		362EA13D1E20AA56006A5857 /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362EA13C1E20AA56006A5857 /* TimeCell.swift */; };
+		362EA13F1E2202BD006A5857 /* AddTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362EA13E1E2202BD006A5857 /* AddTimeCell.swift */; };
 		3636E2991DCFF8DC0030F77D /* ThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */; };
 		3636E29B1DD001530030F77D /* ThreadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3636E29A1DD001530030F77D /* ThreadData.swift */; };
 		363916921E1086A70053EDCE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363916911E1086A70053EDCE /* Utils.swift */; };
@@ -47,7 +49,6 @@
 		36EE380A1E08A08600AA5D48 /* RightSidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE38091E08A08600AA5D48 /* RightSidebarViewController.swift */; };
 		36EE380C1E08A35900AA5D48 /* TypeOfSortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE380B1E08A35900AA5D48 /* TypeOfSortCell.swift */; };
 		36EE380E1E08A36F00AA5D48 /* MainSortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE380D1E08A36F00AA5D48 /* MainSortCell.swift */; };
-		36F608F11E09B3C400604B6D /* DefaultSortingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F608F01E09B3C400604B6D /* DefaultSortingTableViewCell.swift */; };
 		36F608F31E09E96000604B6D /* NumberOfThreadsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F608F21E09E96000604B6D /* NumberOfThreadsTableViewCell.swift */; };
 		36F608F51E09F47D00604B6D /* ThreadNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F608F41E09F47D00604B6D /* ThreadNumberField.swift */; };
 		68180669B12880A96F527680 /* Pods_Readdit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D049A660F255986BFB3B0E /* Pods_Readdit.framework */; };
@@ -80,6 +81,8 @@
 		362104F61DF73944002E13D2 /* ScheduleHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		362104FA1DF73A11002E13D2 /* SidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewController.swift; sourceTree = "<group>"; };
+		362EA13C1E20AA56006A5857 /* TimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
+		362EA13E1E2202BD006A5857 /* AddTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTimeCell.swift; sourceTree = "<group>"; };
 		3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; tabWidth = 5; };
 		3636E29A1DD001530030F77D /* ThreadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadData.swift; sourceTree = "<group>"; };
 		363916911E1086A70053EDCE /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -123,7 +126,6 @@
 		36EE38091E08A08600AA5D48 /* RightSidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightSidebarViewController.swift; sourceTree = "<group>"; };
 		36EE380B1E08A35900AA5D48 /* TypeOfSortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeOfSortCell.swift; sourceTree = "<group>"; };
 		36EE380D1E08A36F00AA5D48 /* MainSortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSortCell.swift; sourceTree = "<group>"; };
-		36F608F01E09B3C400604B6D /* DefaultSortingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSortingTableViewCell.swift; sourceTree = "<group>"; };
 		36F608F21E09E96000604B6D /* NumberOfThreadsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfThreadsTableViewCell.swift; sourceTree = "<group>"; };
 		36F608F41E09F47D00604B6D /* ThreadNumberField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadNumberField.swift; sourceTree = "<group>"; };
 		57D2EB049756634C1DDCEB5B /* Pods-Readdit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readdit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Readdit/Pods-Readdit.release.xcconfig"; sourceTree = "<group>"; };
@@ -259,6 +261,8 @@
 			isa = PBXGroup;
 			children = (
 				36EE38021E08984A00AA5D48 /* ScheduleViewController.swift */,
+				362EA13C1E20AA56006A5857 /* TimeCell.swift */,
+				362EA13E1E2202BD006A5857 /* AddTimeCell.swift */,
 			);
 			name = Schedule;
 			sourceTree = "<group>";
@@ -324,7 +328,6 @@
 				366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */,
 				366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */,
 				365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */,
-				36F608F01E09B3C400604B6D /* DefaultSortingTableViewCell.swift */,
 				36F608F21E09E96000604B6D /* NumberOfThreadsTableViewCell.swift */,
 				36F608F41E09F47D00604B6D /* ThreadNumberField.swift */,
 			);
@@ -431,6 +434,11 @@
 						DevelopmentTeam = 4XHUDDQAMX;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					36D255B31DCC3B2C00B1779E = {
 						CreatedOnToolsVersion = 8.1;
@@ -563,7 +571,6 @@
 				362104FB1DF73A11002E13D2 /* SidebarTableViewController.swift in Sources */,
 				36D255A41DCC3B2C00B1779E /* AppDelegate.swift in Sources */,
 				368A4BF11DD0DFC7002D0480 /* General.swift in Sources */,
-				36F608F11E09B3C400604B6D /* DefaultSortingTableViewCell.swift in Sources */,
 				363916941E120B7E0053EDCE /* Style.swift in Sources */,
 				36EE380C1E08A35900AA5D48 /* TypeOfSortCell.swift in Sources */,
 				363916961E120DE70053EDCE /* FindSize.swift in Sources */,
@@ -574,6 +581,7 @@
 				362104F91DF73951002E13D2 /* SettingsHeaderTableViewCell.swift in Sources */,
 				36C451341DCD4A2F0066A76E /* Downloader.swift in Sources */,
 				362104F31DF73925002E13D2 /* SubredditHeaderTableViewCell.swift in Sources */,
+				362EA13D1E20AA56006A5857 /* TimeCell.swift in Sources */,
 				366903DA1DEFBCC100696250 /* TextSizeTableViewCell.swift in Sources */,
 				36EE380E1E08A36F00AA5D48 /* MainSortCell.swift in Sources */,
 				36982E3C1DF5386700336A3F /* THREADTableViewCell.swift in Sources */,
@@ -581,6 +589,7 @@
 				366903E21DEFBD0200696250 /* ReportABugTableViewCell.swift in Sources */,
 				366903E01DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift in Sources */,
 				366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */,
+				362EA13F1E2202BD006A5857 /* AddTimeCell.swift in Sources */,
 				366903E41DEFBD0C00696250 /* ClearAllDataTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

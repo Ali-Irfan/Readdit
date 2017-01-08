@@ -10,6 +10,7 @@ target 'Readdit' do
     pod 'Alamofire', '~> 4.0'
     pod 'Alamofire-Synchronous', '~> 4.0'
     pod 'Zip', '~> 0.6'
+    pod 'DatePickerDialog'
 end
 
 post_install do |installer|

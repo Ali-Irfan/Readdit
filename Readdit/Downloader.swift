@@ -68,7 +68,8 @@ public class Downloader: UIViewController {
     class func downloadThreadJSON(subreddit: String, threadURL:String, threadID: String){
 
         for sortType in arrayOfThreadSort {
-        let urlString = "https://reddit.com" + threadURL + ".json?sort=" + sortType.lowercased()
+        let urlString = "https://reddit.com" + threadURL + "/.json?sort=" + sortType.lowercased()
+
         let fileName = threadID + ".txt"
 
 
@@ -151,7 +152,7 @@ public class Downloader: UIViewController {
 
             let dir = dirs[0] //documents directory
             filePath = dir.appending("/" + subreddit + "/comments_" + sortType + "/" + fileName)
-            print("Fetching thread comments from \(filePath)")
+            print("Fetching thread comments from= \(filePath)")
 
         
         let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
