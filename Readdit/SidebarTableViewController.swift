@@ -40,7 +40,6 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             arrayOfIdentifiers.append("subreddit")
             numberOfSubreddits = numberOfSubreddits + 1
         }
-        arrayOfIdentifiers.append("scheduleHeader")
         arrayOfIdentifiers.append("settingsHeader")
         
 
@@ -65,9 +64,6 @@ indexPath: IndexPath){
              self.revealViewController().pushFrontViewController(myVC, animated: true)
         } else if tableView.cellForRow(at: indexPath)! is SettingsHeaderTableViewCell {
             let myVC = self.storyboard?.instantiateViewController(withIdentifier: "Settings") as! UINavigationController
-            self.revealViewController().pushFrontViewController(myVC, animated: true)
-        } else if tableView.cellForRow(at: indexPath)! is ScheduleHeaderTableViewCell {
-            let myVC = self.storyboard?.instantiateViewController(withIdentifier: "Schedule") as! UINavigationController
             self.revealViewController().pushFrontViewController(myVC, animated: true)
         }
     }
@@ -106,12 +102,6 @@ indexPath: IndexPath){
         case "subreddit":
             let cell:SubredditTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subreddit") as! SubredditTableViewCell
             cell.subredditTitle.text? = arrayOfSubreddits[indexPath.row-1]
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-            return cell
-            
-        case "scheduleHeader":
-            let cell:ScheduleHeaderTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "scheduleHeader") as! ScheduleHeaderTableViewCell
-            //cell.downloadSettingsButton.addTarget(self, action: #selector(changeDownload), for: .touchUpInside)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
             
