@@ -42,7 +42,6 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         arrayOfIdentifiers.append("settingsHeader")
-        
 
     }
 
