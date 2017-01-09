@@ -40,6 +40,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             arrayOfIdentifiers.append("subreddit")
             numberOfSubreddits = numberOfSubreddits + 1
         }
+        
         arrayOfIdentifiers.append("settingsHeader")
         
 
