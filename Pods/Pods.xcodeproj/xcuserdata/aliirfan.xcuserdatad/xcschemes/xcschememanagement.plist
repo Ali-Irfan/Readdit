@@ -19,12 +19,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>DatePickerDialog.xcscheme</key>
+		<key>Dollar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Dollar.xcscheme</key>
+		<key>EZLoadingActivity.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -57,22 +57,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>184A1650DC0B648BD756068E60BF2C59</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7BF362E2981717F68635EE4FFDE632E5</key>
+		<key>12AE91899F54F82BCCBCB87E74612775</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>7F45F2F21482C3777494ACE42307212D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>82E9DEC8E93E234AD0CDBAADA3AEC42D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,7 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A7A632AC70917DD48219E1425F1B0F57</key>
+		<key>B68B30BAA59D3C581E36B229F5026576</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C0F97FF4BDDA2B548FE5014BEF7084E4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D7644044A885FDEB1B294B6C3A970856</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +97,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EF138A4B9A140246362F0CD3741DC93B</key>
+		<key>F82E0EB1BF202FCE8A9C34BFEDC2B5E6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FC9B3ED3CADCF9C5A4E557667F0B8B0C</key>
+		<key>FEC5A2072CDE557C0825514032CDD064</key>
 		<dict>
 			<key>primary</key>
 			<true/>

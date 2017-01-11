@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Async
 var arrayOfSubreddits: [String] = ["AskReddit", "AskScience", "IAmA", "News", "ExplainLikeImFive", "Jokes", "NSFW"]
 
 class SidebarTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -92,11 +93,11 @@ indexPath: IndexPath){
         let identifier = arrayOfIdentifiers[indexPath.row]
         
         sidebarTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
+        print("Doing cell for row at \(identifier)")
         switch identifier {
         case "subredditHeader":
             let cell:SubredditHeaderTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subredditHeader") as! SubredditHeaderTableViewCell
-           // cell.textSizeButton.addTarget(self, action: #selector(changeTextSize), for: .touchUpInside)
+            cell.addSubreddit.addTarget(self, action: #selector(addSubreddit), for: .touchUpInside)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         case "subreddit":
@@ -118,50 +119,59 @@ indexPath: IndexPath){
         }
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func addSubreddit() {
+        //1. Create the alert controller.
+        let alert = UIAlertController(title: "Add Subreddit", message: "Enter a subreddit name", preferredStyle: .alert)
+        
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+            textField.text = ""
+            textField.placeholder = "e.g. AskReddit"
+        }
+        
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            let subredditToAdd = textField?.text?.trimmingCharacters(in: .whitespaces).capitalizingFirstLetter()
+            if subredditToAdd != "" && !arrayOfSubreddits.contains(subredditToAdd!) {
+                arrayOfSubreddits.append(subredditToAdd!)
+                self.arrayOfIdentifiers.insert("subreddit", at: self.arrayOfIdentifiers.count-1)
+                self.sidebarTable.reloadData()
+                Async.main{
+                    // First figure out how many sections there are
+                    let lastSectionIndex = self.sidebarTable!.numberOfSections - 1
+                    
+                    // Then grab the number of rows in the last section
+                    let lastRowIndex = self.sidebarTable!.numberOfRows(inSection: lastSectionIndex) - 1
+                    
+                    // Now just construct the index path
+                    
+                    let pathToLastRow = NSIndexPath(row: lastRowIndex-1, section: lastSectionIndex)
+                    
+                    if let cell = self.sidebarTable.cellForRow(at: pathToLastRow as IndexPath) as? SubredditTableViewCell {
+                        cell.updateSubreddit()
+                    }
+                }
+            }
+        }))
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+
+
+
+}
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        let first = String(characters.prefix(1)).capitalized
+        let other = String(characters.dropFirst())
+        return first + other
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -3,8 +3,8 @@ PODS:
   - Alamofire-Synchronous (4.0.0):
     - Alamofire (~> 4.0)
   - AsyncSwift (2.0.0)
-  - DatePickerDialog (1.1.7)
   - Dollar (6.1.0)
+  - EZLoadingActivity (0.9)
   - ReachabilitySwift (3)
   - SlideMenuControllerSwift (3.0.0)
   - SwiftyJSON (3.1.1)
@@ -14,8 +14,8 @@ DEPENDENCIES:
   - Alamofire (~> 4.0)
   - Alamofire-Synchronous (~> 4.0)
   - AsyncSwift
-  - DatePickerDialog
   - Dollar
+  - EZLoadingActivity
   - ReachabilitySwift (~> 3)
   - SlideMenuControllerSwift
   - SwiftyJSON
@@ -25,13 +25,13 @@ SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   Alamofire-Synchronous: eedf1e6e961c3795a63c74990b3f7d9fbfac7e50
   AsyncSwift: 6ba6ed9ecb51344458063f7c86fe447ab824e313
-  DatePickerDialog: bd5e7e92e4da2c6a8966b28d5f5d8f335d6c2c63
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
+  EZLoadingActivity: 7ebb84c1f2510a62d2bc0a17cc9d75634f92606d
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SlideMenuControllerSwift: 9c0a84f9a3fba51681debd7be77617094562ebcc
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 846475e11f7b6992feeded651e7264a2a30d8c74
+PODFILE CHECKSUM: 206f8e96b83e63c1a5dc5517256b2275fa5f4fd8
 
 COCOAPODS: 1.1.1

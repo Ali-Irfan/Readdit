@@ -10,6 +10,7 @@ import UIKit
 
 class SubredditHeaderTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var addSubreddit: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

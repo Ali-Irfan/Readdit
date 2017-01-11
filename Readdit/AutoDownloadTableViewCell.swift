@@ -1,16 +1,16 @@
 //
-//  TimeCell.swift
+//  AutoDownloadTableViewCell.swift
 //  Readdit
 //
-//  Created by Ali Irfan on 2017-01-06.
+//  Created by Ali Irfan on 2017-01-08.
 //  Copyright © 2017 Ali Irfan. All rights reserved.
 //
 
 import UIKit
 
-class TimeCell: UITableViewCell {
+class AutoDownloadTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var pickerButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

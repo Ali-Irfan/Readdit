@@ -5,14 +5,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     let defaults = UserDefaults.standard
     
-    let arrayOfSettings = ["Text Size", "Download Settings", "Default Sorting Type", "Threads per Subreddit", "Dark Mode", "Hide NSFW Content", "Report A Bug", "Clear All Data"]
+    let arrayOfSettings = ["Text Size", "Download Settings", "Download Automatically", "Threads per Subreddit", "Dark Mode", "Hide NSFW Content", "Report A Bug", "Clear All Data"]
     
     @IBOutlet weak var settingsTable: UITableView!
     var totalSize = 0
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        
         
         if revealViewController() != nil {
             revealViewController().rightViewRevealWidth = 0
@@ -22,11 +22,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             let revealController = self.revealViewController() as? RevealViewController
             
             revealController?.settingsController = self
-
+            
         }
         
-
-       
+        
+        
         
         let btn1 = UIButton(type: .custom)
         btn1.setImage(#imageLiteral(resourceName: "menu-2"), for: .normal)
@@ -34,7 +34,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         btn1.addTarget(revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         let item1 = UIBarButtonItem(customView: btn1)
         navigationItem.leftBarButtonItem = item1
-
+        
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         settingsTable.dataSource = self
         settingsTable.delegate = self
@@ -54,13 +54,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             //Set a default value because it was never set before
             defaults.set("wifi", forKey: "network")
         }
-            
-            let obj: [String] = []
-            defaults.set(obj, forKey: "inProgress")
-    
+        
+        let obj: [String] = []
+        defaults.set(obj, forKey: "inProgress")
+        
         
     }
-
+    
     func changeDownload(_ sender: UIButton!) {
         
         // 1
@@ -104,41 +104,41 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         present(optionMenu, animated: true, completion: nil)
     }
     
-        func changeTextSize(_ sender: UIButton!) {
+    func changeTextSize(_ sender: UIButton!) {
+        
+        // 1
+        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
+        
+        // 2
+        let xlarge = UIAlertAction(title: "Extra Large", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("Extra Large", for: .normal)
+            self.defaults.set("extra large", forKey: "textSize")
             
-            // 1
-            let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
-            
-            // 2
-            let xlarge = UIAlertAction(title: "Extra Large", style: .default, handler: {
-                (alert: UIAlertAction!) -> Void in
-                sender.setTitle("Extra Large", for: .normal)
-                self.defaults.set("extra large", forKey: "textSize")
-                
-            })
-            let large = UIAlertAction(title: "Large", style: .default, handler: {
-                (alert: UIAlertAction!) -> Void in
-                sender.setTitle("Large", for: .normal)
-                self.defaults.set("large", forKey: "textSize")
-            })
-            
-            //
-            let regular = UIAlertAction(title: "Regular", style: .default, handler: {
-                (alert: UIAlertAction!) -> Void in
-                sender.setTitle("Regular", for: .normal)
-                self.defaults.set("regular", forKey: "textSize")
-            })
-            
-            let small = UIAlertAction(title: "Small", style: .default, handler: {
-                (alert: UIAlertAction!) -> Void in
-                sender.setTitle("Small", for: .normal)
-                self.defaults.set("small", forKey: "textSize")
-            })
-
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-                (alert: UIAlertAction!) -> Void in
-                print("Cancelled")
-            })
+        })
+        let large = UIAlertAction(title: "Large", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("Large", for: .normal)
+            self.defaults.set("large", forKey: "textSize")
+        })
+        
+        //
+        let regular = UIAlertAction(title: "Regular", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("Regular", for: .normal)
+            self.defaults.set("regular", forKey: "textSize")
+        })
+        
+        let small = UIAlertAction(title: "Small", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("Small", for: .normal)
+            self.defaults.set("small", forKey: "textSize")
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
         
         
         
@@ -154,7 +154,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         present(optionMenu, animated: true, completion: nil)
         
     }
-
+    
     func changeSortType(_ sender: UIButton!) {
         
         
@@ -185,7 +185,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let controversial = UIAlertAction(title: "Controversial", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             sender.setTitle("Controversial", for: .normal)
-           self.defaults.set("controversial", forKey: "sort")
+            self.defaults.set("controversial", forKey: "sort")
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -230,7 +230,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     {
         
         let setting = arrayOfSettings[indexPath.row]
-
+        
         settingsTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         switch setting {
         case "Text Size":
@@ -240,12 +240,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case "Dark Mode":
             let cell:DarkModeTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "DarkMode") as! DarkModeTableViewCell
             return cell
-
+            
         case "Download Settings":
             let cell:DownloadSettingsTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "DownloadSettings") as! DownloadSettingsTableViewCell
             cell.downloadSettingsButton.addTarget(self, action: #selector(changeDownload), for: .touchUpInside)
             return cell
-
+            
         case "Hide NSFW Content":
             let cell:HideNSFWPostsTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "HideNSFW") as! HideNSFWPostsTableViewCell
             if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
@@ -253,33 +253,33 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             } else { //Default is not hiding
                 cell.nsfwSwitch.isOn = false
             }
-
+            
             return cell
-
+            
         case "Report A Bug":
             let cell:ReportABugTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "ReportBug") as! ReportABugTableViewCell
             return cell
-
+            
         case "Clear All Data":
             let cell:ClearAllDataTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "ClearAll") as! ClearAllDataTableViewCell
             cell.clearData.setTitle("Clear All Data (" + getCacheSize() + ")", for: .normal)
             return cell
             
-        case "Default Sorting Type":
-            let cell:DefaultSortingTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "defaultSort") as! DefaultSortingTableViewCell
-            cell.sortingButton.addTarget(self, action: #selector(changeSortType), for: .touchUpInside)
+        case "Download Automatically":
+            let cell:AutoDownloadTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "AutoDownload") as! AutoDownloadTableViewCell
+            cell.pickerButton.addTarget(self, action: #selector(showDownloadPicker), for: .touchUpInside)
             return cell
             
         case "Threads per Subreddit":
             let cell:NumberOfThreadsTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "ThreadsPerSubreddit") as! NumberOfThreadsTableViewCell
             cell.numberField.addTarget(self, action: #selector(changeThreadNumbers), for: UIControlEvents.editingChanged)
             return cell
-
-
+            
+            
         default:
             let cell:UITableViewCell = settingsTable.dequeueReusableCell(withIdentifier:"settingsCell")! as UITableViewCell
             return cell
-
+            
         }
         
         
@@ -288,7 +288,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     
-
+    func showDownloadPicker() {
+        
+    }
+    
     func changeThreadNumbers(textField: UITextField) {
         if textField.text != "" {
             let newNum = textField.text!
@@ -298,11 +301,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
     }
     
-
-
+    
+    
     
 }
 

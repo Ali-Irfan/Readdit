@@ -2,7 +2,7 @@ import UIKit
 import SwiftyJSON
 import Dollar
 import Zip
-
+import Async
 
 class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let defaults = UserDefaults.standard
@@ -11,17 +11,23 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var threadID = ""
     var arrayOfComments: [CommentData] = []
     var hiddenChildren: [String] = []
-
-    
+    var overlay: UIView!
     var bleh: [CommentData] = []
     var commentsArr: [CommentData] = []
     var arrayOfEverything: [AnyObject] = []
     @IBOutlet weak var commentTable: UITableView!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "=", style: .plain, target: revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)))
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.darkGray
+        overlay!.alpha = 0.8
+        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityView.center = self.view.center
+        activityView.startAnimating()
+        
+        overlay?.addSubview(activityView)
+        view.addSubview(overlay!)
 
         let btn2 = UIButton(type: .custom)
         btn2.setImage(#imageLiteral(resourceName: "more"), for: .normal)
@@ -29,7 +35,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         btn2.addTarget(revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)), for: .touchUpInside)
         let item2 = UIBarButtonItem(customView: btn2)
         navigationItem.rightBarButtonItem = item2
-  
+        
         
         revealViewController().rearViewRevealWidth = 0
         view.addGestureRecognizer(self.revealViewController().rightViewController.revealViewController().panGestureRecognizer())
@@ -44,14 +50,12 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
         
-        
-
-        showThreadComments(sortType: "Best")
-
+        Async.main {
+        self.showThreadComments(sortType: "Best")
+        }
         
     }
-
-
+    
     
     func showThreadComments(sortType: String) {
         
@@ -74,6 +78,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 commentTable.reloadData()
             }
         }
+        overlay.removeFromSuperview()
     }
     
     func sortBy(sortType: String) {
@@ -109,136 +114,136 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
     }
- 
     
-        // Do any additional setup after loading the view.
     
-
-             override func didReceiveMemoryWarning() {
-                super.didReceiveMemoryWarning()
-                // Dispose of any resources that can be recreated.
+    // Do any additional setup after loading the view.
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: - Tableview Delegate & Datasource
+    func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
+    {
+        return bleh.count
+    }
+    
+    private func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        
+        let cell:CommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentViewCell
+        
+        
+        
+        
+        if bleh[indexPath.row].isMainComment {
+            cell.seperatorView.isHidden = true
+            cell.contentView.layoutMargins.left = 10
+            cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
+            cell.upvoteLabel?.text = ""
+            cell.collapseLabel?.text = ""
+            let titleText = bleh[indexPath.row].title
+            let selftext = bleh[indexPath.row].selftext
+            if selftext != "" {
+                let firstWord   = titleText
+                let secondWord = "\n\n"
+                let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)]
+                let thirdWord   = selftext
+                let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs)
+                attributedText.append(NSAttributedString(string: secondWord))
+                attributedText.append(NSAttributedString(string: thirdWord))
+                cell.mainLabel?.attributedText = attributedText
+            } else {
+                let firstWord = titleText
+                let attrs2 = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)]
+                let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs2)
+                cell.mainLabel?.attributedText = attributedText
             }
             
-            //MARK: - Tableview Delegate & Datasource
-            func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
-            {
-                return bleh.count
-            }
             
-            private func numberOfSectionsInTableView(tableView: UITableView) -> Int
-            {
-                return 1
-            }
+        }
+        
+        if !bleh[indexPath.row].hiddenComment && !bleh[indexPath.row].isMainComment {
             
-            func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-            {
-              
-                let cell:CommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentViewCell
-
-
+            cell.indentationLevel = bleh[indexPath.row].level
+            cell.selectionStyle = .none
+            // cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
+            
+            if cell.indentationLevel > 0 {// && !bleh[indexPath.row].minimized {
+                cell.seperatorView.isHidden = true
                 
-                
-                if bleh[indexPath.row].isMainComment {
-                    cell.seperatorView.isHidden = true
-                     cell.contentView.layoutMargins.left = 10
-                    cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
-                    cell.upvoteLabel?.text = ""
-                    cell.collapseLabel?.text = ""
-                    let titleText = bleh[indexPath.row].title
-                    let selftext = bleh[indexPath.row].selftext
-                    if selftext != "" {
-                        let firstWord   = titleText
-                        let secondWord = "\n\n"
-                        let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)]
-                        let thirdWord   = selftext
-                        let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs)
-                        attributedText.append(NSAttributedString(string: secondWord))
-                        attributedText.append(NSAttributedString(string: thirdWord))
-                        cell.mainLabel?.attributedText = attributedText
-                    } else {
-                        let firstWord = titleText
-                        let attrs2 = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)]
-                        let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs2)
-                        cell.mainLabel?.attributedText = attributedText
-                    }
-                    
-                    
+            } else {
+                cell.seperatorView.isHidden = false
+            }
+            
+            for view in cell.subviews {
+                if view.tag == 1 {
+                    view.removeFromSuperview()
                 }
-                
-                if !bleh[indexPath.row].hiddenComment && !bleh[indexPath.row].isMainComment {
-                
-                        cell.indentationLevel = bleh[indexPath.row].level
-                        cell.selectionStyle = .none
-                   // cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
-                    
-                    if cell.indentationLevel > 0 {// && !bleh[indexPath.row].minimized {
-                        cell.seperatorView.isHidden = true
-
-                    } else {
-                        cell.seperatorView.isHidden = false
-                    }
-
-                    for view in cell.subviews {
-                        if view.tag == 1 {
-                            view.removeFromSuperview()
-                        }
-                    }
-                    cell.contentView.layoutMargins.left = CGFloat(cell.indentationLevel * 15) + 10
-
-                    
-                        cell.parent_id = bleh[indexPath.row].parent_id
-                        cell.id = bleh[indexPath.row].id
-                        cell.superParent = bleh[indexPath.row].superParent
-                        
-                    
-
-                            cell.mainLabel?.text = bleh[indexPath.row].body
-  
-                        cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
-                    cell.authorLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
-                    
-                    let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)))
-                    cell.upvoteLabel?.text = " • " + String(bleh[indexPath.row].upvotes)
-                    
-                    let firstWord   = dateText
-                    let secondWord = String(bleh[indexPath.row].upvotes)
-                    let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)]
-                    let attributedText = NSMutableAttributedString(string:firstWord)
-                    attributedText.append(NSMutableAttributedString(string: " • "))
-                    attributedText.append(NSAttributedString(string: secondWord, attributes: attrs))
-                    cell.upvoteLabel?.attributedText = attributedText
-                    cell.upvoteLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
-                            cell.collapseLabel?.text = bleh[indexPath.row].collapse
-                    
-
-
-                    
-                    
-                    
-                    
-                  } else {
-                    
-                }
-
-                return cell
-                
-
-               
             }
-
+            cell.contentView.layoutMargins.left = CGFloat(cell.indentationLevel * 15) + 10
+            
+            
+            cell.parent_id = bleh[indexPath.row].parent_id
+            cell.id = bleh[indexPath.row].id
+            cell.superParent = bleh[indexPath.row].superParent
+            
+            
+            
+            cell.mainLabel?.text = bleh[indexPath.row].body
+            
+            cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
+            cell.authorLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
+            
+            let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)))
+            cell.upvoteLabel?.text = " • " + String(bleh[indexPath.row].upvotes)
+            
+            let firstWord   = dateText
+            let secondWord = String(bleh[indexPath.row].upvotes)
+            let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)]
+            let attributedText = NSMutableAttributedString(string:firstWord)
+            attributedText.append(NSMutableAttributedString(string: " • "))
+            attributedText.append(NSAttributedString(string: secondWord, attributes: attrs))
+            cell.upvoteLabel?.attributedText = attributedText
+            cell.upvoteLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
+            cell.collapseLabel?.text = bleh[indexPath.row].collapse
+            
+            
+            
+            
+            
+            
+            
+        } else {
+            
+        }
+        
+        return cell
+        
+        
+        
+    }
+    
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         for cell in commentTable.visibleCells {
-        
-        if cell.indentationLevel > 0 {
-            for i in 1...cell.indentationLevel {
-                let uiview = UIView(frame: CGRect(x: i * 15, y: 0, width: 1, height: Int(cell.bounds.height)))
-                uiview.backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
-                uiview.tag = 13
-                cell.addSubview(uiview)
+            
+            if cell.indentationLevel > 0 {
+                for i in 1...cell.indentationLevel {
+                    let uiview = UIView(frame: CGRect(x: i * 15, y: 0, width: 1, height: Int(cell.bounds.height)))
+                    uiview.backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
+                    uiview.tag = 13
+                    cell.addSubview(uiview)
+                }
             }
-        }
         }
     }
     
@@ -253,44 +258,44 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return UITableViewAutomaticDimension
         }
     }
-
     
     
-            func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                let indexPath = tableView.indexPathForSelectedRow! //optional, to get from any UIButton for example
-                let currentCell = tableView.cellForRow(at: indexPath) as! CommentViewCell
-
-                print("I clicked on cell with author: \(currentCell.authorLabel.text)")
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow! //optional, to get from any UIButton for example
+        let currentCell = tableView.cellForRow(at: indexPath) as! CommentViewCell
+        
+        print("I clicked on cell with author: \(currentCell.authorLabel.text)")
+        
+        
+        let newIndex = indexPath.row + 1
+        if indexPath.row != bleh.count-1 && bleh[indexPath.row].title == "" {
+            let currentIndentationLevel = bleh[indexPath.row].level
+            
+            if bleh[indexPath.row].collapse == "[+]" { //We are now going to open it and all children
+                bleh[indexPath.row].collapse = "[-]"
+                bleh[indexPath.row].minimized = false
                 
-                let newIndex = indexPath.row + 1
-                if indexPath.row != bleh.count-1 && bleh[indexPath.row].title == "" {
-                    let currentIndentationLevel = bleh[indexPath.row].level
-                    
-                    if bleh[indexPath.row].collapse == "[+]" { //We are now going to open it and all children
-                        bleh[indexPath.row].collapse = "[-]"
-                        bleh[indexPath.row].minimized = false
-                        
-                        //currentCell.seperatorView.isHidden = false
-                        //print("Seperatorview for author \(currentCell.authorLabel.text) is now hidden: \(currentCell.seperatorView.isHidden) with width val: \(currentCell.seperatorView.frame.width) and height \(currentCell.seperatorView.frame.height)")
-                        openAllChildren(parentID: bleh[indexPath.row].id, newIndex: newIndex, currentIndentationLevel: currentIndentationLevel)
-
-                    } else {
-                        bleh[indexPath.row].collapse = "[+]" // We are now closing it and all children
-                        bleh[indexPath.row].minimized = true
-                        closeAllChildren(parentID: bleh[indexPath.row].id, newIndex: newIndex, currentIndentationLevel: currentIndentationLevel)
-                    }
-                }
-                //commentTable.beginUpdates()
-                //commentTable.endUpdates()
-                //commentTable.reloadData()
-                commentTable.reloadRows(at: [indexPath], with: .automatic)
-
+                //currentCell.seperatorView.isHidden = false
+                //print("Seperatorview for author \(currentCell.authorLabel.text) is now hidden: \(currentCell.seperatorView.isHidden) with width val: \(currentCell.seperatorView.frame.width) and height \(currentCell.seperatorView.frame.height)")
+                openAllChildren(parentID: bleh[indexPath.row].id, newIndex: newIndex, currentIndentationLevel: currentIndentationLevel)
+                
+            } else {
+                bleh[indexPath.row].collapse = "[+]" // We are now closing it and all children
+                bleh[indexPath.row].minimized = true
+                closeAllChildren(parentID: bleh[indexPath.row].id, newIndex: newIndex, currentIndentationLevel: currentIndentationLevel)
             }
+        }
+        //commentTable.beginUpdates()
+        //commentTable.endUpdates()
+        //commentTable.reloadData()
+        commentTable.reloadRows(at: [indexPath], with: .automatic)
+        
+    }
     
     
     
-
+    
     func openAllChildren(parentID: String, newIndex: Int, currentIndentationLevel: Int){
         var newIndex = newIndex
         while bleh[newIndex].level > currentIndentationLevel && newIndex <= bleh.count{

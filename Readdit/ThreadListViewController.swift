@@ -2,20 +2,21 @@
 import UIKit
 import SwiftyJSON
 import Async
+import EZLoadingActivity
 
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var overlay : UIView? // This should be a class variable
     
-
+    
     var arrayOfThreads: [ThreadData] = []
     var subreddit = ""
     
     let myNotification = Notification.Name(rawValue:"MyNotification")
-
+    
     
     @IBOutlet weak var threadTable: UITableView!
     var jsonRaw = ""
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,20 +36,19 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         checkCurrentDownloads()
         
         navigationItem.title = "/r/" + subreddit
-    
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .done, target: self, action: #selector(updateThreads))
 
+        
         navigationItem.hidesBackButton = true
         
         print("Got past this")
         
         if revealViewController() != nil {
             view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
-
-           
+            
+            
             revealViewController().rightViewRevealWidth = 150
             revealViewController().rearViewRevealWidth = 250
-                    }
+        }
         
         let btn1 = UIButton(type: .custom)
         btn1.setImage(#imageLiteral(resourceName: "menu-2"), for: .normal)
@@ -57,7 +57,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         let item1 = UIBarButtonItem(customView: btn1)
         navigationItem.leftBarButtonItem = item1
         
-       threadTable.delegate = self
+        threadTable.delegate = self
         threadTable.dataSource = self
         threadTable.rowHeight = UITableViewAutomaticDimension
         threadTable.estimatedRowHeight = 140
@@ -67,7 +67,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         displayThreads()
         
     }
-
+    
     func catchNotification(notification:Notification) -> Void {
         checkCurrentDownloads()
     }
@@ -79,14 +79,14 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         print("This subreddit: " + subreddit)
         print("Checking to see if \(subreddit) is in  \(downloadsInProgress)")
         
-
+        
         if downloadsInProgress.contains(subreddit) {
             overlay?.isHidden = false
         } else {
             overlay?.isHidden = true
         }
         
-        }
+    }
     
     
     
@@ -98,50 +98,50 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
         checkCurrentDownloads()
     }
-
+    
     func updateThreads() {
         
         if Utils.hasAppropriateConnection() {
             self.navigationItem.rightBarButtonItem?.isEnabled = false
             Async.background {
-        Downloader.downloadJSON(subreddit: self.subreddit)
-        
-        self.jsonRaw = Downloader.getJSON(subreddit: self.subreddit, sortType: "Top")
-        self.arrayOfThreads.removeAll()
-        if (self.jsonRaw != "Error") {
-            if let data = self.jsonRaw.data(using: String.Encoding.utf8) {
-                let json = JSON(data: data)
-                let threads = json["data"]["children"]
-                // print(json)
-                for (_, thread):(String, JSON) in threads {
-                    let thisThread = ThreadData()
-                    thisThread.title = thread["data"]["title"].string!
-                    thisThread.author = thread["data"]["author"].string!
-                    thisThread.upvotes = thread["data"]["ups"].int!
-                    thisThread.commentCount = thread["data"]["num_comments"].int!
-                    thisThread.id = thread["data"]["id"].string!
-                    thisThread.nsfw = Bool(thread["data"]["over_18"].boolValue)
-                    thisThread.permalink = thread["data"]["permalink"].string!
-                    thisThread.utcCreated = thread["data"]["created_utc"].double!
-
-                    if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
-                        
-                        if !key {
-                            self.arrayOfThreads.append(thisThread)
+                Downloader.downloadJSON(subreddit: self.subreddit)
+                
+                self.jsonRaw = Downloader.getJSON(subreddit: self.subreddit, sortType: "Top")
+                self.arrayOfThreads.removeAll()
+                if (self.jsonRaw != "Error") {
+                    if let data = self.jsonRaw.data(using: String.Encoding.utf8) {
+                        let json = JSON(data: data)
+                        let threads = json["data"]["children"]
+                        // print(json)
+                        for (_, thread):(String, JSON) in threads {
+                            let thisThread = ThreadData()
+                            thisThread.title = thread["data"]["title"].string!
+                            thisThread.author = thread["data"]["author"].string!
+                            thisThread.upvotes = thread["data"]["ups"].int!
+                            thisThread.commentCount = thread["data"]["num_comments"].int!
+                            thisThread.id = thread["data"]["id"].string!
+                            thisThread.nsfw = Bool(thread["data"]["over_18"].boolValue)
+                            thisThread.permalink = thread["data"]["permalink"].string!
+                            thisThread.utcCreated = thread["data"]["created_utc"].double!
+                            
+                            if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
+                                
+                                if !key {
+                                    self.arrayOfThreads.append(thisThread)
+                                }
+                                
+                            } else { //Default is not hiding
+                                self.arrayOfThreads.append(thisThread)
+                            }
                         }
-                        
-                    } else { //Default is not hiding
-                        self.arrayOfThreads.append(thisThread)
+                        for thread in self.arrayOfThreads {
+                            Downloader.downloadThreadJSON(subreddit: self.subreddit, threadURL: thread.permalink, threadID: thread.id)
+                        }
+                        self.threadTable.reloadData()
+                        self.navigationItem.rightBarButtonItem?.isEnabled = true
                     }
                 }
-                for thread in self.arrayOfThreads {
-                    Downloader.downloadThreadJSON(subreddit: self.subreddit, threadURL: thread.permalink, threadID: thread.id)
-                }
-                self.threadTable.reloadData()
-                self.navigationItem.rightBarButtonItem?.isEnabled = true
-            }
-        }
-        } //END ASYNC
+            } //END ASYNC
         } else {
             Utils.displayTheAlert(targetVC: (UIApplication.shared.keyWindow?.rootViewController)!, title: "Error", message: "You need a valid/appropriate internet connection to download threads.")
         }
@@ -183,8 +183,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-
-
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -200,7 +200,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell:THREADTableViewCell = tableView.dequeueReusableCell(withIdentifier: "mycell2") as! THREADTableViewCell
-        cell.selectionStyle = UITableViewCellSelectionStyle.none; 
+        cell.selectionStyle = UITableViewCellSelectionStyle.none;
         
         cell.topViewBar.backgroundColor = General.hexStringToUIColor(hex: "#dadada")
         cell.mainText?.text = arrayOfThreads[indexPath.row].title
@@ -224,7 +224,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You selected cell #\(indexPath.row)!")
-        
         // Get Cell Label
         let indexPath = tableView.indexPathForSelectedRow!
         let currentCell = tableView.cellForRow(at: indexPath)! as! THREADTableViewCell
@@ -244,14 +243,15 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
                 }
             }
-
-        let myVC = storyboard?.instantiateViewController(withIdentifier: "ThreadView") as! ThreadViewController
-        myVC.threadURL = "https://reddit.com" + threadURL
+            
+            let myVC = storyboard?.instantiateViewController(withIdentifier: "ThreadView") as! ThreadViewController
+            myVC.threadURL = "https://reddit.com" + threadURL
             myVC.threadID = threadID
             myVC.subreddit = subreddit
             //present(myVC, animated: true, completion: nil)
-        navigationController?.pushViewController(myVC, animated: true)
-    }
+
+            navigationController?.pushViewController(myVC, animated: true)
+        }
     }
     
     func sendAlert(TITLE:String, MESSAGE:String, BUTTON:String) {
@@ -260,6 +260,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         alert.addAction(defaultAction)
         present(alert, animated: true, completion: nil)
     }
-
+    
 }
 
