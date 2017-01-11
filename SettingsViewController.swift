@@ -59,6 +59,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         defaults.set(obj, forKey: "inProgress")
         
         
+        if let key = defaults.object(forKey: "arrayOfSubreddits") {
+            
+        } else {
+            let defaultSubreddits: [String] = ["AskReddit", "AskScience", "IAmA", "News", "ExplainLikeImFive", "Jokes", "NSFW"]
+            defaults.set(defaultSubreddits, forKey: "arrayOfSubreddits")
+        }
+        
     }
     
     func changeDownload(_ sender: UIButton!) {

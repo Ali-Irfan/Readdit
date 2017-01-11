@@ -8,8 +8,8 @@
 
 import UIKit
 import Async
-var arrayOfSubreddits: [String] = ["AskReddit", "AskScience", "IAmA", "News", "ExplainLikeImFive", "Jokes", "NSFW"]
 
+var arrayOfSubreddits = UserDefaults.standard.object(forKey: "arrayOfSubreddits") as! [String]
 class SidebarTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var arrayOfIdentifiers: [String] = []
@@ -135,6 +135,7 @@ indexPath: IndexPath){
             let subredditToAdd = textField?.text?.trimmingCharacters(in: .whitespaces).capitalizingFirstLetter()
             if subredditToAdd != "" && !arrayOfSubreddits.contains(subredditToAdd!) {
                 arrayOfSubreddits.append(subredditToAdd!)
+                UserDefaults.standard.set(arrayOfSubreddits, forKey: "arrayOfSubreddits")
                 self.arrayOfIdentifiers.insert("subreddit", at: self.arrayOfIdentifiers.count-1)
                 self.sidebarTable.reloadData()
                 Async.main{
