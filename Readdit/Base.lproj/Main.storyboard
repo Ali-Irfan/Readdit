@@ -440,6 +440,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="deleteButton" destination="dAY-pK-gBk" id="RF2-LL-NTM"/>
                                             <outlet property="loadingIndicator" destination="5zq-D7-0dK" id="N4I-WX-wDK"/>
                                             <outlet property="subredditTitle" destination="ddc-tY-1Wc" id="YEF-Hg-85O"/>
                                             <outlet property="updateButton" destination="b1Z-JC-Pcm" id="JnW-xI-Wnw"/>

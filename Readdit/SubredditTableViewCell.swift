@@ -12,6 +12,7 @@ import Async
 
 class SubredditTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var deleteButton: UIView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var subredditTitle: UILabel!
@@ -23,6 +24,7 @@ class SubredditTableViewCell: UITableViewCell {
         updateButton.setImage(#imageLiteral(resourceName: "cloud-computing"), for: .normal)
         updateButton.frame = CGRect(x: self.frame.width-50, y: self.frame.height/2 - 12, width: 30, height: 30)
         updateButton.addTarget(self, action: #selector(updateSubreddit), for: .touchUpInside)
+        
     }
 
     

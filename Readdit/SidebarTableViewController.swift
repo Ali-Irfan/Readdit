@@ -103,6 +103,10 @@ indexPath: IndexPath){
         case "subreddit":
             let cell:SubredditTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subreddit") as! SubredditTableViewCell
             cell.subredditTitle.text? = arrayOfSubreddits[indexPath.row-1]
+            cell.deleteButton.isUserInteractionEnabled = true
+            let gesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SidebarTableViewController.deleteSubreddit(_:)))
+            gesture.numberOfTapsRequired = 1
+            cell.deleteButton.addGestureRecognizer(gesture)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
             
@@ -118,6 +122,34 @@ indexPath: IndexPath){
             
         }
     }
+    
+    func deleteSubreddit(_ sender: UITapGestureRecognizer) {
+        print(sender)
+        if let cell = sender.view?.superview as? SubredditTableViewCell {
+
+            //Have to add in delete files too
+            
+            
+            //1. Create the alert controller.
+            let alert = UIAlertController(title: "Remove Subreddit", message: "Are you sure you want to remove /r/\(cell.subredditTitle.text!)?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            // 3. Grab the value from the text field, and print it when the user clicks OK.
+            alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [weak alert] (_) in
+                print(cell.subredditTitle.text!)
+                arrayOfSubreddits = arrayOfSubreddits.filter() { $0 != cell.subredditTitle.text! }
+                UserDefaults.standard.set(arrayOfSubreddits, forKey: "arrayOfSubreddits")
+                self.arrayOfIdentifiers.remove(at: self.arrayOfIdentifiers.count-2)
+                self.sidebarTable.reloadData()
+
+            }))
+            
+            
+            // 4. Present the alert.
+            self.present(alert, animated: true, completion: nil)
+        }
+    
+    }
+    
     
     func addSubreddit() {
         //1. Create the alert controller.
