@@ -51,25 +51,10 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt
 indexPath: IndexPath){
 
-        print("You selected cell #\(indexPath.row)!")
-        
-        // Get Cell Label
-        let indexPath = tableView.indexPathForSelectedRow!
-        if let currentCell = tableView.cellForRow(at: indexPath)! as? SubredditTableViewCell{ //IF ITS A SUBREDDIT
-            print("Here")
-            let subreddit = (currentCell.subredditTitle.text)
-            let myVC = self.storyboard?.instantiateViewController(withIdentifier: "ThreadNavigation") as! ThreadNavigationController
-            let actualView = myVC.viewControllers.first as! ThreadListViewController
-            actualView.subreddit = subreddit!
-            //present(myVC, animated: true, completion: nil)
-             self.revealViewController().pushFrontViewController(myVC, animated: true)
-        } else if tableView.cellForRow(at: indexPath)! is SettingsHeaderTableViewCell {
-            let myVC = self.storyboard?.instantiateViewController(withIdentifier: "Settings") as! UINavigationController
-            self.revealViewController().pushFrontViewController(myVC, animated: true)
-        }
     }
     
     
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -102,17 +87,15 @@ indexPath: IndexPath){
             return cell
         case "subreddit":
             let cell:SubredditTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subreddit") as! SubredditTableViewCell
-            cell.subredditTitle.text? = arrayOfSubreddits[indexPath.row-1]
-            cell.deleteButton.isUserInteractionEnabled = true
-            let gesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SidebarTableViewController.deleteSubreddit(_:)))
-            gesture.numberOfTapsRequired = 1
-            cell.deleteButton.addGestureRecognizer(gesture)
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.subredditTitle.setTitle(arrayOfSubreddits[indexPath.row-1], for: .normal)
+            cell.deleteButton.addTarget(self, action: #selector(deleteSubreddit(_:)), for: .touchUpInside)
+            cell.subredditTitle.addTarget(self, action: #selector(goToSubreddit(_:)), for: .touchUpInside)
             return cell
             
         case "settingsHeader":
             let cell:SettingsHeaderTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "settingsHeader") as! SettingsHeaderTableViewCell
             cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.settingsButton.addTarget(self, action: #selector(goToSubreddit(_:)), for: .touchUpInside)
             return cell
 
         default:
@@ -123,22 +106,29 @@ indexPath: IndexPath){
         }
     }
     
-    func deleteSubreddit(_ sender: UITapGestureRecognizer) {
-        print(sender)
-        if let cell = sender.view?.superview as? SubredditTableViewCell {
+    func deleteSubreddit(_ sender: UIButton) {
+        if let cell = sender.superview?.superview as? SubredditTableViewCell {
 
             //Have to add in delete files too
             
             
             //1. Create the alert controller.
-            let alert = UIAlertController(title: "Remove Subreddit", message: "Are you sure you want to remove /r/\(cell.subredditTitle.text!)?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Remove Subreddit", message: "Are you sure you want to remove /r/\(cell.subredditTitle.currentTitle!)?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             // 3. Grab the value from the text field, and print it when the user clicks OK.
             alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [weak alert] (_) in
-                print(cell.subredditTitle.text!)
-                arrayOfSubreddits = arrayOfSubreddits.filter() { $0 != cell.subredditTitle.text! }
+                print(cell.subredditTitle.currentTitle!)
+                arrayOfSubreddits = arrayOfSubreddits.filter() { $0 != cell.subredditTitle.currentTitle! }
                 UserDefaults.standard.set(arrayOfSubreddits, forKey: "arrayOfSubreddits")
                 self.arrayOfIdentifiers.remove(at: self.arrayOfIdentifiers.count-2)
+                do {
+                    let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+                    let subredditPath = documentsPath.appendingPathComponent(cell.subredditTitle.currentTitle!)
+                    try FileManager.default.removeItem(at: subredditPath!)
+                } catch let error as NSError {
+                    print("An error took place(DownloadThread): \(error)")
+                }
+
                 self.sidebarTable.reloadData()
 
             }))
@@ -148,6 +138,21 @@ indexPath: IndexPath){
             self.present(alert, animated: true, completion: nil)
         }
     
+    }
+    
+    func goToSubreddit(_ sender: UIButton) {
+        if let currentCell = sender.superview?.superview as? SubredditTableViewCell{ //IF ITS A SUBREDDIT
+            print("Here")
+            let subreddit = (currentCell.subredditTitle.currentTitle!)
+            let myVC = self.storyboard?.instantiateViewController(withIdentifier: "ThreadNavigation") as! ThreadNavigationController
+            let actualView = myVC.viewControllers.first as! ThreadListViewController
+            actualView.subreddit = subreddit
+            //present(myVC, animated: true, completion: nil)
+            self.revealViewController().pushFrontViewController(myVC, animated: true)
+        } else if sender.superview?.superview is SettingsHeaderTableViewCell {
+            let myVC = self.storyboard?.instantiateViewController(withIdentifier: "Settings") as! UINavigationController
+            self.revealViewController().pushFrontViewController(myVC, animated: true)
+        }
     }
     
     
@@ -160,11 +165,12 @@ indexPath: IndexPath){
             textField.text = ""
             textField.placeholder = "e.g. AskReddit"
         }
-        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
         // 3. Grab the value from the text field, and print it when the user clicks OK.
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            let subredditToAdd = textField?.text?.trimmingCharacters(in: .whitespaces).capitalizingFirstLetter()
+            let subredditToAdd = textField?.text?.stringByRemovingWhitespaces.capitalizingFirstLetter()
             if subredditToAdd != "" && !arrayOfSubreddits.contains(subredditToAdd!) {
                 arrayOfSubreddits.append(subredditToAdd!)
                 UserDefaults.standard.set(arrayOfSubreddits, forKey: "arrayOfSubreddits")
@@ -197,6 +203,8 @@ indexPath: IndexPath){
 
 }
 
+
+
 extension String {
     func capitalizingFirstLetter() -> String {
         let first = String(characters.prefix(1)).capitalized
@@ -207,4 +215,8 @@ extension String {
     mutating func capitalizeFirstLetter() {
         self = self.capitalizingFirstLetter()
     }
+    
+        var stringByRemovingWhitespaces: String {
+            return components(separatedBy: .whitespaces).joined(separator: "")
+        }
 }

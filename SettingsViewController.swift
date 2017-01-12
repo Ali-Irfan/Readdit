@@ -270,6 +270,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case "Clear All Data":
             let cell:ClearAllDataTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "ClearAll") as! ClearAllDataTableViewCell
             cell.clearData.setTitle("Clear All Data (" + getCacheSize() + ")", for: .normal)
+            cell.clearData.addTarget(self, action: #selector(clearAll(_:)), for: .touchUpInside)
             return cell
             
         case "Download Automatically":
@@ -294,6 +295,54 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    func clearAll(_ sender: UIButton) {
+        //1. Create the alert controller.
+        let alert = UIAlertController(title: "Clear All Data", message: "This will delete ALL saved threads from ALL subreddits. Are you sure?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "Clear Data", style: .destructive, handler: { [weak alert] (_) in
+            self.clearData(sender: sender)
+        }))
+        
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+
+
+    func clearData(sender: UIButton) {
+        let fileManager = FileManager.default
+        //let documentsUrl =  FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first! as NSURL
+        let documentsUrl =  try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) as NSURL
+        let documentsPath = documentsUrl.path
+        
+        do {
+            if let documentPath = documentsPath
+            {
+                let fileNames = try fileManager.contentsOfDirectory(atPath: "\(documentPath)")
+                print("all files in cache: \(fileNames)")
+                for fileName in fileNames {
+                    
+                    //if (fileName.hasSuffix(".png"))
+                    //{
+                    let filePathName = "\(documentPath)/\(fileName)"
+                    try fileManager.removeItem(atPath: filePathName)
+                    //}
+                }
+                
+                let files = try fileManager.contentsOfDirectory(atPath: "\(documentPath)")
+                print("all files in cache after deleting images: \(files)")
+                sender.setTitle("Clear All Data (" + getCacheSize() + ")", for: .normal)
+            }
+            
+        } catch {
+            print("Could not clear temp folder: \(error)")
+        }
+    
+}
+
+
     
     func showDownloadPicker() {
         

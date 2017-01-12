@@ -10,6 +10,8 @@ import UIKit
 
 class SettingsHeaderTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var settingsButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -12,10 +12,10 @@ import Async
 
 class SubredditTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var deleteButton: UIView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var updateButton: UIButton!
-    @IBOutlet weak var subredditTitle: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var subredditTitle: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,18 +24,20 @@ class SubredditTableViewCell: UITableViewCell {
         updateButton.setImage(#imageLiteral(resourceName: "cloud-computing"), for: .normal)
         updateButton.frame = CGRect(x: self.frame.width-50, y: self.frame.height/2 - 12, width: 30, height: 30)
         updateButton.addTarget(self, action: #selector(updateSubreddit), for: .touchUpInside)
+//        deleteButton.setImage(#imageLiteral(resourceName: "minus"), for: .normal)
+//        deleteButton.frame = CGRect(x: 0, y: self.frame.height/2 - 12, width: 20, height: 20)
         
     }
 
     
     func updateSubreddit() {
-        
+        print("Updating subreddit")
         if Utils.hasAppropriateConnection() {
         Async.background {
             
         
         var arrayOfThreads:[ThreadData] = []
-        let subreddit = self.subredditTitle.text!
+        let subreddit = self.subredditTitle.currentTitle!
         print("Downloading subreddits")
             
             Async.main {
