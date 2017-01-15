@@ -11,6 +11,7 @@
 		362104F51DF73939002E13D2 /* SubredditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */; };
 		362104F91DF73951002E13D2 /* SettingsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */; };
 		362104FB1DF73A11002E13D2 /* SidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104FA1DF73A11002E13D2 /* SidebarTableViewController.swift */; };
+		362BE6451E2C1524009CF055 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 362BE6441E2C1524009CF055 /* UserNotifications.framework */; };
 		3636E2991DCFF8DC0030F77D /* ThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */; };
 		3636E29B1DD001530030F77D /* ThreadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3636E29A1DD001530030F77D /* ThreadData.swift */; };
 		363916921E1086A70053EDCE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363916911E1086A70053EDCE /* Utils.swift */; };
@@ -26,6 +27,7 @@
 		366903E41DEFBD0C00696250 /* ClearAllDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */; };
 		3678F4F91E04D4DB005A3F8A /* ThreadNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */; };
 		3684C7CC1E071A9400754372 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3684C7CB1E071A9400754372 /* SWRevealViewController.m */; };
+		3687C8811E299FBF00B16BC6 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3687C8801E299FBF00B16BC6 /* PaddingLabel.swift */; };
 		368A4BEF1DD0CABF002D0480 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368A4BEE1DD0CABF002D0480 /* CommentData.swift */; };
 		368A4BF11DD0DFC7002D0480 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368A4BF01DD0DFC7002D0480 /* General.swift */; };
 		36970FFF1DE936E60070DC33 /* MainPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */; };
@@ -77,6 +79,7 @@
 		362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubredditTableViewCell.swift; sourceTree = "<group>"; };
 		362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		362104FA1DF73A11002E13D2 /* SidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewController.swift; sourceTree = "<group>"; };
+		362BE6441E2C1524009CF055 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; tabWidth = 5; };
 		3636E29A1DD001530030F77D /* ThreadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadData.swift; sourceTree = "<group>"; };
 		363916911E1086A70053EDCE /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -94,6 +97,7 @@
 		3684C7C91E071A9400754372 /* Readdit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Readdit-Bridging-Header.h"; sourceTree = "<group>"; };
 		3684C7CA1E071A9400754372 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
 		3684C7CB1E071A9400754372 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
+		3687C8801E299FBF00B16BC6 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		368A4BEE1DD0CABF002D0480 /* CommentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentData.swift; sourceTree = "<group>"; };
 		368A4BF01DD0DFC7002D0480 /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPostTableViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 		36D255BF1DCC3B2C00B1779E /* ReadditUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReadditUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36D255C31DCC3B2C00B1779E /* ReadditUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadditUITests.swift; sourceTree = "<group>"; };
 		36D255C51DCC3B2C00B1779E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36D2CB921E29456D007CD6AC /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		36DB561D1DCEB76200E7B764 /* ThreadListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadListViewController.swift; sourceTree = "<group>"; };
 		36E7215C1DD6F43C004B5EAA /* CommentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewCell.swift; sourceTree = "<group>"; };
 		36E9D20F1E23309A00F65FC5 /* AutoDownloadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoDownloadTableViewCell.swift; sourceTree = "<group>"; };
@@ -132,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				362BE6451E2C1524009CF055 /* UserNotifications.framework in Frameworks */,
 				FE74C635AEA378F7BE8F9E78 /* Pods_Readdit.framework in Frameworks */,
 				68180669B12880A96F527680 /* Pods_Readdit.framework in Frameworks */,
 			);
@@ -196,6 +202,7 @@
 		36D255971DCC3B2B00B1779E = {
 			isa = PBXGroup;
 			children = (
+				36D2CB921E29456D007CD6AC /* SWRevealViewController.h */,
 				36D255A21DCC3B2C00B1779E /* Readdit */,
 				36EE38071E089ADA00AA5D48 /* Other */,
 				A6CE08D5DB484D264305D71D /* Pods */,
@@ -257,6 +264,7 @@
 				3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */,
 				36DB561D1DCEB76200E7B764 /* ThreadListViewController.swift */,
 				36E7215C1DD6F43C004B5EAA /* CommentViewCell.swift */,
+				3687C8801E299FBF00B16BC6 /* PaddingLabel.swift */,
 			);
 			name = "Thread Lists";
 			sourceTree = "<group>";
@@ -320,6 +328,7 @@
 		446FEBDAB1BC946B193DDD36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				362BE6441E2C1524009CF055 /* UserNotifications.framework */,
 				02D049A660F255986BFB3B0E /* Pods_Readdit.framework */,
 			);
 			name = Frameworks;
@@ -425,11 +434,13 @@
 					};
 					36D255B31DCC3B2C00B1779E = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 4XHUDDQAMX;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 36D2559F1DCC3B2C00B1779E;
 					};
 					36D255BE1DCC3B2C00B1779E = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 4XHUDDQAMX;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 36D2559F1DCC3B2C00B1779E;
 					};
@@ -560,6 +571,7 @@
 				3636E29B1DD001530030F77D /* ThreadData.swift in Sources */,
 				36F608F31E09E96000604B6D /* NumberOfThreadsTableViewCell.swift in Sources */,
 				362104F91DF73951002E13D2 /* SettingsHeaderTableViewCell.swift in Sources */,
+				3687C8811E299FBF00B16BC6 /* PaddingLabel.swift in Sources */,
 				36C451341DCD4A2F0066A76E /* Downloader.swift in Sources */,
 				36E9D2101E23309A00F65FC5 /* AutoDownloadTableViewCell.swift in Sources */,
 				362104F31DF73925002E13D2 /* SubredditHeaderTableViewCell.swift in Sources */,
@@ -764,6 +776,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4XHUDDQAMX;
 				INFOPLIST_FILE = ReadditTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = aliirfan.ReadditTests;
@@ -778,6 +791,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4XHUDDQAMX;
 				INFOPLIST_FILE = ReadditTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = aliirfan.ReadditTests;
@@ -791,6 +805,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 4XHUDDQAMX;
 				INFOPLIST_FILE = ReadditUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = aliirfan.ReadditUITests;
@@ -804,6 +819,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 4XHUDDQAMX;
 				INFOPLIST_FILE = ReadditUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = aliirfan.ReadditUITests;

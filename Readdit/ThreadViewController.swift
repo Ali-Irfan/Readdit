@@ -7,6 +7,7 @@ import Async
 class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let defaults = UserDefaults.standard
     var threadURL = ""
+    var author = ""
     var subreddit = ""
     var threadID = ""
     var arrayOfComments: [CommentData] = []
@@ -72,6 +73,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 mainComment.selftext = mainCommentSelftext
                 mainComment.id = json[0]["data"]["children"][0]["data"]["id"].string!
                 mainComment.author = json[0]["data"]["children"][0]["data"]["author"].string!
+                author = mainComment.author
                 mainComment.upvotes = json[0]["data"]["children"][0]["data"]["ups"].int!
                 bleh.append(mainComment)
                 recursion(object: json[1], level: 0)
@@ -148,6 +150,11 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.contentView.layoutMargins.left = 10
             cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
             cell.upvoteLabel?.text = ""
+            if bleh[indexPath.row].author == author {
+                print("Author is \(bleh[indexPath.row].author), adding BG")
+                cell.authorLabel.backgroundColor = Utils.hexStringToUIColor(hex: "E1E1E1")
+
+            }
             cell.collapseLabel?.text = ""
             let titleText = bleh[indexPath.row].title
             let selftext = bleh[indexPath.row].selftext
@@ -201,6 +208,15 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
             cell.authorLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
+            if bleh[indexPath.row].author == author {
+                print("Author is \(bleh[indexPath.row].author), adding BG")
+
+                cell.authorLabel.backgroundColor = Utils.hexStringToUIColor(hex: "E1E1E1")
+                //cell.authorLabel.textColor = UIColor.white
+            } else {
+                cell.authorLabel.backgroundColor = UIColor.white
+
+            }
             
             let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)))
             cell.upvoteLabel?.text = " • " + String(bleh[indexPath.row].upvotes)

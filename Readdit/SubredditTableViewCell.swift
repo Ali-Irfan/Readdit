@@ -89,8 +89,10 @@ class SubredditTableViewCell: UITableViewCell {
                     }
                 }
                 print("Downloading threads")
+                var count = 1
                 for thread in arrayOfThreads {
-                    
+                    print("Downloading \(count)/\(UserDefaults.standard.string(forKey: "NumberOfThreads"))")
+                    count = count + 1
                     Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
                 }
                 print("Done downloading.")

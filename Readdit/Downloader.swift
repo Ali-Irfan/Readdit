@@ -22,15 +22,16 @@ public class Downloader: UIViewController {
         let configuration = URLSessionConfiguration.default
         // add the headers
         configuration.httpAdditionalHeaders = headers
+        configuration.timeoutIntervalForResource = 2 // seconds
         
         // create a session manager with the configuration
         let sessionManager = Alamofire.SessionManager(configuration: configuration)
         
         
-    var threadNumber = "30"
+    var threadNumber = "10"
     if let x = UserDefaults.standard.string(forKey: "NumberOfThreads") {
         threadNumber = x
-        print("Using key: " + x)
+        //print("Using key: " + x)
     }
     
     for sortType in arrayOfSubredditSort {
@@ -55,22 +56,26 @@ public class Downloader: UIViewController {
         
                 _ = Alamofire.download(urlString, to: destination).downloadProgress { progress in
                     print("Download Progress: \(progress.fractionCompleted)")
-                    }.response()
+                    }.validate(statusCode: 200..<300).response()
 
        } //END OF LOOP
     }
 
 
-
-
-
     
     class func downloadThreadJSON(subreddit: String, threadURL:String, threadID: String){
-
+        var threadNumber = "10"
+        if let x = UserDefaults.standard.string(forKey: "NumberOfThreads") {
+            threadNumber = x
+            //print("Using key: " + x)
+        }
+        
+        
         for sortType in arrayOfThreadSort {
         let urlString = "https://reddit.com" + threadURL + "/.json?sort=" + sortType.lowercased()
 
         let fileName = threadID + ".txt"
+            //print("Downloading \(fileName) with \(sortType)")
 
 
             let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
@@ -89,8 +94,10 @@ public class Downloader: UIViewController {
             }
             
             _ = Alamofire.download(urlString, to: destination).downloadProgress { progress in
-                print("Download Progress: \(progress.fractionCompleted)")
-            }.response()
+                //print("Download Progress: \(progress.fractionCompleted)")
+                //print("Downloading \(count)/\(threadNumber)")
+                
+            }.validate(statusCode: 200..<300).response()
             
             
             do {

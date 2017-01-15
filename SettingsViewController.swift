@@ -66,6 +66,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             defaults.set(defaultSubreddits, forKey: "arrayOfSubreddits")
         }
         
+        if let key = defaults.object(forKey: "downloadTime") {
+            
+        } else {
+            defaults.set(0, forKey: "downloadTime")
+        }
+        
     }
     
     func changeDownload(_ sender: UIButton!) {
@@ -161,6 +167,74 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         present(optionMenu, animated: true, completion: nil)
         
     }
+    
+    func changeDownloadTimes(_ sender: UIButton!) {
+        
+        // 1
+        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
+        
+        // 2
+        // 2
+        let manual = UIAlertAction(title: "Manual", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("Manually Download", for: .normal)
+            self.defaults.set(0, forKey: "downloadTime")
+            
+        })
+        
+        let t2hr = UIAlertAction(title: "Every 2 hours", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("1 hour", for: .normal)
+            self.defaults.set(1*60*60, forKey: "downloadTime")
+            
+        })
+        let t6hr = UIAlertAction(title: "Every 6 hours", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("6 hours", for: .normal)
+            self.defaults.set(6*60*60, forKey: "downloadTime")
+        })
+        
+        //
+        let t12hr = UIAlertAction(title: "Every 12 hours", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("12 hours", for: .normal)
+            self.defaults.set(12*60*60, forKey: "downloadTime")
+        })
+        
+        let t24hr = UIAlertAction(title: "Every 24 hours", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("24 hours", for: .normal)
+            self.defaults.set(24*60*60, forKey: "downloadTime")
+        })
+        
+        let t48hr = UIAlertAction(title: "Every 48 hours", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("48 hours", for: .normal)
+            self.defaults.set(48*60*60, forKey: "downloadTime")
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
+        
+        
+        
+        // 4
+        optionMenu.addAction(manual)
+        optionMenu.addAction(t2hr)
+        optionMenu.addAction(t6hr)
+        optionMenu.addAction(t12hr)
+        optionMenu.addAction(t24hr)
+        optionMenu.addAction(t48hr)
+        optionMenu.addAction(cancelAction)
+        
+        // 5
+        
+        present(optionMenu, animated: true, completion: nil)
+        
+    }
+
     
     func changeSortType(_ sender: UIButton!) {
         
@@ -275,7 +349,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
         case "Download Automatically":
             let cell:AutoDownloadTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "AutoDownload") as! AutoDownloadTableViewCell
-            cell.pickerButton.addTarget(self, action: #selector(showDownloadPicker), for: .touchUpInside)
+            cell.pickerButton.addTarget(self, action: #selector(changeDownloadTimes), for: .touchUpInside)
             return cell
             
         case "Threads per Subreddit":
