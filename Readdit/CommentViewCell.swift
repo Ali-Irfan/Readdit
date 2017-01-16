@@ -9,22 +9,38 @@ class CommentViewCell: UITableViewCell {
     
     @IBOutlet weak var upvoteLabel: UILabel!
     
+
+    @IBOutlet weak var sep1: UIView!
+    @IBOutlet weak var sep2: UIView!
+    @IBOutlet weak var sep3: UIView!
+    @IBOutlet weak var sep4: UIView!
+    @IBOutlet weak var sep5: UIView!
+    @IBOutlet weak var sep6: UIView!
+    @IBOutlet weak var sep7: UIView!
+    @IBOutlet weak var sep8: UIView!
+    @IBOutlet weak var sep9: UIView!
+    @IBOutlet weak var sep10: UIView!
+    @IBOutlet weak var sep11: UIView!
+    @IBOutlet weak var sep12: UIView!
+    
+    
+    var arrayOfSeperators: [UIView] = []
+    
     var parent_id = ""
     var hiddenComment = false
     var leftSideSet = false
     var id = ""
     var superParent = ""
-    
     @IBOutlet weak var collapseLabel: UILabel!
     
     @IBOutlet weak var seperatorView: UIView!
         override func awakeFromNib() {
+            arrayOfSeperators = [sep1, sep2, sep3, sep4, sep5, sep6, sep7, sep8, sep9, sep10, sep11, sep12]
         super.awakeFromNib()
         mainLabel.text = ""
         authorLabel.text = ""
         upvoteLabel.text = ""
         collapseLabel.text = "[-]"
-            
 
         // Initialization code
     }

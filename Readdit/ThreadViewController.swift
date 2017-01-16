@@ -140,7 +140,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
-        let cell:CommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentViewCell
+        let cell:CommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentViewCell
+        
         
         
         
@@ -178,6 +179,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         if !bleh[indexPath.row].hiddenComment && !bleh[indexPath.row].isMainComment {
+
             
             cell.indentationLevel = bleh[indexPath.row].level
             cell.selectionStyle = .none
@@ -190,10 +192,12 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.seperatorView.isHidden = false
             }
             
-            for view in cell.subviews {
-                if view.tag == 1 {
-                    view.removeFromSuperview()
-                }
+            for sep in cell.arrayOfSeperators {
+                sep.isHidden = true
+            }
+            for i in 0..<cell.indentationLevel {
+                cell.arrayOfSeperators[i].isHidden = false
+                cell.arrayOfSeperators[i].backgroundColor = UIColor.black
             }
             cell.contentView.layoutMargins.left = CGFloat(cell.indentationLevel * 15) + 10
             
@@ -247,21 +251,30 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+//    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        
+//        for cell in commentTable.visibleCells {
+//            for subview in cell.subviews {
+//                print(subview)
+//            }
+//            if let oldView = cell.viewWithTag(13) {
+//                print("Found 13")
+//                oldView.removeFromSuperview()
+//                
+//            }
+//            if cell.indentationLevel > 0 {
+//                for i in 1...cell.indentationLevel {
+//                    let uiview = UIView(frame: CGRect(x: i * 15, y: 0, width: 1, height: Int(cell.bounds.height)))
+//                    uiview.backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
+//                    uiview.tag = 13
+//                    cell.addSubview(uiview)
+//                }
+//            }
+//        }
+//    }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        for cell in commentTable.visibleCells {
-            
-            if cell.indentationLevel > 0 {
-                for i in 1...cell.indentationLevel {
-                    let uiview = UIView(frame: CGRect(x: i * 15, y: 0, width: 1, height: Int(cell.bounds.height)))
-                    uiview.backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
-                    uiview.tag = 13
-                    cell.addSubview(uiview)
-                }
-            }
-        }
-    }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         

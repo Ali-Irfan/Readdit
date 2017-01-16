@@ -19,11 +19,14 @@ class SubredditTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.selectionStyle = UITableViewCellSelectionStyle.none
         self.contentView.layoutMargins = UIEdgeInsets.zero
         loadingIndicator.isHidden = true
         updateButton.setImage(#imageLiteral(resourceName: "cloud-computing"), for: .normal)
         updateButton.frame = CGRect(x: self.frame.width-50, y: self.frame.height/2 - 12, width: 30, height: 30)
         updateButton.addTarget(self, action: #selector(updateSubreddit), for: .touchUpInside)
+        updateButton.tintColor = UIColor.white
+        deleteButton.tintColor = UIColor.white
 //        deleteButton.setImage(#imageLiteral(resourceName: "minus"), for: .normal)
 //        deleteButton.frame = CGRect(x: 0, y: self.frame.height/2 - 12, width: 20, height: 20)
         

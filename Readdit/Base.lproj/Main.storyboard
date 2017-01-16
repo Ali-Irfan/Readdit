@@ -184,11 +184,71 @@
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/u/TestUser123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FlY-jM-fpz" customClass="PaddingLabel" customModule="Readdit" customModuleProvider="target">
-                                                    <rect key="frame" x="266" y="6.5" width="101" height="24.5"/>
+                                                    <rect key="frame" x="266" y="10.5" width="101" height="24.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XJ2-Su-M3U">
+                                                    <rect key="frame" x="0.0" y="-7" width="1" height="168"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Zt-gB-1gn">
+                                                    <rect key="frame" x="15" y="-7" width="1" height="168"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2zy-fR-t7r">
+                                                    <rect key="frame" x="30" y="-7" width="1" height="168"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8h-xy-iXQ">
+                                                    <rect key="frame" x="45" y="-7" width="1" height="168"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q3u-Qg-ba3">
+                                                    <rect key="frame" x="60" y="-7" width="1" height="168"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pFC-Z9-mdD">
+                                                    <rect key="frame" x="75" y="-7" width="1" height="168"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HZE-OH-Ix9">
+                                                    <rect key="frame" x="90" y="-7" width="1" height="168"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcy-UT-qwE">
+                                                    <rect key="frame" x="105" y="-7" width="1" height="168"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6T-Jw-Bdu">
+                                                    <rect key="frame" x="120" y="-7" width="1" height="168"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6er-oS-qfa">
+                                                    <rect key="frame" x="135" y="-7" width="1" height="168"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldd-9M-gHr">
+                                                    <rect key="frame" x="150" y="-7" width="1" height="168"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WB7-pp-fkU">
+                                                    <rect key="frame" x="165" y="-7" width="1" height="168"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hhk-ZH-EGu" firstAttribute="leading" secondItem="JJi-dq-fLD" secondAttribute="leadingMargin" id="0PG-74-A0l"/>
@@ -198,13 +258,13 @@
                                                 <constraint firstItem="hhk-ZH-EGu" firstAttribute="bottom" secondItem="JJi-dq-fLD" secondAttribute="bottomMargin" constant="-21" id="BtS-L9-K7U"/>
                                                 <constraint firstItem="FlY-jM-fpz" firstAttribute="trailing" secondItem="JJi-dq-fLD" secondAttribute="trailingMargin" id="J0F-wO-gCK"/>
                                                 <constraint firstItem="7GZ-hT-9hU" firstAttribute="centerX" secondItem="hhk-ZH-EGu" secondAttribute="centerX" id="Obp-xj-Pgs"/>
-                                                <constraint firstItem="hhk-ZH-EGu" firstAttribute="top" secondItem="FlY-jM-fpz" secondAttribute="bottom" constant="21" id="ZlG-kS-efk"/>
+                                                <constraint firstItem="hhk-ZH-EGu" firstAttribute="top" secondItem="FlY-jM-fpz" secondAttribute="bottom" constant="17" id="ZlG-kS-efk"/>
                                                 <constraint firstItem="vgE-IJ-oKD" firstAttribute="leading" secondItem="hhk-ZH-EGu" secondAttribute="leading" id="Zx1-Lc-lrH"/>
                                                 <constraint firstItem="vgE-IJ-oKD" firstAttribute="top" secondItem="7GZ-hT-9hU" secondAttribute="bottom" constant="7" id="bZn-1a-uIl"/>
                                                 <constraint firstItem="7GZ-hT-9hU" firstAttribute="leading" secondItem="JJi-dq-fLD" secondAttribute="leading" id="c7Q-u5-Ea7"/>
                                                 <constraint firstItem="FlY-jM-fpz" firstAttribute="trailing" secondItem="gvB-X5-lV4" secondAttribute="trailing" id="mf2-Ae-1gu"/>
                                                 <constraint firstItem="gvB-X5-lV4" firstAttribute="top" secondItem="JJi-dq-fLD" secondAttribute="topMargin" id="re2-kt-qA6"/>
-                                                <constraint firstItem="FlY-jM-fpz" firstAttribute="baseline" secondItem="gvB-X5-lV4" secondAttribute="firstBaseline" constant="4" id="sP1-I0-aX1"/>
+                                                <constraint firstItem="FlY-jM-fpz" firstAttribute="baseline" secondItem="gvB-X5-lV4" secondAttribute="firstBaseline" constant="8" id="sP1-I0-aX1"/>
                                                 <constraint firstItem="7GZ-hT-9hU" firstAttribute="top" secondItem="JJi-dq-fLD" secondAttribute="topMargin" constant="-14" id="zLB-qQ-G3p"/>
                                                 <constraint firstItem="hhk-ZH-EGu" firstAttribute="trailing" secondItem="JJi-dq-fLD" secondAttribute="trailingMargin" id="zlU-aw-bPe"/>
                                             </constraints>
@@ -214,6 +274,18 @@
                                             <outlet property="authorLabel" destination="FlY-jM-fpz" id="AXP-N9-LWO"/>
                                             <outlet property="collapseLabel" destination="gvB-X5-lV4" id="L27-Pv-vHR"/>
                                             <outlet property="mainLabel" destination="hhk-ZH-EGu" id="AlE-W3-dek"/>
+                                            <outlet property="sep1" destination="XJ2-Su-M3U" id="OxN-NI-W9W"/>
+                                            <outlet property="sep10" destination="6er-oS-qfa" id="IoV-gC-4P1"/>
+                                            <outlet property="sep11" destination="ldd-9M-gHr" id="0lz-ZG-G7a"/>
+                                            <outlet property="sep12" destination="WB7-pp-fkU" id="RbV-Y1-IAQ"/>
+                                            <outlet property="sep2" destination="1Zt-gB-1gn" id="n1E-qJ-SAy"/>
+                                            <outlet property="sep3" destination="2zy-fR-t7r" id="wZV-Vw-PgY"/>
+                                            <outlet property="sep4" destination="C8h-xy-iXQ" id="gq2-uz-Mi2"/>
+                                            <outlet property="sep5" destination="q3u-Qg-ba3" id="Ilq-uv-KN7"/>
+                                            <outlet property="sep6" destination="pFC-Z9-mdD" id="mQ8-av-ff9"/>
+                                            <outlet property="sep7" destination="HZE-OH-Ix9" id="LR0-s7-zPj"/>
+                                            <outlet property="sep8" destination="dcy-UT-qwE" id="1Gg-JQ-Awc"/>
+                                            <outlet property="sep9" destination="u6T-Jw-Bdu" id="5wm-Vj-VtG"/>
                                             <outlet property="seperatorView" destination="7GZ-hT-9hU" id="JJT-ru-HA1"/>
                                             <outlet property="upvoteLabel" destination="vgE-IJ-oKD" id="gJy-pd-zh5"/>
                                         </connections>

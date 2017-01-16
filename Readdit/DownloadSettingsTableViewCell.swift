@@ -16,7 +16,14 @@ class DownloadSettingsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        downloadSettingsButton.setTitle(UserDefaults().string(forKey: "network"), for: .normal)
+        let setting = UserDefaults().string(forKey: "network")
+        if setting == "both" {
+            downloadSettingsButton.setTitle("WiFi + Data", for: .normal)
+        } else if setting == "wifi" {
+            downloadSettingsButton.setTitle("WiFi Only", for: .normal)
+        } else {
+            downloadSettingsButton.setTitle("Data Only", for: .normal)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

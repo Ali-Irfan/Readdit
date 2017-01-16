@@ -30,7 +30,7 @@ class NumberOfThreadsTableViewCell: UITableViewCell {
         if let x = UserDefaults.standard.string(forKey: "NumberOfThreads") {
             numberField.text = x
         } else {
-            numberField.text = "30"
+            numberField.text = "10"
         }
     }
     func boopla () {
