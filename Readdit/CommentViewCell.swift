@@ -36,6 +36,9 @@ class CommentViewCell: UITableViewCell {
     @IBOutlet weak var seperatorView: UIView!
         override func awakeFromNib() {
             arrayOfSeperators = [sep1, sep2, sep3, sep4, sep5, sep6, sep7, sep8, sep9, sep10, sep11, sep12]
+            for v in arrayOfSeperators {
+                v.isHidden = true
+            }
         super.awakeFromNib()
         mainLabel.text = ""
         authorLabel.text = ""

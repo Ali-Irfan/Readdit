@@ -176,9 +176,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             
-        }
-        
-        if !bleh[indexPath.row].hiddenComment && !bleh[indexPath.row].isMainComment {
+        } else if !bleh[indexPath.row].hiddenComment && !bleh[indexPath.row].isMainComment {
 
             
             cell.indentationLevel = bleh[indexPath.row].level
@@ -195,10 +193,12 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             for sep in cell.arrayOfSeperators {
                 sep.isHidden = true
             }
-            for i in 0..<cell.indentationLevel {
+
+            for i in 0...cell.indentationLevel {
                 cell.arrayOfSeperators[i].isHidden = false
-                cell.arrayOfSeperators[i].backgroundColor = UIColor.black
+                cell.arrayOfSeperators[i].backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
             }
+            
             cell.contentView.layoutMargins.left = CGFloat(cell.indentationLevel * 15) + 10
             
             
@@ -219,6 +219,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 //cell.authorLabel.textColor = UIColor.white
             } else {
                 cell.authorLabel.backgroundColor = UIColor.white
+                
 
             }
             
