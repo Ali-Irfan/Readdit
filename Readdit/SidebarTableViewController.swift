@@ -43,6 +43,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         arrayOfIdentifiers.append("settingsHeader")
+        arrayOfIdentifiers.append("updateAll")
 
     }
 
@@ -87,6 +88,8 @@ indexPath: IndexPath){
             return cell
         case "subreddit":
             let cell:SubredditTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subreddit") as! SubredditTableViewCell
+            print(indexPath.row)
+            print("arr \(arrayOfSubreddits.count)")
             cell.subredditTitle.setTitle(arrayOfSubreddits[indexPath.row-1], for: .normal)
             cell.deleteButton.addTarget(self, action: #selector(deleteSubreddit(_:)), for: .touchUpInside)
             cell.subredditTitle.addTarget(self, action: #selector(goToSubreddit(_:)), for: .touchUpInside)
@@ -97,12 +100,28 @@ indexPath: IndexPath){
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.settingsButton.addTarget(self, action: #selector(goToSubreddit(_:)), for: .touchUpInside)
             return cell
+        
+        case "updateAll":
+            let cell:UpdateAllTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "updateAll") as! UpdateAllTableViewCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.updateAll.addTarget(self, action: #selector(updateAllSubreddits), for: .touchUpInside)
+            return cell
 
         default:
             let cell:UITableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "settingsCell")! as UITableViewCell
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
             
+        }
+    }
+    
+    
+    
+    func updateAllSubreddits() {
+        for cell in sidebarTable.visibleCells {
+            if let subredditCell = cell as? SubredditTableViewCell {
+                subredditCell.updateSubreddit()
+            }
         }
     }
     
@@ -120,7 +139,7 @@ indexPath: IndexPath){
                 print(cell.subredditTitle.currentTitle!)
                 arrayOfSubreddits = arrayOfSubreddits.filter() { $0 != cell.subredditTitle.currentTitle! }
                 UserDefaults.standard.set(arrayOfSubreddits, forKey: "arrayOfSubreddits")
-                self.arrayOfIdentifiers.remove(at: self.arrayOfIdentifiers.count-2)
+                self.arrayOfIdentifiers.remove(at: self.arrayOfIdentifiers.count-3)
                 do {
                     let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
                     let subredditPath = documentsPath.appendingPathComponent(cell.subredditTitle.currentTitle!)
@@ -171,10 +190,10 @@ indexPath: IndexPath){
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
             let subredditToAdd = textField?.text?.stringByRemovingWhitespaces.capitalizingFirstLetter()
-            if subredditToAdd != "" && !arrayOfSubreddits.contains(subredditToAdd!) {
+            if subredditToAdd != "" && !arrayOfSubreddits.contains(where: {$0.caseInsensitiveCompare(subredditToAdd!) == .orderedSame}) && !(subredditToAdd?.contains("+"))!{
                 arrayOfSubreddits.append(subredditToAdd!)
                 UserDefaults.standard.set(arrayOfSubreddits, forKey: "arrayOfSubreddits")
-                self.arrayOfIdentifiers.insert("subreddit", at: self.arrayOfIdentifiers.count-1)
+                self.arrayOfIdentifiers.insert("subreddit", at: self.arrayOfIdentifiers.count-2)
                 self.sidebarTable.reloadData()
                 Async.main{
                     // First figure out how many sections there are

@@ -51,6 +51,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
         
+        
         Async.main {
         self.showThreadComments(sortType: "Best")
         }
@@ -178,7 +179,16 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         } else if !bleh[indexPath.row].hiddenComment && !bleh[indexPath.row].isMainComment {
 
+            cell.contentView.layoutIfNeeded()
+
             
+            if bleh[indexPath.row + 1].level == 0 {
+                for sep in cell.arrayOfSeperators {
+                    print("cell.frame.size.height: \(cell.frame.size.height)")
+                    sep.bounds = CGRect(x: sep.bounds.origin.x, y: sep.bounds.origin.y-30, width: sep.bounds.width, height: sep.bounds.height)
+            }
+            }
+        
             cell.indentationLevel = bleh[indexPath.row].level
             cell.selectionStyle = .none
             // cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
@@ -193,6 +203,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             for sep in cell.arrayOfSeperators {
                 sep.isHidden = true
             }
+
 
             for i in 0...cell.indentationLevel {
                 cell.arrayOfSeperators[i].isHidden = false
@@ -252,7 +263,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-//    
+    
+
+//
 //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //        
 //        for cell in commentTable.visibleCells {
@@ -350,8 +363,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-}
 
+}
 
 extension CALayer {
     
