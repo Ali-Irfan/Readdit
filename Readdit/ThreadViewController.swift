@@ -3,6 +3,7 @@ import SwiftyJSON
 import Dollar
 import Zip
 import Async
+import StringExtensionHTML
 
 class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let defaults = UserDefaults.standard
@@ -158,8 +159,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
             }
             cell.collapseLabel?.text = ""
-            let titleText = bleh[indexPath.row].title
-            let selftext = bleh[indexPath.row].selftext
+            let titleText = bleh[indexPath.row].title.stringByDecodingHTMLEntities
+            let selftext = bleh[indexPath.row].selftext.stringByDecodingHTMLEntities
             if selftext != "" {
                 let firstWord   = titleText
                 let secondWord = "\n\n"
@@ -181,12 +182,13 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
             cell.contentView.layoutIfNeeded()
 
-            
-            if bleh[indexPath.row + 1].level == 0 {
-                for sep in cell.arrayOfSeperators {
-                    print("cell.frame.size.height: \(cell.frame.size.height)")
-                    sep.bounds = CGRect(x: sep.bounds.origin.x, y: sep.bounds.origin.y-30, width: sep.bounds.width, height: sep.bounds.height)
-            }
+            if (indexPath.row+1) <= indexPath.count {
+                if bleh[indexPath.row + 1].level == 0 {
+                    for sep in cell.arrayOfSeperators {
+                        print("cell.frame.size.height: \(cell.frame.size.height)")
+                        sep.bounds = CGRect(x: sep.bounds.origin.x, y: sep.bounds.origin.y-30, width: sep.bounds.width, height: sep.bounds.height)
+                    }
+                }
             }
         
             cell.indentationLevel = bleh[indexPath.row].level
@@ -219,7 +221,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             
             
-            cell.mainLabel?.text = bleh[indexPath.row].body
+            cell.mainLabel?.text = bleh[indexPath.row].body.stringByDecodingHTMLEntities
             
             cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
             cell.authorLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
@@ -265,30 +267,6 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
 
-//
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        
-//        for cell in commentTable.visibleCells {
-//            for subview in cell.subviews {
-//                print(subview)
-//            }
-//            if let oldView = cell.viewWithTag(13) {
-//                print("Found 13")
-//                oldView.removeFromSuperview()
-//                
-//            }
-//            if cell.indentationLevel > 0 {
-//                for i in 1...cell.indentationLevel {
-//                    let uiview = UIView(frame: CGRect(x: i * 15, y: 0, width: 1, height: Int(cell.bounds.height)))
-//                    uiview.backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
-//                    uiview.tag = 13
-//                    cell.addSubview(uiview)
-//                }
-//            }
-//        }
-//    }
-    
-    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         

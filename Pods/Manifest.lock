@@ -7,6 +7,7 @@ PODS:
   - EZLoadingActivity (0.9)
   - ReachabilitySwift (3)
   - SlideMenuControllerSwift (3.0.0)
+  - StringExtensionHTML (0.2.0)
   - SwiftyJSON (3.1.1)
   - Zip (0.6.0)
 
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - EZLoadingActivity
   - ReachabilitySwift (~> 3)
   - SlideMenuControllerSwift
+  - StringExtensionHTML
   - SwiftyJSON
   - Zip (~> 0.6)
 
@@ -29,9 +31,10 @@ SPEC CHECKSUMS:
   EZLoadingActivity: 7ebb84c1f2510a62d2bc0a17cc9d75634f92606d
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SlideMenuControllerSwift: 9c0a84f9a3fba51681debd7be77617094562ebcc
+  StringExtensionHTML: 80fdb1b3a83669e371d27bfe2f208f067e2db328
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 206f8e96b83e63c1a5dc5517256b2275fa5f4fd8
+PODFILE CHECKSUM: b46d20b44054cabd61d3dcf0e743ffc08ff3fc95
 
 COCOAPODS: 1.1.1

@@ -56,6 +56,8 @@ class SubredditTableViewCell: UITableViewCell {
             self.loadingIndicator.isHidden = false
             self.loadingIndicator.startAnimating()
             self.updateButton.isHidden = true
+            self.deleteButton.isEnabled = false
+
             }
             
             
@@ -104,6 +106,8 @@ class SubredditTableViewCell: UITableViewCell {
                 self.loadingIndicator.stopAnimating()
                 self.loadingIndicator.isHidden = true
                 self.updateButton.isHidden = false
+                self.deleteButton.isEnabled = true
+
                 downloadsInProgress = downloadsInProgress.filter { $0 != subreddit }
                 UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
                     let nc = NotificationCenter.default

@@ -38,11 +38,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "506277726.064338"
+            timestampString = "506327208.140669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "recursion(object:level:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -54,11 +54,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "506277726.064338"
+            timestampString = "506327208.140669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "ThreadViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -70,23 +70,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "506277726.064338"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "didReceiveMemoryWarning()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "506277726.064338"
+            timestampString = "506327208.140669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
@@ -102,7 +86,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "506277726.064338"
+            timestampString = "506327208.140669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "127"
@@ -118,7 +102,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "506277726.064338"
+            timestampString = "506327208.140669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "128"
@@ -134,7 +118,39 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "506277726.064338"
+            timestampString = "506327208.140669"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "didReceiveMemoryWarning()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Readdit/ThreadViewController.swift"
+            timestampString = "506327208.140669"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "ThreadViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Readdit/ThreadViewController.swift"
+            timestampString = "506327208.140669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
@@ -150,27 +166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "506277726.064338"
+            timestampString = "506327712.710929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "ThreadViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "506288227.350665"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "349"
-            endingLineNumber = "349"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
             landmarkName = "openAllChildren(parentID:newIndex:currentIndentationLevel:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -182,11 +182,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "506288227.350665"
+            timestampString = "506327712.710929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
+            startingLineNumber = "349"
+            endingLineNumber = "349"
             landmarkName = "addBorder(edge:color:thickness:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -838,28 +838,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/SubredditTableViewCell.swift"
-            timestampString = "506206456.672834"
+            timestampString = "506305153.358655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "updateSubreddit()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "506288227.350665"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
-            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
