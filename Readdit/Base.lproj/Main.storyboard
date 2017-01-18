@@ -42,7 +42,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/u/TextTextText123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRi-Tx-QNB">
-                                                    <rect key="frame" x="213" y="11" width="148" height="21"/>
+                                                    <rect key="frame" x="139" y="11" width="222" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -68,7 +68,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="8sb-3D-uGr" firstAttribute="leading" secondItem="NHV-gN-aRX" secondAttribute="leading" id="2pG-CK-nT0"/>
-                                                <constraint firstItem="SRi-Tx-QNB" firstAttribute="leading" secondItem="eBj-gD-Tkn" secondAttribute="trailing" constant="57" id="HbW-Vh-rk9"/>
+                                                <constraint firstItem="SRi-Tx-QNB" firstAttribute="leading" secondItem="eBj-gD-Tkn" secondAttribute="trailing" constant="-17" id="HbW-Vh-rk9"/>
                                                 <constraint firstItem="eBj-gD-Tkn" firstAttribute="firstBaseline" secondItem="SRi-Tx-QNB" secondAttribute="firstBaseline" id="Jqa-Vr-Nou"/>
                                                 <constraint firstItem="eBj-gD-Tkn" firstAttribute="top" secondItem="8sb-3D-uGr" secondAttribute="bottom" constant="3" id="KfM-SU-Isz"/>
                                                 <constraint firstItem="eBj-gD-Tkn" firstAttribute="baseline" secondItem="SRi-Tx-QNB" secondAttribute="baseline" id="LdG-Ov-dzl"/>

@@ -1,5 +1,6 @@
 import UIKit
 import SwiftyJSON
+import Async
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -343,7 +344,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
         case "Clear All Data":
             let cell:ClearAllDataTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "ClearAll") as! ClearAllDataTableViewCell
+            cell.clearData.setTitle("Clear All Data", for: .normal)
+            Async.main {
             cell.clearData.setTitle("Clear All Data (" + getCacheSize() + ")", for: .normal)
+            }
             cell.clearData.addTarget(self, action: #selector(clearAll(_:)), for: .touchUpInside)
             return cell
             

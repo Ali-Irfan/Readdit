@@ -201,6 +201,25 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     {
         let cell:THREADTableViewCell = tableView.dequeueReusableCell(withIdentifier: "mycell2") as! THREADTableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
+        var size:CGFloat = 0.0
+        print("Current default: \(UserDefaults.standard.string(forKey: "fontSize"))")
+        if UserDefaults.standard.string(forKey: "fontSize") == "small" {
+            size = 10
+            cell.mainText.font = UIFont(name: cell.mainText.font.fontName, size: 15)
+            cell.authorLabel.font = UIFont(name: cell.authorLabel.font.fontName, size: 10)
+            cell.hoursText.font = UIFont(name: cell.hoursText.font.fontName, size: 10)
+        } else if UserDefaults.standard.string(forKey: "fontSize") == "regular" {
+            size = 12
+            cell.mainText.font = UIFont(name: cell.mainText.font.fontName, size: 17)
+            cell.hoursText.font = UIFont(name: cell.hoursText.font.fontName, size: 12)
+            cell.authorLabel.font = UIFont(name: cell.authorLabel.font.fontName, size: 12)
+
+        } else if UserDefaults.standard.string(forKey: "fontSize") == "large" {
+            size = 14
+            cell.mainText.font = UIFont(name: cell.mainText.font.fontName, size: 19)
+            cell.hoursText.font = UIFont(name: cell.hoursText.font.fontName, size: 14)
+            cell.authorLabel.font = UIFont(name: cell.authorLabel.font.fontName, size: 14)
+        }
         
         cell.topViewBar.backgroundColor = General.hexStringToUIColor(hex: "#dadada")
         cell.mainText?.text = arrayOfThreads[indexPath.row].title
@@ -210,7 +229,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let firstWord   = dateText
         let secondWord = String(arrayOfThreads[indexPath.row].upvotes)
-        let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)]
+        let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size)]
         let attributedText = NSMutableAttributedString(string:firstWord)
         attributedText.append(NSMutableAttributedString(string: " • "))
         attributedText.append(NSAttributedString(string: secondWord, attributes: attrs))
