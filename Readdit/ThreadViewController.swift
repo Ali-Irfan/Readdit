@@ -161,19 +161,42 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.collapseLabel?.text = ""
             let titleText = bleh[indexPath.row].title.stringByDecodingHTMLEntities
             let selftext = bleh[indexPath.row].selftext.stringByDecodingHTMLEntities
+            var size: CGFloat = 0.0
+            print("Current default: \(UserDefaults.standard.string(forKey: "fontSize"))")
+            if UserDefaults.standard.string(forKey: "fontSize") == "small" {
+                size = 14
+                print("got small")
+                cell.mainLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 12)
+                cell.upvoteLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 10)
+                cell.authorLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 10)
+            } else if UserDefaults.standard.string(forKey: "fontSize") == "regular" {
+                size = 16
+                cell.mainLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 14)
+                cell.upvoteLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 12)
+                cell.authorLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 12)
+            } else if UserDefaults.standard.string(forKey: "fontSize") == "large" {
+                size = 18
+                cell.mainLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 16)
+                cell.upvoteLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 14)
+                cell.authorLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 14)
+            }
             if selftext != "" {
                 let firstWord   = titleText
                 let secondWord = "\n\n"
-                let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)]
+                let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size)]
                 let thirdWord   = selftext
                 let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs)
                 attributedText.append(NSAttributedString(string: secondWord))
                 attributedText.append(NSAttributedString(string: thirdWord))
                 cell.mainLabel?.attributedText = attributedText
+                print("Done with size: \(size)")
+
             } else {
                 let firstWord = titleText
-                let attrs2 = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)]
+                let attrs2 = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size)]
                 let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs2)
+                
+                print("Done with size: \(size)")
                 cell.mainLabel?.attributedText = attributedText
             }
             
@@ -239,9 +262,29 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)))
             cell.upvoteLabel?.text = " • " + String(bleh[indexPath.row].upvotes)
             
+            var otherSize:CGFloat = 0.0
+            
+            if UserDefaults.standard.string(forKey: "fontSize") == "small" {
+                otherSize = 10
+                cell.mainLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 12)
+                cell.upvoteLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 10)
+                cell.authorLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 10)
+            } else if UserDefaults.standard.string(forKey: "fontSize") == "regular" {
+                otherSize = 12
+                cell.mainLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 14)
+                cell.upvoteLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 12)
+                cell.authorLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 12)
+            } else if UserDefaults.standard.string(forKey: "fontSize") == "large" {
+                otherSize = 14
+                cell.mainLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 16)
+                cell.upvoteLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 14)
+                cell.authorLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 14)
+            }
+            
             let firstWord   = dateText
             let secondWord = String(bleh[indexPath.row].upvotes)
-            let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)]
+            let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: otherSize)]
+            print("font size used for attrs: \(otherSize)")
             let attributedText = NSMutableAttributedString(string:firstWord)
             attributedText.append(NSMutableAttributedString(string: " • "))
             attributedText.append(NSAttributedString(string: secondWord, attributes: attrs))

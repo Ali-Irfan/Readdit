@@ -72,6 +72,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             defaults.set(0, forKey: "downloadTime")
         }
         
+        if let key = defaults.object(forKey: "fontSize") {
+            
+        } else {
+            defaults.set("regular", forKey: "fontSize")
+        }
+        
+        
     }
     
     func changeDownload(_ sender: UIButton!) {
@@ -122,30 +129,24 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         // 1
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
         
-        // 2
-        let xlarge = UIAlertAction(title: "Extra Large", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            sender.setTitle("Extra Large", for: .normal)
-            self.defaults.set("extra large", forKey: "textSize")
-            
-        })
         let large = UIAlertAction(title: "Large", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            print("Clicked large")
             sender.setTitle("Large", for: .normal)
-            self.defaults.set("large", forKey: "textSize")
+            self.defaults.set("large", forKey: "fontSize")
         })
         
         //
         let regular = UIAlertAction(title: "Regular", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             sender.setTitle("Regular", for: .normal)
-            self.defaults.set("regular", forKey: "textSize")
+            self.defaults.set("regular", forKey: "fontSize")
         })
         
         let small = UIAlertAction(title: "Small", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             sender.setTitle("Small", for: .normal)
-            self.defaults.set("small", forKey: "textSize")
+            self.defaults.set("small", forKey: "fontSize")
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -156,7 +157,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         
         // 4
-        optionMenu.addAction(xlarge)
         optionMenu.addAction(large)
         optionMenu.addAction(regular)
         optionMenu.addAction(small)

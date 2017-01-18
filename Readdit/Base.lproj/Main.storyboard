@@ -158,7 +158,7 @@
                                                     <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99 hours ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgE-IJ-oKD">
-                                                    <rect key="frame" x="8" y="15" width="76" height="15"/>
+                                                    <rect key="frame" x="8" y="16" width="76" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -263,7 +263,7 @@
                                                 <constraint firstItem="7GZ-hT-9hU" firstAttribute="centerX" secondItem="hhk-ZH-EGu" secondAttribute="centerX" id="Obp-xj-Pgs"/>
                                                 <constraint firstItem="hhk-ZH-EGu" firstAttribute="top" secondItem="FlY-jM-fpz" secondAttribute="bottom" constant="17" id="ZlG-kS-efk"/>
                                                 <constraint firstItem="vgE-IJ-oKD" firstAttribute="leading" secondItem="hhk-ZH-EGu" secondAttribute="leading" id="Zx1-Lc-lrH"/>
-                                                <constraint firstItem="vgE-IJ-oKD" firstAttribute="top" secondItem="7GZ-hT-9hU" secondAttribute="bottom" constant="7" id="bZn-1a-uIl"/>
+                                                <constraint firstItem="vgE-IJ-oKD" firstAttribute="top" secondItem="7GZ-hT-9hU" secondAttribute="bottom" constant="8" id="bZn-1a-uIl"/>
                                                 <constraint firstItem="7GZ-hT-9hU" firstAttribute="leading" secondItem="JJi-dq-fLD" secondAttribute="leading" id="c7Q-u5-Ea7"/>
                                                 <constraint firstItem="FlY-jM-fpz" firstAttribute="trailing" secondItem="gvB-X5-lV4" secondAttribute="trailing" id="mf2-Ae-1gu"/>
                                                 <constraint firstItem="gvB-X5-lV4" firstAttribute="top" secondItem="JJi-dq-fLD" secondAttribute="topMargin" id="re2-kt-qA6"/>
