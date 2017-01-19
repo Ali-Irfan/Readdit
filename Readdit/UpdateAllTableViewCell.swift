@@ -11,6 +11,7 @@ import UIKit
 class UpdateAllTableViewCell: UITableViewCell {
 
     
+    @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var updateAll: UIButton!
     
     override func awakeFromNib() {

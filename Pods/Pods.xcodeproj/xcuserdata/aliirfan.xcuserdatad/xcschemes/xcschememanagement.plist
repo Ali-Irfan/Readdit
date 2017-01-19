@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ChameleonFramework.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Dollar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,17 +67,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>001BA4B35FF073E28C87E46F9D5B8F15</key>
+		<key>0DD9EE921BFAFAB8B9BBB39D653C93F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>114769547158409496A9AE677E0D0967</key>
+		<key>36F1EC379628FE053E3727067B1DA062</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>16F5391C5B26DED23754E515C18284DA</key>
+		<key>58EF1DDEAED961107D983C4800F55036</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>63AF2E585883E3CB05EBE79574E9AB26</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6C51872B39436D1777A96B42D5AEF08F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>76BD4592010354D6C23D6ECCA20D83A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,11 +107,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>921A813E52A783E4907067D865C9B6E1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>977004231D12E8D7F7A0AB6346D27331</key>
 		<dict>
 			<key>primary</key>
@@ -102,17 +117,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BA75D88A951585682C29FE8F460796E4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BCD3E54BEB2B3A2A4D3160A96DF1FB4D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>EBE460D3E3A3CF1AFBBDFA387940E5E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EE9A9CBE87C503AE833A99D78FB3AE06</key>
 		<dict>
 			<key>primary</key>
 			<true/>

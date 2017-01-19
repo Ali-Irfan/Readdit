@@ -7,6 +7,7 @@ import StringExtensionHTML
 
 class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let defaults = UserDefaults.standard
+    var contrastColor:UIColor = UIColor.black
     var threadURL = ""
     var author = ""
     var subreddit = ""
@@ -31,17 +32,16 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         overlay?.addSubview(activityView)
         view.addSubview(overlay!)
 
-        let btn2 = UIButton(type: .custom)
-        btn2.setImage(#imageLiteral(resourceName: "more"), for: .normal)
-        btn2.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        btn2.addTarget(revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)), for: .touchUpInside)
-        let item2 = UIBarButtonItem(customView: btn2)
-        navigationItem.rightBarButtonItem = item2
-        
+        setupTheme()
+        addBackButton()
+        addMoreButton()
         
         revealViewController().rearViewRevealWidth = 0
         view.addGestureRecognizer(self.revealViewController().rightViewController.revealViewController().panGestureRecognizer())
         
+        
+        //navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
         
         self.revealViewController().rightViewRevealWidth = 150
         
@@ -57,8 +57,60 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.showThreadComments(sortType: "Best")
         }
         
+        
     }
     
+    func setupTheme() {
+        func setupTheme() {
+            let theme = UserDefaults.standard.string(forKey: "theme")!
+            let n = navigationController!
+            switch theme {
+            case "green":
+                contrastColor = UIColor.white
+                
+            case "blue":
+                contrastColor = UIColor.white
+                
+                
+            case "red":
+                contrastColor = UIColor.white
+                
+                
+            case "dark":
+                contrastColor = UIColor.white
+                
+            case "default":
+                contrastColor = UIColor.black
+                
+            default:
+                print("Idk")
+            }
+        }
+
+    }
+    
+    func addMoreButton() {
+        let btn2 = UIButton(type: .custom)
+        btn2.setImage(#imageLiteral(resourceName: "more").maskWithColor(color: contrastColor), for: .normal)
+        btn2.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        btn2.addTarget(revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)), for: .touchUpInside)
+        let item2 = UIBarButtonItem(customView: btn2)
+        navigationItem.rightBarButtonItem = item2
+    }
+    
+    func addBackButton() {
+        let back = UIButton(type: .custom)
+        back.setImage(#imageLiteral(resourceName: "back").maskWithColor(color: contrastColor), for: .normal)
+        back.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        back.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        let item3 = UIBarButtonItem(customView: back)
+        navigationItem.leftBarButtonItem = item3
+    }
+    
+    
+    func goBack() {
+        navigationController?.popViewController(animated: true)
+    }
     
     func showThreadComments(sortType: String) {
         
@@ -162,7 +214,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let titleText = bleh[indexPath.row].title.stringByDecodingHTMLEntities
             let selftext = bleh[indexPath.row].selftext.stringByDecodingHTMLEntities
             var size: CGFloat = 0.0
-            print("Current default: \(UserDefaults.standard.string(forKey: "fontSize"))")
+            //print("Current default: \(UserDefaults.standard.string(forKey: "fontSize"))")
             if UserDefaults.standard.string(forKey: "fontSize") == "small" {
                 size = 14
                 print("got small")

@@ -12,6 +12,7 @@ target 'Readdit' do
     pod 'Zip', '~> 0.6'
     pod 'StringExtensionHTML'
     pod 'EZLoadingActivity'
+    pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 end
 
 post_install do |installer|

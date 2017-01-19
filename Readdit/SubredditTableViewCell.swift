@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import Async
+import Alamofire
 
 class SubredditTableViewCell: UITableViewCell {
 
@@ -126,6 +127,17 @@ class SubredditTableViewCell: UITableViewCell {
     
 }
 
+    
+    func stopDownload() {
+        Downloader.stopDownloads()
+        
+        self.loadingIndicator.stopAnimating()
+        self.loadingIndicator.isHidden = true
+        self.updateButton.isHidden = false
+        self.deleteButton.isEnabled = true
+    }
+    
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

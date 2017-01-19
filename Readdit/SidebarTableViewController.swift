@@ -8,6 +8,7 @@
 
 import UIKit
 import Async
+import Alamofire
 
 var arrayOfSubreddits = UserDefaults.standard.object(forKey: "arrayOfSubreddits") as! [String]
 class SidebarTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -118,11 +119,42 @@ indexPath: IndexPath){
     
     
     func updateAllSubreddits() {
-        for cell in sidebarTable.visibleCells {
-            if let subredditCell = cell as? SubredditTableViewCell {
-                subredditCell.updateSubreddit()
+        
+        let alert = UIAlertController(title: "Update all subreddits", message: "This may take a while. Are you sure?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "Update", style: .destructive, handler: { [weak alert] (_) in
+            for cell in self.sidebarTable.visibleCells {
+                if let subredditCell = cell as? SubredditTableViewCell {
+                    subredditCell.updateSubreddit()
+                } else if let c = cell as? UpdateAllTableViewCell {
+                    c.updateAll.isEnabled = false
+                    c.stopButton.setBackgroundImage(#imageLiteral(resourceName: "multiply"), for: .normal)
+                    c.stopButton.addTarget(self, action: #selector(self.stopAllDownloads), for: .touchUpInside)
+                }
+            }
+        }))
+        
+
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    func stopAllDownloads() {
+        
+        for cell in self.sidebarTable.visibleCells {
+            if let s = cell as? SubredditTableViewCell {
+                s.stopDownload()
+            } else if let c = cell as? UpdateAllTableViewCell {
+                c.stopButton.setBackgroundImage(#imageLiteral(resourceName: "settings-4"), for: .normal)
+                c.stopButton.removeTarget(self, action: #selector(self.stopAllDownloads), for: .touchUpInside)
+                c.updateAll.isEnabled = true
             }
         }
+        
     }
     
     func deleteSubreddit(_ sender: UIButton) {

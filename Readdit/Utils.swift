@@ -32,6 +32,17 @@ class Utils {
         return false
     }
     
+
+    static func addMenuButton(color: UIColor, navigationItem: UINavigationItem, revealViewController: SWRevealViewController) {
+        let btn1 = UIButton(type: .custom)
+        btn1.setImage(#imageLiteral(resourceName: "menu-2").maskWithColor(color: color), for: .normal)
+        btn1.frame = CGRect(x: 0, y: 0, width: 25, height: 20)
+        btn1.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+        let item1 = UIBarButtonItem(customView: btn1)
+        navigationItem.leftBarButtonItem = item1
+    }
+    
+    
     static func timeAgoSince(_ date: Date) -> String {
         
         let calendar = Calendar.current
@@ -135,5 +146,32 @@ static func removeFilesInSubredditFolder(subreddit: String) {
         )
     }
 
+}
+/// UIImage Extensions
+extension UIImage {
+    
+    func maskWithColor(color: UIColor) -> UIImage? {
+        let maskImage = cgImage!
+        
+        let width = size.width
+        let height = size.height
+        let bounds = CGRect(x: 0, y: 0, width: width, height: height)
+        
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
+        
+        context.clip(to: bounds, mask: maskImage)
+        context.setFillColor(color.cgColor)
+        context.fill(bounds)
+        
+        if let cgImage = context.makeImage() {
+            let coloredImage = UIImage(cgImage: cgImage)
+            return coloredImage
+        } else {
+            return nil
+        }
+    }
+    
 }
 

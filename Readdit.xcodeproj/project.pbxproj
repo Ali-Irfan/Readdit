@@ -20,7 +20,7 @@
 		365F1BD61DFA8D29007FBF9C /* IntroUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */; };
 		366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D61DEFB9B000696250 /* SettingsViewController.swift */; };
 		366903DA1DEFBCC100696250 /* TextSizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */; };
-		366903DC1DEFBCE200696250 /* DarkModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903DB1DEFBCE200696250 /* DarkModeTableViewCell.swift */; };
+		366903DC1DEFBCE200696250 /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903DB1DEFBCE200696250 /* ThemeTableViewCell.swift */; };
 		366903DE1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903DD1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift */; };
 		366903E01DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */; };
 		366903E21DEFBD0200696250 /* ReportABugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */; };
@@ -34,6 +34,7 @@
 		369710001DE936E60070DC33 /* MainPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36970FFE1DE936E60070DC33 /* MainPostTableViewCell.xib */; };
 		36982E3C1DF5386700336A3F /* THREADTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36982E3B1DF5386700336A3F /* THREADTableViewCell.swift */; };
 		36A29EFA1E2D944D0073FB32 /* UpdateAllTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A29EF91E2D944D0073FB32 /* UpdateAllTableViewCell.swift */; };
+		36B2680B1E306D6B009FC008 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B2680A1E306D6B009FC008 /* Theme.swift */; };
 		36C451341DCD4A2F0066A76E /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C451331DCD4A2F0066A76E /* Downloader.swift */; };
 		36D255A41DCC3B2C00B1779E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D255A31DCC3B2C00B1779E /* AppDelegate.swift */; };
 		36D255A61DCC3B2C00B1779E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D255A51DCC3B2C00B1779E /* ViewController.swift */; };
@@ -89,7 +90,7 @@
 		365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroUIView.swift; sourceTree = "<group>"; };
 		366903D61DEFB9B000696250 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../SettingsViewController.swift; sourceTree = "<group>"; };
 		366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSizeTableViewCell.swift; sourceTree = "<group>"; };
-		366903DB1DEFBCE200696250 /* DarkModeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkModeTableViewCell.swift; sourceTree = "<group>"; };
+		366903DB1DEFBCE200696250 /* ThemeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTableViewCell.swift; sourceTree = "<group>"; };
 		366903DD1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNSFWPostsTableViewCell.swift; sourceTree = "<group>"; };
 		366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportABugTableViewCell.swift; sourceTree = "<group>"; };
@@ -105,6 +106,7 @@
 		36970FFE1DE936E60070DC33 /* MainPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPostTableViewCell.xib; sourceTree = "<group>"; };
 		36982E3B1DF5386700336A3F /* THREADTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THREADTableViewCell.swift; sourceTree = "<group>"; };
 		36A29EF91E2D944D0073FB32 /* UpdateAllTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAllTableViewCell.swift; sourceTree = "<group>"; };
+		36B2680A1E306D6B009FC008 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		36C451331DCD4A2F0066A76E /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		36D255A01DCC3B2C00B1779E /* Readdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Readdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36D255A31DCC3B2C00B1779E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				363916911E1086A70053EDCE /* Utils.swift */,
 				363916931E120B7E0053EDCE /* Style.swift */,
 				363916951E120DE70053EDCE /* FindSize.swift */,
+				36B2680A1E306D6B009FC008 /* Theme.swift */,
 			);
 			name = Misc.;
 			sourceTree = "<group>";
@@ -315,7 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */,
-				366903DB1DEFBCE200696250 /* DarkModeTableViewCell.swift */,
+				366903DB1DEFBCE200696250 /* ThemeTableViewCell.swift */,
 				366903DD1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift */,
 				366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */,
 				366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */,
@@ -552,7 +555,7 @@
 			files = (
 				36EE38011E0889FE00AA5D48 /* RevealViewController.swift in Sources */,
 				3678F4F91E04D4DB005A3F8A /* ThreadNavigationController.swift in Sources */,
-				366903DC1DEFBCE200696250 /* DarkModeTableViewCell.swift in Sources */,
+				366903DC1DEFBCE200696250 /* ThemeTableViewCell.swift in Sources */,
 				36E7215D1DD6F43C004B5EAA /* CommentViewCell.swift in Sources */,
 				36EE380A1E08A08600AA5D48 /* RightSidebarViewController.swift in Sources */,
 				36D255A61DCC3B2C00B1779E /* ViewController.swift in Sources */,
@@ -575,6 +578,7 @@
 				36F608F31E09E96000604B6D /* NumberOfThreadsTableViewCell.swift in Sources */,
 				362104F91DF73951002E13D2 /* SettingsHeaderTableViewCell.swift in Sources */,
 				3687C8811E299FBF00B16BC6 /* PaddingLabel.swift in Sources */,
+				36B2680B1E306D6B009FC008 /* Theme.swift in Sources */,
 				36C451341DCD4A2F0066A76E /* Downloader.swift in Sources */,
 				36E9D2101E23309A00F65FC5 /* AutoDownloadTableViewCell.swift in Sources */,
 				362104F31DF73925002E13D2 /* SubredditHeaderTableViewCell.swift in Sources */,

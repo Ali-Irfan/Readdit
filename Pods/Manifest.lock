@@ -3,6 +3,9 @@ PODS:
   - Alamofire-Synchronous (4.0.0):
     - Alamofire (~> 4.0)
   - AsyncSwift (2.0.0)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
   - Dollar (6.1.0)
   - EZLoadingActivity (0.9)
   - ReachabilitySwift (3)
@@ -15,6 +18,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.0)
   - Alamofire-Synchronous (~> 4.0)
   - AsyncSwift
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - Dollar
   - EZLoadingActivity
   - ReachabilitySwift (~> 3)
@@ -23,10 +27,20 @@ DEPENDENCIES:
   - SwiftyJSON
   - Zip (~> 0.6)
 
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: dcf98f9bf3a632a7f40679b7da46f09681e48526
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   Alamofire-Synchronous: eedf1e6e961c3795a63c74990b3f7d9fbfac7e50
   AsyncSwift: 6ba6ed9ecb51344458063f7c86fe447ab824e313
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
   EZLoadingActivity: 7ebb84c1f2510a62d2bc0a17cc9d75634f92606d
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
@@ -35,6 +49,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: b46d20b44054cabd61d3dcf0e743ffc08ff3fc95
+PODFILE CHECKSUM: 784d511964d7b91fbdd088c663875dd7e58022a9
 
 COCOAPODS: 1.1.1

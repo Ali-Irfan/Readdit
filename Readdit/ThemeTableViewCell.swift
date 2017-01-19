@@ -9,11 +9,13 @@
 
 import UIKit
 
-class DarkModeTableViewCell: UITableViewCell {
+class ThemeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var themeButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        themeButton.setTitle(UserDefaults.standard.string(forKey: "theme"), for: .normal)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

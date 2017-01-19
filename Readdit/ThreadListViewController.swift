@@ -3,14 +3,15 @@ import UIKit
 import SwiftyJSON
 import Async
 import EZLoadingActivity
+import ChameleonFramework
 
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var overlay : UIView? // This should be a class variable
     
-    
+    var generalColor:UIColor = UIColor.black
     var arrayOfThreads: [ThreadData] = []
     var subreddit = ""
-    
+    var isDownloading:Bool = false
     let myNotification = Notification.Name(rawValue:"MyNotification")
     
     
@@ -37,10 +38,9 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         navigationItem.title = "/r/" + subreddit
 
-        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
         navigationItem.hidesBackButton = true
-        
-        print("Got past this")
         
         if revealViewController() != nil {
             view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
@@ -50,22 +50,85 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             revealViewController().rearViewRevealWidth = 250
         }
         
-        let btn1 = UIButton(type: .custom)
-        btn1.setImage(#imageLiteral(resourceName: "menu-2"), for: .normal)
-        btn1.frame = CGRect(x: 0, y: 0, width: 25, height: 20)
-        btn1.addTarget(revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
-        let item1 = UIBarButtonItem(customView: btn1)
-        navigationItem.leftBarButtonItem = item1
+//        let btn1 = UIButton(type: .custom)
+//        btn1.setImage(#imageLiteral(resourceName: "menu-2"), for: .normal)
+//        btn1.frame = CGRect(x: 0, y: 0, width: 25, height: 20)
+//        btn1.addTarget(revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+//        let item1 = UIBarButtonItem(customView: btn1)
+//        navigationItem.leftBarButtonItem = item1
         
         threadTable.delegate = self
         threadTable.dataSource = self
         threadTable.rowHeight = UITableViewAutomaticDimension
         threadTable.estimatedRowHeight = 140
         navigationController?.navigationItem.setHidesBackButton(true, animated: true)
-        threadTable.backgroundColor = General.hexStringToUIColor(hex: "#dadada")
+        threadTable.backgroundColor = FlatWhite()//General.hexStringToUIColor(hex: "#dadada")
+        setupTheme()
+
+        Async.main {
+        self.displayThreads()
+        }
         
-        displayThreads()
-        
+    }
+    
+    
+
+    
+    func setupTheme() {
+        let theme = UserDefaults.standard.string(forKey: "theme")!
+        let n = navigationController!
+        switch theme {
+        case "green":
+            Theme.setNavbarColor(navigationController: n, color: FlatGreen())
+            n.navigationBar.barStyle = .black
+            self.setStatusBarStyle(UIStatusBarStyleContrast)
+            self.navigationController?.hidesNavigationBarHairline = true
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
+
+            generalColor = FlatGreenDark()
+
+        case "blue":
+            Theme.setNavbarColor(navigationController: n, color: FlatSkyBlue())
+            n.navigationBar.barStyle = .black
+            navigationController?.setStatusBarStyle(UIStatusBarStyleContrast)
+            self.setStatusBarStyle(UIStatusBarStyleContrast)
+            self.navigationController?.hidesNavigationBarHairline = true
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
+
+            generalColor = FlatSkyBlue()
+
+            
+        case "red":
+            Theme.setNavbarColor(navigationController: n, color: FlatRed())
+            n.navigationBar.barStyle = .black
+            navigationController?.setStatusBarStyle(UIStatusBarStyleContrast)
+            self.navigationController?.hidesNavigationBarHairline = true
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
+
+            generalColor = FlatRed()
+            
+
+        case "dark":
+            Theme.setNavbarColor(navigationController: n, color: FlatBlack())
+            n.navigationBar.barStyle = .black
+
+            navigationController?.setStatusBarStyle(UIStatusBarStyleContrast)
+            self.navigationController?.hidesNavigationBarHairline = true
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
+
+            generalColor = FlatBlack()
+
+        case "default":
+            Theme.setNavbarColor(navigationController: n, color: FlatWhite())
+            n.navigationBar.barStyle = .default
+            Utils.addMenuButton(color: UIColor.black, navigationItem: navigationItem, revealViewController: revealViewController())
+            navigationController?.setStatusBarStyle(UIStatusBarStyleContrast)
+            self.navigationController?.hidesNavigationBarHairline = true
+            generalColor = FlatBlackDark()
+
+        default:
+            print("Idk")
+        }
     }
     
     func catchNotification(notification:Notification) -> Void {
@@ -82,8 +145,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if downloadsInProgress.contains(subreddit) {
             overlay?.isHidden = false
+            isDownloading = true
         } else {
             overlay?.isHidden = true
+            isDownloading = false
         }
         
     }
@@ -181,6 +246,13 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         }
+        if !isDownloading {
+        overlay?.isHidden = true
+        }
+        threadTable.reloadData()
+
+
+
     }
     
     
@@ -221,7 +293,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.authorLabel.font = UIFont(name: cell.authorLabel.font.fontName, size: 14)
         }
         
-        cell.topViewBar.backgroundColor = General.hexStringToUIColor(hex: "#dadada")
+        cell.topViewBar.backgroundColor = FlatWhite()//General.hexStringToUIColor(hex: "#dadada")
         cell.mainText?.text = arrayOfThreads[indexPath.row].title
         cell.authorLabel?.text = "/u/" + arrayOfThreads[indexPath.row].author
         let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(arrayOfThreads[indexPath.row].utcCreated)))
@@ -229,7 +301,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let firstWord   = dateText
         let secondWord = String(arrayOfThreads[indexPath.row].upvotes)
-        let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size)]
+        let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size), NSForegroundColorAttributeName: generalColor] as [String : Any]
         let attributedText = NSMutableAttributedString(string:firstWord)
         attributedText.append(NSMutableAttributedString(string: " • "))
         attributedText.append(NSAttributedString(string: secondWord, attributes: attrs))

@@ -6,27 +6,42 @@ import Zip
 
 let arrayOfSubredditSort = ["Hot", "Controversial", "Top", "Rising", "New"]
 let arrayOfThreadSort    = ["Top", "New", "Controversial", "Best", "Old", "QA"]
+var sessionManager:Alamofire.SessionManager!
+let configuration = URLSessionConfiguration.default
+var arrayOfRequests: [Alamofire.Request?] = []
 
 public class Downloader: UIViewController {
 
-
-    
-    class func downloadJSON(subreddit:String){
-        // get the default headers
+    class func initializeConfig() {
         var headers = Alamofire.SessionManager.defaultHTTPHeaders
         // add your custom header
         headers["Accept-Encoding"] = "gzip"
         headers["UserAgent"] = "ios:com.dev.readdit:v1.0.0(by/u/thisbeali)"
         
         // create a custom session configuration
-        let configuration = URLSessionConfiguration.default
         // add the headers
         configuration.httpAdditionalHeaders = headers
         configuration.timeoutIntervalForResource = 2 // seconds
         
-        // create a session manager with the configuration
-        let sessionManager = Alamofire.SessionManager(configuration: configuration)
-        
+        sessionManager = Alamofire.SessionManager(configuration: configuration)
+        print("Initialized sesssion")
+
+    }
+
+    
+    
+    class func stopDownloads() {
+        sessionManager.session.getAllTasks { (tasks) -> Void in
+            tasks.forEach({
+                $0.cancel()
+                print("Cancelled \($0)")
+            })
+        }
+    }
+    
+    
+    class func downloadJSON(subreddit:String){
+
         
     var threadNumber = "10"
     if let x = UserDefaults.standard.string(forKey: "NumberOfThreads") {
@@ -54,7 +69,7 @@ public class Downloader: UIViewController {
                     return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
                 }
         
-                _ = Alamofire.download(urlString, to: destination).downloadProgress { progress in
+        Alamofire.download(urlString, to: destination).downloadProgress { progress in
                     print("Download Progress: \(progress.fractionCompleted)")
                     }.validate(statusCode: 200..<300).response()
 
@@ -93,13 +108,14 @@ public class Downloader: UIViewController {
                 return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
             }
             
-            _ = Alamofire.download(urlString, to: destination).downloadProgress { progress in
+            Alamofire.download(urlString, to: destination).downloadProgress { progress in
                 //print("Download Progress: \(progress.fractionCompleted)")
                 //print("Downloading \(count)/\(threadNumber)")
                 
             }.validate(statusCode: 200..<300).response()
-            
-            
+        
+
+
             do {
                 let zipFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".zip")
                 let txtFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".txt")
