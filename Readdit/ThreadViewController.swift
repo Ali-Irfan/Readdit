@@ -2,12 +2,12 @@ import UIKit
 import SwiftyJSON
 import Dollar
 import Zip
+import ChameleonFramework
 import Async
 import StringExtensionHTML
 
 class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let defaults = UserDefaults.standard
-    var contrastColor:UIColor = UIColor.black
     var threadURL = ""
     var author = ""
     var subreddit = ""
@@ -32,16 +32,12 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         overlay?.addSubview(activityView)
         view.addSubview(overlay!)
 
-        setupTheme()
-        addBackButton()
         addMoreButton()
-        
+
         revealViewController().rearViewRevealWidth = 0
         view.addGestureRecognizer(self.revealViewController().rightViewController.revealViewController().panGestureRecognizer())
-        
-        
-        //navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         self.revealViewController().rightViewRevealWidth = 150
         
@@ -52,66 +48,51 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
         
-        
+
         Async.main {
         self.showThreadComments(sortType: "Best")
         }
         
         
     }
-    
-    func setupTheme() {
-        func setupTheme() {
-            let theme = UserDefaults.standard.string(forKey: "theme")!
-            let n = navigationController!
-            switch theme {
-            case "green":
-                contrastColor = UIColor.white
-                
-            case "blue":
-                contrastColor = UIColor.white
-                
-                
-            case "red":
-                contrastColor = UIColor.white
-                
-                
-            case "dark":
-                contrastColor = UIColor.white
-                
-            case "default":
-                contrastColor = UIColor.black
-                
-            default:
-                print("Idk")
-            }
-        }
 
-    }
+
     
     func addMoreButton() {
+        var color = UIColor()
+        let theme = UserDefaults.standard.string(forKey: "theme")!
+        let n = navigationController!
+        switch theme {
+        case "green":
+            color = UIColor.white
+            
+        case "blue":
+            color = UIColor.white
+            print("Set contrast color")
+            
+        case "red":
+            color = UIColor.white
+            
+            
+        case "dark":
+            color = UIColor.white
+            
+        case "default":
+            color = UIColor.black
+            
+        default:
+            print("Idk")
+        }
+        
+        
         let btn2 = UIButton(type: .custom)
-        btn2.setImage(#imageLiteral(resourceName: "more").maskWithColor(color: contrastColor), for: .normal)
+        btn2.setImage(#imageLiteral(resourceName: "more").maskWithColor(color: color), for: .normal)
         btn2.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         btn2.addTarget(revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)), for: .touchUpInside)
         let item2 = UIBarButtonItem(customView: btn2)
         navigationItem.rightBarButtonItem = item2
     }
-    
-    func addBackButton() {
-        let back = UIButton(type: .custom)
-        back.setImage(#imageLiteral(resourceName: "back").maskWithColor(color: contrastColor), for: .normal)
-        back.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        back.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-        let item3 = UIBarButtonItem(customView: back)
-        navigationItem.leftBarButtonItem = item3
-    }
-    
-    
-    func goBack() {
-        navigationController?.popViewController(animated: true)
-    }
-    
+
     func showThreadComments(sortType: String) {
         
         let jsonRaw = Downloader.getThreadJSON(threadURL: threadURL, threadID: threadID, sortType: sortType, subreddit: subreddit)
@@ -195,7 +176,28 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     {
         
         let cell:CommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentViewCell
-        
+        var color = UIColor()
+        let theme = UserDefaults.standard.string(forKey: "theme")!
+        switch theme {
+        case "green":
+            color = FlatGreen()
+            
+        case "blue":
+            color = FlatSkyBlue()
+            
+        case "red":
+            color = FlatRed()
+            
+            
+        case "dark":
+            color = FlatWhite()
+            
+        case "default":
+            color = FlatBlack()
+            
+        default:
+            print("Idk")
+        }
         
         
         
@@ -255,6 +257,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         } else if !bleh[indexPath.row].hiddenComment && !bleh[indexPath.row].isMainComment {
 
+            
+            
             cell.contentView.layoutIfNeeded()
 
             if (indexPath.row+1) <= indexPath.count {
@@ -299,11 +303,12 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.mainLabel?.text = bleh[indexPath.row].body.stringByDecodingHTMLEntities
             
             cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
-            cell.authorLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
+            cell.authorLabel.textColor = FlatBlack()//Utils.hexStringToUIColor(hex: "808080")
             if bleh[indexPath.row].author == author {
                 print("Author is \(bleh[indexPath.row].author), adding BG")
 
-                cell.authorLabel.backgroundColor = Utils.hexStringToUIColor(hex: "E1E1E1")
+                cell.authorLabel.backgroundColor = FlatGray()//Utils.hexStringToUIColor(hex: "E1E1E1")
+                cell.authorLabel.textColor = color
                 //cell.authorLabel.textColor = UIColor.white
             } else {
                 cell.authorLabel.backgroundColor = UIColor.white
@@ -332,16 +337,16 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.upvoteLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 14)
                 cell.authorLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 14)
             }
-            
+
             let firstWord   = dateText
             let secondWord = String(bleh[indexPath.row].upvotes)
-            let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: otherSize)]
+            let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: otherSize), NSForegroundColorAttributeName: color] as [String : Any]
             print("font size used for attrs: \(otherSize)")
             let attributedText = NSMutableAttributedString(string:firstWord)
             attributedText.append(NSMutableAttributedString(string: " • "))
             attributedText.append(NSAttributedString(string: secondWord, attributes: attrs))
             cell.upvoteLabel?.attributedText = attributedText
-            cell.upvoteLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
+            //cell.upvoteLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
             cell.collapseLabel?.text = bleh[indexPath.row].collapse
             
             
@@ -468,3 +473,5 @@ extension CALayer {
     }
     
 }
+
+
