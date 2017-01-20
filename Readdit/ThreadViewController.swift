@@ -23,9 +23,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         overlay = UIView(frame: view.frame)
-        overlay!.backgroundColor = UIColor.darkGray
-        overlay!.alpha = 0.8
-        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        overlay!.backgroundColor = UIColor.white
+        overlay!.alpha = 0.9
+        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         activityView.center = self.view.center
         activityView.startAnimating()
         
@@ -65,18 +65,17 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch theme {
         case "green":
             color = UIColor.white
-            
         case "blue":
             color = UIColor.white
             print("Set contrast color")
-            
+
         case "red":
             color = UIColor.white
-            
+
             
         case "dark":
             color = UIColor.white
-            
+
         case "default":
             color = UIColor.black
             
@@ -199,7 +198,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             print("Idk")
         }
         
-        
+        var size: CGFloat = 0.0
+
         
         
         if bleh[indexPath.row].isMainComment {
@@ -209,13 +209,16 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.upvoteLabel?.text = ""
             if bleh[indexPath.row].author == author {
                 print("Author is \(bleh[indexPath.row].author), adding BG")
-                cell.authorLabel.backgroundColor = Utils.hexStringToUIColor(hex: "E1E1E1")
+                //cell.authorLabel.backgroundColor = Utils.hexStringToUIColor(hex: "E1E1E1")
+                let att      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size), NSForegroundColorAttributeName: color] as [String : Any]
+                let attributedText = cell.authorLabel.text
+                cell.authorLabel.attributedText = NSAttributedString(string: attributedText!, attributes: att)
+
 
             }
             cell.collapseLabel?.text = ""
             let titleText = bleh[indexPath.row].title.stringByDecodingHTMLEntities
             let selftext = bleh[indexPath.row].selftext.stringByDecodingHTMLEntities
-            var size: CGFloat = 0.0
             //print("Current default: \(UserDefaults.standard.string(forKey: "fontSize"))")
             if UserDefaults.standard.string(forKey: "fontSize") == "small" {
                 size = 14
@@ -298,27 +301,6 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.id = bleh[indexPath.row].id
             cell.superParent = bleh[indexPath.row].superParent
             
-            
-            
-            cell.mainLabel?.text = bleh[indexPath.row].body.stringByDecodingHTMLEntities
-            
-            cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
-            cell.authorLabel.textColor = FlatBlack()//Utils.hexStringToUIColor(hex: "808080")
-            if bleh[indexPath.row].author == author {
-                print("Author is \(bleh[indexPath.row].author), adding BG")
-
-                cell.authorLabel.backgroundColor = FlatGray()//Utils.hexStringToUIColor(hex: "E1E1E1")
-                cell.authorLabel.textColor = color
-                //cell.authorLabel.textColor = UIColor.white
-            } else {
-                cell.authorLabel.backgroundColor = UIColor.white
-                
-
-            }
-            
-            let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)))
-            cell.upvoteLabel?.text = " • " + String(bleh[indexPath.row].upvotes)
-            
             var otherSize:CGFloat = 0.0
             
             if UserDefaults.standard.string(forKey: "fontSize") == "small" {
@@ -337,6 +319,31 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.upvoteLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 14)
                 cell.authorLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 14)
             }
+            
+            cell.mainLabel?.text = bleh[indexPath.row].body.stringByDecodingHTMLEntities
+            
+            cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
+            cell.authorLabel.textColor = FlatBlack()//Utils.hexStringToUIColor(hex: "808080")
+            if bleh[indexPath.row].author == author {
+                print("Author is \(bleh[indexPath.row].author), adding BG")
+
+                //cell.authorLabel.backgroundColor = FlatGray()//Utils.hexStringToUIColor(hex: "E1E1E1")
+                cell.authorLabel.textColor = color
+                let att      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: otherSize), NSForegroundColorAttributeName: color] as [String : Any]
+                let attributedText = cell.authorLabel.text
+                cell.authorLabel.attributedText = NSAttributedString(string: attributedText!, attributes: att)
+                //cell.authorLabel.textColor = UIColor.white
+            } else {
+                //cell.authorLabel.backgroundColor = UIColor.white
+                cell.authorLabel.textColor = FlatBlack()
+                
+
+            }
+            
+            let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)))
+            cell.upvoteLabel?.text = " • " + String(bleh[indexPath.row].upvotes)
+            
+
 
             let firstWord   = dateText
             let secondWord = String(bleh[indexPath.row].upvotes)
@@ -410,7 +417,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //commentTable.beginUpdates()
         //commentTable.endUpdates()
         //commentTable.reloadData()
-        commentTable.reloadRows(at: [indexPath], with: .automatic)
+        Async.main{
+        self.commentTable.reloadRows(at: [indexPath], with: .fade)
+        }
         
     }
     

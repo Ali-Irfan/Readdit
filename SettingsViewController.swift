@@ -80,6 +80,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             self.navigationController?.hidesNavigationBarHairline = true
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
             themeColor = FlatRed()
+            
+            
         case "dark":
             Theme.setNavbarColor(navigationController: n, color: FlatBlack())
             n.navigationBar.barStyle = .black
