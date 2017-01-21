@@ -18,6 +18,7 @@ class SettingsHeaderTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.backgroundColor = UIColor.clear
         // Initialization code
+        print("Waking from nib")
         setupTheme()
     }
     

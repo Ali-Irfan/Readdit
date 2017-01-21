@@ -56,6 +56,9 @@ setupTheme()
     
     override func viewDidAppear(_ animated: Bool) {
         setupTheme()
+        for cell in sidebarTable.visibleCells {
+            cell.awakeFromNib()
+        }
     }
     
     

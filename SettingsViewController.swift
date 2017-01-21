@@ -315,6 +315,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             self.defaults.set("default", forKey: "theme")
             self.setupTheme()
             self.settingsTable.reloadData()
+
         })
         
         let green = UIAlertAction(title: "green", style: .default, handler: {
@@ -341,6 +342,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             self.defaults.set("red", forKey: "theme")
              self.setupTheme()
             self.settingsTable.reloadData()
+   
 
         })
         
@@ -451,7 +453,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         let setting = arrayOfSettings[indexPath.row]
         
-        settingsTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        //settingsTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         switch setting {
         case "Text Size":
             let cell:TextSizeTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "TextSize") as! TextSizeTableViewCell
