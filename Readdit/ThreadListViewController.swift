@@ -2,7 +2,6 @@
 import UIKit
 import SwiftyJSON
 import Async
-import EZLoadingActivity
 import ChameleonFramework
 
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {

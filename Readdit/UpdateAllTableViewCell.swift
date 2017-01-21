@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class UpdateAllTableViewCell: UITableViewCell {
 
@@ -18,6 +19,23 @@ class UpdateAllTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.backgroundColor = UIColor.clear
         // Initialization code
+        setupTheme()
+    }
+    
+    func setupTheme() {
+        let theme = UserDefaults.standard.string(forKey: "theme")!
+        
+        switch theme {
+        case "default":
+            updateAll.setImage(updateAll.currentImage?.maskWithColor(color: FlatBlack()), for: .normal)
+            stopButton.setImage(stopButton.currentImage?.maskWithColor(color: FlatBlack()), for: .normal)
+
+            
+        default:
+            updateAll.setImage(updateAll.currentImage?.maskWithColor(color: FlatWhite()), for: .normal)
+            stopButton.setImage(stopButton.currentImage?.maskWithColor(color: FlatWhite()), for: .normal)
+
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

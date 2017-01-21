@@ -10,6 +10,7 @@ import UIKit
 import Async
 import Alamofire
 
+
 var arrayOfSubreddits = UserDefaults.standard.object(forKey: "arrayOfSubreddits") as! [String]
 var mainTextColor = UIColor()
 var mainCellColor = UIColor()
@@ -145,6 +146,7 @@ indexPath: IndexPath){
             return cell
         case "subreddit":
             let cell:SubredditTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subreddit") as! SubredditTableViewCell
+            
             print(indexPath.row)
             print("arr \(arrayOfSubreddits.count)")
             cell.subredditTitle.setTitle(arrayOfSubreddits[indexPath.row-1], for: .normal)
@@ -192,7 +194,7 @@ indexPath: IndexPath){
                     subredditCell.updateSubreddit()
                 } else if let c = cell as? UpdateAllTableViewCell {
                     c.updateAll.isEnabled = false
-                    c.stopButton.setBackgroundImage(#imageLiteral(resourceName: "multiply"), for: .normal)
+                    c.stopButton.setImage(#imageLiteral(resourceName: "multiply"), for: .normal)
                     c.stopButton.addTarget(self, action: #selector(self.stopAllDownloads), for: .touchUpInside)
                 }
             }
@@ -212,7 +214,7 @@ indexPath: IndexPath){
             if let s = cell as? SubredditTableViewCell {
                 s.stopDownload()
             } else if let c = cell as? UpdateAllTableViewCell {
-                c.stopButton.setBackgroundImage(#imageLiteral(resourceName: "settings-4"), for: .normal)
+                c.stopButton.setImage(#imageLiteral(resourceName: "settings-4"), for: .normal)
                 c.stopButton.removeTarget(self, action: #selector(self.stopAllDownloads), for: .touchUpInside)
                 c.updateAll.isEnabled = true
             }
