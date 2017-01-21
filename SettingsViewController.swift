@@ -104,9 +104,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         
             //Update sidebar for theme
-        if let vc = revealViewController().rearViewController as? SidebarTableViewController {
-            vc.setupTheme()
-        }
+//        if let vc = revealViewController().rearViewController as? SidebarTableViewController {
+//            vc.setupTheme()
+//        }
     }
 
     

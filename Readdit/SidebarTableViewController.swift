@@ -75,7 +75,6 @@ setupTheme()
             self.logo.textColor = FlatWhite()
             
         case "red":
-            print(sidebarTable.visibleCells)
         sidebarTable.backgroundColor = FlatRedDark()
         mainTextColor = FlatWhite()
         mainCellColor = FlatRedDark()
@@ -93,7 +92,7 @@ setupTheme()
             mainCellColor = sidebarTable.backgroundColor!
             self.logo.textColor = FlatWhite()
         default:
-            print("Idk")
+            break
         }
     }
     
