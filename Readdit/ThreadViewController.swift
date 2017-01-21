@@ -19,13 +19,15 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var commentsArr: [CommentData] = []
     var arrayOfEverything: [AnyObject] = []
     @IBOutlet weak var commentTable: UITableView!
+    let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         overlay = UIView(frame: view.frame)
         overlay!.backgroundColor = UIColor.white
         overlay!.alpha = 0.9
-        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityView.color = UIColor.black
         activityView.center = self.view.center
         activityView.startAnimating()
         
@@ -65,20 +67,25 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch theme {
         case "green":
             color = UIColor.white
+            self.activityView.color = FlatGreen()
         case "blue":
             color = UIColor.white
             print("Set contrast color")
+            self.activityView.color = FlatBlue()
 
         case "red":
             color = UIColor.white
+            self.activityView.color = FlatRed()
 
             
         case "dark":
             color = UIColor.white
+            self.activityView.color = FlatBlack()
 
         case "default":
             color = UIColor.black
-            
+            self.activityView.color = FlatBlack()
+
         default:
             print("Idk")
         }
@@ -257,6 +264,10 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.mainLabel?.attributedText = attributedText
             }
             
+            for sep in cell.arrayOfSeperators {
+                sep.isHidden = true
+            }
+            
             
         } else if !bleh[indexPath.row].hiddenComment && !bleh[indexPath.row].isMainComment {
 
@@ -348,7 +359,6 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let firstWord   = dateText
             let secondWord = String(bleh[indexPath.row].upvotes)
             let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: otherSize), NSForegroundColorAttributeName: color] as [String : Any]
-            print("font size used for attrs: \(otherSize)")
             let attributedText = NSMutableAttributedString(string:firstWord)
             attributedText.append(NSMutableAttributedString(string: " • "))
             attributedText.append(NSAttributedString(string: secondWord, attributes: attrs))
@@ -356,7 +366,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             //cell.upvoteLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
             cell.collapseLabel?.text = bleh[indexPath.row].collapse
             
-            
+            print("Done making cell")
             
             
             
@@ -393,7 +403,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let indexPath = tableView.indexPathForSelectedRow! //optional, to get from any UIButton for example
         let currentCell = tableView.cellForRow(at: indexPath) as! CommentViewCell
         
-        print("I clicked on cell with author: \(currentCell.authorLabel.text)")
+        //print("I clicked on cell with author: \(currentCell.authorLabel.text)")
         
         
         let newIndex = indexPath.row + 1

@@ -101,8 +101,16 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         default:
             print("Idk")
         }
+        
+        
+            //Update sidebar for theme
+        if let vc = revealViewController().rearViewController as? SidebarTableViewController {
+            vc.setupTheme()
+        }
     }
 
+    
+    
     
     func setDefaults() {
         if let key = defaults.string(forKey: "network") {

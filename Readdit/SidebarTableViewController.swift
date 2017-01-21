@@ -5,13 +5,17 @@
 //  Created by Ali Irfan on 2016-12-06.
 //  Copyright © 2016 Ali Irfan. All rights reserved.
 //
-
+import ChameleonFramework
 import UIKit
 import Async
 import Alamofire
 
 var arrayOfSubreddits = UserDefaults.standard.object(forKey: "arrayOfSubreddits") as! [String]
+var mainTextColor = UIColor()
+var mainCellColor = UIColor()
+
 class SidebarTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var logo: UILabel!
 
     var arrayOfIdentifiers: [String] = []
     var numberOfSubreddits = 0
@@ -45,9 +49,53 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         
         arrayOfIdentifiers.append("settingsHeader")
         arrayOfIdentifiers.append("updateAll")
-
+setupTheme()
     }
+    
+    
+    
+    
+    
 
+    func setupTheme() {
+        let theme = UserDefaults.standard.string(forKey: "theme")!
+        switch theme {
+        case "green":
+            sidebarTable.backgroundColor = FlatGreenDark()
+            mainTextColor = FlatRed()
+            mainCellColor = sidebarTable.backgroundColor!
+            self.view.backgroundColor = FlatWhite()//UIColor.white
+            self.logo.textColor = FlatWhite()
+            
+        case "blue":
+            sidebarTable.backgroundColor = FlatSkyBlueDark()
+            mainTextColor = FlatRed()
+            mainCellColor = sidebarTable.backgroundColor!
+            self.view.backgroundColor = UIColor.white
+            self.logo.textColor = FlatWhite()
+            
+        case "red":
+            print(sidebarTable.visibleCells)
+        sidebarTable.backgroundColor = FlatRedDark()
+        mainTextColor = FlatWhite()
+        mainCellColor = FlatRedDark()
+            self.view.backgroundColor = FlatRedDark()//UIColor.white
+            self.logo.textColor = FlatWhite()
+            
+        case "dark":
+            sidebarTable.backgroundColor = FlatBlackDark()
+            mainTextColor = FlatRed()
+            mainCellColor = sidebarTable.backgroundColor!
+            self.logo.textColor = FlatWhite()
+        case "default":
+            sidebarTable.backgroundColor = UIColor.white
+            mainTextColor = FlatRed()
+            mainCellColor = sidebarTable.backgroundColor!
+            self.logo.textColor = FlatWhite()
+        default:
+            print("Idk")
+        }
+    }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt
@@ -85,6 +133,8 @@ indexPath: IndexPath){
         case "subredditHeader":
             let cell:SubredditHeaderTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subredditHeader") as! SubredditHeaderTableViewCell
             cell.addSubreddit.addTarget(self, action: #selector(addSubreddit), for: .touchUpInside)
+            cell.backgroundColor = mainCellColor
+            cell.addSubreddit.setTitleColor(mainTextColor, for: .normal)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         case "subreddit":
@@ -94,18 +144,25 @@ indexPath: IndexPath){
             cell.subredditTitle.setTitle(arrayOfSubreddits[indexPath.row-1], for: .normal)
             cell.deleteButton.addTarget(self, action: #selector(deleteSubreddit(_:)), for: .touchUpInside)
             cell.subredditTitle.addTarget(self, action: #selector(goToSubreddit(_:)), for: .touchUpInside)
+            cell.subredditTitle.setTitleColor(mainTextColor, for: .normal)
+            cell.backgroundColor = mainCellColor
             return cell
             
         case "settingsHeader":
             let cell:SettingsHeaderTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "settingsHeader") as! SettingsHeaderTableViewCell
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.settingsButton.addTarget(self, action: #selector(goToSubreddit(_:)), for: .touchUpInside)
+            cell.backgroundColor = mainCellColor
+            cell.settingsButton.setTitleColor(mainTextColor, for: .normal)
+            
             return cell
         
         case "updateAll":
             let cell:UpdateAllTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "updateAll") as! UpdateAllTableViewCell
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.updateAll.addTarget(self, action: #selector(updateAllSubreddits), for: .touchUpInside)
+            cell.backgroundColor = mainCellColor
+            cell.updateAll.setTitleColor(mainTextColor, for: .normal)
             return cell
 
         default:
@@ -144,7 +201,7 @@ indexPath: IndexPath){
     
     
     func stopAllDownloads() {
-        
+
         for cell in self.sidebarTable.visibleCells {
             if let s = cell as? SubredditTableViewCell {
                 s.stopDownload()
