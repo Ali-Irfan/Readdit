@@ -53,6 +53,10 @@ setupTheme()
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        setupTheme()
+    }
+    
     
     
     
@@ -62,16 +66,16 @@ setupTheme()
         switch theme {
         case "green":
             sidebarTable.backgroundColor = FlatGreenDark()
-            mainTextColor = FlatRed()
+            mainTextColor = FlatWhite()
             mainCellColor = sidebarTable.backgroundColor!
-            self.view.backgroundColor = FlatWhite()//UIColor.white
+            self.view.backgroundColor = FlatGreenDark()//UIColor.white
             self.logo.textColor = FlatWhite()
             
         case "blue":
             sidebarTable.backgroundColor = FlatSkyBlueDark()
-            mainTextColor = FlatRed()
+            mainTextColor = FlatWhite()
             mainCellColor = sidebarTable.backgroundColor!
-            self.view.backgroundColor = UIColor.white
+            self.view.backgroundColor = FlatSkyBlueDark()
             self.logo.textColor = FlatWhite()
             
         case "red":
@@ -83,17 +87,20 @@ setupTheme()
             
         case "dark":
             sidebarTable.backgroundColor = FlatBlackDark()
-            mainTextColor = FlatRed()
+            mainTextColor = FlatWhite()
             mainCellColor = sidebarTable.backgroundColor!
+            self.view.backgroundColor = FlatBlackDark()
             self.logo.textColor = FlatWhite()
         case "default":
-            sidebarTable.backgroundColor = UIColor.white
-            mainTextColor = FlatRed()
+            sidebarTable.backgroundColor = FlatWhiteDark()
+            mainTextColor = FlatBlack()
             mainCellColor = sidebarTable.backgroundColor!
-            self.logo.textColor = FlatWhite()
+            self.logo.textColor = FlatBlack()
+            self.view.backgroundColor = FlatWhiteDark()
         default:
             break
         }
+            self.sidebarTable.reloadData()
     }
     
     

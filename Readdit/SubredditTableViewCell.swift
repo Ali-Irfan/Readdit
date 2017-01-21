@@ -31,36 +31,36 @@ class SubredditTableViewCell: UITableViewCell {
         deleteButton.tintColor = UIColor.white
 //        deleteButton.setImage(#imageLiteral(resourceName: "minus"), for: .normal)
 //        deleteButton.frame = CGRect(x: 0, y: self.frame.height/2 - 12, width: 20, height: 20)
-  // setupTheme()
+   setupTheme()
         
     }
     
     
     
-//    
-//    func setupTheme(){
-//        self.backgroundColor = UIColor.clear
-//    let theme = UserDefaults.standard.string(forKey: "theme")!
-//    switch theme {
-//    case "green":
-//        updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatWhite()), for: .normal)
-//    
-//    case "blue":
-//    updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatWhite()), for: .normal)
-//    case "red":
-//updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatWhite()), for: .normal)
-//    
-//    case "dark":
-//updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatBlack()), for: .normal)
-//        
-//    case "default":
-//updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatWhite()), for: .normal)
-//    default:
-//        print("Idk")
-//        
-//        }
-//    
-    //}
+    
+    func setupTheme(){
+        self.backgroundColor = UIColor.clear
+    let theme = UserDefaults.standard.string(forKey: "theme")!
+    switch theme {
+    case "green":
+        updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatWhite()), for: .normal)
+    
+    case "blue":
+    updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatWhite()), for: .normal)
+    case "red":
+updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatWhite()), for: .normal)
+    
+    case "dark":
+updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatWhite()), for: .normal)
+        
+    case "default":
+updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatBlack()), for: .normal)
+    default:
+        print("Idk")
+        
+        }
+    
+    }
 
 
     func updateSubreddit() {
