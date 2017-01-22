@@ -14,5 +14,9 @@ class Theme {
         navigationController.navigationBar.backgroundColor = color
         navigationController.navigationBar.tintColor = color
         navigationController.navigationBar.barTintColor = color
+        navigationController.navigationBar.barStyle = .black
+        navigationController.hidesNavigationBarHairline = true
     }
+    
+    
 }

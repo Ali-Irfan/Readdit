@@ -29,22 +29,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
         }
         
-        
-        
-        
-//        let btn1 = UIButton(type: .custom)
-//        btn1.setImage(#imageLiteral(resourceName: "menu-2"), for: .normal)
-//        btn1.frame = CGRect(x: 0, y: 0, width: 25, height: 20)
-//        btn1.addTarget(revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
-//        let item1 = UIBarButtonItem(customView: btn1)
-//        navigationItem.leftBarButtonItem = item1
+ 
         
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         settingsTable.dataSource = self
         settingsTable.delegate = self
         settingsTable.backgroundColor = FlatWhite()
-        //settingsTable.estimatedRowHeight = 250.0
-        //settingsTable.rowHeight = UITableViewAutomaticDimension
         settingsTable.rowHeight = 75.0
         settingsTable.allowsSelection = false
         
@@ -56,57 +46,33 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let n = navigationController!
         switch theme {
         case "green":
-            Theme.setNavbarColor(navigationController: n, color: FlatGreen())
-            n.navigationBar.barStyle = .black
-            self.setStatusBarStyle(UIStatusBarStyleContrast)
-            self.navigationController?.hidesNavigationBarHairline = true
-            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
             themeColor = FlatGreen()
+            Theme.setNavbarColor(navigationController: n, color: themeColor)
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
             
         case "blue":
-            Theme.setNavbarColor(navigationController: n, color: FlatSkyBlue())
-            n.navigationBar.barStyle = .black
-            navigationController?.setStatusBarStyle(UIStatusBarStyleContrast)
-            self.setStatusBarStyle(UIStatusBarStyleContrast)
-            self.navigationController?.hidesNavigationBarHairline = true
-            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
             themeColor = FlatSkyBlue()
-            
+            Theme.setNavbarColor(navigationController: n, color: themeColor)
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())            
             
         case "red":
-            Theme.setNavbarColor(navigationController: n, color: FlatRed())
-            n.navigationBar.barStyle = .black
-            navigationController?.setStatusBarStyle(UIStatusBarStyleContrast)
-            self.navigationController?.hidesNavigationBarHairline = true
-            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
             themeColor = FlatRed()
-            
+            Theme.setNavbarColor(navigationController: n, color: themeColor)
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
             
         case "dark":
-            Theme.setNavbarColor(navigationController: n, color: FlatBlack())
-            n.navigationBar.barStyle = .black
-            
-            navigationController?.setStatusBarStyle(UIStatusBarStyleContrast)
-            self.navigationController?.hidesNavigationBarHairline = true
-            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
             themeColor = FlatBlack()
+            Theme.setNavbarColor(navigationController: n, color: themeColor)
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
             
         case "default":
-            Theme.setNavbarColor(navigationController: n, color: FlatWhite())
-            n.navigationBar.barStyle = .default
+            themeColor = FlatWhite()
+            Theme.setNavbarColor(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.black, navigationItem: navigationItem, revealViewController: revealViewController())
-            navigationController?.setStatusBarStyle(UIStatusBarStyleContrast)
-            self.navigationController?.hidesNavigationBarHairline = true
-            themeColor = FlatBlue()
+        
         default:
             print("Idk")
         }
-        
-        
-            //Update sidebar for theme
-//        if let vc = revealViewController().rearViewController as? SidebarTableViewController {
-//            vc.setupTheme()
-//        }
     }
 
     
