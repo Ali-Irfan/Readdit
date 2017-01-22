@@ -26,12 +26,12 @@ class Theme {
         navigationController.hidesNavigationBarHairline = true
     }
     
-    static func setSidebarTheme(color: UIColor, textColor: UIColor, table: UITableView, logo: UILabel, view: UIView) {
+    static func setSidebarTheme(color: UIColor, textColor: UIColor, table: UITableView, logo: UILabel? = nil, view: UIView) {
         table.backgroundColor = color
         mainTextColor = textColor
         mainCellColor = table.backgroundColor!
         view.backgroundColor = color
-        logo.textColor = textColor
+        logo?.textColor = textColor
     }
     
     static func setButtonColor(button: UIButton, color: UIColor) {

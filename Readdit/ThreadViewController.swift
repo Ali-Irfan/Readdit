@@ -59,18 +59,32 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
 
-
     
     func addMoreButton() {
         var indicatorColor = UIColor()
         let theme = UserDefaults.standard.string(forKey: "theme")!
-
+        var tint = FlatWhite()
         switch theme {
             
-        case "green":
+        case "mint":
             indicatorColor = UIColor.white
-            self.activityView.color = FlatGreen()
-            color = FlatGreenDark()
+            self.activityView.color = FlatMint()
+            color = FlatMintDark()
+
+        case "purple":
+            indicatorColor = UIColor.white
+            self.activityView.color = FlatPurple()
+            color = FlatPurpleDark()
+            
+        case "magenta":
+            indicatorColor = UIColor.white
+            self.activityView.color = FlatMagenta()
+            color = FlatMagentaDark()
+            
+        case "lime":
+            indicatorColor = UIColor.white
+            self.activityView.color = FlatLime()
+            color = FlatLimeDark()
             
         case "blue":
             indicatorColor = UIColor.white
@@ -87,11 +101,13 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             indicatorColor = UIColor.white
             self.activityView.color = FlatBlack()
             color = FlatBlack()
+            
 
         case "default":
             indicatorColor = UIColor.black
             self.activityView.color = FlatWhite()
             color = FlatBlack()
+            tint = FlatBlack()
 
         default:
             break
@@ -99,8 +115,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         let btn2 = UIButton(type: .custom)
-        btn2.setImage(#imageLiteral(resourceName: "more").maskWithColor(color: color), for: .normal)
-        btn2.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        btn2.setImage(#imageLiteral(resourceName: "more").maskWithColor(color: tint), for: .normal)
+        btn2.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
         btn2.addTarget(revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)), for: .touchUpInside)
         let item2 = UIBarButtonItem(customView: btn2)
         navigationItem.rightBarButtonItem = item2
@@ -296,6 +312,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.parent_id = bleh[indexPath.row].parent_id
             cell.id = bleh[indexPath.row].id
             cell.superParent = bleh[indexPath.row].superParent
+            
+            
+            
             
             var otherSize:CGFloat = 0.0
             

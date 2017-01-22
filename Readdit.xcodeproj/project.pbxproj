@@ -52,8 +52,7 @@
 		36EE380E1E08A36F00AA5D48 /* MainSortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EE380D1E08A36F00AA5D48 /* MainSortCell.swift */; };
 		36F608F31E09E96000604B6D /* NumberOfThreadsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F608F21E09E96000604B6D /* NumberOfThreadsTableViewCell.swift */; };
 		36F608F51E09F47D00604B6D /* ThreadNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F608F41E09F47D00604B6D /* ThreadNumberField.swift */; };
-		68180669B12880A96F527680 /* Pods_Readdit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D049A660F255986BFB3B0E /* Pods_Readdit.framework */; };
-		FE74C635AEA378F7BE8F9E78 /* Pods_Readdit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29BFA7BC3305DC2A33E969C3 /* Pods_Readdit.framework */; };
+		F955316FD4B4B9CA27053B32 /* Pods_Readdit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD8BD655E3005E8924C36BB /* Pods_Readdit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,9 +73,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02D049A660F255986BFB3B0E /* Pods_Readdit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Readdit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		29BFA7BC3305DC2A33E969C3 /* Pods_Readdit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Readdit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B222CAAF07D1AA4F9D5399E /* Pods-Readdit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readdit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Readdit/Pods-Readdit.debug.xcconfig"; sourceTree = "<group>"; };
 		362104F21DF73925002E13D2 /* SubredditHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubredditHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubredditTableViewCell.swift; sourceTree = "<group>"; };
 		362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -131,9 +127,9 @@
 		36EE380D1E08A36F00AA5D48 /* MainSortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSortCell.swift; sourceTree = "<group>"; };
 		36F608F21E09E96000604B6D /* NumberOfThreadsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfThreadsTableViewCell.swift; sourceTree = "<group>"; };
 		36F608F41E09F47D00604B6D /* ThreadNumberField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadNumberField.swift; sourceTree = "<group>"; };
-		57D2EB049756634C1DDCEB5B /* Pods-Readdit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readdit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Readdit/Pods-Readdit.release.xcconfig"; sourceTree = "<group>"; };
-		B6D74F8D3EB95EE81462434F /* Pods-Readdit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readdit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Readdit/Pods-Readdit.debug.xcconfig"; sourceTree = "<group>"; };
-		D815F63645B2EAD205943E0A /* Pods-Readdit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readdit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Readdit/Pods-Readdit.release.xcconfig"; sourceTree = "<group>"; };
+		B187D2BDD23A03FCF551F3A3 /* Pods-Readdit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readdit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Readdit/Pods-Readdit.release.xcconfig"; sourceTree = "<group>"; };
+		CFBB8253203F601D3F3A928E /* Pods-Readdit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Readdit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Readdit/Pods-Readdit.debug.xcconfig"; sourceTree = "<group>"; };
+		FDD8BD655E3005E8924C36BB /* Pods_Readdit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Readdit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				362BE6451E2C1524009CF055 /* UserNotifications.framework in Frameworks */,
-				FE74C635AEA378F7BE8F9E78 /* Pods_Readdit.framework in Frameworks */,
-				68180669B12880A96F527680 /* Pods_Readdit.framework in Frameworks */,
+				F955316FD4B4B9CA27053B32 /* Pods_Readdit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,14 +159,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		193338652B5A4A9AEE0A25D8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				29BFA7BC3305DC2A33E969C3 /* Pods_Readdit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		362104F11DF738D6002E13D2 /* SidebarCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,8 +197,8 @@
 				36D2CB921E29456D007CD6AC /* SWRevealViewController.h */,
 				36D255A21DCC3B2C00B1779E /* Readdit */,
 				36EE38071E089ADA00AA5D48 /* Other */,
-				A6CE08D5DB484D264305D71D /* Pods */,
 				446FEBDAB1BC946B193DDD36 /* Frameworks */,
+				4633AE7885957ECECCC50815 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -298,8 +285,6 @@
 				36D255B71DCC3B2C00B1779E /* ReadditTests */,
 				36D255C21DCC3B2C00B1779E /* ReadditUITests */,
 				36D255A11DCC3B2C00B1779E /* Products */,
-				FE463AF3CEC3FBAA157CBD1C /* Pods */,
-				193338652B5A4A9AEE0A25D8 /* Frameworks */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -335,25 +320,16 @@
 			isa = PBXGroup;
 			children = (
 				362BE6441E2C1524009CF055 /* UserNotifications.framework */,
-				02D049A660F255986BFB3B0E /* Pods_Readdit.framework */,
+				FDD8BD655E3005E8924C36BB /* Pods_Readdit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A6CE08D5DB484D264305D71D /* Pods */ = {
+		4633AE7885957ECECCC50815 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B6D74F8D3EB95EE81462434F /* Pods-Readdit.debug.xcconfig */,
-				57D2EB049756634C1DDCEB5B /* Pods-Readdit.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		FE463AF3CEC3FBAA157CBD1C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2B222CAAF07D1AA4F9D5399E /* Pods-Readdit.debug.xcconfig */,
-				D815F63645B2EAD205943E0A /* Pods-Readdit.release.xcconfig */,
+				CFBB8253203F601D3F3A928E /* Pods-Readdit.debug.xcconfig */,
+				B187D2BDD23A03FCF551F3A3 /* Pods-Readdit.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -365,12 +341,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36D255C81DCC3B2C00B1779E /* Build configuration list for PBXNativeTarget "Readdit" */;
 			buildPhases = (
-				BCBA4BFED89D5302396D49FE /* [CP] Check Pods Manifest.lock */,
+				DCC7F98C505DD53406633D2C /* [CP] Check Pods Manifest.lock */,
 				36D2559C1DCC3B2C00B1779E /* Sources */,
 				36D2559D1DCC3B2C00B1779E /* Frameworks */,
 				36D2559E1DCC3B2C00B1779E /* Resources */,
-				A76F65D37746413EDE0B11D5 /* [CP] Embed Pods Frameworks */,
-				092510396359B3573BF6CCDE /* [CP] Copy Pods Resources */,
+				68B894433E81FCA97BCF3FC3 /* [CP] Embed Pods Frameworks */,
+				715FEFF1EF55E8A11059EBC3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -501,22 +477,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		092510396359B3573BF6CCDE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Readdit/Pods-Readdit-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A76F65D37746413EDE0B11D5 /* [CP] Embed Pods Frameworks */ = {
+		68B894433E81FCA97BCF3FC3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -531,7 +492,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Readdit/Pods-Readdit-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BCBA4BFED89D5302396D49FE /* [CP] Check Pods Manifest.lock */ = {
+		715FEFF1EF55E8A11059EBC3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Readdit/Pods-Readdit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DCC7F98C505DD53406633D2C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -742,7 +718,7 @@
 		};
 		36D255C91DCC3B2C00B1779E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B222CAAF07D1AA4F9D5399E /* Pods-Readdit.debug.xcconfig */;
+			baseConfigurationReference = CFBB8253203F601D3F3A928E /* Pods-Readdit.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -762,7 +738,7 @@
 		};
 		36D255CA1DCC3B2C00B1779E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D815F63645B2EAD205943E0A /* Pods-Readdit.release.xcconfig */;
+			baseConfigurationReference = B187D2BDD23A03FCF551F3A3 /* Pods-Readdit.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

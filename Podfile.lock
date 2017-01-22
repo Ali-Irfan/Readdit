@@ -1,16 +1,16 @@
 PODS:
-  - Alamofire (4.0.1)
+  - Alamofire (4.3.0)
   - Alamofire-Synchronous (4.0.0):
     - Alamofire (~> 4.0)
-  - AsyncSwift (2.0.0)
+  - AsyncSwift (2.0.1)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - Dollar (6.1.0)
   - ReachabilitySwift (3)
-  - SlideMenuControllerSwift (3.0.0)
+  - SlideMenuControllerSwift (3.0.1)
   - StringExtensionHTML (0.2.0)
-  - SwiftyJSON (3.1.1)
+  - SwiftyJSON (3.1.4)
   - Zip (0.6.0)
 
 DEPENDENCIES:
@@ -35,15 +35,15 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ViccAlexander/Chameleon.git
 
 SPEC CHECKSUMS:
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   Alamofire-Synchronous: eedf1e6e961c3795a63c74990b3f7d9fbfac7e50
-  AsyncSwift: 6ba6ed9ecb51344458063f7c86fe447ab824e313
+  AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
-  SlideMenuControllerSwift: 9c0a84f9a3fba51681debd7be77617094562ebcc
+  SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
   StringExtensionHTML: 80fdb1b3a83669e371d27bfe2f208f067e2db328
-  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
 PODFILE CHECKSUM: 82695237c31d144b08a1664ed0987744248c6b15

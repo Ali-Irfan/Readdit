@@ -77,12 +77,30 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         let theme = UserDefaults.standard.string(forKey: "theme")!
         let n = navigationController!
         switch theme {
-        case "green":
-            Theme.setNavbarTheme(navigationController: n, color: FlatGreen())
+        case "mint":
+            Theme.setNavbarTheme(navigationController: n, color: FlatMint())
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
 
-            generalColor = FlatGreenDark()
-
+            generalColor = FlatMintDark()
+            
+        case "purple":
+            Theme.setNavbarTheme(navigationController: n, color: FlatPurple())
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
+            
+            generalColor = FlatPurpleDark()
+            
+        case "magenta":
+            Theme.setNavbarTheme(navigationController: n, color: FlatMagenta())
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
+            
+            generalColor = FlatMagentaDark()
+            
+        case "lime":
+            Theme.setNavbarTheme(navigationController: n, color: FlatLime())
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
+            
+            generalColor = FlatLimeDark()
+            
         case "blue":
             Theme.setNavbarTheme(navigationController: n, color: FlatSkyBlue())
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())

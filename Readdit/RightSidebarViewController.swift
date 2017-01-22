@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class RightSidebarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -37,7 +38,53 @@ class RightSidebarViewController: UIViewController, UITableViewDelegate, UITable
         } else if (currentThreadView?.isKind(of: ThreadListViewController.self))!{
         currentSortingStyle = arrayOfSubredditSortings
         }
+        setupTheme()
         sortingTable.reloadData()
+    }
+    
+    
+    func setupTheme() {
+        let theme = UserDefaults.standard.string(forKey: "theme")!
+        
+        switch theme {
+            
+        case "mint":
+            let color = FlatMintDark()
+            Theme.setSidebarTheme(color: color, textColor: FlatWhite(), table: sortingTable, logo: nil, view: self.view)
+
+            
+        case "purple":
+            let color = FlatPurpleDark()
+            Theme.setSidebarTheme(color: color, textColor: FlatWhite(), table: sortingTable, logo: nil, view: self.view)
+            
+        case "magenta":
+            let color = FlatMagentaDark()
+            Theme.setSidebarTheme(color: color, textColor: FlatWhite(), table: sortingTable, logo: nil, view: self.view)
+            
+        case "lime":
+            let color = FlatLimeDark()
+            Theme.setSidebarTheme(color: color, textColor: FlatWhite(), table: sortingTable, logo: nil, view: self.view)
+            
+        case "blue":
+            let color = FlatSkyBlueDark()
+            Theme.setSidebarTheme(color: color, textColor: FlatWhite(), table: sortingTable, logo: nil, view: self.view)
+            
+        case "red":
+            let color = FlatRedDark()
+            Theme.setSidebarTheme(color: color, textColor: FlatWhite(), table: sortingTable, logo: nil, view: self.view)
+            
+        case "dark":
+            let color = FlatBlackDark()
+            Theme.setSidebarTheme(color: color, textColor: FlatWhite(), table: sortingTable, logo: nil, view: self.view)
+            
+        case "default":
+            let color = FlatWhiteDark()
+            Theme.setSidebarTheme(color: color, textColor: FlatBlack(), table: sortingTable, logo: nil, view: self.view)
+            
+        default:
+            break
+        }
+
     }
     
 

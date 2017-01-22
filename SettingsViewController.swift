@@ -45,8 +45,23 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let theme = UserDefaults.standard.string(forKey: "theme")!
         let n = navigationController!
         switch theme {
-        case "green":
-            themeColor = FlatGreen()
+        case "mint":
+            themeColor = FlatMint()
+            Theme.setNavbarTheme(navigationController: n, color: themeColor)
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
+            
+        case "purple":
+            themeColor = FlatPurple()
+            Theme.setNavbarTheme(navigationController: n, color: themeColor)
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
+            
+        case "magenta":
+            themeColor = FlatMagenta()
+            Theme.setNavbarTheme(navigationController: n, color: themeColor)
+            Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
+            
+        case "lime":
+            themeColor = FlatLime()
             Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
             
@@ -284,14 +299,43 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
         })
         
-        let green = UIAlertAction(title: "green", style: .default, handler: {
+        let mint = UIAlertAction(title: "mint", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            sender.setTitle("green", for: .normal)
-            self.defaults.set("green", forKey: "theme")
+            sender.setTitle("mint", for: .normal)
+            self.defaults.set("mint", forKey: "theme")
              self.setupTheme()
             self.settingsTable.reloadData()
 
         })
+        
+        let purple = UIAlertAction(title: "purple", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("purple", for: .normal)
+            self.defaults.set("purple", forKey: "theme")
+            self.setupTheme()
+            self.settingsTable.reloadData()
+            
+        })
+        
+        let lime = UIAlertAction(title: "lime", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("lime", for: .normal)
+            self.defaults.set("lime", forKey: "theme")
+            self.setupTheme()
+            self.settingsTable.reloadData()
+            
+        })
+        
+        let magenta = UIAlertAction(title: "magenta", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            sender.setTitle("magenta", for: .normal)
+            self.defaults.set("magenta", forKey: "theme")
+            self.setupTheme()
+            self.settingsTable.reloadData()
+            
+        })
+        
+        
         let blue = UIAlertAction(title: "blue", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             sender.setTitle("blue", for: .normal)
@@ -333,7 +377,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         // 4
         optionMenu.addAction(defaultTheme)
         optionMenu.addAction(blue)
-        optionMenu.addAction(green)
+        optionMenu.addAction(mint)
+        optionMenu.addAction(purple)
+        optionMenu.addAction(lime)
+        optionMenu.addAction(magenta)
         optionMenu.addAction(red)
         optionMenu.addAction(dark)
         optionMenu.addAction(cancelAction)

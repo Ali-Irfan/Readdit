@@ -68,9 +68,24 @@ setupTheme()
     func setupTheme() {
         let theme = UserDefaults.standard.string(forKey: "theme")!
         switch theme {
-        case "green":
+        case "mint":
             
-            let color = FlatGreenDark()
+            let color = FlatMintDark()
+            let textColor = FlatWhite()
+            Theme.setSidebarTheme(color: color, textColor: textColor, table: sidebarTable, logo: self.logo, view: self.view)
+            
+        case "purple":
+            let color = FlatPurpleDark()
+            let textColor = FlatWhite()
+            Theme.setSidebarTheme(color: color, textColor: textColor, table: sidebarTable, logo: self.logo, view: self.view)
+            
+        case "magenta":
+            let color = FlatMagentaDark()
+            let textColor = FlatWhite()
+            Theme.setSidebarTheme(color: color, textColor: textColor, table: sidebarTable, logo: self.logo, view: self.view)
+            
+        case "lime":
+            let color = FlatLimeDark()
             let textColor = FlatWhite()
             Theme.setSidebarTheme(color: color, textColor: textColor, table: sidebarTable, logo: self.logo, view: self.view)
             
