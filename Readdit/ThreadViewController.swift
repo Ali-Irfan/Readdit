@@ -15,6 +15,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var arrayOfComments: [CommentData] = []
     var hiddenChildren: [String] = []
     var overlay: UIView!
+    var color = UIColor.black
     var bleh: [CommentData] = []
     var commentsArr: [CommentData] = []
     var arrayOfEverything: [AnyObject] = []
@@ -61,33 +62,39 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     
     func addMoreButton() {
-        var color = UIColor()
+        var indicatorColor = UIColor()
         let theme = UserDefaults.standard.string(forKey: "theme")!
-        let n = navigationController!
+
         switch theme {
+            
         case "green":
-            color = UIColor.white
+            indicatorColor = UIColor.white
             self.activityView.color = FlatGreen()
+            color = FlatGreenDark()
+            
         case "blue":
-            color = UIColor.white
-            print("Set contrast color")
+            indicatorColor = UIColor.white
             self.activityView.color = FlatBlue()
+            color = FlatSkyBlue()
 
         case "red":
-            color = UIColor.white
+            indicatorColor = UIColor.white
             self.activityView.color = FlatRed()
+            color = FlatRed()
 
             
         case "dark":
-            color = UIColor.white
+            indicatorColor = UIColor.white
             self.activityView.color = FlatBlack()
+            color = FlatBlack()
 
         case "default":
-            color = UIColor.black
-            self.activityView.color = FlatBlack()
+            indicatorColor = UIColor.black
+            self.activityView.color = FlatWhite()
+            color = FlatBlack()
 
         default:
-            print("Idk")
+            break
         }
         
         
@@ -182,28 +189,6 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     {
         
         let cell:CommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentViewCell
-        var color = UIColor()
-        let theme = UserDefaults.standard.string(forKey: "theme")!
-        switch theme {
-        case "green":
-            color = FlatGreen()
-            
-        case "blue":
-            color = FlatSkyBlue()
-            
-        case "red":
-            color = FlatRed()
-            
-            
-        case "dark":
-            color = FlatWhite()
-            
-        case "default":
-            color = FlatBlack()
-            
-        default:
-            print("Idk")
-        }
         
         var size: CGFloat = 0.0
 

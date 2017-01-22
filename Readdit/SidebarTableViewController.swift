@@ -69,38 +69,35 @@ setupTheme()
         let theme = UserDefaults.standard.string(forKey: "theme")!
         switch theme {
         case "green":
-            sidebarTable.backgroundColor = FlatGreenDark()
-            mainTextColor = FlatWhite()
-            mainCellColor = sidebarTable.backgroundColor!
-            self.view.backgroundColor = FlatGreenDark()//UIColor.white
-            self.logo.textColor = FlatWhite()
+            
+            let color = FlatGreenDark()
+            let textColor = FlatWhite()
+            Theme.setSidebarTheme(color: color, textColor: textColor, table: sidebarTable, logo: self.logo, view: self.view)
             
         case "blue":
-            sidebarTable.backgroundColor = FlatSkyBlueDark()
-            mainTextColor = FlatWhite()
-            mainCellColor = sidebarTable.backgroundColor!
-            self.view.backgroundColor = FlatSkyBlueDark()
-            self.logo.textColor = FlatWhite()
+            
+            let color = FlatSkyBlueDark()
+            let textColor = FlatWhite()
+            Theme.setSidebarTheme(color: color, textColor: textColor, table: sidebarTable, logo: self.logo, view: self.view)
             
         case "red":
-        sidebarTable.backgroundColor = FlatRedDark()
-        mainTextColor = FlatWhite()
-        mainCellColor = FlatRedDark()
-            self.view.backgroundColor = FlatRedDark()//UIColor.white
-            self.logo.textColor = FlatWhite()
+            
+            let color = FlatRedDark()
+            let textColor = FlatWhite()
+            Theme.setSidebarTheme(color: color, textColor: textColor, table: sidebarTable, logo: self.logo, view: self.view)
             
         case "dark":
-            sidebarTable.backgroundColor = FlatBlackDark()
-            mainTextColor = FlatWhite()
-            mainCellColor = sidebarTable.backgroundColor!
-            self.view.backgroundColor = FlatBlackDark()
-            self.logo.textColor = FlatWhite()
+            
+            let color = FlatBlackDark()
+            let textColor = FlatWhite()
+            Theme.setSidebarTheme(color: color, textColor: textColor, table: sidebarTable, logo: self.logo, view: self.view)
+            
         case "default":
-            sidebarTable.backgroundColor = FlatWhiteDark()
-            mainTextColor = FlatBlack()
-            mainCellColor = sidebarTable.backgroundColor!
-            self.logo.textColor = FlatBlack()
-            self.view.backgroundColor = FlatWhiteDark()
+            
+            let color = FlatWhite()
+            let textColor = FlatBlack()
+            Theme.setSidebarTheme(color: color, textColor: textColor, table: sidebarTable, logo: self.logo, view: self.view)
+            
         default:
             break
         }

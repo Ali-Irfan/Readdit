@@ -47,27 +47,27 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         switch theme {
         case "green":
             themeColor = FlatGreen()
-            Theme.setNavbarColor(navigationController: n, color: themeColor)
+            Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
             
         case "blue":
             themeColor = FlatSkyBlue()
-            Theme.setNavbarColor(navigationController: n, color: themeColor)
+            Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())            
             
         case "red":
             themeColor = FlatRed()
-            Theme.setNavbarColor(navigationController: n, color: themeColor)
+            Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
             
         case "dark":
             themeColor = FlatBlack()
-            Theme.setNavbarColor(navigationController: n, color: themeColor)
+            Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
             
         case "default":
             themeColor = FlatWhite()
-            Theme.setNavbarColor(navigationController: n, color: themeColor)
+            Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.black, navigationItem: navigationItem, revealViewController: revealViewController())
         
         default:
@@ -424,18 +424,18 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case "Text Size":
             let cell:TextSizeTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "TextSize") as! TextSizeTableViewCell
             cell.textSizeButton.addTarget(self, action: #selector(changeTextSize), for: .touchUpInside)
-            cell.textSizeButton.tintColor = themeColor
+            Theme.setButtonColor(button:  cell.textSizeButton, color: themeColor)
             return cell
         case "Theme":
             let cell:ThemeTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "Theme") as! ThemeTableViewCell
             cell.themeButton.addTarget(self, action: #selector(changeTheme), for: .touchUpInside)
-            cell.themeButton.tintColor = themeColor
+            Theme.setButtonColor(button:  cell.themeButton, color: themeColor)
             return cell
             
         case "Download Settings":
             let cell:DownloadSettingsTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "DownloadSettings") as! DownloadSettingsTableViewCell
             cell.downloadSettingsButton.addTarget(self, action: #selector(changeDownload), for: .touchUpInside)
-            cell.downloadSettingsButton.tintColor = themeColor
+            Theme.setButtonColor(button:  cell.downloadSettingsButton, color: themeColor)
             return cell
             
         case "Hide NSFW Content":
@@ -445,8 +445,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             } else { //Default is not hiding
                 cell.nsfwSwitch.isOn = false
             }
-            cell.nsfwSwitch.tintColor = themeColor
-            
             return cell
             
         case "Report A Bug":
@@ -461,13 +459,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.clearData.setTitle("Clear All Data (" + getCacheSize() + ")", for: .normal)
             }
             cell.clearData.addTarget(self, action: #selector(clearAll(_:)), for: .touchUpInside)
-            cell.clearData.tintColor = themeColor
+            Theme.setButtonColor(button:  cell.clearData, color: themeColor)
             return cell
             
         case "Download Automatically":
             let cell:AutoDownloadTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "AutoDownload") as! AutoDownloadTableViewCell
             cell.pickerButton.addTarget(self, action: #selector(changeDownloadTimes), for: .touchUpInside)
-            cell.pickerButton.tintColor = themeColor
+            Theme.setButtonColor(button:  cell.pickerButton, color: themeColor)
             return cell
             
         case "Threads per Subreddit":

@@ -42,23 +42,6 @@ class SubredditTableViewCell: UITableViewCell {
     func setupTheme(){
         self.backgroundColor = UIColor.clear
     let theme = UserDefaults.standard.string(forKey: "theme")!
-//    switch theme {
-//    case "green":
-//        updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatWhite()), for: .normal)
-//    
-//    case "blue":
-//    updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatWhite()), for: .normal)
-//    case "red":
-//updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatWhite()), for: .normal)
-//    case "dark":
-//updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatWhite()), for: .normal)
-//        
-//    case "default":
-//updateButton.setImage(self.updateButton.image(for: .normal)?.maskWithColor(color: FlatBlack()), for: .normal)
-//    default:
-//        print("Idk")
-//        
-//        }
         switch theme {
                 case "default":
                 updateButton.setImage(updateButton.currentImage?.maskWithColor(color: FlatBlack()), for: .normal)
