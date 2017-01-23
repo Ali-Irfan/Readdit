@@ -118,13 +118,14 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         case "dark":
             Theme.setNavbarTheme(navigationController: n, color: FlatBlack())
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
-
             generalColor = FlatBlack()
+            threadTable.backgroundColor = FlatBlackDark()
+            self.view.backgroundColor = FlatBlackDark()
 
         case "default":
             Theme.setNavbarTheme(navigationController: n, color: FlatWhite())
             Utils.addMenuButton(color: UIColor.black, navigationItem: navigationItem, revealViewController: revealViewController())
-
+            
             generalColor = FlatBlackDark()
 
         default:
@@ -294,7 +295,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.authorLabel.font = UIFont(name: cell.authorLabel.font.fontName, size: 14)
         }
         
-        cell.topViewBar.backgroundColor = FlatWhite()//General.hexStringToUIColor(hex: "#dadada")
+        //cell.topViewBar.backgroundColor = FlatWhite()//General.hexStringToUIColor(hex: "#dadada")
         cell.mainText?.text = arrayOfThreads[indexPath.row].title
         cell.authorLabel?.text = "/u/" + arrayOfThreads[indexPath.row].author
         let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(arrayOfThreads[indexPath.row].utcCreated)))

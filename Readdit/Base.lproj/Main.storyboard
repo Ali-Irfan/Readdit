@@ -332,7 +332,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="1"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vdR-Ut-orl" id="atZ-Ra-cUL">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="0.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -340,7 +340,7 @@
                                         <rect key="frame" x="0.0" y="29" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vv7-eP-iat" id="Nwm-yU-trr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -348,7 +348,7 @@
                                         <rect key="frame" x="0.0" y="73" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rS4-YR-off" id="0kP-9p-HsK">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -356,7 +356,7 @@
                                         <rect key="frame" x="0.0" y="117" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bUi-nK-JuM" id="m4j-dG-uQe">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -364,7 +364,7 @@
                                         <rect key="frame" x="0.0" y="161" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BMu-lH-eGS" id="uhd-J2-QqY">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -372,7 +372,7 @@
                                         <rect key="frame" x="0.0" y="205" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e1J-At-MaZ" id="m51-tE-Cj7">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -804,6 +804,7 @@
                                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="textSizeButton" destination="oAF-Cj-jUM" id="aJA-Te-EZu"/>
+                                            <outlet property="view" destination="qPz-Sg-Qfm" id="ONl-xz-BCp"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DownloadSettings" rowHeight="75" id="Wfx-Ik-DcS" customClass="DownloadSettingsTableViewCell" customModule="Readdit" customModuleProvider="target">
@@ -835,6 +836,7 @@
                                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="downloadSettingsButton" destination="Cbd-2B-gBW" id="VEV-BE-aOy"/>
+                                            <outlet property="view" destination="rya-sM-QBm" id="qpo-38-3iu"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ThreadsPerSubreddit" rowHeight="75" id="FRS-r8-jow" customClass="NumberOfThreadsTableViewCell" customModule="Readdit" customModuleProvider="target">
@@ -868,6 +870,7 @@
                                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="numberField" destination="o8y-qL-TW6" id="Tne-an-Xzj"/>
+                                            <outlet property="view" destination="BSd-MB-biR" id="i5S-h2-wYZ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Theme" rowHeight="75" id="t36-FI-FEi" customClass="ThemeTableViewCell" customModule="Readdit" customModuleProvider="target">
@@ -901,6 +904,7 @@
                                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="themeButton" destination="mDu-cl-54D" id="gZT-az-tBP"/>
+                                            <outlet property="view" destination="RMM-0o-bmI" id="lg3-Vd-ZyH"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HideNSFW" rowHeight="75" id="fvG-lo-rSo" customClass="HideNSFWPostsTableViewCell" customModule="Readdit" customModuleProvider="target">
@@ -934,6 +938,7 @@
                                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="nsfwSwitch" destination="Xjo-46-4hl" id="h54-Kz-wAR"/>
+                                            <outlet property="view" destination="b92-XH-Vlk" id="fL3-jh-gXA"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportBug" rowHeight="75" id="aK1-hu-SMU" customClass="ReportABugTableViewCell" customModule="Readdit" customModuleProvider="target">
@@ -956,6 +961,9 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="view" destination="hqb-Sp-B1W" id="ucv-ji-F4K"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AutoDownload" rowHeight="75" id="W5r-KY-x8w" customClass="AutoDownloadTableViewCell" customModule="Readdit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="478" width="375" height="75"/>
@@ -988,6 +996,7 @@
                                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="pickerButton" destination="oIM-J1-QZL" id="ez6-q6-xEC"/>
+                                            <outlet property="view" destination="E3Y-hj-iTh" id="9iu-Bb-xKt"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClearAll" rowHeight="75" id="bzV-yD-P8k" customClass="ClearAllDataTableViewCell" customModule="Readdit" customModuleProvider="target">
@@ -1012,6 +1021,7 @@
                                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="clearData" destination="rjT-Jo-pg1" id="kdw-2h-kdd"/>
+                                            <outlet property="view" destination="mvW-RT-mPz" id="IXq-vn-JIk"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -1,9 +1,10 @@
 import ReachabilitySwift
+import PMAlertController
 
 class Utils {
     static  func displayTheAlert(targetVC: UIViewController, title: String, message: String){
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction((UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in
+        let alert = PMAlertController(title: title, color: Theme.getGeneralColor(), description: message, image: nil, style: .alert)
+        alert.addAction((PMAlertAction(title: "OK", style: .cancel, color: Theme.getGeneralColor(), action: { () in
         })))
         targetVC.present(alert, animated: true, completion: nil)
     }

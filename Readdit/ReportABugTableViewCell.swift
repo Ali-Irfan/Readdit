@@ -9,6 +9,7 @@
 import UIKit
 
 class ReportABugTableViewCell: UITableViewCell {
+    @IBOutlet weak var view: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

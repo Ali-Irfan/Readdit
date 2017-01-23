@@ -44,6 +44,7 @@ class Theme {
         
     }
     
+
     
     static func getGeneralColor() -> UIColor{
         let theme = UserDefaults.standard.string(forKey: "theme")!

@@ -29,6 +29,12 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         overlay!.alpha = 0.9
         let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         activityView.color = UIColor.black
+        if Theme.getGeneralColor() == FlatBlack() {
+            overlay!.backgroundColor = FlatBlackDark()
+            activityView.color = FlatWhite()
+            commentTable.backgroundColor = FlatBlackDark()
+            self.view.backgroundColor = FlatBlackDark()
+        }
         activityView.center = self.view.center
         activityView.startAnimating()
         
@@ -303,7 +309,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
             for i in 0...cell.indentationLevel {
                 cell.arrayOfSeperators[i].isHidden = false
+                if Theme.getGeneralColor() != FlatBlack() {
                 cell.arrayOfSeperators[i].backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
+                }
             }
             
             cell.contentView.layoutMargins.left = CGFloat(cell.indentationLevel * 15) + 10
@@ -336,7 +344,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             cell.mainLabel?.text = bleh[indexPath.row].body.stringByDecodingHTMLEntities
-            
+            if Theme.getGeneralColor() == FlatBlack() {
+                cell.seperatorView.backgroundColor = FlatBlack()
+            }
             cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
             cell.authorLabel.textColor = FlatBlack()//Utils.hexStringToUIColor(hex: "808080")
             if bleh[indexPath.row].author == author {

@@ -7,7 +7,7 @@ import Zip
 let arrayOfSubredditSort = ["Hot", "Controversial", "Top", "Rising", "New"]
 let arrayOfThreadSort    = ["Top", "New", "Controversial", "Best", "Old", "QA"]
 var sessionManager:Alamofire.SessionManager!
-let configuration = URLSessionConfiguration.default
+let configuration = URLSessionConfiguration.background(withIdentifier: "\(Bundle.main.bundleIdentifier).background")
 var arrayOfRequests: [Alamofire.Request?] = []
 
 public class Downloader: UIViewController {
@@ -17,12 +17,10 @@ public class Downloader: UIViewController {
         // add your custom header
         headers["Accept-Encoding"] = "gzip"
         headers["UserAgent"] = "ios:com.dev.readdit:v1.0.0(by/u/thisbeali)"
-        
         // create a custom session configuration
         // add the headers
         configuration.httpAdditionalHeaders = headers
         configuration.timeoutIntervalForResource = 2 // seconds
-        
         sessionManager = Alamofire.SessionManager(configuration: configuration)
         print("Initialized sesssion")
 
@@ -69,7 +67,7 @@ public class Downloader: UIViewController {
                     return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
                 }
         
-        Alamofire.download(urlString, to: destination).downloadProgress { progress in
+        sessionManager.download(urlString, to: destination).downloadProgress { progress in
                     print("Download Progress: \(progress.fractionCompleted)")
                     }.validate(statusCode: 200..<300).response()
 
@@ -108,7 +106,7 @@ public class Downloader: UIViewController {
                 return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
             }
             
-            Alamofire.download(urlString, to: destination).downloadProgress { progress in
+            sessionManager.download(urlString, to: destination).downloadProgress { progress in
                 //print("Download Progress: \(progress.fractionCompleted)")
                 //print("Downloading \(count)/\(threadNumber)")
                 

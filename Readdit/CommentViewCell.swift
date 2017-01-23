@@ -1,4 +1,5 @@
 import UIKit
+import ChameleonFramework
 
 class CommentViewCell: UITableViewCell {
     
@@ -44,6 +45,22 @@ class CommentViewCell: UITableViewCell {
         authorLabel.text = ""
         upvoteLabel.text = ""
         collapseLabel.text = "[-]"
+            
+            let theme = UserDefaults.standard.string(forKey: "theme")!
+            switch theme {
+                
+            case "dark":
+                self.backgroundColor = FlatBlackDark()
+                for v in arrayOfSeperators {
+                    v.backgroundColor = FlatBlack()
+                }
+                self.authorLabel.textColor = FlatWhite()
+                self.mainLabel.textColor = FlatWhite()
+                self.upvoteLabel.textColor = FlatWhite()
+                
+            default:
+                self.backgroundColor = FlatWhite()
+            }
 
         // Initialization code
     }

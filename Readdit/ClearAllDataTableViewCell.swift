@@ -10,6 +10,7 @@
 import UIKit
 
 class ClearAllDataTableViewCell: UITableViewCell {
+    @IBOutlet weak var view: UIView!
 
     @IBOutlet weak var clearData: UIButton!
     override func awakeFromNib() {

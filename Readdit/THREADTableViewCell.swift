@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class THREADTableViewCell: UITableViewCell {
 
@@ -18,7 +19,20 @@ class THREADTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let theme = UserDefaults.standard.string(forKey: "theme")!
+        switch theme {
 
+        case "dark":
+            self.backgroundColor = FlatBlackDark()
+            self.topViewBar.backgroundColor = FlatBlack()
+            
+            self.authorLabel.textColor = FlatWhite()
+            self.mainText.textColor = FlatWhite()
+            self.hoursText.textColor = FlatWhite()
+            
+        default:
+            self.topViewBar.backgroundColor = FlatWhite()
+        }
         
 
     }

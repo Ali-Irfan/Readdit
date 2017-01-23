@@ -9,6 +9,7 @@
 import UIKit
 
 class AutoDownloadTableViewCell: UITableViewCell {
+    @IBOutlet weak var view: UIView!
 
     @IBOutlet weak var pickerButton: UIButton!
     override func awakeFromNib() {

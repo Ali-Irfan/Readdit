@@ -81,6 +81,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             themeColor = FlatBlack()
             Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
+            settingsTable.backgroundColor = FlatBlackDark()
+            self.view.backgroundColor = FlatBlackDark()
+            
             
         case "default":
             themeColor = FlatWhite()
@@ -135,19 +138,19 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         if let key = defaults.object(forKey: "themeBlue") {
             
         } else {
-            defaults.set(0.0, forKey: "themeBlue")
+            defaults.set(FlatWhite().getRGBAComponents()?.blue, forKey: "themeBlue")
         }
         
         if let key = defaults.object(forKey: "themGreen") {
             
         } else {
-            defaults.set(0.0, forKey: "themGreen")
+            defaults.set(FlatWhite().getRGBAComponents()?.green, forKey: "themGreen")
         }
         
         if let key = defaults.object(forKey: "themeRed") {
             
         } else {
-            defaults.set(0.0, forKey: "themeRed")
+            defaults.set(FlatWhite().getRGBAComponents()?.red, forKey: "themeRed")
         }
         
     }
@@ -170,6 +173,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             print("Wi-Fi Only")
             self.defaults.set("wifi", forKey: "network")
         })
+
         
         //
         let both = Action("Both", style: .default, handler: { action in
@@ -195,30 +199,26 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func changeTextSize(_ sender: UIButton!) {
         
         // 1
-        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
+        let optionMenu = SkypeActionController()
         
-        let large = UIAlertAction(title: "Large", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let large = Action("Large", style: .default, handler: { action in
             print("Clicked large")
             sender.setTitle("Large", for: .normal)
             self.defaults.set("large", forKey: "fontSize")
         })
         
         //
-        let regular = UIAlertAction(title: "Regular", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let regular = Action("Regular", style: .default, handler: { action in
             sender.setTitle("Regular", for: .normal)
             self.defaults.set("regular", forKey: "fontSize")
         })
         
-        let small = UIAlertAction(title: "Small", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let small = Action("Small", style: .default, handler: { action in
             sender.setTitle("Small", for: .normal)
             self.defaults.set("small", forKey: "fontSize")
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let cancelAction = Action("Cancel", style: .cancel, handler: { action in
             print("Cancelled")
         })
         
@@ -239,50 +239,43 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func changeDownloadTimes(_ sender: UIButton!) {
         
         // 1
-        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
+        let optionMenu = SkypeActionController()
         
         // 2
         // 2
-        let manual = UIAlertAction(title: "Manual", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let manual = Action("Manual", style: .default, handler: { action in
             sender.setTitle("Manually Download", for: .normal)
             self.defaults.set(0, forKey: "downloadTime")
             
         })
         
-        let t2hr = UIAlertAction(title: "Every 2 hours", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let t2hr = Action("Every 2 hours", style: .default, handler: { action in
             sender.setTitle("1 hour", for: .normal)
             self.defaults.set(1*60*60, forKey: "downloadTime")
             
         })
-        let t6hr = UIAlertAction(title: "Every 6 hours", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let t6hr = Action("Every 6 hours", style: .default, handler: { action in
             sender.setTitle("6 hours", for: .normal)
             self.defaults.set(6*60*60, forKey: "downloadTime")
         })
         
         //
-        let t12hr = UIAlertAction(title: "Every 12 hours", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let t12hr = Action("Every 12 hours", style: .default, handler: { action in
             sender.setTitle("12 hours", for: .normal)
             self.defaults.set(12*60*60, forKey: "downloadTime")
         })
         
-        let t24hr = UIAlertAction(title: "Every 24 hours", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let t24hr = Action("Every 24 hours", style: .default, handler: { action in
             sender.setTitle("24 hours", for: .normal)
             self.defaults.set(24*60*60, forKey: "downloadTime")
         })
         
-        let t48hr = UIAlertAction(title: "Every 48 hours", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let t48hr = Action("Every 48 hours", style: .default, handler: { action in
             sender.setTitle("48 hours", for: .normal)
             self.defaults.set(48*60*60, forKey: "downloadTime")
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let cancelAction = Action("Cancel", style: .cancel, handler: { action in
             print("Cancelled")
         })
         
@@ -304,11 +297,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func changeTheme(_ sender: UIButton) {
-        let optionMenu = UIAlertController(title: nil, message: "Choose Theme", preferredStyle: .actionSheet)
-        
+        //let optionMenu = UIAlertController(title: nil, message: "Choose Theme", preferredStyle: .actionSheet)
+        let optionMenu = SkypeActionController()
         // 2
-        let defaultTheme = UIAlertAction(title: "default", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let defaultTheme = Action("default", style: .default, handler: { action in
             sender.setTitle("default", for: .normal)
             self.defaults.set("default", forKey: "theme")
             
@@ -320,8 +312,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
         })
         
-        let mint = UIAlertAction(title: "mint", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let mint = Action("mint", style: .default, handler: { action in
             sender.setTitle("mint", for: .normal)
             self.defaults.set("mint", forKey: "theme")
             self.defaults.set(FlatMint().getRGBAComponents()?.red, forKey: "themeRed")
@@ -332,8 +323,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
         })
         
-        let purple = UIAlertAction(title: "purple", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let purple = Action("purple", style: .default, handler: { action in
             sender.setTitle("purple", for: .normal)
             self.defaults.set("purple", forKey: "theme")
             self.defaults.set(FlatPurple().getRGBAComponents()?.red, forKey: "themeRed")
@@ -344,8 +334,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
         })
         
-        let lime = UIAlertAction(title: "lime", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let lime = Action("lime", style: .default, handler: { action in
             sender.setTitle("lime", for: .normal)
             self.defaults.set("lime", forKey: "theme")
             self.defaults.set(FlatLime().getRGBAComponents()?.red, forKey: "themeRed")
@@ -356,8 +345,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
         })
         
-        let magenta = UIAlertAction(title: "magenta", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let magenta = Action("magenta", style: .default, handler: { action in
             sender.setTitle("magenta", for: .normal)
             self.defaults.set(FlatMagenta().getRGBAComponents()?.red, forKey: "themeRed")
             self.defaults.set(FlatMagenta().getRGBAComponents()?.blue, forKey: "themeBlue")
@@ -369,8 +357,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         })
         
         
-        let blue = UIAlertAction(title: "blue", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let blue = Action("blue", style: .default, handler: { action in
             sender.setTitle("blue", for: .normal)
             self.defaults.set("blue", forKey: "theme")
             self.defaults.set(FlatSkyBlue().getRGBAComponents()?.red, forKey: "themeRed")
@@ -382,8 +369,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         })
         
         //
-        let red = UIAlertAction(title: "red", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let red = Action("red", style: .default, handler: { action in
             sender.setTitle("red", for: .normal)
             self.defaults.set("red", forKey: "theme")
             self.defaults.set(FlatRed().getRGBAComponents()?.red, forKey: "themeRed")
@@ -395,8 +381,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
         })
         
-        let dark = UIAlertAction(title: "dark", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let dark = Action("dark", style: .default, handler: { action in
             sender.setTitle("dark", for: .normal)
             self.defaults.set("dark", forKey: "theme")
             self.defaults.set(FlatBlack().getRGBAComponents()?.red, forKey: "themeRed")
@@ -409,8 +394,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
 
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let cancelAction = Action("Cancel", style: .cancel, handler: { action in
             print("Cancelled")
         })
         
@@ -438,35 +422,30 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func changeSortType(_ sender: UIButton!) {
         
         // 1
-        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
-        
+        //let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
+        let optionMenu = SkypeActionController()
         // 2
-        let best = UIAlertAction(title: "Best", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let best = Action("Best", style: .default, handler: { action in
             sender.setTitle("Best", for: .normal)
             self.defaults.set("best", forKey: "sort")
         })
-        let top = UIAlertAction(title: "Top", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let top = Action("Top", style: .default, handler: { action in
             sender.setTitle("Top", for: .normal)
             self.defaults.set("top", forKey: "sort")
         })
         
         //
-        let new = UIAlertAction(title: "New", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let new = Action("New", style: .default, handler: { action in
             sender.setTitle("New", for: .normal)
             self.defaults.set("new", forKey: "sort")
         })
         
-        let controversial = UIAlertAction(title: "Controversial", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let controversial = Action("Controversial", style: .default, handler: { action in
             sender.setTitle("Controversial", for: .normal)
             self.defaults.set("controversial", forKey: "sort")
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let cancelAction = Action("Cancel", style: .cancel, handler: { action in
             print("Cancelled")
         })
         
@@ -514,17 +493,36 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             let cell:TextSizeTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "TextSize") as! TextSizeTableViewCell
             cell.textSizeButton.addTarget(self, action: #selector(changeTextSize), for: .touchUpInside)
             Theme.setButtonColor(button:  cell.textSizeButton, color: themeColor)
+            if Theme.getGeneralColor() == FlatBlack() {
+                cell.view.backgroundColor = FlatBlackDark()
+                cell.backgroundColor = FlatBlack()
+                cell.textSizeButton.tintColor = FlatWhite()
+
+
+            }
             return cell
         case "Theme":
             let cell:ThemeTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "Theme") as! ThemeTableViewCell
             cell.themeButton.addTarget(self, action: #selector(changeTheme), for: .touchUpInside)
             Theme.setButtonColor(button:  cell.themeButton, color: themeColor)
+            if Theme.getGeneralColor() == FlatBlack() {
+                cell.view.backgroundColor = FlatBlackDark()
+                cell.backgroundColor = FlatBlack()
+cell.themeButton.tintColor = FlatWhite()
+
+            }
             return cell
             
         case "Download Settings":
             let cell:DownloadSettingsTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "DownloadSettings") as! DownloadSettingsTableViewCell
             cell.downloadSettingsButton.addTarget(self, action: #selector(changeDownload), for: .touchUpInside)
             Theme.setButtonColor(button:  cell.downloadSettingsButton, color: themeColor)
+            if Theme.getGeneralColor() == FlatBlack() {
+                cell.view.backgroundColor = FlatBlackDark()
+                cell.backgroundColor = FlatBlack()
+cell.downloadSettingsButton.tintColor = FlatWhite()
+
+            }
             return cell
             
         case "Hide NSFW Content":
@@ -534,11 +532,22 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             } else { //Default is not hiding
                 cell.nsfwSwitch.isOn = false
             }
+            if Theme.getGeneralColor() == FlatBlack() {
+                cell.view.backgroundColor = FlatBlackDark()
+                cell.backgroundColor = FlatBlack()
+                cell.textLabel?.textColor = FlatWhite()
+
+            }
             return cell
             
         case "Report A Bug":
             let cell:ReportABugTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "ReportBug") as! ReportABugTableViewCell
-            
+            if Theme.getGeneralColor() == FlatBlack() {
+                cell.view.backgroundColor = FlatBlackDark()
+                cell.backgroundColor = FlatBlack()
+                cell.textLabel?.textColor = FlatWhite()
+
+            }
             return cell
             
         case "Clear All Data":
@@ -549,12 +558,27 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             }
             cell.clearData.addTarget(self, action: #selector(clearAll(_:)), for: .touchUpInside)
             Theme.setButtonColor(button:  cell.clearData, color: themeColor)
+            if Theme.getGeneralColor() == FlatBlack() {
+                cell.view.backgroundColor = FlatBlackDark()
+                cell.backgroundColor = FlatBlack()
+                cell.textLabel?.textColor = FlatWhite()
+                cell.clearData.tintColor = FlatWhite()
+
+
+            }
             return cell
             
         case "Download Automatically":
             let cell:AutoDownloadTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "AutoDownload") as! AutoDownloadTableViewCell
             cell.pickerButton.addTarget(self, action: #selector(changeDownloadTimes), for: .touchUpInside)
             Theme.setButtonColor(button:  cell.pickerButton, color: themeColor)
+            if Theme.getGeneralColor() == FlatBlack() {
+                cell.view.backgroundColor = FlatBlackDark()
+                cell.textLabel?.textColor = FlatWhite()
+cell.pickerButton.tintColor = FlatWhite()
+                cell.backgroundColor = FlatBlack()
+
+            }
             return cell
             
         case "Threads per Subreddit":
@@ -562,6 +586,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.numberField.addTarget(self, action: #selector(changeThreadNumbers), for: UIControlEvents.editingChanged)
             cell.numberField.placeholder = "10"
             cell.numberField.tintColor = themeColor
+            if Theme.getGeneralColor() == FlatBlack() {
+                cell.textLabel?.textColor = FlatWhite()
+                cell.view.backgroundColor = FlatBlackDark()
+                cell.backgroundColor = FlatBlack()
+
+                
+            }
             return cell
             
             

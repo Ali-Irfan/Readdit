@@ -10,6 +10,7 @@ import UIKit
 
 class HideNSFWPostsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var view: UIView!
 
     @IBOutlet weak var nsfwSwitch: UISwitch!
     override func awakeFromNib() {

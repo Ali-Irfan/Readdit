@@ -11,6 +11,7 @@ import UIKit
 import Foundation
 
 class DownloadSettingsTableViewCell: UITableViewCell {
+    @IBOutlet weak var view: UIView!
 
     @IBOutlet weak var downloadSettingsButton: UIButton!
     override func awakeFromNib() {
