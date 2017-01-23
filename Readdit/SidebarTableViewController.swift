@@ -245,10 +245,11 @@ indexPath: IndexPath){
             
             
             //1. Create the alert controller.
-            let alert = UIAlertController(title: "Remove Subreddit", message: "Are you sure you want to remove /r/\(cell.subredditTitle.currentTitle!)?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            
+            let alert = PMAlertController(title: "Remove Subreddit", color: Theme.getGeneralColor(), description: "Are you sure you want to remove /r/\(cell.subredditTitle.currentTitle!)?", image: nil, style: .alert)
+            alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
             // 3. Grab the value from the text field, and print it when the user clicks OK.
-            alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [weak alert] (_) in
+            alert.addAction(PMAlertAction(title: "Remove", style: .cancel, color: Theme.getGeneralColor(), action: { () in
                 print(cell.subredditTitle.currentTitle!)
                 arrayOfSubreddits = arrayOfSubreddits.filter() { $0 != cell.subredditTitle.currentTitle! }
                 UserDefaults.standard.set(arrayOfSubreddits, forKey: "arrayOfSubreddits")
