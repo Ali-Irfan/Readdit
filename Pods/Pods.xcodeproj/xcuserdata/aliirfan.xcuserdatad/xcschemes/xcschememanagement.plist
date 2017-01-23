@@ -29,6 +29,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PMAlertController-PMAlertController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>PMAlertController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Readdit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,12 +72,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4C17D1DD5141CBA2BC5F15C1A0293115</key>
+		<key>07EF194EB614AFBE6CD502CA95FE74DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>53234127626515059DDE93BBD940FD52</key>
+		<key>2C4368B887B2EDF42969625ADCAD1478</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>65EC11DFBE1BFE3514EC73285DC81121</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>664A48A5C44694002297024615F8925B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,22 +112,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9D29B52102581C49CC1A25FED2A5336D</key>
+		<key>99183593E3C04F0C7720EF0DA4A0159B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C65F79ECC4F63B823F61001164746E32</key>
+		<key>B2C45ABE2521CB9DB330FF7B4B2F5F3E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DF50969C15F6368E74695A22DACE6872</key>
+		<key>D54FDD5C741942E89778C6F1AD56A429</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E4C3E4F2EA84EAEB6B3A725ADF2DD0FD</key>
+		<key>E38D21B15FDCBFDB91E9A3FF4F1D4DFF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

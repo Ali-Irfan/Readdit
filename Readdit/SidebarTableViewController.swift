@@ -8,6 +8,7 @@
 import ChameleonFramework
 import UIKit
 import Async
+import PMAlertController
 import Alamofire
 
 
@@ -288,20 +289,23 @@ indexPath: IndexPath){
     
     
     func addSubreddit() {
-        //1. Create the alert controller.
-        let alert = UIAlertController(title: "Add Subreddit", message: "Enter a subreddit name", preferredStyle: .alert)
+        
+        
+        let alert = PMAlertController(title: "Add Subreddit", color: Theme.getGeneralColor(), description: "Enter a subreddit name", image: nil, style: .alert)
+        
+        
         
         //2. Add the text field. You can configure it however you need.
         alert.addTextField { (textField) in
-            textField.text = ""
-            textField.placeholder = "e.g. AskReddit"
+            textField!.text = ""
+            textField!.placeholder = "e.g. AskReddit"
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
 
         // 3. Grab the value from the text field, and print it when the user clicks OK.
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            let subredditToAdd = textField?.text?.stringByRemovingWhitespaces.capitalizingFirstLetter()
+        alert.addAction(PMAlertAction(title: "Add", style: .default, color: Theme.getGeneralColor(), action: { () in
+            let textField = alert.textFields[0] // Force unwrapping because we know it exists.
+            let subredditToAdd = textField.text?.stringByRemovingWhitespaces.capitalizingFirstLetter()
             if subredditToAdd != "" && !arrayOfSubreddits.contains(where: {$0.caseInsensitiveCompare(subredditToAdd!) == .orderedSame}) && !(subredditToAdd?.contains("+"))!{
                 arrayOfSubreddits.append(subredditToAdd!)
                 UserDefaults.standard.set(arrayOfSubreddits, forKey: "arrayOfSubreddits")

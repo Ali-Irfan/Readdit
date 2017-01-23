@@ -10,6 +10,7 @@ target 'Readdit' do
     pod 'Alamofire', '~> 4.0'
     pod 'Alamofire-Synchronous', '~> 4.0'
     pod 'Zip', '~> 0.6'
+    pod 'PMAlertController'
     pod 'StringExtensionHTML'
     pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 end

@@ -7,6 +7,7 @@ PODS:
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - Dollar (6.1.0)
+  - PMAlertController (2.1.0)
   - ReachabilitySwift (3)
   - SlideMenuControllerSwift (3.0.1)
   - StringExtensionHTML (0.2.0)
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - AsyncSwift
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - Dollar
+  - PMAlertController
   - ReachabilitySwift (~> 3)
   - SlideMenuControllerSwift
   - StringExtensionHTML
@@ -40,12 +42,13 @@ SPEC CHECKSUMS:
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
+  PMAlertController: 2d2c19af12edb50753d636395f9456c8cde1e858
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
   StringExtensionHTML: 80fdb1b3a83669e371d27bfe2f208f067e2db328
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 82695237c31d144b08a1664ed0987744248c6b15
+PODFILE CHECKSUM: 9fd89e90cff6fd89471dfdc9ea25d538c1f7a646
 
 COCOAPODS: 1.1.1
