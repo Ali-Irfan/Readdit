@@ -2,6 +2,8 @@ import UIKit
 import SwiftyJSON
 import ChameleonFramework
 import Async
+import PMAlertController
+import XLActionController
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -130,37 +132,52 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             defaults.set("default", forKey: "theme")
         }
         
+        if let key = defaults.object(forKey: "themeBlue") {
+            
+        } else {
+            defaults.set(0.0, forKey: "themeBlue")
+        }
+        
+        if let key = defaults.object(forKey: "themGreen") {
+            
+        } else {
+            defaults.set(0.0, forKey: "themGreen")
+        }
+        
+        if let key = defaults.object(forKey: "themeRed") {
+            
+        } else {
+            defaults.set(0.0, forKey: "themeRed")
+        }
+        
     }
     
     func changeDownload(_ sender: UIButton!) {
         
         // 1
-        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
         
+        let optionMenu = SkypeActionController()
+        //let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
         // 2
-        let dataOnly = UIAlertAction(title: "Data Only", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let dataOnly = Action("Data Only", style: .default, handler: { action in
             sender.setTitle("Data Only", for: .normal)
             print("Data Only")
             self.defaults.set("data", forKey: "network")
             
         })
-        let wifiOnly = UIAlertAction(title: "Wi-Fi Only", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let wifiOnly = Action("Wi-Fi Only", style: .default, handler: { action in
             sender.setTitle("Wi-Fi Only", for: .normal)
             print("Wi-Fi Only")
             self.defaults.set("wifi", forKey: "network")
         })
         
         //
-        let both = UIAlertAction(title: "Both", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let both = Action("Both", style: .default, handler: { action in
             sender.setTitle("Data + WiFi", for: .normal)
             self.defaults.set("both", forKey: "network")
             print("Both")
         })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let cancelAction = Action("Cancel", style: .default, handler: { action in
             print("Cancelled")
         })
         
@@ -294,6 +311,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             (alert: UIAlertAction!) -> Void in
             sender.setTitle("default", for: .normal)
             self.defaults.set("default", forKey: "theme")
+            
+            self.defaults.set(FlatWhite().getRGBAComponents()?.red, forKey: "themeRed")
+            self.defaults.set(FlatWhite().getRGBAComponents()?.blue, forKey: "themeBlue")
+            self.defaults.set(FlatWhite().getRGBAComponents()?.green, forKey: "themeGreen")
             self.setupTheme()
             self.settingsTable.reloadData()
 
@@ -303,7 +324,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             (alert: UIAlertAction!) -> Void in
             sender.setTitle("mint", for: .normal)
             self.defaults.set("mint", forKey: "theme")
-             self.setupTheme()
+            self.defaults.set(FlatMint().getRGBAComponents()?.red, forKey: "themeRed")
+            self.defaults.set(FlatMint().getRGBAComponents()?.blue, forKey: "themeBlue")
+            self.defaults.set(FlatMint().getRGBAComponents()?.green, forKey: "themeGreen")
+            self.setupTheme()
             self.settingsTable.reloadData()
 
         })
@@ -312,6 +336,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             (alert: UIAlertAction!) -> Void in
             sender.setTitle("purple", for: .normal)
             self.defaults.set("purple", forKey: "theme")
+            self.defaults.set(FlatPurple().getRGBAComponents()?.red, forKey: "themeRed")
+            self.defaults.set(FlatPurple().getRGBAComponents()?.blue, forKey: "themeBlue")
+            self.defaults.set(FlatPurple().getRGBAComponents()?.green, forKey: "themeGreen")
             self.setupTheme()
             self.settingsTable.reloadData()
             
@@ -321,6 +348,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             (alert: UIAlertAction!) -> Void in
             sender.setTitle("lime", for: .normal)
             self.defaults.set("lime", forKey: "theme")
+            self.defaults.set(FlatLime().getRGBAComponents()?.red, forKey: "themeRed")
+            self.defaults.set(FlatLime().getRGBAComponents()?.blue, forKey: "themeBlue")
+            self.defaults.set(FlatLime().getRGBAComponents()?.green, forKey: "themeGreen")
             self.setupTheme()
             self.settingsTable.reloadData()
             
@@ -329,6 +359,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let magenta = UIAlertAction(title: "magenta", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             sender.setTitle("magenta", for: .normal)
+            self.defaults.set(FlatMagenta().getRGBAComponents()?.red, forKey: "themeRed")
+            self.defaults.set(FlatMagenta().getRGBAComponents()?.blue, forKey: "themeBlue")
+            self.defaults.set(FlatMagenta().getRGBAComponents()?.green, forKey: "themeGreen")
             self.defaults.set("magenta", forKey: "theme")
             self.setupTheme()
             self.settingsTable.reloadData()
@@ -340,7 +373,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             (alert: UIAlertAction!) -> Void in
             sender.setTitle("blue", for: .normal)
             self.defaults.set("blue", forKey: "theme")
-             self.setupTheme()
+            self.defaults.set(FlatSkyBlue().getRGBAComponents()?.red, forKey: "themeRed")
+            self.defaults.set(FlatSkyBlue().getRGBAComponents()?.blue, forKey: "themeBlue")
+            self.defaults.set(FlatSkyBlue().getRGBAComponents()?.green, forKey: "themeGreen")
+            self.setupTheme()
             self.settingsTable.reloadData()
 
         })
@@ -350,7 +386,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             (alert: UIAlertAction!) -> Void in
             sender.setTitle("red", for: .normal)
             self.defaults.set("red", forKey: "theme")
-             self.setupTheme()
+            self.defaults.set(FlatRed().getRGBAComponents()?.red, forKey: "themeRed")
+            self.defaults.set(FlatRed().getRGBAComponents()?.blue, forKey: "themeBlue")
+            self.defaults.set(FlatRed().getRGBAComponents()?.green, forKey: "themeGreen")
+            self.setupTheme()
             self.settingsTable.reloadData()
    
 
@@ -360,7 +399,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             (alert: UIAlertAction!) -> Void in
             sender.setTitle("dark", for: .normal)
             self.defaults.set("dark", forKey: "theme")
-             self.setupTheme()
+            self.defaults.set(FlatBlack().getRGBAComponents()?.red, forKey: "themeRed")
+            self.defaults.set(FlatBlack().getRGBAComponents()?.blue, forKey: "themeBlue")
+            self.defaults.set(FlatBlack().getRGBAComponents()?.green, forKey: "themeGreen")
+            self.setupTheme()
             self.settingsTable.reloadData()
 
         })
@@ -536,10 +578,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func clearAll(_ sender: UIButton) {
         //1. Create the alert controller.
-        let alert = UIAlertController(title: "Clear All Data", message: "This will delete ALL saved threads from ALL subreddits. Are you sure?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        let alert = PMAlertController(title: "Clear All Data", color: Theme.getGeneralColor(), description: "This will delete ALL saved threads from ALL subreddits. Are you sure?", image: nil, style: .alert)
+        alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
         // 3. Grab the value from the text field, and print it when the user clicks OK.
-        alert.addAction(UIAlertAction(title: "Clear Data", style: .destructive, handler: { [weak alert] (_) in
+        alert.addAction(PMAlertAction(title: "Clear Data", style: .default, color: Theme.getGeneralColor(), action: { () in
             self.clearData(sender: sender)
         }))
         
@@ -602,5 +644,64 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     
+}
+
+
+
+extension UIColor
+{
+    /**
+     Returns the components that make up the color in the RGB color space as a tuple.
+     
+     - returns: The RGB components of the color or `nil` if the color could not be converted to RGBA color space.
+     */
+    func getRGBAComponents() -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)?
+    {
+        var (red, green, blue, alpha) = (CGFloat(0.0), CGFloat(0.0), CGFloat(0.0), CGFloat(0.0))
+        if self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        {
+            return (red, green, blue, alpha)
+        }
+        else
+        {
+            return nil
+        }
+    }
+    
+    /**
+     Returns the components that make up the color in the HSB color space as a tuple.
+     
+     - returns: The HSB components of the color or `nil` if the color could not be converted to HSBA color space.
+     */
+    func getHSBAComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat)?
+    {
+        var (hue, saturation, brightness, alpha) = (CGFloat(0.0), CGFloat(0.0), CGFloat(0.0), CGFloat(0.0))
+        if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        {
+            return (hue, saturation, brightness, alpha)
+        }
+        else
+        {
+            return nil
+        }
+    }
+    
+    /**
+     Returns the grayscale components of the color as a tuple.
+     
+     - returns: The grayscale components or `nil` if the color could not be converted to grayscale color space.
+     */
+    func getGrayscaleComponents() -> (white: CGFloat, alpha: CGFloat)?
+    {
+        var (white, alpha) = (CGFloat(0.0), CGFloat(0.0))
+        if self.getWhite(&white, alpha: &alpha)
+        {
+            return (white, alpha)
+        }
+        else
+        {
+            return nil
+        }
+    }
 }
 

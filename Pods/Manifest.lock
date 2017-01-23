@@ -12,6 +12,13 @@ PODS:
   - SlideMenuControllerSwift (3.0.1)
   - StringExtensionHTML (0.2.0)
   - SwiftyJSON (3.1.4)
+  - XLActionController (3.0.1):
+    - XLActionController/Core (= 3.0.1)
+  - XLActionController/Core (3.0.1)
+  - XLActionController/Skype (3.0.1):
+    - XLActionController/Core
+  - XLActionController/Youtube (3.0.1):
+    - XLActionController/Core
   - Zip (0.6.0)
 
 DEPENDENCIES:
@@ -25,6 +32,9 @@ DEPENDENCIES:
   - SlideMenuControllerSwift
   - StringExtensionHTML
   - SwiftyJSON
+  - XLActionController
+  - XLActionController/Skype
+  - XLActionController/Youtube
   - Zip (~> 0.6)
 
 EXTERNAL SOURCES:
@@ -47,8 +57,9 @@ SPEC CHECKSUMS:
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
   StringExtensionHTML: 80fdb1b3a83669e371d27bfe2f208f067e2db328
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  XLActionController: 57fe0ce1642e2eed971b188b490762345fdbf963
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 9fd89e90cff6fd89471dfdc9ea25d538c1f7a646
+PODFILE CHECKSUM: 87115e087be8bb0323ae0e1040aad5ca1560d6e3
 
 COCOAPODS: 1.1.1

@@ -11,6 +11,14 @@ target 'Readdit' do
     pod 'Alamofire-Synchronous', '~> 4.0'
     pod 'Zip', '~> 0.6'
     pod 'PMAlertController'
+    pod 'XLActionController'
+  # Uncomment depending on the examples that you want to install
+  #pod 'XLActionController/Periscope'
+  pod 'XLActionController/Skype'
+  #pod 'XLActionController/Spotify'
+  #pod 'XLActionController/Tweetbot'
+  #pod 'XLActionController/Twitter'
+  pod 'XLActionController/Youtube'
     pod 'StringExtensionHTML'
     pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 end

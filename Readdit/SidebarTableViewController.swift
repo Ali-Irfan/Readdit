@@ -201,10 +201,10 @@ indexPath: IndexPath){
     
     func updateAllSubreddits() {
         
-        let alert = UIAlertController(title: "Update all subreddits", message: "This may take a while. Are you sure?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        let alert = PMAlertController(title: "Update all subreddits", color: Theme.getGeneralColor(), description: "This may take a while. Are you sure?", image: nil, style: .alert)
+        alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
         // 3. Grab the value from the text field, and print it when the user clicks OK.
-        alert.addAction(UIAlertAction(title: "Update", style: .destructive, handler: { [weak alert] (_) in
+        alert.addAction(PMAlertAction(title: "Update", style: .default, color: Theme.getGeneralColor(), action: { () in
             for cell in self.sidebarTable.visibleCells {
                 if let subredditCell = cell as? SubredditTableViewCell {
                     subredditCell.updateSubreddit()
@@ -321,7 +321,7 @@ indexPath: IndexPath){
                     
                     // Now just construct the index path
                     
-                    let pathToLastRow = NSIndexPath(row: lastRowIndex-1, section: lastSectionIndex)
+                    let pathToLastRow = NSIndexPath(row: lastRowIndex-2, section: lastSectionIndex)
                     
                     if let cell = self.sidebarTable.cellForRow(at: pathToLastRow as IndexPath) as? SubredditTableViewCell {
                         cell.updateSubreddit()
