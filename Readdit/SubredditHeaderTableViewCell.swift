@@ -10,7 +10,7 @@ import UIKit
 import ChameleonFramework
 
 class SubredditHeaderTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var folderImage: UIButton!
     @IBOutlet weak var addSubreddit: UIButton!
     override func awakeFromNib() {
@@ -35,11 +35,11 @@ class SubredditHeaderTableViewCell: UITableViewCell {
             
         }
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

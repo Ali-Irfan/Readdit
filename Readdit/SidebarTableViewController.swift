@@ -18,10 +18,10 @@ var mainCellColor = UIColor()
 
 class SidebarTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var logo: UILabel!
-
+    
     var arrayOfIdentifiers: [String] = []
     var numberOfSubreddits = 0
-
+    
     
     func getSubreddits() -> [String] {
         return arrayOfSubreddits
@@ -39,8 +39,8 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         sidebarTable.rowHeight = UITableViewAutomaticDimension
         sidebarTable.allowsSelection = true
         
-
-
+        
+        
         
         
         arrayOfIdentifiers.append("subredditHeader")
@@ -51,7 +51,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         
         arrayOfIdentifiers.append("settingsHeader")
         arrayOfIdentifiers.append("updateAll")
-setupTheme()
+        setupTheme()
     }
     
     
@@ -65,7 +65,7 @@ setupTheme()
     
     
     
-
+    
     func setupTheme() {
         let theme = UserDefaults.standard.string(forKey: "theme")!
         switch theme {
@@ -117,37 +117,37 @@ setupTheme()
         default:
             break
         }
-            self.sidebarTable.reloadData()
+        self.sidebarTable.reloadData()
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt
-indexPath: IndexPath){
-
+        indexPath: IndexPath){
+        
     }
     
     
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
-     func numberOfSections(in tableView: UITableView) -> Int {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return arrayOfIdentifiers.count
     }
-
     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = arrayOfIdentifiers[indexPath.row]
         
         sidebarTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -180,7 +180,7 @@ indexPath: IndexPath){
             cell.settingsButton.setTitleColor(mainTextColor, for: .normal)
             
             return cell
-        
+            
         case "updateAll":
             let cell:UpdateAllTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "updateAll") as! UpdateAllTableViewCell
             cell.selectionStyle = UITableViewCellSelectionStyle.none
@@ -188,7 +188,7 @@ indexPath: IndexPath){
             cell.backgroundColor = mainCellColor
             cell.updateAll.setTitleColor(mainTextColor, for: .normal)
             return cell
-
+            
         default:
             let cell:UITableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "settingsCell")! as UITableViewCell
             cell.selectionStyle = UITableViewCellSelectionStyle.none
@@ -216,7 +216,7 @@ indexPath: IndexPath){
             }
         }))
         
-
+        
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
         
@@ -225,7 +225,7 @@ indexPath: IndexPath){
     
     
     func stopAllDownloads() {
-
+        
         for cell in self.sidebarTable.visibleCells {
             if let s = cell as? SubredditTableViewCell {
                 s.stopDownload()
@@ -240,7 +240,7 @@ indexPath: IndexPath){
     
     func deleteSubreddit(_ sender: UIButton) {
         if let cell = sender.superview?.superview as? SubredditTableViewCell {
-
+            
             //Have to add in delete files too
             
             
@@ -261,16 +261,16 @@ indexPath: IndexPath){
                 } catch let error as NSError {
                     print("An error took place(DownloadThread): \(error)")
                 }
-
+                
                 self.sidebarTable.reloadData()
-
+                
             }))
             
             
             // 4. Present the alert.
             self.present(alert, animated: true, completion: nil)
         }
-    
+        
     }
     
     func goToSubreddit(_ sender: UIButton) {
@@ -302,7 +302,7 @@ indexPath: IndexPath){
             textField!.placeholder = "e.g. AskReddit"
         }
         alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
-
+        
         // 3. Grab the value from the text field, and print it when the user clicks OK.
         alert.addAction(PMAlertAction(title: "Add", style: .default, color: Theme.getGeneralColor(), action: { () in
             let textField = alert.textFields[0] // Force unwrapping because we know it exists.
@@ -333,7 +333,7 @@ indexPath: IndexPath){
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
     }
-
+    
 }
 
 
@@ -349,9 +349,9 @@ extension String {
         self = self.capitalizingFirstLetter()
     }
     
-        var stringByRemovingWhitespaces: String {
-            return components(separatedBy: .whitespaces).joined(separator: "")
-        }
+    var stringByRemovingWhitespaces: String {
+        return components(separatedBy: .whitespaces).joined(separator: "")
+    }
     
     func convertHtmlSymbols() throws -> String? {
         guard let data = data(using: .utf8) else { return nil }

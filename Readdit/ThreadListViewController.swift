@@ -36,9 +36,9 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         checkCurrentDownloads()
         
         navigationItem.title = "/r/" + subreddit
-
+        
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-
+        
         navigationItem.hidesBackButton = true
         
         if revealViewController() != nil {
@@ -49,12 +49,12 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             revealViewController().rearViewRevealWidth = 250
         }
         
-//        let btn1 = UIButton(type: .custom)
-//        btn1.setImage(#imageLiteral(resourceName: "menu-2"), for: .normal)
-//        btn1.frame = CGRect(x: 0, y: 0, width: 25, height: 20)
-//        btn1.addTarget(revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
-//        let item1 = UIBarButtonItem(customView: btn1)
-//        navigationItem.leftBarButtonItem = item1
+        //        let btn1 = UIButton(type: .custom)
+        //        btn1.setImage(#imageLiteral(resourceName: "menu-2"), for: .normal)
+        //        btn1.frame = CGRect(x: 0, y: 0, width: 25, height: 20)
+        //        btn1.addTarget(revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+        //        let item1 = UIBarButtonItem(customView: btn1)
+        //        navigationItem.leftBarButtonItem = item1
         
         threadTable.delegate = self
         threadTable.dataSource = self
@@ -63,15 +63,15 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         navigationController?.navigationItem.setHidesBackButton(true, animated: true)
         threadTable.backgroundColor = FlatWhite()//General.hexStringToUIColor(hex: "#dadada")
         setupTheme()
-
+        
         Async.main {
-        self.displayThreads()
+            self.displayThreads()
         }
         
     }
     
     
-
+    
     
     func setupTheme() {
         let theme = UserDefaults.standard.string(forKey: "theme")!
@@ -80,7 +80,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         case "mint":
             Theme.setNavbarTheme(navigationController: n, color: FlatMint())
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
-
+            
             generalColor = FlatMintDark()
             
         case "purple":
@@ -104,30 +104,30 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         case "blue":
             Theme.setNavbarTheme(navigationController: n, color: FlatSkyBlue())
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
-
+            
             generalColor = FlatSkyBlue()
-
+            
             
         case "red":
             Theme.setNavbarTheme(navigationController: n, color: FlatRed())
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
-
+            
             generalColor = FlatRed()
             
-
+            
         case "dark":
             Theme.setNavbarTheme(navigationController: n, color: FlatBlack())
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
             generalColor = FlatBlack()
             threadTable.backgroundColor = FlatBlackDark()
             self.view.backgroundColor = FlatBlackDark()
-
+            
         case "default":
             Theme.setNavbarTheme(navigationController: n, color: FlatWhite())
             Utils.addMenuButton(color: UIColor.black, navigationItem: navigationItem, revealViewController: revealViewController())
             
             generalColor = FlatBlackDark()
-
+            
         default:
             break
         }
@@ -249,12 +249,12 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         if !isDownloading {
-        overlay?.isHidden = true
+            overlay?.isHidden = true
         }
         threadTable.reloadData()
-
-
-
+        
+        
+        
     }
     
     
@@ -287,7 +287,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.mainText.font = UIFont(name: cell.mainText.font.fontName, size: 17)
             cell.hoursText.font = UIFont(name: cell.hoursText.font.fontName, size: 12)
             cell.authorLabel.font = UIFont(name: cell.authorLabel.font.fontName, size: 12)
-
+            
         } else if UserDefaults.standard.string(forKey: "fontSize") == "large" {
             size = 14
             cell.mainText.font = UIFont(name: cell.mainText.font.fontName, size: 19)
@@ -342,7 +342,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             myVC.threadID = threadID
             myVC.subreddit = subreddit
             //present(myVC, animated: true, completion: nil)
-
+            
             navigationController?.pushViewController(myVC, animated: true)
         }
     }

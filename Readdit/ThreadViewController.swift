@@ -40,9 +40,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         overlay?.addSubview(activityView)
         view.addSubview(overlay!)
-
+        
         addMoreButton()
-
+        
         revealViewController().rearViewRevealWidth = 0
         view.addGestureRecognizer(self.revealViewController().rightViewController.revealViewController().panGestureRecognizer())
         navigationController?.navigationBar.tintColor = UIColor.white
@@ -57,14 +57,14 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
         
-
+        
         Async.main {
-        self.showThreadComments(sortType: "Best")
+            self.showThreadComments(sortType: "Best")
         }
         
         
     }
-
+    
     
     func addMoreButton() {
         var indicatorColor = UIColor()
@@ -76,7 +76,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             indicatorColor = UIColor.white
             self.activityView.color = FlatMint()
             color = FlatMintDark()
-
+            
         case "purple":
             indicatorColor = UIColor.white
             self.activityView.color = FlatPurple()
@@ -96,25 +96,25 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             indicatorColor = UIColor.white
             self.activityView.color = FlatBlue()
             color = FlatSkyBlue()
-
+            
         case "red":
             indicatorColor = UIColor.white
             self.activityView.color = FlatRed()
             color = FlatRed()
-
+            
             
         case "dark":
             indicatorColor = UIColor.white
             self.activityView.color = FlatBlack()
             color = FlatBlack()
             
-
+            
         case "default":
             indicatorColor = UIColor.black
             self.activityView.color = FlatWhite()
             color = FlatBlack()
             tint = FlatBlack()
-
+            
         default:
             break
         }
@@ -127,7 +127,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let item2 = UIBarButtonItem(customView: btn2)
         navigationItem.rightBarButtonItem = item2
     }
-
+    
     func showThreadComments(sortType: String) {
         
         let jsonRaw = Downloader.getThreadJSON(threadURL: threadURL, threadID: threadID, sortType: sortType, subreddit: subreddit)
@@ -213,7 +213,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell:CommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentViewCell
         
         var size: CGFloat = 0.0
-
+        
         
         
         if bleh[indexPath.row].isMainComment {
@@ -227,8 +227,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let att      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size), NSForegroundColorAttributeName: color] as [String : Any]
                 let attributedText = cell.authorLabel.text
                 cell.authorLabel.attributedText = NSAttributedString(string: attributedText!, attributes: att)
-
-
+                
+                
             }
             cell.collapseLabel?.text = ""
             let titleText = bleh[indexPath.row].title.stringByDecodingHTMLEntities
@@ -261,7 +261,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 attributedText.append(NSAttributedString(string: thirdWord))
                 cell.mainLabel?.attributedText = attributedText
                 print("Done with size: \(size)")
-
+                
             } else {
                 let firstWord = titleText
                 let attrs2 = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size)]
@@ -277,11 +277,11 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             
         } else if !bleh[indexPath.row].hiddenComment && !bleh[indexPath.row].isMainComment {
-
+            
             
             
             cell.contentView.layoutIfNeeded()
-
+            
             if (indexPath.row+1) <= indexPath.count {
                 if bleh[indexPath.row + 1].level == 0 {
                     for sep in cell.arrayOfSeperators {
@@ -290,7 +290,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                 }
             }
-        
+            
             cell.indentationLevel = bleh[indexPath.row].level
             cell.selectionStyle = .none
             // cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
@@ -305,12 +305,14 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             for sep in cell.arrayOfSeperators {
                 sep.isHidden = true
             }
-
-
+            
+            
             for i in 0...cell.indentationLevel {
                 cell.arrayOfSeperators[i].isHidden = false
                 if Theme.getGeneralColor() != FlatBlack() {
-                cell.arrayOfSeperators[i].backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
+                    cell.arrayOfSeperators[i].backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
+                } else {
+                    cell.arrayOfSeperators[i].backgroundColor = FlatGrayDark()
                 }
             }
             
@@ -351,7 +353,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.authorLabel.textColor = FlatBlack()//Utils.hexStringToUIColor(hex: "808080")
             if bleh[indexPath.row].author == author {
                 print("Author is \(bleh[indexPath.row].author), adding BG")
-
+                
                 //cell.authorLabel.backgroundColor = FlatGray()//Utils.hexStringToUIColor(hex: "E1E1E1")
                 cell.authorLabel.textColor = color
                 let att      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: otherSize), NSForegroundColorAttributeName: color] as [String : Any]
@@ -362,14 +364,14 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 //cell.authorLabel.backgroundColor = UIColor.white
                 cell.authorLabel.textColor = FlatBlack()
                 
-
+                
             }
             
             let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)))
             cell.upvoteLabel?.text = " • " + String(bleh[indexPath.row].upvotes)
             
-
-
+            
+            
             let firstWord   = dateText
             let secondWord = String(bleh[indexPath.row].upvotes)
             let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: otherSize), NSForegroundColorAttributeName: color] as [String : Any]
@@ -397,7 +399,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -442,7 +444,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //commentTable.endUpdates()
         //commentTable.reloadData()
         Async.main{
-        self.commentTable.reloadRows(at: [indexPath], with: .fade)
+            self.commentTable.reloadRows(at: [indexPath], with: .fade)
         }
         
     }
@@ -474,7 +476,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-
+    
 }
 
 extension CALayer {
