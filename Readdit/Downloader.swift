@@ -11,21 +11,18 @@ let configuration = URLSessionConfiguration.background(withIdentifier: "\(Bundle
 var arrayOfRequests: [Alamofire.Request?] = []
 
 public class Downloader: UIViewController {
-
+    
     class func initializeConfig() {
         var headers = Alamofire.SessionManager.defaultHTTPHeaders
-        // add your custom header
         headers["Accept-Encoding"] = "gzip"
         headers["UserAgent"] = "ios:com.dev.readdit:v1.0.0(by/u/thisbeali)"
-        // create a custom session configuration
-        // add the headers
         configuration.httpAdditionalHeaders = headers
         configuration.timeoutIntervalForResource = 2 // seconds
         sessionManager = Alamofire.SessionManager(configuration: configuration)
         print("Initialized sesssion")
-
+        
     }
-
+    
     
     
     class func stopDownloads() {
@@ -39,68 +36,64 @@ public class Downloader: UIViewController {
     
     
     class func downloadJSON(subreddit:String){
-
         
-    var threadNumber = "10"
-    if let x = UserDefaults.standard.string(forKey: "NumberOfThreads") {
-        threadNumber = x
-        //print("Using key: " + x)
-    }
-    
-    for sortType in arrayOfSubredditSort {
-    
+        
+        var threadNumber = "10"
+        if let x = UserDefaults.standard.string(forKey: "NumberOfThreads") {
+            threadNumber = x
+        }
+        
+        for sortType in arrayOfSubredditSort {
+            
             let urlString = "https://www.reddit.com/r/" + subreddit + "/" + sortType.lowercased() + "/.json?limit=" + threadNumber
             let fileName = subreddit + ".txt"
-
-                let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
-                let subredditPath = documentsPath.appendingPathComponent(subreddit)
-                let threadSortPath = documentsPath.appendingPathComponent(subreddit + "/thread_" + sortType)
-                do {
-                    try FileManager.default.createDirectory(at: subredditPath!, withIntermediateDirectories: true, attributes: nil)
-                    try FileManager.default.createDirectory(at: threadSortPath!, withIntermediateDirectories: true, attributes: nil)
-                } catch let error as NSError {
-                    NSLog("Unable to create directory \(error.debugDescription)")
-                }
             
-                    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                    let fileURL = documentsPath.appendingPathComponent("/" + subreddit + "/thread_" + sortType + "/" + fileName)
-                    return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
-                }
-        
-        sessionManager.download(urlString, to: destination).downloadProgress { progress in
-                    print("Download Progress: \(progress.fractionCompleted)")
-                    }.validate(statusCode: 200..<300).response()
-
-       } //END OF LOOP
+            let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+            let subredditPath = documentsPath.appendingPathComponent(subreddit)
+            let threadSortPath = documentsPath.appendingPathComponent(subreddit + "/thread_" + sortType)
+            do {
+                try FileManager.default.createDirectory(at: subredditPath!, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(at: threadSortPath!, withIntermediateDirectories: true, attributes: nil)
+            } catch let error as NSError {
+                NSLog("Unable to create directory \(error.debugDescription)")
+            }
+            
+            let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+                let fileURL = documentsPath.appendingPathComponent("/" + subreddit + "/thread_" + sortType + "/" + fileName)
+                return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
+            }
+            
+            sessionManager.download(urlString, to: destination).downloadProgress { progress in
+                print("Download Progress: \(progress.fractionCompleted)")
+                }.validate(statusCode: 200..<300).response()
+            
+        } //END OF LOOP
     }
-
-
+    
+    
     
     class func downloadThreadJSON(subreddit: String, threadURL:String, threadID: String){
         var threadNumber = "10"
         if let x = UserDefaults.standard.string(forKey: "NumberOfThreads") {
             threadNumber = x
-            //print("Using key: " + x)
         }
         
         
         for sortType in arrayOfThreadSort {
-        let urlString = "https://reddit.com" + threadURL + "/.json?sort=" + sortType.lowercased()
-
-        let fileName = threadID + ".txt"
-            //print("Downloading \(fileName) with \(sortType)")
-
-
+            let urlString = "https://reddit.com" + threadURL + "/.json?sort=" + sortType.lowercased()
+            let fileName = threadID + ".txt"
             let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
             let commentSortPath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType)
+            
+            //Create a folder for each type of sorting style
             do {
                 try FileManager.default.createDirectory(at: commentSortPath!, withIntermediateDirectories: true, attributes: nil)
             } catch let error as NSError {
                 NSLog("Unable to create directory \(error.debugDescription)")
             }
-
+            
             let filePath = documentsPath.appendingPathComponent("/" + subreddit + "/comments_" + sortType + "/" + fileName)
-
+            
             let destination: DownloadRequest.DownloadFileDestination = { _, _ in
                 let fileURL = documentsPath.appendingPathComponent("/" + subreddit + "/comments_" + sortType + "/" + fileName)
                 return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
@@ -110,32 +103,29 @@ public class Downloader: UIViewController {
                 //print("Download Progress: \(progress.fractionCompleted)")
                 //print("Downloading \(count)/\(threadNumber)")
                 
-            }.validate(statusCode: 200..<300).response()
-        
-
-
+                }.validate(statusCode: 200..<300).response()
+            
+            
+            
             do {
+                //Zip the files after they are downloaded and remove their original file
                 let zipFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".zip")
                 let txtFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".txt")
                 try Zip.zipFiles(paths: [filePath!], zipFilePath: zipFilePath!, password: nil, progress: nil)
                 try FileManager.default.removeItem(at: txtFilePath!)
-                } catch let error as NSError {
-                    print("An error took place(DownloadThread): \(error)")
-                }
-        }//end of loopZZZ
+            } catch let error as NSError {
+                print("An error took place(DownloadThread): \(error)")
+            }
+        }
     }
     
-
+    
     
     
     class func getJSON(subreddit:String, sortType: String) -> String {
         
         let fileName = subreddit + ".txt"
         var filePath = ""
-        // Read file content. Example in Swift
-        // Fine documents directory on device
-        
-        
         let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
         
         if dirs.count > 0 {
@@ -150,7 +140,6 @@ public class Downloader: UIViewController {
         do {
             // Read file content
             let contentFromFile = try NSString(contentsOfFile: filePath, encoding: String.Encoding.utf8.rawValue)
-            //print(contentFromFile)
             return contentFromFile as String
         }
         catch let error as NSError {
@@ -167,14 +156,14 @@ public class Downloader: UIViewController {
         // Read file content. Example in Swift
         // Fine documents directory on device
         
-
+        
         let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
         
-
-            let dir = dirs[0] //documents directory
-            filePath = dir.appending("/" + subreddit + "/comments_" + sortType + "/" + fileName)
-            print("Fetching thread comments from= \(filePath)")
-
+        
+        let dir = dirs[0] //documents directory
+        filePath = dir.appending("/" + subreddit + "/comments_" + sortType + "/" + fileName)
+        print("Fetching thread comments from= \(filePath)")
+        
         
         let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
         let zipFilePath = documentsFolder.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".zip")
@@ -183,11 +172,12 @@ public class Downloader: UIViewController {
         
         
         do {
+            //Unzip the file in directory to read it
             try Zip.unzipFile(zipFilePath!, destination: commentFolderPath!, overwrite: true, password: nil, progress: nil)
         } catch let error as NSError {
             print(error)
         }
-
+        
         do {
             // Read file content
             print("Trying to read content from \(filePath)")
@@ -201,9 +191,4 @@ public class Downloader: UIViewController {
             return "Error"
         }
     }
-
-
-    
-    
-    
 }

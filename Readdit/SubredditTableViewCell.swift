@@ -56,15 +56,10 @@ class SubredditTableViewCell: UITableViewCell {
     
     
     func updateSubreddit() {
-        print("Updating subreddit")
         if Utils.hasAppropriateConnection() {
             Async.background {
-                
-                
                 var arrayOfThreads:[ThreadData] = []
                 let subreddit = self.subredditTitle.currentTitle!
-                print("Downloading subreddits")
-                
                 Async.main {
                     var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
                     downloadsInProgress.append(subreddit)
@@ -72,9 +67,8 @@ class SubredditTableViewCell: UITableViewCell {
                     let nc = NotificationCenter.default
                     let myNotification = Notification.Name(rawValue:"MyNotification")
                     
-                    nc.post(name:myNotification,
-                            object: nil,
-                            userInfo:["message":"Hello there!", "date":Date()])
+                    //Send notification that this subreddit is downloading (to produce overlay of ViewController)
+                    nc.post(name:myNotification, object: nil, userInfo:["message":"", "date":Date()])
                     self.loadingIndicator.isHidden = false
                     self.loadingIndicator.startAnimating()
                     self.updateButton.isHidden = true
@@ -130,11 +124,14 @@ class SubredditTableViewCell: UITableViewCell {
                             self.updateButton.isHidden = false
                             self.deleteButton.isEnabled = true
                             
+                            //Remove current subreddit from downloads in progress array
                             downloadsInProgress = downloadsInProgress.filter { $0 != subreddit }
                             UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
+                            
                             let nc = NotificationCenter.default
                             let myNotification = Notification.Name(rawValue:"MyNotification")
                             
+                            //Send notification again because the download has been completed
                             nc.post(name:myNotification,
                                     object: nil,
                                     userInfo:["message":"Hello there!", "date":Date()])                }
@@ -151,7 +148,6 @@ class SubredditTableViewCell: UITableViewCell {
     
     func stopDownload() {
         Downloader.stopDownloads()
-        
         self.loadingIndicator.stopAnimating()
         self.loadingIndicator.isHidden = true
         self.updateButton.isHidden = false
@@ -161,8 +157,6 @@ class SubredditTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
     

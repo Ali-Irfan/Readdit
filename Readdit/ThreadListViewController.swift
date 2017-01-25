@@ -5,13 +5,13 @@ import Async
 import ChameleonFramework
 
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var overlay : UIView? // This should be a class variable
+    var overlay : UIView?
     
     var generalColor:UIColor = UIColor.black
     var arrayOfThreads: [ThreadData] = []
     var subreddit = ""
     var isDownloading:Bool = false
-    let myNotification = Notification.Name(rawValue:"MyNotification")
+    let myNotification = Notification.Name(rawValue:"MyNotification") //Placeholder name
     
     
     @IBOutlet weak var threadTable: UITableView!
@@ -23,45 +23,35 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         let nc = NotificationCenter.default
         nc.addObserver(forName:myNotification, object:nil, queue:nil, using:catchNotification)
         
+        //Adding an overlay for async loading
         overlay = UIView(frame: view.frame)
         overlay!.backgroundColor = UIColor.darkGray
         overlay!.alpha = 0.8
         let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         activityView.center = self.view.center
         activityView.startAnimating()
-        
         overlay?.addSubview(activityView)
         view.addSubview(overlay!)
         
         checkCurrentDownloads()
-        
         navigationItem.title = "/r/" + subreddit
         
+        //Remove the title from the back button of the NavigationController
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
         navigationItem.hidesBackButton = true
         
         if revealViewController() != nil {
             view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
-            
-            
             revealViewController().rightViewRevealWidth = 150
             revealViewController().rearViewRevealWidth = 250
         }
-        
-        //        let btn1 = UIButton(type: .custom)
-        //        btn1.setImage(#imageLiteral(resourceName: "menu-2"), for: .normal)
-        //        btn1.frame = CGRect(x: 0, y: 0, width: 25, height: 20)
-        //        btn1.addTarget(revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
-        //        let item1 = UIBarButtonItem(customView: btn1)
-        //        navigationItem.leftBarButtonItem = item1
         
         threadTable.delegate = self
         threadTable.dataSource = self
         threadTable.rowHeight = UITableViewAutomaticDimension
         threadTable.estimatedRowHeight = 140
         navigationController?.navigationItem.setHidesBackButton(true, animated: true)
-        threadTable.backgroundColor = FlatWhite()//General.hexStringToUIColor(hex: "#dadada")
+        threadTable.backgroundColor = FlatWhite()
         setupTheme()
         
         Async.main {
@@ -276,7 +266,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell:THREADTableViewCell = tableView.dequeueReusableCell(withIdentifier: "mycell2") as! THREADTableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
         var size:CGFloat = 0.0
-        print("Current default: \(UserDefaults.standard.string(forKey: "fontSize"))")
+        
+        //Set up font size based on user defaults
         if UserDefaults.standard.string(forKey: "fontSize") == "small" {
             size = 10
             cell.mainText.font = UIFont(name: cell.mainText.font.fontName, size: 15)
@@ -295,12 +286,14 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.authorLabel.font = UIFont(name: cell.authorLabel.font.fontName, size: 14)
         }
         
-        //cell.topViewBar.backgroundColor = FlatWhite()//General.hexStringToUIColor(hex: "#dadada")
+        
+        //Set up main labels of cell
         cell.mainText?.text = arrayOfThreads[indexPath.row].title
         cell.authorLabel?.text = "/u/" + arrayOfThreads[indexPath.row].author
         let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(arrayOfThreads[indexPath.row].utcCreated)))
         cell.hoursText?.text = " • " + String(arrayOfThreads[indexPath.row].upvotes)
         
+        //Create attributed string with the upvotes bolded
         let firstWord   = dateText
         let secondWord = String(arrayOfThreads[indexPath.row].upvotes)
         let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size), NSForegroundColorAttributeName: generalColor] as [String : Any]
@@ -309,6 +302,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         attributedText.append(NSAttributedString(string: secondWord, attributes: attrs))
         cell.hoursText?.attributedText = attributedText
         
+        //Set dynamic height
         cell.textLabel?.numberOfLines=0;
         return cell
     }
@@ -341,18 +335,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             myVC.threadURL = "https://reddit.com" + threadURL
             myVC.threadID = threadID
             myVC.subreddit = subreddit
-            //present(myVC, animated: true, completion: nil)
-            
             navigationController?.pushViewController(myVC, animated: true)
         }
     }
-    
-    func sendAlert(TITLE:String, MESSAGE:String, BUTTON:String) {
-        let alert = UIAlertController(title: TITLE, message: MESSAGE, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: BUTTON, style: .default, handler: nil)
-        alert.addAction(defaultAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
 }
 
