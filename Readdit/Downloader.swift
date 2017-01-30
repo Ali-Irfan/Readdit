@@ -4,34 +4,31 @@ import Alamofire
 import Alamofire_Synchronous
 import Zip
 
+
+
+
+var Network = NetworkManager().manager!
+
+
 let arrayOfSubredditSort = ["Hot", "Controversial", "Top", "Rising", "New"]
 let arrayOfThreadSort    = ["Top", "New", "Controversial", "Best", "Old", "QA"]
-var sessionManager:Alamofire.SessionManager!
-let configuration = URLSessionConfiguration.background(withIdentifier: "\(Bundle.main.bundleIdentifier).background")
-var arrayOfRequests: [Alamofire.Request?] = []
+var request:Alamofire.Request?
 
 public class Downloader: UIViewController {
     
-    class func initializeConfig() {
-        var headers = Alamofire.SessionManager.defaultHTTPHeaders
-        headers["Accept-Encoding"] = "gzip"
-        headers["UserAgent"] = "ios:com.dev.readdit:v1.0.0(by/u/thisbeali)"
-        configuration.httpAdditionalHeaders = headers
-        configuration.timeoutIntervalForResource = 2 // seconds
-        sessionManager = Alamofire.SessionManager(configuration: configuration)
-        print("Initialized sesssion")
-        
-    }
-    
-    
     
     class func stopDownloads() {
-        sessionManager.session.getAllTasks { (tasks) -> Void in
-            tasks.forEach({
-                $0.cancel()
-                print("Cancelled \($0)")
-            })
+
+        for request in currentRequests! {
+            request.cancel()
         }
+        
+        var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
+        
+        //Remove current subreddit from downloads in progress array
+        downloadsInProgress.removeAll()
+        UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
+
     }
     
     
@@ -63,21 +60,28 @@ public class Downloader: UIViewController {
                 return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
             }
             
-            sessionManager.download(urlString, to: destination).downloadProgress { progress in
-                print("Download Progress: \(progress.fractionCompleted)")
-                }.validate(statusCode: 200..<300).response()
+            var completed:Bool = false
             
+             Network.download(urlString, to: destination).downloadProgress { progress in
+                print("Download Progress: \(progress.fractionCompleted)")
+                }.validate(statusCode: 200..<300).response{ response in
+                    completed = true
+            }
+            while !completed {
+                //print("Not completed yet...")
+            }
+            print("Completed subreddit!")
+
         } //END OF LOOP
     }
     
     
     
-    class func downloadThreadJSON(subreddit: String, threadURL:String, threadID: String){
+    class func downloadThreadJSON(subreddit: String, threadURL:String, threadID: String) {
         var threadNumber = "10"
         if let x = UserDefaults.standard.string(forKey: "NumberOfThreads") {
             threadNumber = x
         }
-        
         
         for sortType in arrayOfThreadSort {
             let urlString = "https://reddit.com" + threadURL + "/.json?sort=" + sortType.lowercased()
@@ -98,24 +102,33 @@ public class Downloader: UIViewController {
                 let fileURL = documentsPath.appendingPathComponent("/" + subreddit + "/comments_" + sortType + "/" + fileName)
                 return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
             }
+            var completed:Bool = false
+
+            Network.download(urlString, to: destination).downloadProgress { progress in
+
+                }
+                .validate(statusCode: 200..<300)
+                .response{ response in
+                    
+                    do {
+                        //Zip the files after they are downloaded and remove their original file
+                        let zipFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".zip")
+                        let txtFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".txt")
+                        try Zip.zipFiles(paths: [filePath!], zipFilePath: zipFilePath!, password: nil, progress: nil)
+                        try FileManager.default.removeItem(at: txtFilePath!)
+                        completed = true
+                        print("completed response")
+
+                    } catch let error as NSError {
+                        print("An error took place(DownloadThread): \(error) with filepath: \(threadID)")
+                    }
+                }
             
-            sessionManager.download(urlString, to: destination).downloadProgress { progress in
-                //print("Download Progress: \(progress.fractionCompleted)")
-                //print("Downloading \(count)/\(threadNumber)")
-                
-                }.validate(statusCode: 200..<300).response()
-            
-            
-            
-            do {
-                //Zip the files after they are downloaded and remove their original file
-                let zipFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".zip")
-                let txtFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".txt")
-                try Zip.zipFiles(paths: [filePath!], zipFilePath: zipFilePath!, password: nil, progress: nil)
-                try FileManager.default.removeItem(at: txtFilePath!)
-            } catch let error as NSError {
-                print("An error took place(DownloadThread): \(error)")
+            while !completed {
+                //print("Not completed yet...")
             }
+            print("Completed thread!")
+
         }
     }
     
@@ -131,6 +144,10 @@ public class Downloader: UIViewController {
         if dirs.count > 0 {
             let dir = dirs[0] //documents directory
             filePath = dir.appending("/" + subreddit + "/thread_" + sortType + "/" + fileName)
+            let downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
+            while !FileManager.default.fileExists(atPath: filePath) && downloadsInProgress.contains(subreddit){
+                //print("File doesn't exist)")
+            }
             print("Local path = \(filePath)")
         } else {
             print("Could not find local directory to store file")
@@ -162,6 +179,7 @@ public class Downloader: UIViewController {
         
         let dir = dirs[0] //documents directory
         filePath = dir.appending("/" + subreddit + "/comments_" + sortType + "/" + fileName)
+
         print("Fetching thread comments from= \(filePath)")
         
         
@@ -169,7 +187,6 @@ public class Downloader: UIViewController {
         let zipFilePath = documentsFolder.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".zip")
         let commentFolderPath = documentsFolder.appendingPathComponent(subreddit + "/comments_" + sortType + "/")
         let txtPath = documentsFolder.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".txt")
-        
         
         do {
             //Unzip the file in directory to read it
@@ -184,6 +201,7 @@ public class Downloader: UIViewController {
             let contentFromFile = try NSString(contentsOfFile: filePath , encoding: String.Encoding.utf8.rawValue)
             let filemanager:FileManager = FileManager()
             try filemanager.removeItem(at: txtPath!)
+            print("Removed item at \(txtPath)")
             return contentFromFile as String
         }
         catch let error as NSError {

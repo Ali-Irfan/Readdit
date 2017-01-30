@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		360488401E3C46C900A45B75 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3604883F1E3C46C900A45B75 /* NetworkManager.swift */; };
 		362104F31DF73925002E13D2 /* SubredditHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F21DF73925002E13D2 /* SubredditHeaderTableViewCell.swift */; };
 		362104F51DF73939002E13D2 /* SubredditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */; };
 		362104F91DF73951002E13D2 /* SettingsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */; };
@@ -73,6 +74,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3604883F1E3C46C900A45B75 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		362104F21DF73925002E13D2 /* SubredditHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubredditHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubredditTableViewCell.swift; sourceTree = "<group>"; };
 		362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				363916931E120B7E0053EDCE /* Style.swift */,
 				363916951E120DE70053EDCE /* FindSize.swift */,
 				36B2680A1E306D6B009FC008 /* Theme.swift */,
+				3604883F1E3C46C900A45B75 /* NetworkManager.swift */,
 			);
 			name = Misc.;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				366903DE1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift in Sources */,
 				36970FFF1DE936E60070DC33 /* MainPostTableViewCell.swift in Sources */,
 				363916921E1086A70053EDCE /* Utils.swift in Sources */,
+				360488401E3C46C900A45B75 /* NetworkManager.swift in Sources */,
 				362104F51DF73939002E13D2 /* SubredditTableViewCell.swift in Sources */,
 				36F608F51E09F47D00604B6D /* ThreadNumberField.swift in Sources */,
 				368A4BEF1DD0CABF002D0480 /* CommentData.swift in Sources */,

@@ -14,6 +14,9 @@ import ChameleonFramework
 
 class SubredditTableViewCell: UITableViewCell {
     
+    let nc = NotificationCenter.default
+    let myNotification = Notification.Name(rawValue:"MyNotification")
+
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
@@ -23,7 +26,7 @@ class SubredditTableViewCell: UITableViewCell {
         // Initialization code
         self.selectionStyle = UITableViewCellSelectionStyle.none
         self.contentView.layoutMargins = UIEdgeInsets.zero
-        loadingIndicator.isHidden = true
+       // loadingIndicator.isHidden = true
         updateButton.setImage(#imageLiteral(resourceName: "cloud-computing"), for: .normal)
         updateButton.frame = CGRect(x: self.frame.width-50, y: self.frame.height/2 - 12, width: 30, height: 30)
         updateButton.addTarget(self, action: #selector(updateSubreddit), for: .touchUpInside)
@@ -64,17 +67,12 @@ class SubredditTableViewCell: UITableViewCell {
                     var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
                     downloadsInProgress.append(subreddit)
                     UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
-                    let nc = NotificationCenter.default
-                    let myNotification = Notification.Name(rawValue:"MyNotification")
-                    
+
                     //Send notification that this subreddit is downloading (to produce overlay of ViewController)
-                    nc.post(name:myNotification, object: nil, userInfo:["message":"", "date":Date()])
-                    self.loadingIndicator.isHidden = false
-                    self.loadingIndicator.startAnimating()
-                    self.updateButton.isHidden = true
-                    self.deleteButton.isEnabled = false
-                    
+                    self.nc.post(name:self.myNotification, object: nil, userInfo:["message":"", "date":Date()])
                 }
+                    
+                
                 
                 
                 Downloader.downloadJSON(subreddit: subreddit)
@@ -110,29 +108,27 @@ class SubredditTableViewCell: UITableViewCell {
                             }
                         }
                         print("Downloading threads")
+                        var counter = 0
                         var count = 1
+                        let numOfThreads = Int(UserDefaults.standard.string(forKey: "NumberOfThreads")!)
                         for thread in arrayOfThreads {
-                            print("Downloading \(count)/\(UserDefaults.standard.string(forKey: "NumberOfThreads"))")
+                            print("Downloading \(count)/\(UserDefaults.standard.string(forKey: "NumberOfThreads")!)")
                             count = count + 1
                             Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
+                            counter = counter + 1
                         }
+                        
+                        
                         print("Done downloading.")
                         Async.main {
                             var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
-                            self.loadingIndicator.stopAnimating()
-                            self.loadingIndicator.isHidden = true
-                            self.updateButton.isHidden = false
-                            self.deleteButton.isEnabled = true
-                            
+
                             //Remove current subreddit from downloads in progress array
                             downloadsInProgress = downloadsInProgress.filter { $0 != subreddit }
                             UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
                             
-                            let nc = NotificationCenter.default
-                            let myNotification = Notification.Name(rawValue:"MyNotification")
-                            
                             //Send notification again because the download has been completed
-                            nc.post(name:myNotification,
+                            self.nc.post(name:self.myNotification,
                                     object: nil,
                                     userInfo:["message":"Hello there!", "date":Date()])                }
                     }//ASYNC
@@ -145,13 +141,13 @@ class SubredditTableViewCell: UITableViewCell {
         
     }
     
-    
+
     func stopDownload() {
         Downloader.stopDownloads()
-        self.loadingIndicator.stopAnimating()
-        self.loadingIndicator.isHidden = true
-        self.updateButton.isHidden = false
-        self.deleteButton.isEnabled = true
+        self.nc.post(name:myNotification,
+                     object: nil,
+                     userInfo:["message":"Hello there!", "date":Date()])
+        
     }
     
     

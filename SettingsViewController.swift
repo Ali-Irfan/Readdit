@@ -15,7 +15,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     var totalSize = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        Downloader.initializeConfig()
         setDefaults()
         setupTheme()
         if revealViewController() != nil {

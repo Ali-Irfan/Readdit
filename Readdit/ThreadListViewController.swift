@@ -11,7 +11,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     var arrayOfThreads: [ThreadData] = []
     var subreddit = ""
     var isDownloading:Bool = false
-    let myNotification = Notification.Name(rawValue:"MyNotification") //Placeholder name
+     //Placeholder name
     
     
     @IBOutlet weak var threadTable: UITableView!
@@ -54,9 +54,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         threadTable.backgroundColor = FlatWhite()
         setupTheme()
         
-        Async.main {
             self.displayThreads()
-        }
+        
         
     }
     
@@ -128,12 +127,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func checkCurrentDownloads() {
-        print("GOT IT")
         let downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
         print(downloadsInProgress)
-        print("This subreddit: " + subreddit)
-        print("Checking to see if \(subreddit) is in  \(downloadsInProgress)")
-        
         
         if downloadsInProgress.contains(subreddit) {
             overlay?.isHidden = false
@@ -149,7 +144,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     override func viewDidAppear(_ animated: Bool) {
-        print("View appeared")
         self.navigationItem.hidesBackButton = true
         revealViewController().rearViewRevealWidth = 250
         view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
@@ -310,7 +304,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected cell #\(indexPath.row)!")
         // Get Cell Label
         let indexPath = tableView.indexPathForSelectedRow!
         let currentCell = tableView.cellForRow(at: indexPath)! as! THREADTableViewCell

@@ -66,6 +66,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
+
+    
     func addMoreButton() {
         var indicatorColor = UIColor()
         let theme = UserDefaults.standard.string(forKey: "theme")!
@@ -236,7 +238,6 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             //print("Current default: \(UserDefaults.standard.string(forKey: "fontSize"))")
             if UserDefaults.standard.string(forKey: "fontSize") == "small" {
                 size = 14
-                print("got small")
                 cell.mainLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 12)
                 cell.upvoteLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 10)
                 cell.authorLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 10)
@@ -260,14 +261,12 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 attributedText.append(NSAttributedString(string: secondWord))
                 attributedText.append(NSAttributedString(string: thirdWord))
                 cell.mainLabel?.attributedText = attributedText
-                print("Done with size: \(size)")
                 
             } else {
                 let firstWord = titleText
                 let attrs2 = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size)]
                 let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs2)
                 
-                print("Done with size: \(size)")
                 cell.mainLabel?.attributedText = attributedText
             }
             
@@ -285,7 +284,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if (indexPath.row+1) <= indexPath.count {
                 if bleh[indexPath.row + 1].level == 0 {
                     for sep in cell.arrayOfSeperators {
-                        print("cell.frame.size.height: \(cell.frame.size.height)")
+                       // print("cell.frame.size.height: \(cell.frame.size.height)")
                         sep.bounds = CGRect(x: sep.bounds.origin.x, y: sep.bounds.origin.y-30, width: sep.bounds.width, height: sep.bounds.height)
                     }
                 }
@@ -352,7 +351,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
             cell.authorLabel.textColor = FlatBlack()//Utils.hexStringToUIColor(hex: "808080")
             if bleh[indexPath.row].author == author {
-                print("Author is \(bleh[indexPath.row].author), adding BG")
+               // print("Author is \(bleh[indexPath.row].author), adding BG")
                 
                 //cell.authorLabel.backgroundColor = FlatGray()//Utils.hexStringToUIColor(hex: "E1E1E1")
                 cell.authorLabel.textColor = color
@@ -381,11 +380,6 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.upvoteLabel?.attributedText = attributedText
             //cell.upvoteLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
             cell.collapseLabel?.text = bleh[indexPath.row].collapse
-            
-            print("Done making cell")
-            
-            
-            
             
             
         } else {

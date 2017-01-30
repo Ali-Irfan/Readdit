@@ -1,5 +1,10 @@
 import ReachabilitySwift
+import Alamofire
 import PMAlertController
+
+//Constants
+var currentRequests:[Alamofire.Request]? = nil
+let myNotification = Notification.Name(rawValue:"MyNotification")
 
 class Utils {
     static  func displayTheAlert(targetVC: UIViewController, title: String, message: String){

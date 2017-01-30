@@ -31,7 +31,8 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        print("View did load (front)")
+        let nc = NotificationCenter.default
+        nc.addObserver(forName:myNotification, object:nil, queue:nil, using:catchNotification)
         
         self.sidebarTable.dataSource = self
         self.sidebarTable.delegate = self
@@ -57,12 +58,38 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidAppear(_ animated: Bool) {
         setupTheme()
-        for cell in sidebarTable.visibleCells {
+        checkCurrentDownloads()
+        for cell in sidebarTable.visibleCells { //For theme
             cell.awakeFromNib()
         }
     }
     
+    func catchNotification(notification:Notification) -> Void {
+        checkCurrentDownloads()
+    }
     
+    func checkCurrentDownloads() {
+        let downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
+        for cell in sidebarTable.visibleCells {
+            if let c = cell as? SubredditTableViewCell {
+                let subreddit = c.subredditTitle.currentTitle!
+                if downloadsInProgress.contains(subreddit) {
+                    c.loadingIndicator.startAnimating()
+                    c.loadingIndicator.isHidden = false
+                    c.deleteButton.isEnabled = false
+                    c.updateButton.isHidden = true
+                    
+                } else {
+                    c.loadingIndicator.stopAnimating()
+                    c.loadingIndicator.isHidden = true
+                    c.deleteButton.isEnabled = true
+                    c.updateButton.isHidden = false
+                }
+            }
+        }
+    }
+    
+
     
     
     
@@ -151,7 +178,6 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         let identifier = arrayOfIdentifiers[indexPath.row]
         
         sidebarTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        print("Doing cell for row at \(identifier)")
         switch identifier {
         case "subredditHeader":
             let cell:SubredditHeaderTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subredditHeader") as! SubredditHeaderTableViewCell
@@ -162,9 +188,6 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             return cell
         case "subreddit":
             let cell:SubredditTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subreddit") as! SubredditTableViewCell
-            
-            print(indexPath.row)
-            print("arr \(arrayOfSubreddits.count)")
             cell.subredditTitle.setTitle(arrayOfSubreddits[indexPath.row-1], for: .normal)
             cell.deleteButton.addTarget(self, action: #selector(deleteSubreddit(_:)), for: .touchUpInside)
             cell.subredditTitle.addTarget(self, action: #selector(goToSubreddit(_:)), for: .touchUpInside)
@@ -275,7 +298,6 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     
     func goToSubreddit(_ sender: UIButton) {
         if let currentCell = sender.superview?.superview as? SubredditTableViewCell{ //IF ITS A SUBREDDIT
-            print("Here")
             let subreddit = (currentCell.subredditTitle.currentTitle!)
             let myVC = self.storyboard?.instantiateViewController(withIdentifier: "ThreadNavigation") as! ThreadNavigationController
             let actualView = myVC.viewControllers.first as! ThreadListViewController
