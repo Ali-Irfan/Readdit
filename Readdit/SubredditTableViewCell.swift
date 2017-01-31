@@ -12,6 +12,8 @@ import Async
 import Alamofire
 import ChameleonFramework
 
+var downloadCount = 0
+
 class SubredditTableViewCell: UITableViewCell {
     
     let nc = NotificationCenter.default
@@ -108,16 +110,17 @@ class SubredditTableViewCell: UITableViewCell {
                             }
                         }
                         print("Downloading threads")
-                        var counter = 0
                         var count = 1
+                        downloadCount = 0
                         let numOfThreads = Int(UserDefaults.standard.string(forKey: "NumberOfThreads")!)
                         for thread in arrayOfThreads {
-                            print("Downloading \(count)/\(UserDefaults.standard.string(forKey: "NumberOfThreads")!)")
+                            print("Downloading \(count)/\(numOfThreads!)")
                             count = count + 1
                             Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
-                            counter = counter + 1
                         }
                         
+                        while downloadCount < numOfThreads! {print("w")
+                        sleep(1)}
                         
                         print("Done downloading.")
                         Async.main {

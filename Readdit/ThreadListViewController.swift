@@ -157,7 +157,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             Async.background {
                 Downloader.downloadJSON(subreddit: self.subreddit)
                 
-                self.jsonRaw = Downloader.getJSON(subreddit: self.subreddit, sortType: "Top")
+                self.jsonRaw = Downloader.getJSON(subreddit: self.subreddit, sortType: "Hot")
                 self.arrayOfThreads.removeAll()
                 if (self.jsonRaw != "Error") {
                     if let data = self.jsonRaw.data(using: String.Encoding.utf8) {
@@ -202,7 +202,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func displayThreads() {
-        jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Top")
+        jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Hot")
         if (jsonRaw != "Error") {
             if let data = jsonRaw.data(using: String.Encoding.utf8) {
                 let json = JSON(data: data)
