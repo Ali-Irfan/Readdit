@@ -360,6 +360,9 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
 
 
 
+
+
+
 extension String {
     func capitalizingFirstLetter() -> String {
         let first = String(characters.prefix(1)).capitalized

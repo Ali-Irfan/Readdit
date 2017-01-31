@@ -111,16 +111,17 @@ class SubredditTableViewCell: UITableViewCell {
                         }
                         print("Downloading threads")
                         var count = 1
-                        downloadCount = 0
+                        //downloadCount = 0
+                        downloadDictionary[subreddit] = 0
                         let numOfThreads = Int(UserDefaults.standard.string(forKey: "NumberOfThreads")!)
                         for thread in arrayOfThreads {
                             print("Downloading \(count)/\(numOfThreads!)")
                             count = count + 1
-                            print("Sending \(thread.id) to download")
+                            //print("Sending \(thread.id) to download")
                             Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
                         }
-                        
-                        while downloadCount/6 < arrayOfThreads.count {print("w")
+                        print("DOWNLOAD DISCTIONARY FOR \(subreddit) is \(downloadDictionary[subreddit])")
+                        while downloadDictionary[subreddit]!/6 < arrayOfThreads.count {print("w")
                         sleep(1)}
                         
                         print("Done downloading.")

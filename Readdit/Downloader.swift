@@ -102,14 +102,14 @@ public class Downloader: UIViewController {
                 return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
             }
             var completed:Bool = false
-            print("Created file path for thread with ID: \(threadID)")
+            //print("Created file path for thread with ID: \(threadID)")
             usleep(100000)
             Network.download(urlString, to: destination).downloadProgress { progress in
 
                 }
                 //.validate(statusCode: 200..<300)
                 .response{ response in
-                    print(response.response?.statusCode)
+                    //print(response.response?.statusCode)
                     do {
                         //Zip the files after they are downloaded and remove their original file
                         let zipFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".zip")
@@ -117,10 +117,11 @@ public class Downloader: UIViewController {
                         try Zip.zipFiles(paths: [filePath!], zipFilePath: zipFilePath!, password: nil, progress: nil)
                         try FileManager.default.removeItem(at: txtFilePath!)
                         completed = true
-                        print("Created zip path for thread with ID: \(threadID)")
-                        print("completed response")
-                        downloadCount = downloadCount + 1
-                        print("Download count: \(downloadCount)")
+                       // print("Created zip path for thread with ID: \(threadID)")
+                        //print("completed response")
+                        //downloadCount = downloadCount + 1
+                        downloadDictionary[subreddit] = downloadDictionary[subreddit]! + 1
+                       // print("Download count: \(downloadCount)")
 
                     } catch let error as NSError {
                         print("An error took place(DownloadThread): \(error) with filepath: \(threadID)")
@@ -135,7 +136,7 @@ public class Downloader: UIViewController {
             //print("DownloadCount: \(downloadCount)")
 
         }
-        downloadCount = downloadCount + 1
+        //downloadCount = downloadCount + 1
     }
     
     

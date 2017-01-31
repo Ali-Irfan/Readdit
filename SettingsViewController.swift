@@ -4,6 +4,7 @@ import ChameleonFramework
 import Async
 import PMAlertController
 import XLActionController
+var downloadDictionary:[String:Int] = [:]
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,6 +18,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         setDefaults()
         setupTheme()
+
         if revealViewController() != nil {
             revealViewController().rightViewRevealWidth = 0
             revealViewController().rearViewRevealWidth = 250
