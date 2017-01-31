@@ -107,7 +107,7 @@ public class Downloader: UIViewController {
             Network.download(urlString, to: destination).downloadProgress { progress in
 
                 }
-                .validate(statusCode: 200..<300)
+                //.validate(statusCode: 200..<300)
                 .response{ response in
                     print(response.response?.statusCode)
                     do {

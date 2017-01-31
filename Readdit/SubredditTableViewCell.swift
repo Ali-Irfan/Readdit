@@ -12,7 +12,7 @@ import Async
 import Alamofire
 import ChameleonFramework
 
-var downloadCount = 0
+var downloadCount = 1
 
 class SubredditTableViewCell: UITableViewCell {
     
@@ -83,7 +83,7 @@ class SubredditTableViewCell: UITableViewCell {
                 
                 
                 print("Getting subreddits")
-                let jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Top")
+                let jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Hot")
                 arrayOfThreads.removeAll()
                 if (jsonRaw != "Error") {
                     if let data = jsonRaw.data(using: String.Encoding.utf8) {
@@ -116,10 +116,11 @@ class SubredditTableViewCell: UITableViewCell {
                         for thread in arrayOfThreads {
                             print("Downloading \(count)/\(numOfThreads!)")
                             count = count + 1
+                            print("Sending \(thread.id) to download")
                             Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
                         }
                         
-                        while downloadCount < numOfThreads! {print("w")
+                        while downloadCount/6 < arrayOfThreads.count {print("w")
                         sleep(1)}
                         
                         print("Done downloading.")
