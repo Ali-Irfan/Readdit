@@ -16,7 +16,6 @@
 		3636E2991DCFF8DC0030F77D /* ThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */; };
 		3636E29B1DD001530030F77D /* ThreadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3636E29A1DD001530030F77D /* ThreadData.swift */; };
 		363916921E1086A70053EDCE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363916911E1086A70053EDCE /* Utils.swift */; };
-		363916941E120B7E0053EDCE /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363916931E120B7E0053EDCE /* Style.swift */; };
 		363916961E120DE70053EDCE /* FindSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363916951E120DE70053EDCE /* FindSize.swift */; };
 		365F1BD61DFA8D29007FBF9C /* IntroUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */; };
 		366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D61DEFB9B000696250 /* SettingsViewController.swift */; };
@@ -75,18 +74,17 @@
 
 /* Begin PBXFileReference section */
 		3604883F1E3C46C900A45B75 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		362104F21DF73925002E13D2 /* SubredditHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubredditHeaderTableViewCell.swift; sourceTree = "<group>"; };
-		362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubredditTableViewCell.swift; sourceTree = "<group>"; };
-		362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHeaderTableViewCell.swift; sourceTree = "<group>"; };
-		362104FA1DF73A11002E13D2 /* SidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarTableViewController.swift; sourceTree = "<group>"; };
+		362104F21DF73925002E13D2 /* SubredditHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SubredditHeaderTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SubredditTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsHeaderTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		362104FA1DF73A11002E13D2 /* SidebarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SidebarTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		362BE6441E2C1524009CF055 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
-		3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; tabWidth = 5; };
+		3636E2981DCFF8DC0030F77D /* ThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ThreadViewController.swift; sourceTree = "<group>"; tabWidth = 5; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3636E29A1DD001530030F77D /* ThreadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadData.swift; sourceTree = "<group>"; };
 		363916911E1086A70053EDCE /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		363916931E120B7E0053EDCE /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		363916951E120DE70053EDCE /* FindSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindSize.swift; sourceTree = "<group>"; };
 		365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroUIView.swift; sourceTree = "<group>"; };
-		366903D61DEFB9B000696250 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../SettingsViewController.swift; sourceTree = "<group>"; };
+		366903D61DEFB9B000696250 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SettingsViewController.swift; path = ../SettingsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSizeTableViewCell.swift; sourceTree = "<group>"; };
 		366903DB1DEFBCE200696250 /* ThemeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTableViewCell.swift; sourceTree = "<group>"; };
 		366903DD1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadSettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -103,8 +101,8 @@
 		36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPostTableViewCell.swift; sourceTree = "<group>"; };
 		36970FFE1DE936E60070DC33 /* MainPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPostTableViewCell.xib; sourceTree = "<group>"; };
 		36982E3B1DF5386700336A3F /* THREADTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THREADTableViewCell.swift; sourceTree = "<group>"; };
-		36A29EF91E2D944D0073FB32 /* UpdateAllTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAllTableViewCell.swift; sourceTree = "<group>"; };
-		36B2680A1E306D6B009FC008 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		36A29EF91E2D944D0073FB32 /* UpdateAllTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UpdateAllTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		36B2680A1E306D6B009FC008 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Theme.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		36C451331DCD4A2F0066A76E /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		36D255A01DCC3B2C00B1779E /* Readdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Readdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36D255A31DCC3B2C00B1779E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,11 +118,11 @@
 		36D255C31DCC3B2C00B1779E /* ReadditUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadditUITests.swift; sourceTree = "<group>"; };
 		36D255C51DCC3B2C00B1779E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36D2CB921E29456D007CD6AC /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		36DB561D1DCEB76200E7B764 /* ThreadListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadListViewController.swift; sourceTree = "<group>"; };
+		36DB561D1DCEB76200E7B764 /* ThreadListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ThreadListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		36E7215C1DD6F43C004B5EAA /* CommentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewCell.swift; sourceTree = "<group>"; };
 		36E9D20F1E23309A00F65FC5 /* AutoDownloadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoDownloadTableViewCell.swift; sourceTree = "<group>"; };
 		36EE38001E0889FE00AA5D48 /* RevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
-		36EE38091E08A08600AA5D48 /* RightSidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightSidebarViewController.swift; sourceTree = "<group>"; };
+		36EE38091E08A08600AA5D48 /* RightSidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RightSidebarViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		36EE380B1E08A35900AA5D48 /* TypeOfSortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeOfSortCell.swift; sourceTree = "<group>"; };
 		36EE380D1E08A36F00AA5D48 /* MainSortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSortCell.swift; sourceTree = "<group>"; };
 		36F608F21E09E96000604B6D /* NumberOfThreadsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberOfThreadsTableViewCell.swift; sourceTree = "<group>"; };
@@ -274,7 +272,6 @@
 				36970FFD1DE936E60070DC33 /* MainPostTableViewCell.swift */,
 				36970FFE1DE936E60070DC33 /* MainPostTableViewCell.xib */,
 				363916911E1086A70053EDCE /* Utils.swift */,
-				363916931E120B7E0053EDCE /* Style.swift */,
 				363916951E120DE70053EDCE /* FindSize.swift */,
 				36B2680A1E306D6B009FC008 /* Theme.swift */,
 				3604883F1E3C46C900A45B75 /* NetworkManager.swift */,
@@ -549,7 +546,6 @@
 				362104FB1DF73A11002E13D2 /* SidebarTableViewController.swift in Sources */,
 				36D255A41DCC3B2C00B1779E /* AppDelegate.swift in Sources */,
 				368A4BF11DD0DFC7002D0480 /* General.swift in Sources */,
-				363916941E120B7E0053EDCE /* Style.swift in Sources */,
 				36EE380C1E08A35900AA5D48 /* TypeOfSortCell.swift in Sources */,
 				363916961E120DE70053EDCE /* FindSize.swift in Sources */,
 				365F1BD61DFA8D29007FBF9C /* IntroUIView.swift in Sources */,

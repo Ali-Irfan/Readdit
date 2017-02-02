@@ -434,7 +434,7 @@
         <!--Sidebar Table View Controller-->
         <scene sceneID="cjc-BT-IO1">
             <objects>
-                <viewController id="ETn-Cs-QKg" customClass="SidebarTableViewController" customModule="Readdit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Subreddits" id="ETn-Cs-QKg" customClass="SidebarTableViewController" customModule="Readdit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XdG-SW-dU3"/>
                         <viewControllerLayoutGuide type="bottom" id="Exq-4g-t7v"/>
@@ -483,26 +483,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subreddits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qe9-UU-Cgh">
-                                                    <rect key="frame" x="55" y="11" width="84" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7W-qM-gfW">
                                                     <rect key="frame" x="4" y="3" width="36" height="36"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="bookmark-1"/>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhQ-MK-N4H">
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhQ-MK-N4H">
                                                     <rect key="frame" x="200" y="3" width="36" height="36"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="add_box">
                                                         <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
                                                     </state>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGY-js-3Y7">
+                                                    <rect key="frame" x="55" y="5" width="104" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" title="Subreddits">
+                                                        <color key="titleColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="NhQ-MK-N4H" secondAttribute="trailing" constant="14" id="GF8-Gp-vQd"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
@@ -590,9 +593,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pu7-NS-hyF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pu7-NS-hyF">
                                 <rect key="frame" x="0.0" y="35" width="250" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.25" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Readd">
@@ -614,6 +616,10 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.25094899535179138" green="0.25099846720695496" blue="0.25094583630561829" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="pu7-NS-hyF" firstAttribute="top" secondItem="XdG-SW-dU3" secondAttribute="bottom" constant="15" id="1rx-UN-KbW"/>
+                            <constraint firstItem="pu7-NS-hyF" firstAttribute="centerX" secondItem="z2o-gS-WfN" secondAttribute="centerX" id="UBN-y1-0lq"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xPu-eM-Rr1"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -803,6 +809,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
+                                            <outlet property="mainLabel" destination="FPZ-jp-kcL" id="Lhb-bd-Q3t"/>
                                             <outlet property="textSizeButton" destination="oAF-Cj-jUM" id="aJA-Te-EZu"/>
                                             <outlet property="view" destination="qPz-Sg-Qfm" id="ONl-xz-BCp"/>
                                         </connections>
@@ -836,6 +843,7 @@
                                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="downloadSettingsButton" destination="Cbd-2B-gBW" id="VEV-BE-aOy"/>
+                                            <outlet property="mainLabel" destination="pOX-R4-phh" id="U8J-Lj-lub"/>
                                             <outlet property="view" destination="rya-sM-QBm" id="qpo-38-3iu"/>
                                         </connections>
                                     </tableViewCell>
@@ -869,6 +877,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
+                                            <outlet property="mainLabel" destination="WwM-sL-gb3" id="9Gt-lh-U18"/>
                                             <outlet property="numberField" destination="o8y-qL-TW6" id="Tne-an-Xzj"/>
                                             <outlet property="view" destination="BSd-MB-biR" id="i5S-h2-wYZ"/>
                                         </connections>
@@ -903,70 +912,13 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
+                                            <outlet property="mainLabel" destination="AtB-q4-Lgh" id="hSY-Bb-h2H"/>
                                             <outlet property="themeButton" destination="mDu-cl-54D" id="gZT-az-tBP"/>
                                             <outlet property="view" destination="RMM-0o-bmI" id="lg3-Vd-ZyH"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HideNSFW" rowHeight="75" id="fvG-lo-rSo" customClass="HideNSFWPostsTableViewCell" customModule="Readdit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="328" width="375" height="75"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fvG-lo-rSo" id="2ab-2v-Sni">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b92-XH-Vlk">
-                                                    <rect key="frame" x="0.0" y="15" width="375" height="60"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hide NSFW Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aS-nZ-hpS">
-                                                    <rect key="frame" x="20" y="34" width="154" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Xjo-46-4hl">
-                                                    <rect key="frame" x="306" y="29" width="51" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <action selector="switchChanged:" destination="fvG-lo-rSo" eventType="valueChanged" id="CbI-mx-3r5"/>
-                                                    </connections>
-                                                </switch>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="nsfwSwitch" destination="Xjo-46-4hl" id="h54-Kz-wAR"/>
-                                            <outlet property="view" destination="b92-XH-Vlk" id="fL3-jh-gXA"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportBug" rowHeight="75" id="aK1-hu-SMU" customClass="ReportABugTableViewCell" customModule="Readdit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="403" width="375" height="75"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aK1-hu-SMU" id="pKC-MC-ExX">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hqb-Sp-B1W">
-                                                    <rect key="frame" x="0.0" y="15" width="375" height="60"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJ3-6i-2F1">
-                                                    <rect key="frame" x="19" y="30" width="92" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Report A Bug"/>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="view" destination="hqb-Sp-B1W" id="ucv-ji-F4K"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AutoDownload" rowHeight="75" id="W5r-KY-x8w" customClass="AutoDownloadTableViewCell" customModule="Readdit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="478" width="375" height="75"/>
+                                        <rect key="frame" x="0.0" y="328" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W5r-KY-x8w" id="5nF-CA-Y27">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
@@ -995,12 +947,13 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
+                                            <outlet property="mainLabel" destination="hha-cf-eLZ" id="3jR-Om-Bfr"/>
                                             <outlet property="pickerButton" destination="oIM-J1-QZL" id="ez6-q6-xEC"/>
                                             <outlet property="view" destination="E3Y-hj-iTh" id="9iu-Bb-xKt"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClearAll" rowHeight="75" id="bzV-yD-P8k" customClass="ClearAllDataTableViewCell" customModule="Readdit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="553" width="375" height="75"/>
+                                        <rect key="frame" x="0.0" y="403" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bzV-yD-P8k" id="IRy-AN-bPf">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>

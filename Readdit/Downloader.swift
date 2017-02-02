@@ -101,13 +101,12 @@ public class Downloader: UIViewController {
                 let fileURL = documentsPath.appendingPathComponent("/" + subreddit + "/comments_" + sortType + "/" + fileName)
                 return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
             }
-            var completed:Bool = false
             //print("Created file path for thread with ID: \(threadID)")
             usleep(100000)
             Network.download(urlString, to: destination).downloadProgress { progress in
 
                 }
-                //.validate(statusCode: 200..<300)
+                .validate(statusCode: 200..<300)
                 .response{ response in
                     //print(response.response?.statusCode)
                     do {
@@ -116,7 +115,6 @@ public class Downloader: UIViewController {
                         let txtFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".txt")
                         try Zip.zipFiles(paths: [filePath!], zipFilePath: zipFilePath!, password: nil, progress: nil)
                         try FileManager.default.removeItem(at: txtFilePath!)
-                        completed = true
                        // print("Created zip path for thread with ID: \(threadID)")
                         //print("completed response")
                         //downloadCount = downloadCount + 1
@@ -125,18 +123,12 @@ public class Downloader: UIViewController {
 
                     } catch let error as NSError {
                         print("An error took place(DownloadThread): \(error) with filepath: \(threadID)")
+                        downloadDictionary[subreddit] = downloadDictionary[subreddit]! + 1
+
                     }
             }
             
-//            while !completed {
-//                //print("Not completed yet...")
-//            }
-//            print("Completed thread!")
-            
-            //print("DownloadCount: \(downloadCount)")
-
         }
-        //downloadCount = downloadCount + 1
     }
     
     

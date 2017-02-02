@@ -1,5 +1,6 @@
 import UIKit
 import ChameleonFramework
+import Async
 
 class CommentViewCell: UITableViewCell {
     
@@ -59,7 +60,9 @@ class CommentViewCell: UITableViewCell {
                 self.upvoteLabel.textColor = FlatWhite()
                 
             default:
-                self.backgroundColor = FlatWhite()
+                self.backgroundColor = UIColor.white
+                
+                print("Set color to flatwhite")
             }
 
         // Initialization code

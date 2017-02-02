@@ -62,6 +62,16 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         for cell in sidebarTable.visibleCells { //For theme
             cell.awakeFromNib()
         }
+        print(NSStringFromClass(revealViewController().frontViewController.classForCoder))
+        if revealViewController().frontViewController.isKind(of: SidebarTableViewController.self) {
+            let vc = revealViewController().frontViewController as! SidebarTableViewController
+            let btn1 = UIButton(type: .custom)
+            
+            btn1.setImage(#imageLiteral(resourceName: "menu-2").maskWithColor(color: mainTextColor), for: .normal)
+            btn1.frame = CGRect(x: 15, y: 45 , width: 36, height: 36)
+            btn1.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+            vc.view.addSubview(btn1)
+        }
     }
     
     func catchNotification(notification:Notification) -> Void {
@@ -135,7 +145,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             let textColor = FlatWhite()
             Theme.setSidebarTheme(color: color, textColor: textColor, table: sidebarTable, logo: self.logo, view: self.view)
             
-        case "default":
+        case "white":
             
             let color = FlatWhite()
             let textColor = FlatBlack()
@@ -185,6 +195,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             cell.backgroundColor = mainCellColor
             cell.addSubreddit.setTitleColor(mainTextColor, for: .normal)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
+            //cell.subredditButton.addTarget(self, action: #selector(segueToSubreddits), for: .touchUpInside)
             return cell
         case "subreddit":
             let cell:SubredditTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subreddit") as! SubredditTableViewCell
@@ -221,6 +232,10 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     
+    func segueToSubreddits() {
+        let myVC = self.storyboard?.instantiateViewController(withIdentifier: "Subreddits") as! SidebarTableViewController
+        self.revealViewController().pushFrontViewController(myVC, animated: true)
+    }
     
     func updateAllSubreddits() {
         

@@ -29,7 +29,7 @@ class SubredditTableViewCell: UITableViewCell {
         self.selectionStyle = UITableViewCellSelectionStyle.none
         self.contentView.layoutMargins = UIEdgeInsets.zero
        // loadingIndicator.isHidden = true
-        updateButton.setImage(#imageLiteral(resourceName: "cloud-computing"), for: .normal)
+        updateButton.setImage(#imageLiteral(resourceName: "update"), for: .normal)
         updateButton.frame = CGRect(x: self.frame.width-50, y: self.frame.height/2 - 12, width: 30, height: 30)
         updateButton.addTarget(self, action: #selector(updateSubreddit), for: .touchUpInside)
         updateButton.tintColor = UIColor.white
@@ -48,7 +48,7 @@ class SubredditTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor.clear
         let theme = UserDefaults.standard.string(forKey: "theme")!
         switch theme {
-        case "default":
+        case "white":
             updateButton.setImage(updateButton.currentImage?.maskWithColor(color: FlatBlack()), for: .normal)
             deleteButton.setImage(deleteButton.currentImage?.maskWithColor(color: FlatBlack()), for: .normal)
             

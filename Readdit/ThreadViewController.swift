@@ -34,6 +34,11 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             activityView.color = FlatWhite()
             commentTable.backgroundColor = FlatBlackDark()
             self.view.backgroundColor = FlatBlackDark()
+        } else {
+            overlay!.backgroundColor = UIColor.white
+            activityView.color = Theme.getGeneralColor()
+            commentTable.backgroundColor = FlatWhite()
+            self.view.backgroundColor = FlatWhite()
         }
         activityView.center = self.view.center
         activityView.startAnimating()
@@ -111,7 +116,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             color = FlatBlack()
             
             
-        case "default":
+        case "white":
             indicatorColor = UIColor.black
             self.activityView.color = FlatWhite()
             color = FlatBlack()

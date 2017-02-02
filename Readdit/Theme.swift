@@ -50,6 +50,9 @@ class Theme {
         let theme = UserDefaults.standard.string(forKey: "theme")!
         switch theme {
             
+        case "white":
+            return FlatWhite()
+            
         case "mint":
             return FlatMint()
             
@@ -71,7 +74,7 @@ class Theme {
         case "dark":
             return FlatBlack()
             
-        case "default":
+        case "white":
             return FlatBlack()
             
         default:

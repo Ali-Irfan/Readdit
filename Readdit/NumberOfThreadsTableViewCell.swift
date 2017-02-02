@@ -10,6 +10,7 @@ import UIKit
 
 class NumberOfThreadsTableViewCell: UITableViewCell {
     @IBOutlet weak var view: UIView!
+    @IBOutlet weak var mainLabel: UILabel!
 
     @IBOutlet weak var numberField: ThreadNumberField!
     override func awakeFromNib() {

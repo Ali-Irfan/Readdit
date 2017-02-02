@@ -5,20 +5,19 @@ import Async
 import PMAlertController
 import XLActionController
 var downloadDictionary:[String:Int] = [:]
-
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let defaults = UserDefaults.standard
-    var themeColor:UIColor = UIColor.blue
-    let arrayOfSettings = ["Text Size", "Download Settings", "Download Automatically", "Threads per Subreddit", "Theme", "Hide NSFW Content", "Report A Bug", "Clear All Data"]
+    var themeColor:UIColor = FlatSkyBlue()
+    let arrayOfSettings = ["Text Size", "Download Settings", "Download Automatically", "Threads per Subreddit", "Theme", "Clear All Data"]
     
     @IBOutlet weak var settingsTable: UITableView!
     var totalSize = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         setDefaults()
-        setupTheme()
 
+        setupTheme()
         if revealViewController() != nil {
             revealViewController().rightViewRevealWidth = 0
             revealViewController().rearViewRevealWidth = 250
@@ -30,7 +29,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         settingsTable.dataSource = self
         settingsTable.delegate = self
-        settingsTable.backgroundColor = FlatWhite()
         settingsTable.rowHeight = 75.0
         settingsTable.allowsSelection = false
     }
@@ -38,44 +36,53 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func setupTheme() {
         let theme = UserDefaults.standard.string(forKey: "theme")!
         let n = navigationController!
+        
         switch theme {
         case "mint":
             themeColor = FlatMint()
             Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
-            case "purple":
+            settingsTable.backgroundColor = FlatWhite()
+        case "purple":
             themeColor = FlatPurple()
             Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
-            case "magenta":
+            settingsTable.backgroundColor = FlatWhite()
+        case "magenta":
             themeColor = FlatMagenta()
             Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
-            case "lime":
+            settingsTable.backgroundColor = FlatWhite()
+        case "lime":
             themeColor = FlatLime()
             Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
-            case "blue":
+            settingsTable.backgroundColor = FlatWhite()
+        case "blue":
             themeColor = FlatSkyBlue()
             Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
-            case "red":
+            settingsTable.backgroundColor = FlatWhite()
+        case "red":
             themeColor = FlatRed()
             Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
-            case "dark":
+            settingsTable.backgroundColor = FlatWhite()
+        case "dark":
             themeColor = FlatBlack()
             Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.white, navigationItem: navigationItem, revealViewController: revealViewController())
-            settingsTable.backgroundColor = FlatBlackDark()
-            self.view.backgroundColor = FlatBlackDark()
-                case "default":
+            settingsTable.backgroundColor = FlatBlack()
+            self.view.backgroundColor = FlatBlack()
+        case "white":
             themeColor = FlatWhite()
             Theme.setNavbarTheme(navigationController: n, color: themeColor)
             Utils.addMenuButton(color: UIColor.black, navigationItem: navigationItem, revealViewController: revealViewController())
-            default:
+            settingsTable.backgroundColor = FlatWhite()
+        default:
             print("Idk")
         }
+        self.settingsTable.reloadData()
     }
     
     
@@ -86,6 +93,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let obj: [String] = []
         defaults.set(obj, forKey: "inProgress")
         
+        
         if defaults.object(forKey: "arrayOfSubreddits") != nil {} else {
             let defaultSubreddits: [String] = ["AskReddit", "AskScience", "IAmA", "News", "ExplainLikeImFive", "Jokes", "NSFW"]
             defaults.set(defaultSubreddits, forKey: "arrayOfSubreddits")
@@ -95,7 +103,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         if defaults.string(forKey: "network") != nil {} else {         defaults.set("wifi", forKey: "network")}
         if defaults.object(forKey: "downloadTime") != nil {} else {    defaults.set(0, forKey: "downloadTime")}
         if defaults.object(forKey: "fontSize") != nil {} else {        defaults.set("regular", forKey: "fontSize")}
-        if defaults.object(forKey: "theme") != nil {} else {           defaults.set("default", forKey: "theme")}
+        if defaults.object(forKey: "theme") != nil {} else {           defaults.set("white", forKey: "theme")}
         if defaults.object(forKey: "themeBlue") != nil {} else {       defaults.set(FlatWhite().getRGBAComponents()?.blue, forKey: "themeBlue")}
         if defaults.object(forKey: "themGreen") != nil {} else {       defaults.set(FlatWhite().getRGBAComponents()?.green, forKey: "themGreen")}
         if defaults.object(forKey: "themeRed") != nil {} else {        defaults.set(FlatWhite().getRGBAComponents()?.red, forKey: "themeRed")}
@@ -227,9 +235,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         //let optionMenu = UIAlertController(title: nil, message: "Choose Theme", preferredStyle: .actionSheet)
         let optionMenu = SkypeActionController()
         // 2
-        let defaultTheme = Action("default", style: .default, handler: { action in
-            sender.setTitle("default", for: .normal)
-            self.defaults.set("default", forKey: "theme")
+        let defaultTheme = Action("Diary", style: .default, handler: { action in
+            sender.setTitle("Diary", for: .normal)
+            self.defaults.set("white", forKey: "theme")
             
             self.defaults.set(FlatWhite().getRGBAComponents()?.red, forKey: "themeRed")
             self.defaults.set(FlatWhite().getRGBAComponents()?.blue, forKey: "themeBlue")
@@ -239,8 +247,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
         })
         
-        let mint = Action("mint", style: .default, handler: { action in
-            sender.setTitle("mint", for: .normal)
+        let mint = Action("Mint", style: .default, handler: { action in
+            sender.setTitle("Mint", for: .normal)
             self.defaults.set("mint", forKey: "theme")
             self.defaults.set(FlatMint().getRGBAComponents()?.red, forKey: "themeRed")
             self.defaults.set(FlatMint().getRGBAComponents()?.blue, forKey: "themeBlue")
@@ -250,8 +258,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
         })
         
-        let purple = Action("purple", style: .default, handler: { action in
-            sender.setTitle("purple", for: .normal)
+        let purple = Action("Grape", style: .default, handler: { action in
+            sender.setTitle("Grape", for: .normal)
             self.defaults.set("purple", forKey: "theme")
             self.defaults.set(FlatPurple().getRGBAComponents()?.red, forKey: "themeRed")
             self.defaults.set(FlatPurple().getRGBAComponents()?.blue, forKey: "themeBlue")
@@ -261,8 +269,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
         })
         
-        let lime = Action("lime", style: .default, handler: { action in
-            sender.setTitle("lime", for: .normal)
+        let lime = Action("Lime", style: .default, handler: { action in
+            sender.setTitle("Lime", for: .normal)
             self.defaults.set("lime", forKey: "theme")
             self.defaults.set(FlatLime().getRGBAComponents()?.red, forKey: "themeRed")
             self.defaults.set(FlatLime().getRGBAComponents()?.blue, forKey: "themeBlue")
@@ -272,8 +280,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
         })
         
-        let magenta = Action("magenta", style: .default, handler: { action in
-            sender.setTitle("magenta", for: .normal)
+        let magenta = Action("Eggplant", style: .default, handler: { action in
+            sender.setTitle("Eggplant", for: .normal)
             self.defaults.set(FlatMagenta().getRGBAComponents()?.red, forKey: "themeRed")
             self.defaults.set(FlatMagenta().getRGBAComponents()?.blue, forKey: "themeBlue")
             self.defaults.set(FlatMagenta().getRGBAComponents()?.green, forKey: "themeGreen")
@@ -285,7 +293,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         
         let blue = Action("blue", style: .default, handler: { action in
-            sender.setTitle("blue", for: .normal)
+            sender.setTitle("Blueberry", for: .normal)
             self.defaults.set("blue", forKey: "theme")
             self.defaults.set(FlatSkyBlue().getRGBAComponents()?.red, forKey: "themeRed")
             self.defaults.set(FlatSkyBlue().getRGBAComponents()?.blue, forKey: "themeBlue")
@@ -296,8 +304,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         })
         
         //
-        let red = Action("red", style: .default, handler: { action in
-            sender.setTitle("red", for: .normal)
+        let red = Action("Watermelon", style: .default, handler: { action in
+            sender.setTitle("Watermelon", for: .normal)
             self.defaults.set("red", forKey: "theme")
             self.defaults.set(FlatRed().getRGBAComponents()?.red, forKey: "themeRed")
             self.defaults.set(FlatRed().getRGBAComponents()?.blue, forKey: "themeBlue")
@@ -308,8 +316,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
         })
         
-        let dark = Action("dark", style: .default, handler: { action in
-            sender.setTitle("dark", for: .normal)
+        let dark = Action("Dark Mode", style: .default, handler: { action in
+            sender.setTitle("Dark Mode", for: .normal)
             self.defaults.set("dark", forKey: "theme")
             self.defaults.set(FlatBlack().getRGBAComponents()?.red, forKey: "themeRed")
             self.defaults.set(FlatBlack().getRGBAComponents()?.blue, forKey: "themeBlue")
@@ -377,9 +385,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.view.backgroundColor = FlatBlackDark()
                 cell.backgroundColor = FlatBlack()
                 cell.textSizeButton.tintColor = FlatWhite()
-                
-                
+                cell.mainLabel.textColor = FlatWhite()
+            } else {
+                cell.view.backgroundColor = UIColor.white
+                cell.backgroundColor = FlatWhite()
+                cell.textSizeButton.tintColor = FlatBlack()
+                cell.mainLabel.textColor = FlatBlack()
             }
+            
             return cell
         case "Theme":
             let cell:ThemeTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "Theme") as! ThemeTableViewCell
@@ -389,7 +402,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.view.backgroundColor = FlatBlackDark()
                 cell.backgroundColor = FlatBlack()
                 cell.themeButton.tintColor = FlatWhite()
-                
+                cell.mainLabel.textColor = FlatWhite()
+            } else {
+                cell.view.backgroundColor = UIColor.white
+                cell.backgroundColor = FlatWhite()
+                cell.themeButton.tintColor = FlatBlack()
+                cell.mainLabel.textColor = FlatBlack()
             }
             return cell
             
@@ -401,35 +419,15 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.view.backgroundColor = FlatBlackDark()
                 cell.backgroundColor = FlatBlack()
                 cell.downloadSettingsButton.tintColor = FlatWhite()
-                
+                cell.mainLabel.textColor = FlatWhite()
+            } else {
+                cell.view.backgroundColor = UIColor.white
+                cell.backgroundColor = FlatWhite()
+                cell.downloadSettingsButton.tintColor = FlatBlack()
+                cell.mainLabel.textColor = FlatBlack()
             }
             return cell
-            
-        case "Hide NSFW Content":
-            let cell:HideNSFWPostsTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "HideNSFW") as! HideNSFWPostsTableViewCell
-            if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
-                cell.nsfwSwitch.isOn = key
-            } else { //Default is not hiding
-                cell.nsfwSwitch.isOn = false
-            }
-            if Theme.getGeneralColor() == FlatBlack() {
-                cell.view.backgroundColor = FlatBlackDark()
-                cell.backgroundColor = FlatBlack()
-                cell.textLabel?.textColor = FlatWhite()
-                
-            }
-            return cell
-            
-        case "Report A Bug":
-            let cell:ReportABugTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "ReportBug") as! ReportABugTableViewCell
-            if Theme.getGeneralColor() == FlatBlack() {
-                cell.view.backgroundColor = FlatBlackDark()
-                cell.backgroundColor = FlatBlack()
-                cell.textLabel?.textColor = FlatWhite()
-                
-            }
-            return cell
-            
+
         case "Clear All Data":
             let cell:ClearAllDataTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "ClearAll") as! ClearAllDataTableViewCell
             cell.clearData.setTitle("Clear All Data", for: .normal)
@@ -443,8 +441,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.backgroundColor = FlatBlack()
                 cell.textLabel?.textColor = FlatWhite()
                 cell.clearData.tintColor = FlatWhite()
-                
-                
+            } else {
+                cell.view.backgroundColor = UIColor.white
+                cell.backgroundColor = FlatWhite()
+                cell.clearData.tintColor = FlatBlack()
+                cell.textLabel?.textColor = FlatBlack()
             }
             return cell
             
@@ -457,7 +458,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.textLabel?.textColor = FlatWhite()
                 cell.pickerButton.tintColor = FlatWhite()
                 cell.backgroundColor = FlatBlack()
-                
+                cell.mainLabel.textColor = FlatWhite()
+            } else {
+                cell.view.backgroundColor = UIColor.white
+                cell.backgroundColor = FlatWhite()
+                cell.pickerButton.tintColor = FlatBlack()
+                cell.textLabel?.textColor = FlatWhite()
+                cell.mainLabel.textColor = FlatBlack()
             }
             return cell
             
@@ -470,8 +477,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.textLabel?.textColor = FlatWhite()
                 cell.view.backgroundColor = FlatBlackDark()
                 cell.backgroundColor = FlatBlack()
-                
-                
+                cell.mainLabel.textColor = FlatWhite()
+            } else {
+                cell.view.backgroundColor = UIColor.white
+                cell.backgroundColor = FlatWhite()
+                cell.textLabel?.textColor = FlatBlack()
+                cell.mainLabel.textColor = FlatBlack()
             }
             return cell
             

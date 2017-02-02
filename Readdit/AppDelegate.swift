@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.setMinimumBackgroundFetchInterval(UserDefaults.standard.double(forKey: "downloadTime"))
         
         
+        
 //        // iOS 10 support
 //        if #available(iOS 10, *) {
 //            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
@@ -105,24 +106,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         //Send Notification (PUSH)
         print("bg")
-        
+        let nc = NotificationCenter.default
+        let myNotification = Notification.Name(rawValue:"MyNotification")
+        for subreddit in (UserDefaults.standard.object(forKey: "arrayOfSubreddits") as? [String])!{
         if Utils.hasAppropriateConnection() {
-            for subreddit in arrayOfSubreddits {
+            Async.background {
                 var arrayOfThreads:[ThreadData] = []
-                print("Downloading subreddits")
-                
-                Async.background {
+                Async.main {
                     var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
                     downloadsInProgress.append(subreddit)
                     UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
-                    let nc = NotificationCenter.default
-                    let myNotification = Notification.Name(rawValue:"MyNotification")
                     
-                    nc.post(name:myNotification,
-                            object: nil,
-                            userInfo:["message":"Hello there!", "date":Date()])
-
+                    //Send notification that this subreddit is downloading (to produce overlay of ViewController)
+                    nc.post(name:myNotification, object: nil, userInfo:["message":"", "date":Date()])
                 }
+                
+                
                 
                 
                 Downloader.downloadJSON(subreddit: subreddit)
@@ -131,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 
                 print("Getting subreddits")
-                let jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Top")
+                let jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Hot")
                 arrayOfThreads.removeAll()
                 if (jsonRaw != "Error") {
                     if let data = jsonRaw.data(using: String.Encoding.utf8) {
@@ -158,32 +157,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         }
                         print("Downloading threads")
+                        var count = 1
+                        //downloadCount = 0
+                        downloadDictionary[subreddit] = 0
+                        let numOfThreads = Int(UserDefaults.standard.string(forKey: "NumberOfThreads")!)
                         for thread in arrayOfThreads {
-                            
+                            print("Downloading \(count)/\(numOfThreads!)")
+                            count = count + 1
+                            //print("Sending \(thread.id) to download")
                             Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
                         }
+                        print("DOWNLOAD DISCTIONARY FOR \(subreddit) is \(downloadDictionary[subreddit])")
+                        while downloadDictionary[subreddit]!/6 < arrayOfThreads.count {print("w")
+                            sleep(1)}
+                        
                         print("Done downloading.")
                         Async.main {
                             var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
-
+                            
+                            //Remove current subreddit from downloads in progress array
                             downloadsInProgress = downloadsInProgress.filter { $0 != subreddit }
                             UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
-                            let nc = NotificationCenter.default
-                            let myNotification = Notification.Name(rawValue:"MyNotification")
                             
+                            //Send notification again because the download has been completed
                             nc.post(name:myNotification,
-                                    object: nil,
-                                    userInfo:["message":"Hello there!", "date":Date()])                }
+                                         object: nil,
+                                         userInfo:["message":"Hello there!", "date":Date()])                }
+                    }//ASYNC
                 } else {
                     
-                    completionHandler(.noData)
+                    Utils.displayTheAlert(targetVC: (UIApplication.shared.keyWindow?.rootViewController)!, title: "Error", message: "You need a valid internet connection to download threads.")
                 }
             }
         }
         }
-        completionHandler(.newData)
-    }
         
+    completionHandler(.noData)
+    }
+    
 
 }
 

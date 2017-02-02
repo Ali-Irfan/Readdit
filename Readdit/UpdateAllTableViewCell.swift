@@ -26,7 +26,7 @@ class UpdateAllTableViewCell: UITableViewCell {
         let theme = UserDefaults.standard.string(forKey: "theme")!
         
         switch theme {
-        case "default":
+        case "white":
             updateAll.setImage(updateAll.currentImage?.maskWithColor(color: FlatBlack()), for: .normal)
             stopButton.setImage(stopButton.currentImage?.maskWithColor(color: FlatBlack()), for: .normal)
 

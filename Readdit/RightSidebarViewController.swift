@@ -77,7 +77,7 @@ class RightSidebarViewController: UIViewController, UITableViewDelegate, UITable
             let color = FlatBlackDark()
             Theme.setSidebarTheme(color: color, textColor: FlatWhite(), table: sortingTable, logo: nil, view: self.view)
             
-        case "default":
+        case "white":
             let color = FlatWhiteDark()
             Theme.setSidebarTheme(color: color, textColor: FlatBlack(), table: sortingTable, logo: nil, view: self.view)
             

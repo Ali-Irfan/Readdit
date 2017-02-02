@@ -24,7 +24,7 @@ class SubredditHeaderTableViewCell: UITableViewCell {
         let theme = UserDefaults.standard.string(forKey: "theme")!
         
         switch theme {
-        case "default":
+        case "white":
             addSubreddit.setImage(addSubreddit.currentImage?.maskWithColor(color: FlatBlack()), for: .normal)
             folderImage.setImage(folderImage.currentImage?.maskWithColor(color: FlatBlack()), for: .normal)
             

@@ -7,9 +7,6 @@
 //
 
 import Foundation
-
-let availableThemes = ["Default", "Dark", "Blue"]
-
 struct Style{
     
     // MARK: ToDo Table Section Headers

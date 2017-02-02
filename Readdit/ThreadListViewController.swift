@@ -111,7 +111,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             threadTable.backgroundColor = FlatBlackDark()
             self.view.backgroundColor = FlatBlackDark()
             
-        case "default":
+        case "white":
             Theme.setNavbarTheme(navigationController: n, color: FlatWhite())
             Utils.addMenuButton(color: UIColor.black, navigationItem: navigationItem, revealViewController: revealViewController())
             

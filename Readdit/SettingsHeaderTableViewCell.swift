@@ -26,7 +26,7 @@ class SettingsHeaderTableViewCell: UITableViewCell {
         let theme = UserDefaults.standard.string(forKey: "theme")!
 
         switch theme {
-        case "default":
+        case "white":
             settingsImage.setImage(settingsImage.currentImage?.maskWithColor(color: FlatBlack()), for: .normal)
             
         default:

@@ -12,6 +12,7 @@ import UIKit
 class ThemeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var view: UIView!
+    @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var themeButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()

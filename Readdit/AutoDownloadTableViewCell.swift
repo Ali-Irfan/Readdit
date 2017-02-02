@@ -11,6 +11,7 @@ import UIKit
 class AutoDownloadTableViewCell: UITableViewCell {
     @IBOutlet weak var view: UIView!
 
+    @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var pickerButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
