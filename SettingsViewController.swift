@@ -25,6 +25,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             let revealController = self.revealViewController() as? RevealViewController
                 revealController?.settingsController = self
             }
+        
+        for subreddit in (defaults.object(forKey: "arrayOfSubreddits") as? [String])! {
+            downloadDictionary[subreddit] = 0
+            print("Set \(subreddit) to 0")
+            }
+
+        
         //Temporarily stop logging visual errors
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         settingsTable.dataSource = self
@@ -102,6 +109,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         if defaults.string(forKey: "network") != nil {} else {         defaults.set("wifi", forKey: "network")}
         if defaults.object(forKey: "downloadTime") != nil {} else {    defaults.set(0, forKey: "downloadTime")}
+        if defaults.object(forKey: "NumberOfThreads") != nil {} else { defaults.set("10", forKey: "NumberOfThreads")}
         if defaults.object(forKey: "fontSize") != nil {} else {        defaults.set("regular", forKey: "fontSize")}
         if defaults.object(forKey: "theme") != nil {} else {           defaults.set("white", forKey: "theme")}
         if defaults.object(forKey: "themeBlue") != nil {} else {       defaults.set(FlatWhite().getRGBAComponents()?.blue, forKey: "themeBlue")}

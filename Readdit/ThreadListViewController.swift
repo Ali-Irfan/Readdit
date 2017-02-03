@@ -6,6 +6,7 @@ import ChameleonFramework
 
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var overlay : UIView?
+    var emptyOverlay : UIView!
     
     var generalColor:UIColor = UIColor.black
     var arrayOfThreads: [ThreadData] = []
@@ -32,6 +33,21 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         activityView.startAnimating()
         overlay?.addSubview(activityView)
         view.addSubview(overlay!)
+        
+        emptyOverlay = UIView(frame: threadTable.frame)
+        if Theme.getGeneralColor() == FlatBlack() {
+            emptyOverlay.backgroundColor = FlatBlack()
+        } else {
+            emptyOverlay.backgroundColor = FlatWhite()
+        }
+        let oopsLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 500))
+        oopsLabel.center = self.view.center
+        oopsLabel.textAlignment = .center
+        oopsLabel.numberOfLines = 0
+        emptyOverlay.isHidden = true
+        oopsLabel.text = "Oops!\n This subreddit hasn't been downloaded yet.\nClick the button below to begin downloading it."
+        emptyOverlay.addSubview(oopsLabel)
+        view.addSubview(emptyOverlay)
         
         checkCurrentDownloads()
         navigationItem.title = "/r/" + subreddit
@@ -129,14 +145,25 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     func checkCurrentDownloads() {
         let downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
         print(downloadsInProgress)
-        
         if downloadsInProgress.contains(subreddit) {
+            
             overlay?.isHidden = false
             isDownloading = true
+            emptyOverlay.isHidden = true
+            displayThreads()
+
         } else {
+            displayThreads()
             overlay?.isHidden = true
             isDownloading = false
+            if arrayOfThreads.count == 0 {
+                print("Array was empty so im making the overlay visible")
+                emptyOverlay.isHidden = false
+            } else {
+                emptyOverlay.isHidden = true
+            }
         }
+
         
     }
     
@@ -148,6 +175,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         revealViewController().rearViewRevealWidth = 250
         view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
         checkCurrentDownloads()
+        print(arrayOfThreads)
     }
     
     func updateThreads() {
@@ -156,47 +184,12 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             self.navigationItem.rightBarButtonItem?.isEnabled = false
             Async.background {
                 Downloader.downloadJSON(subreddit: self.subreddit)
-                
-                self.jsonRaw = Downloader.getJSON(subreddit: self.subreddit, sortType: "Hot")
-                self.arrayOfThreads.removeAll()
-                if (self.jsonRaw != "Error") {
-                    if let data = self.jsonRaw.data(using: String.Encoding.utf8) {
-                        let json = JSON(data: data)
-                        let threads = json["data"]["children"]
-                        // print(json)
-                        for (_, thread):(String, JSON) in threads {
-                            let thisThread = ThreadData()
-                            thisThread.title = thread["data"]["title"].string!
-                            thisThread.author = thread["data"]["author"].string!
-                            thisThread.upvotes = thread["data"]["ups"].int!
-                            thisThread.commentCount = thread["data"]["num_comments"].int!
-                            thisThread.id = thread["data"]["id"].string!
-                            thisThread.nsfw = Bool(thread["data"]["over_18"].boolValue)
-                            thisThread.permalink = thread["data"]["permalink"].string!
-                            thisThread.utcCreated = thread["data"]["created_utc"].double!
-                            
-                            if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
-                                
-                                if !key {
-                                    self.arrayOfThreads.append(thisThread)
-                                }
-                                
-                            } else { //Default is not hiding
-                                self.arrayOfThreads.append(thisThread)
-                            }
-                        }
-                        for thread in self.arrayOfThreads {
-                            Downloader.downloadThreadJSON(subreddit: self.subreddit, threadURL: thread.permalink, threadID: thread.id)
-                        }
-                        self.threadTable.reloadData()
-                        self.navigationItem.rightBarButtonItem?.isEnabled = true
-                    }
-                }
-            } //END ASYNC
-        } else {
-            Utils.displayTheAlert(targetVC: (UIApplication.shared.keyWindow?.rootViewController)!, title: "Error", message: "You need a valid/appropriate internet connection to download threads.")
-        }
+                self.displayThreads()
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+            }
+        } //END ASYNC
     }
+
     
     
     
@@ -204,6 +197,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     func displayThreads() {
         jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Hot")
         if (jsonRaw != "Error") {
+            arrayOfThreads.removeAll()
+            emptyOverlay.isHidden = true
             if let data = jsonRaw.data(using: String.Encoding.utf8) {
                 let json = JSON(data: data)
                 let threads = json["data"]["children"]
@@ -218,25 +213,16 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                     thisThread.nsfw = Bool(thread["data"]["over_18"].boolValue)
                     thisThread.permalink = thread["data"]["permalink"].string!
                     thisThread.utcCreated = thread["data"]["created_utc"].double!
-                    
-                    if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
-                        
-                        if !key {
-                            arrayOfThreads.append(thisThread)
-                        }
-                        
-                    } else { //Default is not hiding
-                        arrayOfThreads.append(thisThread)
-                    }
-                    
+                    arrayOfThreads.append(thisThread)
                 }
             }
+        } else { //It's empty/not downloaded yet
+           // emptyOverlay.isHidden = false
         }
         if !isDownloading {
             overlay?.isHidden = true
         }
         threadTable.reloadData()
-        
         
         
     }

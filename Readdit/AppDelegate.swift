@@ -145,16 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             thisThread.id = thread["data"]["id"].string!
                             thisThread.nsfw = Bool(thread["data"]["over_18"].boolValue)
                             thisThread.permalink = thread["data"]["permalink"].string!
-                            
-                            if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
-                                
-                                if !key {
-                                    arrayOfThreads.append(thisThread)
-                                }
-                                
-                            } else { //Default is not hiding
-                                arrayOfThreads.append(thisThread)
-                            }
+                             arrayOfThreads.append(thisThread)
                         }
                         print("Downloading threads")
                         var count = 1

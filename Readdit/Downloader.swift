@@ -33,15 +33,14 @@ public class Downloader: UIViewController {
     
     class func downloadJSON(subreddit:String){
         
-        
-        var threadNumber = "10"
-        if let x = UserDefaults.standard.string(forKey: "NumberOfThreads") {
-            threadNumber = x
-        }
+        let threadNumber = UserDefaults.standard.string(forKey: "NumberOfThreads")
+
         
         for sortType in arrayOfSubredditSort {
             
-            let urlString = "https://www.reddit.com/r/" + subreddit + "/" + sortType.lowercased() + "/.json?limit=" + threadNumber
+            var urlString = "https://www.reddit.com/r/"
+                urlString.append(subreddit)
+                urlString.append("/" + sortType.lowercased() + "/.json?limit=" + threadNumber!)
             let fileName = subreddit + ".txt"
             
             let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
@@ -77,10 +76,8 @@ public class Downloader: UIViewController {
     
     
     class func downloadThreadJSON(subreddit: String, threadURL:String, threadID: String) {
-        var threadNumber = "10"
-        if let x = UserDefaults.standard.string(forKey: "NumberOfThreads") {
-            threadNumber = x
-        }
+        let threadNumber = UserDefaults.standard.string(forKey: "NumberOfThreads")
+
         
         for sortType in arrayOfThreadSort {
             let urlString = "https://reddit.com" + threadURL + "/.json?sort=" + sortType.lowercased()
@@ -119,6 +116,7 @@ public class Downloader: UIViewController {
                         //print("completed response")
                         //downloadCount = downloadCount + 1
                         downloadDictionary[subreddit] = downloadDictionary[subreddit]! + 1
+                       //print("Updated dictionary")
                        // print("Download count: \(downloadCount)")
 
                     } catch let error as NSError {

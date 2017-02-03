@@ -86,6 +86,7 @@ class SubredditTableViewCell: UITableViewCell {
                 let jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Hot")
                 arrayOfThreads.removeAll()
                 if (jsonRaw != "Error") {
+                    print(jsonRaw)
                     if let data = jsonRaw.data(using: String.Encoding.utf8) {
                         let json = JSON(data: data)
                         let threads = json["data"]["children"]
@@ -98,24 +99,17 @@ class SubredditTableViewCell: UITableViewCell {
                             thisThread.id = thread["data"]["id"].string!
                             thisThread.nsfw = Bool(thread["data"]["over_18"].boolValue)
                             thisThread.permalink = thread["data"]["permalink"].string!
-                            
-                            if let key = UserDefaults.standard.object(forKey: "hideNSFW") as? Bool { //Key exists
-                                
-                                if !key {
-                                    arrayOfThreads.append(thisThread)
-                                }
-                                
-                            } else { //Default is not hiding
-                                arrayOfThreads.append(thisThread)
-                            }
+                            arrayOfThreads.append(thisThread)
                         }
                         print("Downloading threads")
                         var count = 1
                         //downloadCount = 0
                         downloadDictionary[subreddit] = 0
-                        let numOfThreads = Int(UserDefaults.standard.string(forKey: "NumberOfThreads")!)
+                        let numOfThreads:Int = Int(UserDefaults.standard.string(forKey: "NumberOfThreads")!)!
+                        print("Number of threads : \(numOfThreads)")
+                        print("arrayofthreadcount: \(arrayOfThreads.count)")
                         for thread in arrayOfThreads {
-                            print("Downloading \(count)/\(numOfThreads!)")
+                            print("Downloading \(count)/\(numOfThreads)")
                             count = count + 1
                             //print("Sending \(thread.id) to download")
                             Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
