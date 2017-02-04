@@ -26,6 +26,7 @@
 		366903E21DEFBD0200696250 /* ReportABugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */; };
 		366903E41DEFBD0C00696250 /* ClearAllDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */; };
 		3678F4F91E04D4DB005A3F8A /* ThreadNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */; };
+		367FD6BA1E44EFAB00C9EDB3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FD6B91E44EFAB00C9EDB3 /* Extensions.swift */; };
 		3684C7CC1E071A9400754372 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3684C7CB1E071A9400754372 /* SWRevealViewController.m */; };
 		3687C8811E299FBF00B16BC6 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3687C8801E299FBF00B16BC6 /* PaddingLabel.swift */; };
 		368A4BEF1DD0CABF002D0480 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368A4BEE1DD0CABF002D0480 /* CommentData.swift */; };
@@ -92,6 +93,7 @@
 		366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportABugTableViewCell.swift; sourceTree = "<group>"; };
 		366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearAllDataTableViewCell.swift; sourceTree = "<group>"; };
 		3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadNavigationController.swift; sourceTree = "<group>"; };
+		367FD6B91E44EFAB00C9EDB3 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3684C7C91E071A9400754372 /* Readdit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Readdit-Bridging-Header.h"; sourceTree = "<group>"; };
 		3684C7CA1E071A9400754372 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
 		3684C7CB1E071A9400754372 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				363916951E120DE70053EDCE /* FindSize.swift */,
 				36B2680A1E306D6B009FC008 /* Theme.swift */,
 				3604883F1E3C46C900A45B75 /* NetworkManager.swift */,
+				367FD6B91E44EFAB00C9EDB3 /* Extensions.swift */,
 			);
 			name = Misc.;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				36A29EFA1E2D944D0073FB32 /* UpdateAllTableViewCell.swift in Sources */,
 				36982E3C1DF5386700336A3F /* THREADTableViewCell.swift in Sources */,
 				36DB561E1DCEB76200E7B764 /* ThreadListViewController.swift in Sources */,
+				367FD6BA1E44EFAB00C9EDB3 /* Extensions.swift in Sources */,
 				366903E21DEFBD0200696250 /* ReportABugTableViewCell.swift in Sources */,
 				366903E01DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift in Sources */,
 				366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */,

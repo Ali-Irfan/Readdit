@@ -28,7 +28,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         for subreddit in (defaults.object(forKey: "arrayOfSubreddits") as? [String])! {
             downloadDictionary[subreddit] = 0
-            print("Set \(subreddit) to 0")
             }
 
         
@@ -158,7 +157,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func changeTextSize(_ sender: UIButton!) {
-        
         let optionMenu = SkypeActionController()
         
         let large = Action("Large", style: .default, handler: { action in
@@ -180,12 +178,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let cancelAction = Action("Cancel", style: .cancel, handler: { action in
             print("Cancelled")
         })
-
+        
         optionMenu.addAction(large)
         optionMenu.addAction(regular)
         optionMenu.addAction(small)
         optionMenu.addAction(cancelAction)
         present(optionMenu, animated: true, completion: nil)
+        
     }
     
     
@@ -201,7 +200,28 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         })
         
         let t2hr = Action("Every 2 hours", style: .default, handler: { action in
-            sender.setTitle("1 hour", for: .normal)
+            sender.setTitle("2 hour", for: .normal)
+            let notification = UILocalNotification()
+            
+            /* Time and timezone settings */
+            notification.fireDate = NSDate(timeIntervalSinceNow: 8.0) as Date
+            notification.repeatInterval = NSCalendar.Unit.minute
+            notification.timeZone = NSCalendar.current.timeZone
+            notification.alertBody = "Reminder: Click here to update your subreddits!"
+            notification.soundName = UILocalNotificationDefaultSoundName
+            /* Action settings */
+            notification.hasAction = true
+            notification.alertAction = "View"
+
+            /* Additional information, user info */
+            notification.userInfo = [
+                "Key 1" : "Value 1",
+                "Key 2" : "Value 2"
+            ]
+            
+            /* Schedule the notification */
+            UIApplication.shared.scheduleLocalNotification(notification)
+        
             self.defaults.set(1*60*60, forKey: "downloadTime")
         })
         
@@ -215,12 +235,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             self.defaults.set(12*60*60, forKey: "downloadTime")
         })
         
-        let t24hr = Action("Every 24 hours", style: .default, handler: { action in
+        let t24hr = Action("Every Day", style: .default, handler: { action in
             sender.setTitle("24 hours", for: .normal)
             self.defaults.set(24*60*60, forKey: "downloadTime")
         })
         
-        let t48hr = Action("Every 48 hours", style: .default, handler: { action in
+        let t48hr = Action("Every Week", style: .default, handler: { action in
             sender.setTitle("48 hours", for: .normal)
             self.defaults.set(48*60*60, forKey: "downloadTime")
         })
@@ -556,63 +576,4 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
 } //End of Settings
-
-
-
-extension UIColor
-{
-    /**
-     Returns the components that make up the color in the RGB color space as a tuple.
-     
-     - returns: The RGB components of the color or `nil` if the color could not be converted to RGBA color space.
-     */
-    func getRGBAComponents() -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)?
-    {
-        var (red, green, blue, alpha) = (CGFloat(0.0), CGFloat(0.0), CGFloat(0.0), CGFloat(0.0))
-        if self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        {
-            return (red, green, blue, alpha)
-        }
-        else
-        {
-            return nil
-        }
-    }
-    
-    /**
-     Returns the components that make up the color in the HSB color space as a tuple.
-     
-     - returns: The HSB components of the color or `nil` if the color could not be converted to HSBA color space.
-     */
-    func getHSBAComponents() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat)?
-    {
-        var (hue, saturation, brightness, alpha) = (CGFloat(0.0), CGFloat(0.0), CGFloat(0.0), CGFloat(0.0))
-        if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-        {
-            return (hue, saturation, brightness, alpha)
-        }
-        else
-        {
-            return nil
-        }
-    }
-    
-    /**
-     Returns the grayscale components of the color as a tuple.
-     
-     - returns: The grayscale components or `nil` if the color could not be converted to grayscale color space.
-     */
-    func getGrayscaleComponents() -> (white: CGFloat, alpha: CGFloat)?
-    {
-        var (white, alpha) = (CGFloat(0.0), CGFloat(0.0))
-        if self.getWhite(&white, alpha: &alpha)
-        {
-            return (white, alpha)
-        }
-        else
-        {
-            return nil
-        }
-    }
-}
 

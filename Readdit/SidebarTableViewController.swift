@@ -32,6 +32,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         
         super.viewDidLoad()
         let nc = NotificationCenter.default
+        nc.addObserver(forName:NSNotification.Name(rawValue: "UpdateSubreddits"), object:nil, queue:nil, using:catchNotification2)
         nc.addObserver(forName:myNotification, object:nil, queue:nil, using:catchNotification)
         
         self.sidebarTable.dataSource = self
@@ -76,6 +77,10 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     
     func catchNotification(notification:Notification) -> Void {
         checkCurrentDownloads()
+    }
+    
+    func catchNotification2(notification:Notification) -> Void {
+        updateAllSubreddits()
     }
     
     func checkCurrentDownloads() {
@@ -230,7 +235,9 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             
         }
     }
-    
+    func gotNotifToUpdateSubreddits(notification: Notification){
+       // updateAllSubreddits()
+    }
     
     func segueToSubreddits() {
         let myVC = self.storyboard?.instantiateViewController(withIdentifier: "Subreddits") as! SidebarTableViewController
@@ -376,26 +383,3 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
 
 
 
-
-
-extension String {
-    func capitalizingFirstLetter() -> String {
-        let first = String(characters.prefix(1)).capitalized
-        let other = String(characters.dropFirst())
-        return first + other
-    }
-    
-    mutating func capitalizeFirstLetter() {
-        self = self.capitalizingFirstLetter()
-    }
-    
-    var stringByRemovingWhitespaces: String {
-        return components(separatedBy: .whitespaces).joined(separator: "")
-    }
-    
-    func convertHtmlSymbols() throws -> String? {
-        guard let data = data(using: .utf8) else { return nil }
-        
-        return try NSAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil).string
-    }
-}
