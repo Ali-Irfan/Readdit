@@ -32,8 +32,8 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         
         super.viewDidLoad()
         let nc = NotificationCenter.default
-        nc.addObserver(forName:NSNotification.Name(rawValue: "UpdateSubreddits"), object:nil, queue:nil, using:catchNotification2)
-        nc.addObserver(forName:myNotification, object:nil, queue:nil, using:catchNotification)
+        nc.addObserver(forName:updateSubredditNotification, object:nil, queue:nil, using:updateAllSubreddits)
+        nc.addObserver(forName:updateViewNotification,      object:nil, queue:nil, using:checkCurrentDownloads)
         
         self.sidebarTable.dataSource = self
         self.sidebarTable.delegate = self
@@ -83,7 +83,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         updateAllSubreddits()
     }
     
-    func checkCurrentDownloads() {
+    func checkCurrentDownloads(notification:Notification? = nil) -> Void {
         let downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
         for cell in sidebarTable.visibleCells {
             if let c = cell as? SubredditTableViewCell {
@@ -244,7 +244,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         self.revealViewController().pushFrontViewController(myVC, animated: true)
     }
     
-    func updateAllSubreddits() {
+    func updateAllSubreddits(notification:Notification?  = nil) -> Void {
         
         let alert = PMAlertController(title: "Update all subreddits", color: Theme.getGeneralColor(), description: "This may take a while. Are you sure?", image: nil, style: .alert)
         alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))

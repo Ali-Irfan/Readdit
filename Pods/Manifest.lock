@@ -1,4 +1,5 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.2.0)
   - Alamofire (4.3.0)
   - Alamofire-Synchronous (4.0.0):
     - Alamofire (~> 4.0)
@@ -22,6 +23,7 @@ PODS:
   - Zip (0.6.0)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0
   - Alamofire (~> 4.0)
   - Alamofire-Synchronous (~> 4.0)
   - AsyncSwift
@@ -47,6 +49,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ViccAlexander/Chameleon.git
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   Alamofire-Synchronous: eedf1e6e961c3795a63c74990b3f7d9fbfac7e50
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
@@ -60,6 +63,6 @@ SPEC CHECKSUMS:
   XLActionController: 57fe0ce1642e2eed971b188b490762345fdbf963
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 87115e087be8bb0323ae0e1040aad5ca1560d6e3
+PODFILE CHECKSUM: 167deda61d0bb7f389833b2aa6735bd7df2f0f82
 
 COCOAPODS: 1.1.1

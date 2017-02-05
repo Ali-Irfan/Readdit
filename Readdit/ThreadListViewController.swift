@@ -22,7 +22,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         let nc = NotificationCenter.default
-        nc.addObserver(forName:myNotification, object:nil, queue:nil, using:catchNotification)
+        nc.addObserver(forName:updateViewNotification, object:nil, queue:nil, using:catchNotification)
         
         //Adding an overlay for async loading
         overlay = UIView(frame: view.frame)
@@ -203,7 +203,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 let json = JSON(data: data)
                 let threads = json["data"]["children"]
                 // print(json)
+                let numOfThreads:Int = Int(UserDefaults.standard.string(forKey: "NumberOfThreads")!)!
+                var threadCount = 0
                 for (_, thread):(String, JSON) in threads {
+                    if threadCount < numOfThreads {
                     let thisThread = ThreadData()
                     thisThread.title = thread["data"]["title"].string!
                     thisThread.author = thread["data"]["author"].string!
@@ -214,6 +217,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                     thisThread.permalink = thread["data"]["permalink"].string!
                     thisThread.utcCreated = thread["data"]["created_utc"].double!
                     arrayOfThreads.append(thisThread)
+                }
+                threadCount = threadCount + 1
                 }
             }
         } else { //It's empty/not downloaded yet

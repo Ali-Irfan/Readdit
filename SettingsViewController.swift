@@ -4,19 +4,23 @@ import ChameleonFramework
 import Async
 import PMAlertController
 import XLActionController
+import ActionSheetPicker_3_0
+
+
 var downloadDictionary:[String:Int] = [:]
+
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let defaults = UserDefaults.standard
     var themeColor:UIColor = FlatSkyBlue()
     let arrayOfSettings = ["Text Size", "Download Settings", "Download Automatically", "Threads per Subreddit", "Theme", "Clear All Data"]
-    
     @IBOutlet weak var settingsTable: UITableView!
+    
     var totalSize = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDefaults()
-
         setupTheme()
         if revealViewController() != nil {
             revealViewController().rightViewRevealWidth = 0
@@ -189,7 +193,23 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     
-    
+    func getNextDate() -> Date {
+        let arr = UserDefaults.standard.object(forKey: "reminderDate") as! [String]
+        var h = arr[0]
+        let a = arr[1]
+        let calendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
+        let now: NSDate! = NSDate()
+        
+        if a == "PM" {
+            if Int(h)! > 12 {
+                let intOfHour = Int(h)! + 12
+                h = String(intOfHour)
+            }
+        }
+        
+        let date10h = calendar.date(bySettingHour: Int(h)!, minute: 0, second: 0, of: now as Date, options: NSCalendar.Options.matchFirst)!
+        return date10h
+    }
     func changeDownloadTimes(_ sender: UIButton!) {
         
         let optionMenu = SkypeActionController()
@@ -199,13 +219,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             self.defaults.set(0, forKey: "downloadTime")
         })
         
-        let t2hr = Action("Every 2 hours", style: .default, handler: { action in
-            sender.setTitle("2 hour", for: .normal)
+        let daily = Action("Daily", style: .default, handler: { action in
+            sender.setTitle("Daily at h A", for: .normal)
             let notification = UILocalNotification()
             
             /* Time and timezone settings */
-            notification.fireDate = NSDate(timeIntervalSinceNow: 8.0) as Date
-            notification.repeatInterval = NSCalendar.Unit.minute
+            notification.fireDate = self.getNextDate()//NSDate(timeIntervalSinceNow: 8.0) as Date
+            notification.repeatInterval = NSCalendar.Unit.hour
             notification.timeZone = NSCalendar.current.timeZone
             notification.alertBody = "Reminder: Click here to update your subreddits!"
             notification.soundName = UILocalNotificationDefaultSoundName
@@ -221,28 +241,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
             /* Schedule the notification */
             UIApplication.shared.scheduleLocalNotification(notification)
-        
-            self.defaults.set(1*60*60, forKey: "downloadTime")
-        })
-        
-        let t6hr = Action("Every 6 hours", style: .default, handler: { action in
-            sender.setTitle("6 hours", for: .normal)
-            self.defaults.set(6*60*60, forKey: "downloadTime")
-        })
-        
-        let t12hr = Action("Every 12 hours", style: .default, handler: { action in
-            sender.setTitle("12 hours", for: .normal)
-            self.defaults.set(12*60*60, forKey: "downloadTime")
-        })
-        
-        let t24hr = Action("Every Day", style: .default, handler: { action in
-            sender.setTitle("24 hours", for: .normal)
-            self.defaults.set(24*60*60, forKey: "downloadTime")
-        })
-        
-        let t48hr = Action("Every Week", style: .default, handler: { action in
-            sender.setTitle("48 hours", for: .normal)
-            self.defaults.set(48*60*60, forKey: "downloadTime")
         })
         
         let cancelAction = Action("Cancel", style: .cancel, handler: { action in
@@ -250,11 +248,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         })
 
         optionMenu.addAction(manual)
-        optionMenu.addAction(t2hr)
-        optionMenu.addAction(t6hr)
-        optionMenu.addAction(t12hr)
-        optionMenu.addAction(t24hr)
-        optionMenu.addAction(t48hr)
+        optionMenu.addAction(daily)
         optionMenu.addAction(cancelAction)
         present(optionMenu, animated: true, completion: nil)
     }
@@ -479,7 +473,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
         case "Download Automatically":
             let cell:AutoDownloadTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "AutoDownload") as! AutoDownloadTableViewCell
-            cell.pickerButton.addTarget(self, action: #selector(changeDownloadTimes), for: .touchUpInside)
+            cell.pickerButton.addTarget(self, action: #selector(addAndShowPicker), for: .touchUpInside)
             Theme.setButtonColor(button:  cell.pickerButton, color: themeColor)
             if Theme.getGeneralColor() == FlatBlack() {
                 cell.view.backgroundColor = FlatBlackDark()
@@ -572,6 +566,26 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             let newNum = textField.text!
             self.defaults.set(newNum, forKey: "NumberOfThreads")
         }
+    }
+    
+    
+    func addAndShowPicker(sender: UITextField) {
+        print("got it")
+        ActionSheetMultipleStringPicker.show(withTitle: "Multiple String Picker", rows: [
+            ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+            ["AM", "PM"]
+            ], initialSelection: [7, 0], doneBlock: {
+                picker, indexes, values in
+                var data = values as! [String]
+                
+                UserDefaults.standard.set([data[0],data[1]], forKey: "reminderDate")
+                
+                print("TIME: " + data[0] + " " + data[1])
+                print("values = \(values)")
+                print("indexes = \(indexes)")
+                print("picker = \(picker)")
+                return
+        }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
     }
     
     

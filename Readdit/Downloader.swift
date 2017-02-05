@@ -41,6 +41,7 @@ public class Downloader: UIViewController {
             var urlString = "https://www.reddit.com/r/"
                 urlString.append(subreddit)
                 urlString.append("/" + sortType.lowercased() + "/.json?limit=" + threadNumber!)
+            print("Getting data from URL: \(urlString)")
             let fileName = subreddit + ".txt"
             
             let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
@@ -76,8 +77,6 @@ public class Downloader: UIViewController {
     
     
     class func downloadThreadJSON(subreddit: String, threadURL:String, threadID: String) {
-        let threadNumber = UserDefaults.standard.string(forKey: "NumberOfThreads")
-
         
         for sortType in arrayOfThreadSort {
             let urlString = "https://reddit.com" + threadURL + "/.json?sort=" + sortType.lowercased()

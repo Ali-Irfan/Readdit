@@ -4,7 +4,9 @@ import PMAlertController
 
 //Constants
 var currentRequests:[Alamofire.Request]? = nil
-let myNotification = Notification.Name(rawValue:"MyNotification")
+let updateViewNotification = Notification.Name(rawValue:"UpdateViews")
+let updateSubredditNotification = Notification.Name(rawValue:"UpdateSubreddits")
+
 
 class Utils {
     static  func displayTheAlert(targetVC: UIViewController, title: String, message: String){

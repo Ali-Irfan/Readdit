@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ActionSheetPicker-3.0.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Alamofire-Synchronous.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,7 +82,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>41FE6FAF96EC4F34B5012DBE3D4AD9D2</key>
+		<key>12C6C41B147069A2A4E6B9C790DAFECE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>23F76E766E4906FAD9F6037BA03322FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +102,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>85887196917661A1ED25A09159C1AD97</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>965699190112DDBD9B7864D091660DBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,27 +127,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A2BEE9C983A43E7B826644A75CAA4773</key>
+		<key>B1E7890DCA08F373E2C32DD0FDC4EECB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B18106A5A5E851C591D01F73F816F76C</key>
+		<key>C77460CF4267980E56019E0256DEB314</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B1C2578B2AD5CAFCE7F239C3BD7D1316</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C2CE336B9FA60B95E385FB82E4E52494</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D08F3E1979CB450634B9A84791B41E19</key>
+		<key>D2F7EF9BFE20DBD9B75A3DCC25800F33</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,12 +147,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E41B56ECA1F86EDC28DD3298479D53D6</key>
+		<key>EBE460D3E3A3CF1AFBBDFA387940E5E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EBE460D3E3A3CF1AFBBDFA387940E5E7</key>
+		<key>EEA4F7E4EBA12EE2D357B8DEF9504C8D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

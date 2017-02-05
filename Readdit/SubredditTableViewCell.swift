@@ -17,7 +17,6 @@ var downloadCount = 1
 class SubredditTableViewCell: UITableViewCell {
     
     let nc = NotificationCenter.default
-    let myNotification = Notification.Name(rawValue:"MyNotification")
 
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var updateButton: UIButton!
@@ -71,7 +70,7 @@ class SubredditTableViewCell: UITableViewCell {
                     UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
 
                     //Send notification that this subreddit is downloading (to produce overlay of ViewController)
-                    self.nc.post(name:self.myNotification, object: nil, userInfo:["message":"", "date":Date()])
+                    self.nc.post(name:updateViewNotification, object: nil, userInfo:["message":"", "date":Date()])
                 }
                     
                 
@@ -84,13 +83,18 @@ class SubredditTableViewCell: UITableViewCell {
                 
                 print("Getting subreddits")
                 let jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Hot")
-                arrayOfThreads.removeAll()
+                
                 if (jsonRaw != "Error") {
                     print(jsonRaw)
+                    arrayOfThreads.removeAll()
                     if let data = jsonRaw.data(using: String.Encoding.utf8) {
                         let json = JSON(data: data)
+                        let numOfThreads:Int = Int(UserDefaults.standard.string(forKey: "NumberOfThreads")!)!
+                        var threadCount = 0
                         let threads = json["data"]["children"]
+                        
                         for (_, thread):(String, JSON) in threads {
+                            if threadCount < numOfThreads {
                             let thisThread = ThreadData()
                             thisThread.title = thread["data"]["title"].string!
                             thisThread.author = thread["data"]["author"].string!
@@ -100,12 +104,14 @@ class SubredditTableViewCell: UITableViewCell {
                             thisThread.nsfw = Bool(thread["data"]["over_18"].boolValue)
                             thisThread.permalink = thread["data"]["permalink"].string!
                             arrayOfThreads.append(thisThread)
+                            }
+                            
+                            threadCount = threadCount + 1
                         }
                         print("Downloading threads")
                         var count = 1
                         //downloadCount = 0
                         downloadDictionary[subreddit] = 0
-                        let numOfThreads:Int = Int(UserDefaults.standard.string(forKey: "NumberOfThreads")!)!
                         print("Number of threads : \(numOfThreads)")
                         print("arrayofthreadcount: \(arrayOfThreads.count)")
                         for thread in arrayOfThreads {
@@ -127,7 +133,7 @@ class SubredditTableViewCell: UITableViewCell {
                             UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
                             
                             //Send notification again because the download has been completed
-                            self.nc.post(name:self.myNotification,
+                            self.nc.post(name:updateViewNotification,
                                     object: nil,
                                     userInfo:["message":"Hello there!", "date":Date()])                }
                     }//ASYNC
@@ -143,7 +149,7 @@ class SubredditTableViewCell: UITableViewCell {
 
     func stopDownload() {
         Downloader.stopDownloads()
-        self.nc.post(name:myNotification,
+        self.nc.post(name:updateViewNotification,
                      object: nil,
                      userInfo:["message":"Hello there!", "date":Date()])
         
