@@ -19,6 +19,7 @@ class DownloadSettingsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         let setting = UserDefaults().string(forKey: "network")
+        print("CURRENT SETTING: \(setting)")
         if setting == "both" {
             downloadSettingsButton.setTitle("WiFi + Data", for: .normal)
         } else if setting == "wifi" {
@@ -26,6 +27,7 @@ class DownloadSettingsTableViewCell: UITableViewCell {
         } else {
             downloadSettingsButton.setTitle("Data Only", for: .normal)
         }
+        print("Just set it")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

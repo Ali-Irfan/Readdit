@@ -612,11 +612,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SettingsViewController.swift"
-            timestampString = "508015765.436882"
+            timestampString = "508143479.020029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "718"
-            endingLineNumber = "718">
+            startingLineNumber = "739"
+            endingLineNumber = "739">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -705,54 +705,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SettingsViewController.swift"
-            timestampString = "508014151.869011"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
-            landmarkName = "changeDownloadTimes(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Readdit.SettingsViewController.changeTextSize (Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIButton&gt;) -&gt; ()"
-                  moduleName = "Readdit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aliirfan/Dropbox/Readdit/SettingsViewController.swift"
-                  timestampString = "506054529.591125"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "139"
-                  endingLineNumber = "139"
-                  offsetFromSymbolStart = "1129">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Readdit.SettingsViewController.(changeTextSize (Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIButton&gt;) -&gt; ()).(closure #4)"
-                  moduleName = "Readdit"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aliirfan/Dropbox/Readdit/SettingsViewController.swift"
-                  timestampString = "506054529.593333"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "141"
-                  endingLineNumber = "141"
-                  offsetFromSymbolStart = "23">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadListViewController.swift"
             timestampString = "507778832.125127"
             startingColumnNumber = "9223372036854775807"
@@ -786,11 +738,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SettingsViewController.swift"
-            timestampString = "508014151.869011"
+            timestampString = "508143479.020029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "408"
-            endingLineNumber = "408"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1244,12 +1196,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SettingsViewController.swift"
-            timestampString = "508016121.609353"
+            timestampString = "508143479.020029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "getNextDate()"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "changeDownloadTimes(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

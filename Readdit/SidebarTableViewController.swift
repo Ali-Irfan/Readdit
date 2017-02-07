@@ -32,7 +32,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         
         super.viewDidLoad()
         let nc = NotificationCenter.default
-        nc.addObserver(forName:updateSubredditNotification, object:nil, queue:nil, using:updateAllSubreddits)
+        nc.addObserver(forName:updateSubredditNotification, object:nil, queue:nil, using:updateAllSubredditsWithoutAlert)
         nc.addObserver(forName:updateViewNotification,      object:nil, queue:nil, using:checkCurrentDownloads)
         
         self.sidebarTable.dataSource = self
@@ -223,7 +223,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         case "updateAll":
             let cell:UpdateAllTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "updateAll") as! UpdateAllTableViewCell
             cell.selectionStyle = UITableViewCellSelectionStyle.none
-            cell.updateAll.addTarget(self, action: #selector(updateAllSubreddits), for: .touchUpInside)
+            cell.updateAll.addTarget(self, action: #selector(updateAllSubredditsSelector), for: .touchUpInside)
             cell.backgroundColor = mainCellColor
             cell.updateAll.setTitleColor(mainTextColor, for: .normal)
             return cell
@@ -235,6 +235,15 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             
         }
     }
+    
+    func updateAllSubredditsSelector() {
+        updateAllSubreddits()
+    }
+    
+    func updateAllSubredditsWithoutAlert(notification: Notification?) {
+        updateAllSubreddits(showAlert: false)
+    }
+    
     func gotNotifToUpdateSubreddits(notification: Notification){
        // updateAllSubreddits()
     }
@@ -244,8 +253,18 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         self.revealViewController().pushFrontViewController(myVC, animated: true)
     }
     
-    func updateAllSubreddits(notification:Notification?  = nil) -> Void {
-        
+    func updateAllSubreddits(notification:Notification?=nil, showAlert:Bool?=true) -> Void {
+        if !showAlert! {
+            for cell in self.sidebarTable.visibleCells {
+                if let subredditCell = cell as? SubredditTableViewCell {
+                    subredditCell.updateSubreddit()
+                } else if let c = cell as? UpdateAllTableViewCell {
+                    c.updateAll.isEnabled = false
+                    c.stopButton.setImage(#imageLiteral(resourceName: "multiply"), for: .normal)
+                    c.stopButton.addTarget(self, action: #selector(self.stopAllDownloads), for: .touchUpInside)
+                }
+            }
+        } else {
         let alert = PMAlertController(title: "Update all subreddits", color: Theme.getGeneralColor(), description: "This may take a while. Are you sure?", image: nil, style: .alert)
         alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
         // 3. Grab the value from the text field, and print it when the user clicks OK.
@@ -264,7 +283,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
-        
+        }
     }
     
     

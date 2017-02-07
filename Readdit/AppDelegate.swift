@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
        print("Received notifcation")
-    NotificationCenter.default.post(name: Notification.Name(rawValue: "UpdateSubreddits"), object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "UpdateSubreddits"), object: self)
     }
     
 

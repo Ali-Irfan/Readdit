@@ -109,8 +109,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             defaults.set(defaultSubreddits, forKey: "arrayOfSubreddits")
         }
         
-        
-        if defaults.string(forKey: "network") != nil {} else {         defaults.set("wifi", forKey: "network")}
+        if defaults.string(forKey: "reminderDate") != nil {} else {    defaults.set(["Disabled", "AM"], forKey: "network")}
+        if defaults.string(forKey: "network") != nil {print("its not nil")} else {         defaults.set("wifi", forKey: "network");print("it was nil")}
         if defaults.object(forKey: "downloadTime") != nil {} else {    defaults.set(0, forKey: "downloadTime")}
         if defaults.object(forKey: "NumberOfThreads") != nil {} else { defaults.set("10", forKey: "NumberOfThreads")}
         if defaults.object(forKey: "fontSize") != nil {} else {        defaults.set("regular", forKey: "fontSize")}
@@ -193,42 +193,86 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     
-    func getNextDate() -> Date {
+    func get24HourValue() -> Int {
         let arr = UserDefaults.standard.object(forKey: "reminderDate") as! [String]
-        var h = arr[0]
+        let h = arr[0]
         let a = arr[1]
-        let calendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
-        let now: NSDate! = NSDate()
         
-        if a == "PM" {
-            if Int(h)! > 12 {
-                let intOfHour = Int(h)! + 12
-                h = String(intOfHour)
-            }
-        }
-        
-        let date10h = calendar.date(bySettingHour: Int(h)!, minute: 0, second: 0, of: now as Date, options: NSCalendar.Options.matchFirst)!
-        return date10h
+        let dateAsString = h + ":00 " + a
+        print("Converting \(dateAsString)")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        let date = dateFormatter.date(from: dateAsString)
+        print("date: \(date)")
+        let inFormatter = DateFormatter()
+        inFormatter.locale = NSLocale.current
+        inFormatter.dateFormat = "HH:mm"
+        let hrString = inFormatter.string(from: date!)
+       
+        let token:Int = Int(hrString.components(separatedBy: ":").first!)!
+        print("GOT \(token)")
+        return token
+
     }
-    func changeDownloadTimes(_ sender: UIButton!) {
+    
+    
+    
+    
+    func changeDownloadTimes(sender: UIButton) {
+        let check = UserDefaults.standard.object(forKey: "reminderDate") as! [String]
         
-        let optionMenu = SkypeActionController()
-        
-        let manual = Action("Manual", style: .default, handler: { action in
-            sender.setTitle("Manually Download", for: .normal)
-            self.defaults.set(0, forKey: "downloadTime")
-        })
-        
-        let daily = Action("Daily", style: .default, handler: { action in
-            sender.setTitle("Daily at h A", for: .normal)
-            let notification = UILocalNotification()
+
+        if check[0] == "Disabled" {
+            print("Clicked disabled")
+            sender.setTitle("Disabled", for: .normal)
+            UIApplication.shared.cancelAllLocalNotifications()
+        } else {
             
+            UIApplication.shared.cancelAllLocalNotifications()
+            let userHour = get24HourValue()
+            let arr = UserDefaults.standard.object(forKey: "reminderDate") as! [String]
+            let h = arr[0]
+            let a = arr[1]
+            sender.setTitle(h + " " + a, for: .normal)
+            let currentHour = Calendar.current.component(.hour, from: Date())
+            let currentYear = Calendar.current.component(.year, from: Date())
+            let currentDay = Calendar.current.component(.day, from: Date())
+            let currentMonth = Calendar.current.component(.month, from: Date())
+            var fireTime = Date()
+            let formatter = DateFormatter()
+            //formatter.locale =  NSLocale(localeIdentifier: "en_US_POSIX") as Locale!
+            formatter.timeZone = NSTimeZone.local
+            print(formatter.timeZone)
+            formatter.dateFormat = "yyyy/MM/dd HH:mm"
+            
+            if currentHour < userHour { //Set the firedate for today
+                
+                let s = "\(currentYear)/\(currentMonth)/\(currentDay) \(userHour):00"
+                let someDateTime = formatter.date(from: s)
+                fireTime = someDateTime!
+                
+            } else { //Set the firedate for tomorrow because the time has already passed today
+                print("Hour selected is less than current -> User hour: \(userHour)")
+                let s = "\(currentYear)/\(currentMonth)/\(currentDay+1) \(userHour):00"
+                let someDateTime = formatter.date(from: s)
+                fireTime = someDateTime!
+                
+            }
+            
+            
+            
+            print("Current hour: \(currentHour) and user hour: \(userHour)")
+            
+            let notification = UILocalNotification()
+            //sender.setTitle("Not Manual", for: .normal)
+
             /* Time and timezone settings */
-            notification.fireDate = self.getNextDate()//NSDate(timeIntervalSinceNow: 8.0) as Date
-            notification.repeatInterval = NSCalendar.Unit.hour
+            //notification.fireDate = self.getNextDate()//NSDate(timeIntervalSinceNow: 8.0) as Date
+            notification.repeatInterval = NSCalendar.Unit.day
             notification.timeZone = NSCalendar.current.timeZone
             notification.alertBody = "Reminder: Click here to update your subreddits!"
             notification.soundName = UILocalNotificationDefaultSoundName
+            notification.fireDate = fireTime
             /* Action settings */
             notification.hasAction = true
             notification.alertAction = "View"
@@ -241,16 +285,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
             /* Schedule the notification */
             UIApplication.shared.scheduleLocalNotification(notification)
-        })
-        
-        let cancelAction = Action("Cancel", style: .cancel, handler: { action in
-            print("Cancelled")
-        })
-
-        optionMenu.addAction(manual)
-        optionMenu.addAction(daily)
-        optionMenu.addAction(cancelAction)
-        present(optionMenu, animated: true, completion: nil)
+            print("Registered notification for \(formatter.string(from: fireTime))")
+            
+        }
     }
     
     func changeTheme(_ sender: UIButton) {
@@ -569,21 +606,21 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    func addAndShowPicker(sender: UITextField) {
+    func addAndShowPicker(sender: UIButton) {
         print("got it")
-        ActionSheetMultipleStringPicker.show(withTitle: "Multiple String Picker", rows: [
-            ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+        ActionSheetMultipleStringPicker.show(withTitle: "Select Daily Time", rows: [
+            ["Disabled", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
             ["AM", "PM"]
             ], initialSelection: [7, 0], doneBlock: {
                 picker, indexes, values in
                 var data = values as! [String]
                 
                 UserDefaults.standard.set([data[0],data[1]], forKey: "reminderDate")
-                
-                print("TIME: " + data[0] + " " + data[1])
-                print("values = \(values)")
-                print("indexes = \(indexes)")
-                print("picker = \(picker)")
+                self.changeDownloadTimes(sender: sender)
+//                print("TIME: " + data[0] + " " + data[1])
+//                print("values = \(values)")
+//                print("indexes = \(indexes)")
+//                print("picker = \(picker)")
                 return
         }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
     }
