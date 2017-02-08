@@ -429,7 +429,39 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5108" y="-1353"/>
+            <point key="canvasLocation" x="6047.1999999999998" y="-1353.3733133433284"/>
+        </scene>
+        <!--Initial View Controller-->
+        <scene sceneID="MQo-cV-EYl">
+            <objects>
+                <viewController id="0oo-jN-UKB" customClass="InitialViewController" customModule="Readdit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pVn-J8-zoS"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xvy-7H-LMz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9gf-Sb-kMg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap the sidebar icon to get started!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSF-eJ-0Pi">
+                                <rect key="frame" x="53" y="295" width="269" height="95"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="6qv-Gq-EiN">
+                                <rect key="frame" x="31" y="26" width="184" height="293"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nqH-Qi-nJJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eK7-mc-zgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1142" y="-1531"/>
         </scene>
         <!--Sidebar Table View Controller-->
         <scene sceneID="cjc-BT-IO1">
@@ -631,7 +663,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nc4-uJ-8gG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="992" y="-1532.3838080959522"/>
+            <point key="canvasLocation" x="1931.2" y="-1532.3838080959522"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="wDK-xx-yN0">
@@ -654,7 +686,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSI-MQ-tJN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634" y="-1531"/>
+            <point key="canvasLocation" x="2572" y="-1531.4842578710645"/>
         </scene>
         <!--Right Sidebar View Controller-->
         <scene sceneID="TpQ-S0-7eW">
@@ -736,7 +768,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sRt-M1-rUr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2238" y="-1536"/>
+            <point key="canvasLocation" x="3176" y="-1536.8815592203898"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qNE-vH-hOw">
@@ -983,9 +1015,28 @@
             </objects>
             <point key="canvasLocation" x="788" y="142.57871064467767"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bWu-bz-cmx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="itv-f2-gL5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9rU-n8-LfB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0oo-jN-UKB" kind="relationship" relationship="rootViewController" id="ugg-0Q-cfz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="foX-Se-mqL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="362" y="-1835"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="add_box" width="36" height="36"/>
+        <image name="add_box" width="48" height="48"/>
+        <image name="arrow" width="1000" height="1000"/>
         <image name="bookmark-1" width="36" height="36"/>
         <image name="minus" width="36" height="36"/>
         <image name="settings-4" width="48" height="48"/>
