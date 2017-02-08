@@ -20,23 +20,19 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDefaults()
         setupTheme()
-//        if revealViewController() != nil {
-//            revealViewController().rightViewRevealWidth = 0
-//            revealViewController().rearViewRevealWidth = 250
-//                view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
-//            let revealController = self.revealViewController() as? RevealViewController
-//                revealController?.settingsController = self
-//            }
-        
-        for subreddit in (defaults.object(forKey: "arrayOfSubreddits") as? [String])! {
-            downloadDictionary[subreddit] = 0
-            }
+
+
+        if revealViewController() != nil {
+            revealViewController().rightViewRevealWidth = 0
+            revealViewController().rearViewRevealWidth = 250
+            view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
+        }
 
         
         //Temporarily stop logging visual errors
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        
         settingsTable.dataSource = self
         settingsTable.delegate = self
         settingsTable.rowHeight = 75.0
@@ -96,30 +92,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    
-    /*Sets defaults for UserDefault values used throughout app*/
-    func setDefaults() {
-       
-        let obj: [String] = []
-        defaults.set(obj, forKey: "inProgress")
-        
-        
-        if defaults.object(forKey: "arrayOfSubreddits") != nil {} else {
-            let defaultSubreddits: [String] = ["AskReddit", "AskScience", "IAmA", "News", "ExplainLikeImFive", "Jokes", "NSFW"]
-            defaults.set(defaultSubreddits, forKey: "arrayOfSubreddits")
-        }
-        
-        if defaults.string(forKey: "reminderDate") != nil {} else {    defaults.set(["Disabled", "AM"], forKey: "network")}
-        if defaults.string(forKey: "network") != nil {print("its not nil")} else {         defaults.set("wifi", forKey: "network");print("it was nil")}
-        if defaults.object(forKey: "downloadTime") != nil {} else {    defaults.set(0, forKey: "downloadTime")}
-        if defaults.object(forKey: "NumberOfThreads") != nil {} else { defaults.set("10", forKey: "NumberOfThreads")}
-        if defaults.object(forKey: "fontSize") != nil {} else {        defaults.set("regular", forKey: "fontSize")}
-        if defaults.object(forKey: "theme") != nil {} else {           defaults.set("white", forKey: "theme")}
-        if defaults.object(forKey: "themeBlue") != nil {} else {       defaults.set(FlatWhite().getRGBAComponents()?.blue, forKey: "themeBlue")}
-        if defaults.object(forKey: "themGreen") != nil {} else {       defaults.set(FlatWhite().getRGBAComponents()?.green, forKey: "themGreen")}
-        if defaults.object(forKey: "themeRed") != nil {} else {        defaults.set(FlatWhite().getRGBAComponents()?.red, forKey: "themeRed")}
-    
-    }
 
     
     
@@ -294,17 +266,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         //let optionMenu = UIAlertController(title: nil, message: "Choose Theme", preferredStyle: .actionSheet)
         let optionMenu = SkypeActionController()
         // 2
-        let defaultTheme = Action("Diary", style: .default, handler: { action in
-            sender.setTitle("Diary", for: .normal)
-            self.defaults.set("white", forKey: "theme")
-            
-            self.defaults.set(FlatWhite().getRGBAComponents()?.red, forKey: "themeRed")
-            self.defaults.set(FlatWhite().getRGBAComponents()?.blue, forKey: "themeBlue")
-            self.defaults.set(FlatWhite().getRGBAComponents()?.green, forKey: "themeGreen")
-            self.setupTheme()
-            self.settingsTable.reloadData()
-            
-        })
+//        let defaultTheme = Action("Milk", style: .default, handler: { action in
+//            sender.setTitle("Milk", for: .normal)
+//            self.defaults.set("white", forKey: "theme")
+//            
+//            self.defaults.set(FlatWhite().getRGBAComponents()?.red, forKey: "themeRed")
+//            self.defaults.set(FlatWhite().getRGBAComponents()?.blue, forKey: "themeBlue")
+//            self.defaults.set(FlatWhite().getRGBAComponents()?.green, forKey: "themeGreen")
+//            self.setupTheme()
+//            self.settingsTable.reloadData()
+//            
+//        })
         
         let mint = Action("Mint", style: .default, handler: { action in
             sender.setTitle("Mint", for: .normal)
@@ -351,7 +323,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         })
         
         
-        let blue = Action("blue", style: .default, handler: { action in
+        let blue = Action("Blueberry", style: .default, handler: { action in
             sender.setTitle("Blueberry", for: .normal)
             self.defaults.set("blue", forKey: "theme")
             self.defaults.set(FlatSkyBlue().getRGBAComponents()?.red, forKey: "themeRed")
@@ -392,7 +364,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             print("Cancelled")
         })
         
-        optionMenu.addAction(defaultTheme)
+        //optionMenu.addAction(defaultTheme)
         optionMenu.addAction(blue)
         optionMenu.addAction(mint)
         optionMenu.addAction(purple)
@@ -617,10 +589,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 UserDefaults.standard.set([data[0],data[1]], forKey: "reminderDate")
                 self.changeDownloadTimes(sender: sender)
-//                print("TIME: " + data[0] + " " + data[1])
-//                print("values = \(values)")
-//                print("indexes = \(indexes)")
-//                print("picker = \(picker)")
                 return
         }, cancel: { ActionMultipleStringCancelBlock in return }, origin: sender)
     }
