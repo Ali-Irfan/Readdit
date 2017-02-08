@@ -11,6 +11,7 @@ import UIKit
 class RevealViewController: SWRevealViewController, SWRevealViewControllerDelegate {
  var settingsController: SettingsViewController!
     var threadsListController: ThreadListViewController!
+    var initialController: InitialViewController!
         override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self

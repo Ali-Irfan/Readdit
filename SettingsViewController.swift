@@ -22,13 +22,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         setDefaults()
         setupTheme()
-        if revealViewController() != nil {
-            revealViewController().rightViewRevealWidth = 0
-            revealViewController().rearViewRevealWidth = 250
-                view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
-            let revealController = self.revealViewController() as? RevealViewController
-                revealController?.settingsController = self
-            }
+//        if revealViewController() != nil {
+//            revealViewController().rightViewRevealWidth = 0
+//            revealViewController().rearViewRevealWidth = 250
+//                view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
+//            let revealController = self.revealViewController() as? RevealViewController
+//                revealController?.settingsController = self
+//            }
         
         for subreddit in (defaults.object(forKey: "arrayOfSubreddits") as? [String])! {
             downloadDictionary[subreddit] = 0

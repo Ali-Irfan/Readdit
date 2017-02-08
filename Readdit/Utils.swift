@@ -49,11 +49,11 @@ class Utils {
         btn1.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         let item1 = UIBarButtonItem(customView: btn1)
         navigationItem.leftBarButtonItem = item1
+
     }
     
     
-    
-    
+
     
     static func timeAgoSince(_ date: Date) -> String {
         
@@ -159,8 +159,9 @@ static func removeFilesInSubredditFolder(subreddit: String) {
     }
 
 }
-/// UIImage Extensions
-extension UIImage {
+
+
+ extension UIImage {
     
     func maskWithColor(color: UIColor) -> UIImage? {
         let maskImage = cgImage!
@@ -183,7 +184,7 @@ extension UIImage {
         } else {
             return nil
         }
-    }
-    
+}
+
 }
 

@@ -184,7 +184,7 @@
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/u/TestUser123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FlY-jM-fpz" customClass="PaddingLabel" customModule="Readdit" customModuleProvider="target">
-                                                    <rect key="frame" x="266" y="10.5" width="101" height="24.5"/>
+                                                    <rect key="frame" x="280" y="20.5" width="87" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -443,25 +443,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap the sidebar icon to get started!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSF-eJ-0Pi">
-                                <rect key="frame" x="53" y="295" width="269" height="95"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap the sidebar icon or swipe right to get started!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSF-eJ-0Pi">
+                                <rect key="frame" x="33" y="342" width="309" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="6qv-Gq-EiN">
-                                <rect key="frame" x="31" y="26" width="184" height="293"/>
+                                <rect key="frame" x="33" y="64" width="181" height="293"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="nqH-Qi-nJJ"/>
+                    <connections>
+                        <outlet property="arrow" destination="6qv-Gq-EiN" id="YYM-Nk-1ed"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eK7-mc-zgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1142" y="-1531"/>
+            <point key="canvasLocation" x="1141.5999999999999" y="-1531.4842578710645"/>
         </scene>
         <!--Sidebar Table View Controller-->
         <scene sceneID="cjc-BT-IO1">
@@ -625,8 +628,9 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pu7-NS-hyF">
-                                <rect key="frame" x="0.0" y="35" width="250" height="53"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pu7-NS-hyF">
+                                <rect key="frame" x="0.0" y="38" width="250" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.25" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Readd">
@@ -648,10 +652,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.25094899535179138" green="0.25099846720695496" blue="0.25094583630561829" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="pu7-NS-hyF" firstAttribute="top" secondItem="XdG-SW-dU3" secondAttribute="bottom" constant="15" id="1rx-UN-KbW"/>
-                            <constraint firstItem="pu7-NS-hyF" firstAttribute="centerX" secondItem="z2o-gS-WfN" secondAttribute="centerX" id="UBN-y1-0lq"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xPu-eM-Rr1"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -663,7 +663,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nc4-uJ-8gG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1931.2" y="-1532.3838080959522"/>
+            <point key="canvasLocation" x="1814" y="-1661"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="wDK-xx-yN0">
@@ -680,13 +680,13 @@
                     </view>
                     <connections>
                         <segue destination="ETn-Cs-QKg" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="GBj-ru-ukX"/>
-                        <segue destination="OeZ-U1-Wbk" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="0k6-Jh-NpO"/>
                         <segue destination="RmH-ge-MrS" kind="custom" identifier="sw_right" customClass="SWRevealViewControllerSegueSetController" id="uTN-24-wGa"/>
+                        <segue destination="itv-f2-gL5" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="8VB-Hd-gWa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FSI-MQ-tJN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2572" y="-1531.4842578710645"/>
+            <point key="canvasLocation" x="2996" y="-2569"/>
         </scene>
         <!--Right Sidebar View Controller-->
         <scene sceneID="TpQ-S0-7eW">
@@ -1031,7 +1031,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="foX-Se-mqL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="362" y="-1835"/>
+            <point key="canvasLocation" x="1681" y="-2493"/>
         </scene>
     </scenes>
     <resources>

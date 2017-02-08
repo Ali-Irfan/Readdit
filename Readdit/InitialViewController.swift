@@ -11,11 +11,24 @@ import UIKit
 
 class InitialViewController: UIViewController {
 
+    @IBOutlet weak var arrow: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        Utils.addMenuButton(color: FlatBlack(), navigationItem: self.navigationItem, revealViewController: revealViewController())
-        
+        if revealViewController() != nil {
+            revealViewController().rightViewRevealWidth = 0
+            revealViewController().rearViewRevealWidth = 250
+            view.addGestureRecognizer(self.revealViewController().frontViewController.revealViewController().panGestureRecognizer())
+            let revealController = self.revealViewController() as? RevealViewController
+            revealController?.initialController = self
+        }
+        if Theme.getGeneralColor() != FlatBlack() {
+            Utils.addMenuButton(color: FlatWhite(), navigationItem: (self.navigationItem), revealViewController: revealViewController())
+        } else {
+            Utils.addMenuButton(color: FlatBlack(), navigationItem: (self.navigationItem), revealViewController: revealViewController())
+        }
+        Theme.setNavbarTheme(navigationController: self.navigationController!, color: Theme.getGeneralColor())
+        self.navigationItem.title = "Readdit"
+        arrow.image = arrow.image!.maskWithColor(color: UIColor.lightGray)
         // Do any additional setup after loading the view.
     }
 
