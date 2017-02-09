@@ -62,7 +62,7 @@ class CommentViewCell: UITableViewCell {
             default:
                 self.backgroundColor = UIColor.white
                 
-                print("Set color to flatwhite")
+                //print("Set color to flatwhite")
             }
 
         // Initialization code

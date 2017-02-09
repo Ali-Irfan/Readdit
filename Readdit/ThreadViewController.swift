@@ -22,6 +22,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var commentTable: UITableView!
     let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
+    var heightDictionary:[IndexPath:CGFloat] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         overlay = UIView(frame: view.frame)
@@ -58,7 +60,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         commentTable.dataSource = self
         commentTable.delegate = self
-        commentTable.estimatedRowHeight = 10.0//250.0
+        //commentTable.estimatedRowHeight = 10.0//250.0
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
         
@@ -70,6 +72,48 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // use as? or as! to cast UITableViewCell to your desired type
+        heightDictionary[indexPath] = cell.frame.size.height
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let height = heightDictionary[indexPath]
+        
+        
+        if bleh[indexPath.row].hiddenComment {
+            return 0.00
+        } else if bleh[indexPath.row].minimized {
+            return 40.00
+        } else {
+            if height != nil {
+                return height!
+            }
+        }
+
+        return UITableViewAutomaticDimension
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        
+        if bleh[indexPath.row].hiddenComment {
+            return 0.00
+        } else if bleh[indexPath.row].minimized {
+            return 40.00
+        } else {
+             let height = heightDictionary[indexPath]
+            if height != nil {
+            return heightDictionary[indexPath]!//UITableViewAutomaticDimension
+            } else {
+                return UITableViewAutomaticDimension
+            }
+        }
+    }
     
 
     
@@ -401,24 +445,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
-    
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return  44;
-//    }
 
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        
-        if bleh[indexPath.row].hiddenComment {
-            return 0.00
-        } else if bleh[indexPath.row].minimized {
-            return 40.00
-        } else {
-            return UITableViewAutomaticDimension
-        }
-    }
-    
+
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
