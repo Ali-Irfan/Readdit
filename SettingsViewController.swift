@@ -347,8 +347,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             
         })
         
-        let dark = Action("Dark Mode", style: .default, handler: { action in
-            sender.setTitle("Dark Mode", for: .normal)
+        let dark = Action("Night", style: .default, handler: { action in
+            sender.setTitle("Night", for: .normal)
             self.defaults.set("dark", forKey: "theme")
             self.defaults.set(FlatBlack().getRGBAComponents()?.red, forKey: "themeRed")
             self.defaults.set(FlatBlack().getRGBAComponents()?.blue, forKey: "themeBlue")

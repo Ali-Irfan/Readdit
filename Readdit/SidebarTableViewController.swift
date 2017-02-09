@@ -376,18 +376,12 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
                 self.arrayOfIdentifiers.insert("subreddit", at: self.arrayOfIdentifiers.count-2)
                 self.sidebarTable.reloadData()
                 Async.main{
-                    // First figure out how many sections there are
-                    let lastSectionIndex = self.sidebarTable!.numberOfSections - 1
-                    
-                    // Then grab the number of rows in the last section
-                    let lastRowIndex = self.sidebarTable!.numberOfRows(inSection: lastSectionIndex) - 1
-                    
-                    // Now just construct the index path
-                    
-                    let pathToLastRow = NSIndexPath(row: lastRowIndex-2, section: lastSectionIndex)
-                    
-                    if let cell = self.sidebarTable.cellForRow(at: pathToLastRow as IndexPath) as? SubredditTableViewCell {
-                        cell.updateSubreddit()
+                    for cell in self.sidebarTable.visibleCells {
+                        if let c = cell as? SubredditTableViewCell {
+                            if c.subredditTitle.currentTitle == subredditToAdd! {
+                                c.updateSubreddit()
+                            }
+                        }
                     }
                 }
             }

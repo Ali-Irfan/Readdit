@@ -17,7 +17,29 @@ class ThemeTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        themeButton.setTitle(UserDefaults.standard.string(forKey: "theme"), for: .normal)
+        
+            let theme = UserDefaults.standard.string(forKey: "theme")!
+
+            
+            switch theme {
+            case "mint":
+                themeButton.setTitle("Mint", for: .normal)
+            case "purple":
+                themeButton.setTitle("Grape", for: .normal)
+            case "magenta":
+                themeButton.setTitle("Eggplant", for: .normal)
+            case "lime":
+                themeButton.setTitle("Lime", for: .normal)
+            case "blue":
+                themeButton.setTitle("Blueberry", for: .normal)
+            case "red":
+                themeButton.setTitle("Watermelon", for: .normal)
+            case "dark":
+                themeButton.setTitle("Night", for: .normal)
+            default:
+                print("Idk")
+            }
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
