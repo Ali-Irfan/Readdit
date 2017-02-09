@@ -58,7 +58,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         commentTable.dataSource = self
         commentTable.delegate = self
-        commentTable.estimatedRowHeight = 40.0//250.0
+        commentTable.estimatedRowHeight = 10.0//250.0
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
         
@@ -401,6 +401,11 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
+    
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return  44;
+//    }
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
