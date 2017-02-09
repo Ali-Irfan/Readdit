@@ -15,6 +15,18 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var arrow: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(defaults.string(forKey: "firstTime"))
+        if defaults.string(forKey: "firstTime") == "false" {
+            let myVC = self.storyboard?.instantiateViewController(withIdentifier: "ThreadNavigation") as! ThreadNavigationController
+            let actualView = myVC.viewControllers.first as! ThreadListViewController
+            let arrayOfSubreddits = defaults.object(forKey: "arrayOfSubreddits") as! [String]
+            actualView.subreddit = arrayOfSubreddits[0]
+            self.revealViewController().pushFrontViewController(myVC, animated: true)
+            return //Go to first subreddit instead of this one
+        }
+
+        
         setDefaults()
         for subreddit in (defaults.object(forKey: "arrayOfSubreddits") as? [String])! {
             downloadDictionary[subreddit] = 0
@@ -33,6 +45,8 @@ class InitialViewController: UIViewController {
         } else {
             Utils.addMenuButton(color: FlatBlack(), navigationItem: (self.navigationItem), revealViewController: revealViewController())
         }
+        
+        
         Theme.setNavbarTheme(navigationController: self.navigationController!, color: Theme.getGeneralColor())
         self.navigationItem.title = "Readdit"
         arrow.image = arrow.image!.maskWithColor(color: UIColor.lightGray)
@@ -56,7 +70,9 @@ class InitialViewController: UIViewController {
                 let defaultSubreddits: [String] = ["AskReddit", "AskScience", "IAmA", "News", "ExplainLikeImFive", "Jokes", "NSFW"]
                 defaults.set(defaultSubreddits, forKey: "arrayOfSubreddits")
             }
-    
+            
+            if defaults.string(forKey: "firstTime") != nil {}  else { defaults.set("false", forKey: "firstTime") }
+            
             if defaults.string(forKey: "reminderDate") != nil {} else {    defaults.set(["Disabled", "AM"], forKey: "network")}
             if defaults.string(forKey: "network") != nil {print("its not nil")} else {         defaults.set("wifi", forKey: "network");print("it was nil")}
             if defaults.object(forKey: "downloadTime") != nil {} else {    defaults.set(0, forKey: "downloadTime")}
