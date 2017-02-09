@@ -20,6 +20,7 @@ target 'Readdit' do
   #pod 'XLActionController/Twitter'
   pod 'XLActionController/Youtube'
     pod 'StringExtensionHTML'
+
 pod 'ActionSheetPicker-3.0'
 
     pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'

@@ -58,7 +58,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         commentTable.dataSource = self
         commentTable.delegate = self
-        commentTable.estimatedRowHeight = 250.0
+        commentTable.estimatedRowHeight = 40.0//250.0
         commentTable.rowHeight = UITableViewAutomaticDimension
         commentTable.layoutMargins = UIEdgeInsets.zero
         
@@ -222,6 +222,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var size: CGFloat = 0.0
         
         
+        cell.layer.shouldRasterize = true
+        cell.layer.rasterizationScale = UIScreen.main.scale //Slightly faster tableviews
         
         if bleh[indexPath.row].isMainComment {
             cell.seperatorView.isHidden = true
