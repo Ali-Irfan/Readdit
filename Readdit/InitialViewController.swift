@@ -16,7 +16,6 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(defaults.string(forKey: "firstTime"))
         if defaults.string(forKey: "firstTime") == "false" {
             let myVC = self.storyboard?.instantiateViewController(withIdentifier: "ThreadNavigation") as! ThreadNavigationController
             let actualView = myVC.viewControllers.first as! ThreadListViewController
@@ -46,10 +45,10 @@ class InitialViewController: UIViewController {
             Utils.addMenuButton(color: FlatBlack(), navigationItem: (self.navigationItem), revealViewController: revealViewController())
         }
         
-        
         Theme.setNavbarTheme(navigationController: self.navigationController!, color: Theme.getGeneralColor())
         self.navigationItem.title = "Readdit"
         arrow.image = arrow.image!.maskWithColor(color: UIColor.lightGray)
+        
     }
 
     override func didReceiveMemoryWarning() {

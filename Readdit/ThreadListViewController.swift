@@ -40,13 +40,36 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             emptyOverlay.backgroundColor = FlatWhite()
         }
-        let oopsLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 500))
+        let oopsLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width-100, height: 200))
         oopsLabel.center = self.view.center
         oopsLabel.textAlignment = .center
+        oopsLabel.center.y = view.center.y - 140
+        oopsLabel.center.x = view.center.x
         oopsLabel.numberOfLines = 0
+        
+        let oopsLabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width-50, height: 100))
+        oopsLabel2.center = self.view.center
+        oopsLabel2.textAlignment = .center
+        oopsLabel2.center.y = view.center.y + 100
+        oopsLabel2.center.x = view.center.x
+        oopsLabel2.numberOfLines = 0
+        
+        let oopsButton = UIButton()
+        let oopsImage = #imageLiteral(resourceName: "cloud-big").maskWithColor(color: Theme.getGeneralColor())
+        oopsButton.setImage(oopsImage, for: .normal)
+        oopsButton.frame = CGRect(x: 0, y: 0, width: 200, height: 133)
+        oopsButton.addTarget(self, action: #selector(updateThisSubreddit), for: .touchUpInside)
+        oopsButton.center = view.center
+        emptyOverlay.addSubview(oopsButton)
+        
+
         emptyOverlay.isHidden = true
-        oopsLabel.text = "Oops!\n This subreddit hasn't been downloaded yet.\nClick the button below to begin downloading it."
+        oopsLabel.text = "This subreddit hasn't been downloaded yet."
+        oopsLabel2.text = "Click the button above to download!"
+        oopsLabel2.textColor = FlatBlack()
+        oopsLabel.textColor = Theme.getGeneralColor()
         emptyOverlay.addSubview(oopsLabel)
+        emptyOverlay.addSubview(oopsLabel2)
         view.addSubview(emptyOverlay)
         
         checkCurrentDownloads()
@@ -68,6 +91,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         threadTable.estimatedRowHeight = 140
         navigationController?.navigationItem.setHidesBackButton(true, animated: true)
         threadTable.backgroundColor = FlatWhite()
+
         setupTheme()
         
             self.displayThreads()
@@ -76,6 +100,18 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
+    func updateThisSubreddit() {
+        if let x = revealViewController().rearViewController as? SidebarTableViewController {
+            for c in x.sidebarTable.visibleCells {
+                if let cell = c as? SubredditTableViewCell {
+                    if cell.subredditTitle.currentTitle == subreddit {
+                        cell.updateSubreddit()
+                    }
+                }
+            }
+        }
+    }
+
     
     
     func setupTheme() {

@@ -106,12 +106,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else if bleh[indexPath.row].minimized {
             return 40.00
         } else {
-             let height = heightDictionary[indexPath]
-            if height != nil {
-            return heightDictionary[indexPath]!//UITableViewAutomaticDimension
-            } else {
+
                 return UITableViewAutomaticDimension
-            }
+            
         }
     }
     
@@ -277,6 +274,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if bleh[indexPath.row].author == author {
                 print("Author is \(bleh[indexPath.row].author), adding BG")
                 //cell.authorLabel.backgroundColor = Utils.hexStringToUIColor(hex: "E1E1E1")
+                
                 let att      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size), NSForegroundColorAttributeName: color] as [String : Any]
                 let attributedText = cell.authorLabel.text
                 cell.authorLabel.attributedText = NSAttributedString(string: attributedText!, attributes: att)
@@ -304,16 +302,16 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.authorLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 14)
             }
             if selftext != "" {
-                let firstWord   = titleText
-                let secondWord = "\n\n"
+                print("Self text not empty")
+                let firstWord   = titleText + "\n\n"
                 let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size)]
                 let thirdWord   = selftext
                 let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs)
-                attributedText.append(NSAttributedString(string: secondWord))
                 attributedText.append(NSAttributedString(string: thirdWord))
                 cell.mainLabel?.attributedText = attributedText
                 
             } else {
+                print("Self text empty")
                 let firstWord = titleText
                 let attrs2 = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size)]
                 let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs2)
