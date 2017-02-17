@@ -282,9 +282,13 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
             }
             cell.collapseLabel?.text = ""
+            
             let titleText = bleh[indexPath.row].title.stringByDecodingHTMLEntities
             let selftext = bleh[indexPath.row].selftext.stringByDecodingHTMLEntities
-            //print("Current default: \(UserDefaults.standard.string(forKey: "fontSize"))")
+            
+            print("\(titleText)\n\(selftext)")
+            cell.mainLabel.text = "\(titleText)\n\(selftext)"
+            
             if UserDefaults.standard.string(forKey: "fontSize") == "small" {
                 size = 14
                 cell.mainLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 12)
@@ -301,23 +305,11 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.upvoteLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 14)
                 cell.authorLabel.font = UIFont(name: cell.mainLabel.font.fontName, size: 14)
             }
-            if selftext != "" {
-                print("Self text not empty")
-                let firstWord   = titleText + "\n\n"
-                let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size)]
-                let thirdWord   = selftext
-                let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs)
-                attributedText.append(NSAttributedString(string: thirdWord))
-                cell.mainLabel?.attributedText = attributedText
-                
-            } else {
-                print("Self text empty")
-                let firstWord = titleText
-                let attrs2 = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size)]
-                let attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs2)
-                
-                cell.mainLabel?.attributedText = attributedText
-            }
+            
+            
+            
+            
+            
             
             for sep in cell.arrayOfSeperators {
                 sep.isHidden = true
@@ -404,7 +396,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 //cell.authorLabel.backgroundColor = FlatGray()//Utils.hexStringToUIColor(hex: "E1E1E1")
                 cell.authorLabel.textColor = color
-                let att      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: otherSize), NSForegroundColorAttributeName: color] as [String : Any]
+                let att = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: otherSize), NSForegroundColorAttributeName: color] as [String : Any]
                 let attributedText = cell.authorLabel.text
                 cell.authorLabel.attributedText = NSAttributedString(string: attributedText!, attributes: att)
                 //cell.authorLabel.textColor = UIColor.white

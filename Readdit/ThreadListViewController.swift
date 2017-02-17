@@ -7,6 +7,7 @@ import ChameleonFramework
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var overlay : UIView?
     var emptyOverlay : UIView!
+    var deletedOverlay: UIView!
     
     var generalColor:UIColor = UIColor.black
     var arrayOfThreads: [ThreadData] = []
@@ -25,6 +26,12 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         nc.addObserver(forName:updateViewNotification, object:nil, queue:nil, using:catchNotification)
         
         //Adding an overlay for async loading
+        deletedOverlay = UIView(frame: view.frame)
+        deletedOverlay.backgroundColor = Theme.getGeneralColor()
+        deletedOverlay.isHidden = true
+        deletedOverlay.alpha = 1.0
+        view.addSubview(deletedOverlay)
+        
         overlay = UIView(frame: view.frame)
         overlay!.backgroundColor = UIColor.darkGray
         overlay!.alpha = 0.8
@@ -242,7 +249,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 let numOfThreads:Int = Int(UserDefaults.standard.string(forKey: "NumberOfThreads")!)!
                 var threadCount = 0
                 for (_, thread):(String, JSON) in threads {
-                    if threadCount < numOfThreads {
+                    //if threadCount < numOfThreads {
                     let thisThread = ThreadData()
                     thisThread.title = thread["data"]["title"].string!
                     thisThread.author = thread["data"]["author"].string!
@@ -253,7 +260,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                     thisThread.permalink = thread["data"]["permalink"].string!
                     thisThread.utcCreated = thread["data"]["created_utc"].double!
                     arrayOfThreads.append(thisThread)
-                }
+                    //}
                 threadCount = threadCount + 1
                 }
             }

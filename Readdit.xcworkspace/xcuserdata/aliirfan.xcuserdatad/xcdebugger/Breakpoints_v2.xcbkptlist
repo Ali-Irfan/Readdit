@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadListViewController.swift"
-            timestampString = "508441100.602694"
+            timestampString = "509048288.640599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397">
+            startingLineNumber = "404"
+            endingLineNumber = "404">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadListViewController.swift"
-            timestampString = "508441100.602694"
+            timestampString = "509048288.640599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397">
+            startingLineNumber = "404"
+            endingLineNumber = "404">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -166,11 +166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "508487448.557245"
+            timestampString = "509046230.917195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "495"
-            endingLineNumber = "495"
+            startingLineNumber = "487"
+            endingLineNumber = "487"
             landmarkName = "openAllChildren(parentID:newIndex:currentIndentationLevel:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -516,11 +516,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SettingsViewController.swift"
-            timestampString = "508285336.104669"
+            timestampString = "508531915.594928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "707"
-            endingLineNumber = "707">
+            startingLineNumber = "708"
+            endingLineNumber = "708">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -610,11 +610,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "508487448.557245"
+            timestampString = "508533897.853371"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1075,6 +1075,70 @@
             endingLineNumber = "223"
             landmarkName = "changeDownloadTimes(sender:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Readdit/InitialViewController.swift"
+            timestampString = "509048288.640599"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Readdit/SidebarTableViewController.swift"
+            timestampString = "509047766.294082"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
+            landmarkName = "deleteSubreddit(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Readdit.SidebarTableViewController.deleteSubreddit (__ObjC.UIButton) -&gt; ()"
+                  moduleName = "Readdit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aliirfan/Dropbox/Readdit/Readdit/SidebarTableViewController.swift"
+                  timestampString = "509047498.015989"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "331"
+                  endingLineNumber = "331"
+                  offsetFromSymbolStart = "1468">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Readdit.SidebarTableViewController.(deleteSubreddit (__ObjC.UIButton) -&gt; ()).(closure #1)"
+                  moduleName = "Readdit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aliirfan/Dropbox/Readdit/Readdit/SidebarTableViewController.swift"
+                  timestampString = "509047498.017462"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "331"
+                  endingLineNumber = "331"
+                  offsetFromSymbolStart = "2472">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

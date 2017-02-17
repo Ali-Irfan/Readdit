@@ -530,7 +530,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func clearAll(_ sender: UIButton) {
-        
+    
         let alert = PMAlertController(title: "Clear All Data", color: Theme.getGeneralColor(), description: "This will delete ALL saved threads from ALL subreddits. Are you sure?", image: nil, style: .alert)
         alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
         alert.addAction(PMAlertAction(title: "Clear Data", style: .default, color: Theme.getGeneralColor(), action: { () in
@@ -544,29 +544,30 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func clearData(sender: UIButton) {
         //Delete all files/folders in the documents directory
-        let fileManager = FileManager.default
-        let documentsUrl =  try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) as NSURL
-        let documentsPath = documentsUrl.path
-        
-        do {
-            if let documentPath = documentsPath
-            {
-                let fileNames = try fileManager.contentsOfDirectory(atPath: "\(documentPath)")
-                print("all files in cache: \(fileNames)")
-                for fileName in fileNames {
-                    let filePathName = "\(documentPath)/\(fileName)"
-                    try fileManager.removeItem(atPath: filePathName)
+        Async.background{
+            let fileManager = FileManager.default
+            let documentsUrl =  try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) as NSURL
+            let documentsPath = documentsUrl.path
+            
+            do {
+                if let documentPath = documentsPath
+                {
+                    let fileNames = try fileManager.contentsOfDirectory(atPath: "\(documentPath)")
+                    print("all files in cache: \(fileNames)")
+                    for fileName in fileNames {
+                        let filePathName = "\(documentPath)/\(fileName)"
+                        try fileManager.removeItem(atPath: filePathName)
+                    }
+                    
+                    let files = try fileManager.contentsOfDirectory(atPath: "\(documentPath)")
+                    print("all files in cache after deleting images: \(files)")
+                    sender.setTitle("Clear All Data (" + getCacheSize() + ")", for: .normal)
                 }
                 
-                let files = try fileManager.contentsOfDirectory(atPath: "\(documentPath)")
-                print("all files in cache after deleting images: \(files)")
-                sender.setTitle("Clear All Data (" + getCacheSize() + ")", for: .normal)
+            } catch {
+                print("Could not clear temp folder: \(error)")
             }
-            
-        } catch {
-            print("Could not clear temp folder: \(error)")
         }
-        
     }
     
 

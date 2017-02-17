@@ -20,13 +20,30 @@ class InitialViewController: UIViewController {
             let myVC = self.storyboard?.instantiateViewController(withIdentifier: "ThreadNavigation") as! ThreadNavigationController
             let actualView = myVC.viewControllers.first as! ThreadListViewController
             let arrayOfSubreddits = defaults.object(forKey: "arrayOfSubreddits") as! [String]
-            actualView.subreddit = arrayOfSubreddits[0]
+            if let lastSubreddit = defaults.string(forKey: "lastClickedSubreddit") {
+
+                if arrayOfSubreddits.contains(lastSubreddit) {
+                    actualView.subreddit = lastSubreddit
+                } else {
+                    if arrayOfSubreddits.count > 0 {
+                    actualView.subreddit = arrayOfSubreddits[0]
+                    }
+                }
+                print("last subreddit was \(lastSubreddit)")
+            } else {
+                if let firstSubreddit = (defaults.object(forKey: "arrayOfSubreddits") as? [String])?[0] {
+                    actualView.subreddit = firstSubreddit
+                }
+            }
             self.revealViewController().pushFrontViewController(myVC, animated: true)
             return //Go to first subreddit instead of this one
         }
 
         
         setDefaults()
+        //Reset current downloads
+        defaults.set([], forKey: "inProgress")
+        
         for subreddit in (defaults.object(forKey: "arrayOfSubreddits") as? [String])! {
             downloadDictionary[subreddit] = 0
         }

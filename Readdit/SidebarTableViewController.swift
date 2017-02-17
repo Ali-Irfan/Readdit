@@ -327,6 +327,11 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
                 }
                 
                 self.sidebarTable.reloadData()
+                if let frontView = self.revealViewController().frontViewController as? ThreadNavigationController {
+                    if let firstView = frontView.viewControllers.first as? ThreadListViewController {
+                        firstView.deletedOverlay.isHidden = false
+                    }
+                }
                 
             }))
             
@@ -342,6 +347,8 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             let subreddit = (currentCell.subredditTitle.currentTitle!)
             let myVC = self.storyboard?.instantiateViewController(withIdentifier: "ThreadNavigation") as! ThreadNavigationController
             let actualView = myVC.viewControllers.first as! ThreadListViewController
+            UserDefaults.standard.set(subreddit, forKey: "lastClickedSubreddit")
+            print("Set last subreddit to \(subreddit)")
             actualView.subreddit = subreddit
             //present(myVC, animated: true, completion: nil)
             self.revealViewController().pushFrontViewController(myVC, animated: true)
