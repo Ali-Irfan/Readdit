@@ -31,6 +31,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         deletedOverlay.isHidden = true
         deletedOverlay.alpha = 1.0
         view.addSubview(deletedOverlay)
+
         
         overlay = UIView(frame: view.frame)
         overlay!.backgroundColor = UIColor.darkGray
@@ -44,6 +45,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         emptyOverlay = UIView(frame: threadTable.frame)
         if Theme.getGeneralColor() == FlatBlack() {
             emptyOverlay.backgroundColor = FlatBlack()
+            generalColor = UIColor.white
         } else {
             emptyOverlay.backgroundColor = FlatWhite()
         }
@@ -100,8 +102,9 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         threadTable.backgroundColor = FlatWhite()
 
         setupTheme()
-        
+        Async.main{
             self.displayThreads()
+        }
         
         
     }
@@ -218,7 +221,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         revealViewController().rearViewRevealWidth = 250
         view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
         checkCurrentDownloads()
-        print(arrayOfThreads)
+        //print(arrayOfThreads)
     }
     
     func updateThreads() {
@@ -324,7 +327,14 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         //Create attributed string with the upvotes bolded
         let firstWord   = dateText
         let secondWord = String(arrayOfThreads[indexPath.row].upvotes)
-        let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size), NSForegroundColorAttributeName: generalColor] as [String : Any]
+                    var attrs:[String:Any] = [:]
+        if Theme.getGeneralColor() == FlatBlack() {
+
+        attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size), NSForegroundColorAttributeName: FlatWhite()] as
+            [String : Any]
+        } else {
+          attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size), NSForegroundColorAttributeName: generalColor] as [String : Any]
+        }
         let attributedText = NSMutableAttributedString(string:firstWord)
         attributedText.append(NSMutableAttributedString(string: " • "))
         attributedText.append(NSAttributedString(string: secondWord, attributes: attrs))

@@ -8,7 +8,7 @@
 
 import UIKit
 import ChameleonFramework
-
+import FontAwesomeKit
 class SubredditHeaderTableViewCell: UITableViewCell {
     
     @IBOutlet weak var folderImage: UIButton!
@@ -18,6 +18,11 @@ class SubredditHeaderTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor.clear
         // Initialization code
         setupTheme()
+        
+        let plusCircle = FAKMaterialIcons.plusCircleOIcon(withSize: 50)
+        plusCircle?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
+        addSubreddit.setAttributedTitle(plusCircle?.attributedString(), for: .normal)
+        
     }
     
     func setupTheme() {
@@ -25,14 +30,13 @@ class SubredditHeaderTableViewCell: UITableViewCell {
         
         switch theme {
         case "white":
-            addSubreddit.setImage(addSubreddit.currentImage?.maskWithColor(color: FlatBlack()), for: .normal)
+            addSubreddit.setImage(addSubreddit.currentImage?.maskWithColor(color: FlatBlack())?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: .normal)
             folderImage.setImage(folderImage.currentImage?.maskWithColor(color: FlatBlack()), for: .normal)
             
             
         default:
             addSubreddit.setImage(addSubreddit.currentImage?.maskWithColor(color: FlatWhite()), for: .normal)
             folderImage.setImage(folderImage.currentImage?.maskWithColor(color: FlatWhite()), for: .normal)
-            
         }
     }
     

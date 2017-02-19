@@ -11,6 +11,7 @@ import SwiftyJSON
 import Async
 import Alamofire
 import ChameleonFramework
+import FontAwesomeKit
 
 var downloadCount = 1
 
@@ -28,7 +29,18 @@ class SubredditTableViewCell: UITableViewCell {
         self.selectionStyle = UITableViewCellSelectionStyle.none
         self.contentView.layoutMargins = UIEdgeInsets.zero
        // loadingIndicator.isHidden = true
-        updateButton.setImage(#imageLiteral(resourceName: "update"), for: .normal)
+        //deleteButton.setImage(#imageLiteral(resourceName: "minus").withRenderingMode(.alwaysTemplate), for: .normal)
+        
+        //updateButton.setImage(#imageLiteral(resourceName: "update"), for: .normal)
+        
+        let updateCircle = FAKMaterialIcons.timeRestoreIcon(withSize: 30)
+        updateCircle?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
+        updateButton.setAttributedTitle(updateCircle?.attributedString(), for: .normal)
+        
+        let deleteImage = FAKMaterialIcons.deleteIcon(withSize: 35)
+        deleteImage?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
+        deleteButton.setAttributedTitle(deleteImage?.attributedString(), for: .normal)
+        
         updateButton.frame = CGRect(x: self.frame.width-50, y: self.frame.height/2 - 12, width: 30, height: 30)
         updateButton.addTarget(self, action: #selector(updateSubreddit), for: .touchUpInside)
         updateButton.tintColor = UIColor.white

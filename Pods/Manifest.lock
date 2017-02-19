@@ -8,6 +8,27 @@ PODS:
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - Dollar (6.1.0)
+  - FontAwesomeKit (2.2.1):
+    - FontAwesomeKit/Core (= 2.2.1)
+    - FontAwesomeKit/FontAwesome (= 2.2.1)
+    - FontAwesomeKit/FoundationIcons (= 2.2.1)
+    - FontAwesomeKit/IonIcons (= 2.2.1)
+    - FontAwesomeKit/Material (= 2.2.1)
+    - FontAwesomeKit/Octicons (= 2.2.1)
+    - FontAwesomeKit/Zocial (= 2.2.1)
+  - FontAwesomeKit/Core (2.2.1)
+  - FontAwesomeKit/FontAwesome (2.2.1):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/FoundationIcons (2.2.1):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/IonIcons (2.2.1):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/Material (2.2.1):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/Octicons (2.2.1):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/Zocial (2.2.1):
+    - FontAwesomeKit/Core
   - PMAlertController (2.1.0)
   - ReachabilitySwift (3)
   - SlideMenuControllerSwift (3.0.1)
@@ -29,6 +50,7 @@ DEPENDENCIES:
   - AsyncSwift
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - Dollar
+  - FontAwesomeKit (from `https://github.com/PrideChung/FontAwesomeKit.git`)
   - PMAlertController
   - ReachabilitySwift (~> 3)
   - SlideMenuControllerSwift
@@ -42,11 +64,16 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   ChameleonFramework:
     :git: https://github.com/ViccAlexander/Chameleon.git
+  FontAwesomeKit:
+    :git: https://github.com/PrideChung/FontAwesomeKit.git
 
 CHECKOUT OPTIONS:
   ChameleonFramework:
     :commit: dcf98f9bf3a632a7f40679b7da46f09681e48526
     :git: https://github.com/ViccAlexander/Chameleon.git
+  FontAwesomeKit:
+    :commit: ed5eb02f4bcf76e218bb1c966c551a7b5240b6b4
+    :git: https://github.com/PrideChung/FontAwesomeKit.git
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
@@ -55,6 +82,7 @@ SPEC CHECKSUMS:
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
+  FontAwesomeKit: 3614979b3dbb0ec3f7fac1bd760b91f66c31db67
   PMAlertController: 2d2c19af12edb50753d636395f9456c8cde1e858
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
@@ -63,6 +91,6 @@ SPEC CHECKSUMS:
   XLActionController: 57fe0ce1642e2eed971b188b490762345fdbf963
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 70c0563a9c4b98df57a9471f0bf804599bc28017
+PODFILE CHECKSUM: b68442e5b07f85dc86e002398b660918bea5af95
 
 COCOAPODS: 1.1.1
