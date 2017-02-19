@@ -84,8 +84,16 @@ class SubredditTableViewCell: UITableViewCell {
                     //Send notification that this subreddit is downloading (to produce overlay of ViewController)
                     self.nc.post(name:updateViewNotification, object: nil, userInfo:["message":"", "date":Date()])
                 }
-                    
                 
+                //Delete all current items before you download the new batch
+                do {
+                    let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+                    let subredditPath = documentsPath.appendingPathComponent(subreddit)
+                    try FileManager.default.removeItem(at: subredditPath!)
+                } catch let error as NSError {
+                    print("An error took place(UpdateSubreddit): \(error)")
+                }
+
                 
                 
                 Downloader.downloadJSON(subreddit: subreddit)
@@ -159,13 +167,7 @@ class SubredditTableViewCell: UITableViewCell {
     }
     
 
-    func stopDownload() {
-        Downloader.stopDownloads()
-        self.nc.post(name:updateViewNotification,
-                     object: nil,
-                     userInfo:["message":"Hello there!", "date":Date()])
-        
-    }
+
     
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -8,6 +8,7 @@
 
 import UIKit
 import ChameleonFramework
+import FontAwesomeKit
 
 class SettingsHeaderTableViewCell: UITableViewCell {
 
@@ -19,21 +20,11 @@ class SettingsHeaderTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor.clear
         // Initialization code
         print("Waking from nib")
-        setupTheme()
+        let settingsImageIcon = FAKMaterialIcons.settingsIcon(withSize: 40)
+        settingsImageIcon?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
+        settingsImage.setAttributedTitle(settingsImageIcon?.attributedString(), for: .normal)
     }
     
-    func setupTheme() {
-        let theme = UserDefaults.standard.string(forKey: "theme")!
-
-        switch theme {
-        case "white":
-            settingsImage.setImage(settingsImage.currentImage?.maskWithColor(color: FlatBlack()), for: .normal)
-            
-        default:
-            settingsImage.setImage(settingsImage.currentImage?.maskWithColor(color: FlatWhite()), for: .normal)
-        }
-    }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

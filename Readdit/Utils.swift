@@ -1,6 +1,7 @@
 import ReachabilitySwift
 import Alamofire
 import PMAlertController
+import FontAwesomeKit
 
 //Constants
 var currentRequests:[Alamofire.Request]? = nil
@@ -44,8 +45,11 @@ class Utils {
     static func addMenuButton(color: UIColor, navigationItem: UINavigationItem, revealViewController: SWRevealViewController) {
         let btn1 = UIButton(type: .custom)
         
-        btn1.setImage(#imageLiteral(resourceName: "menu-2").maskWithColor(color: color), for: .normal)
+        //btn1.setImage(#imageLiteral(resourceName: "menu-2").maskWithColor(color: color), for: .normal)
         btn1.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
+        let menuButtonIcon = FAKMaterialIcons.menuIcon(withSize: 30)
+        menuButtonIcon?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
+        btn1.setAttributedTitle(menuButtonIcon?.attributedString(), for: .normal)
         btn1.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         let item1 = UIBarButtonItem(customView: btn1)
         navigationItem.leftBarButtonItem = item1

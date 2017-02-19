@@ -5,6 +5,7 @@ import Zip
 import ChameleonFramework
 import Async
 import StringExtensionHTML
+import FontAwesomeKit
 
 class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let defaults = UserDefaults.standard
@@ -169,7 +170,10 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         let btn2 = UIButton(type: .custom)
-        btn2.setImage(#imageLiteral(resourceName: "more").maskWithColor(color: tint), for: .normal)
+        //btn2.setImage(#imageLiteral(resourceName: "more").maskWithColor(color: tint), for: .normal)
+        let moreIcon = FAKMaterialIcons.moreIcon(withSize: 35)
+        moreIcon?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
+        btn2.setAttributedTitle(moreIcon?.attributedString(), for: .normal)
         btn2.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
         btn2.addTarget(revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)), for: .touchUpInside)
         let item2 = UIBarButtonItem(customView: btn2)

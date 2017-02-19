@@ -23,6 +23,10 @@ class SubredditHeaderTableViewCell: UITableViewCell {
         plusCircle?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
         addSubreddit.setAttributedTitle(plusCircle?.attributedString(), for: .normal)
         
+        let folderImageIcon = FAKMaterialIcons.folderIcon(withSize: 35)
+        folderImageIcon?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
+        folderImage.setAttributedTitle(folderImageIcon?.attributedString(), for: .normal)
+        
     }
     
     func setupTheme() {

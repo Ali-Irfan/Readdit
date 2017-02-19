@@ -10,6 +10,7 @@ import UIKit
 import Async
 import PMAlertController
 import Alamofire
+import FontAwesomeKit
 
 
 var arrayOfSubreddits = UserDefaults.standard.object(forKey: "arrayOfSubreddits") as! [String]
@@ -18,6 +19,9 @@ var mainCellColor = UIColor()
 
 class SidebarTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var logo: UILabel!
+    
+    @IBOutlet weak var addASubreddit: UIButton!
+    
     
     var arrayOfIdentifiers: [String] = []
     var numberOfSubreddits = 0
@@ -31,6 +35,10 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        addASubreddit.layer.cornerRadius = 5
+        addASubreddit.addTarget(self, action: #selector(addSubreddit), for: .touchUpInside)
+        
         let nc = NotificationCenter.default
         nc.addObserver(forName:updateSubredditNotification, object:nil, queue:nil, using:updateAllSubredditsWithoutAlert)
         nc.addObserver(forName:updateViewNotification,      object:nil, queue:nil, using:checkCurrentDownloads)
@@ -45,7 +53,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         
         
         
-        arrayOfIdentifiers.append("subredditHeader")
+//        arrayOfIdentifiers.append("subredditHeader")
         for _ in arrayOfSubreddits {
             arrayOfIdentifiers.append("subreddit")
             numberOfSubreddits = numberOfSubreddits + 1
@@ -194,17 +202,17 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         
         sidebarTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         switch identifier {
-        case "subredditHeader":
-            let cell:SubredditHeaderTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subredditHeader") as! SubredditHeaderTableViewCell
-            cell.addSubreddit.addTarget(self, action: #selector(addSubreddit), for: .touchUpInside)
-            cell.backgroundColor = mainCellColor
-            cell.addSubreddit.setTitleColor(mainTextColor, for: .normal)
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-            //cell.subredditButton.addTarget(self, action: #selector(segueToSubreddits), for: .touchUpInside)
-            return cell
+//        case "subredditHeader":
+//            let cell:SubredditHeaderTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subredditHeader") as! SubredditHeaderTableViewCell
+//            cell.addSubreddit.addTarget(self, action: #selector(addSubreddit), for: .touchUpInside)
+//            cell.backgroundColor = mainCellColor
+//            cell.addSubreddit.setTitleColor(mainTextColor, for: .normal)
+//            cell.selectionStyle = UITableViewCellSelectionStyle.none
+//            //cell.subredditButton.addTarget(self, action: #selector(segueToSubreddits), for: .touchUpInside)
+//            return cell
         case "subreddit":
             let cell:SubredditTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subreddit") as! SubredditTableViewCell
-            cell.subredditTitle.setTitle(arrayOfSubreddits[indexPath.row-1], for: .normal)
+            cell.subredditTitle.setTitle(arrayOfSubreddits[indexPath.row], for: .normal)
             cell.deleteButton.addTarget(self, action: #selector(deleteSubreddit(_:)), for: .touchUpInside)
             cell.subredditTitle.addTarget(self, action: #selector(goToSubreddit(_:)), for: .touchUpInside)
             cell.subredditTitle.setTitleColor(mainTextColor, for: .normal)
@@ -258,13 +266,12 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             for cell in self.sidebarTable.visibleCells {
                 if let subredditCell = cell as? SubredditTableViewCell {
                     subredditCell.updateSubreddit()
-                } else if let c = cell as? UpdateAllTableViewCell {
-                    c.updateAll.isEnabled = false
-                    c.stopButton.setImage(#imageLiteral(resourceName: "multiply"), for: .normal)
-                    c.stopButton.addTarget(self, action: #selector(self.stopAllDownloads), for: .touchUpInside)
                 }
             }
+            
         } else {
+            
+            
         let alert = PMAlertController(title: "Update all subreddits", color: Theme.getGeneralColor(), description: "This may take a while. Are you sure?", image: nil, style: .alert)
         alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
         // 3. Grab the value from the text field, and print it when the user clicks OK.
@@ -272,35 +279,18 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             for cell in self.sidebarTable.visibleCells {
                 if let subredditCell = cell as? SubredditTableViewCell {
                     subredditCell.updateSubreddit()
-                } else if let c = cell as? UpdateAllTableViewCell {
-                    c.updateAll.isEnabled = false
-                    c.stopButton.setImage(#imageLiteral(resourceName: "multiply"), for: .normal)
-                    c.stopButton.addTarget(self, action: #selector(self.stopAllDownloads), for: .touchUpInside)
                 }
             }
+            
+            
         }))
-        
-        
+            
+    
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
         }
     }
-    
-    
-    
-    func stopAllDownloads() {
-        
-        for cell in self.sidebarTable.visibleCells {
-            if let s = cell as? SubredditTableViewCell {
-                s.stopDownload()
-            } else if let c = cell as? UpdateAllTableViewCell {
-                c.stopButton.setImage(#imageLiteral(resourceName: "settings-4"), for: .normal)
-                c.stopButton.removeTarget(self, action: #selector(self.stopAllDownloads), for: .touchUpInside)
-                c.updateAll.isEnabled = true
-            }
-        }
-        
-    }
+
     
     func deleteSubreddit(_ sender: UIButton) {
         if let cell = sender.superview?.superview as? SubredditTableViewCell {
@@ -399,7 +389,5 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     }
     
 }
-
-
 
 
