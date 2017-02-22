@@ -15,7 +15,7 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var arrow: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        defaults.set([], forKey: "inProgress")
         if defaults.string(forKey: "firstTime") == "false" {
             let myVC = self.storyboard?.instantiateViewController(withIdentifier: "ThreadNavigation") as! ThreadNavigationController
             let actualView = myVC.viewControllers.first as! ThreadListViewController
@@ -42,7 +42,7 @@ class InitialViewController: UIViewController {
         
         setDefaults()
         //Reset current downloads
-        defaults.set([], forKey: "inProgress")
+        
         
         for subreddit in (defaults.object(forKey: "arrayOfSubreddits") as? [String])! {
             downloadDictionary[subreddit] = 0
@@ -94,10 +94,11 @@ class InitialViewController: UIViewController {
             if defaults.object(forKey: "downloadTime") != nil {} else {    defaults.set(0, forKey: "downloadTime")}
             if defaults.object(forKey: "NumberOfThreads") != nil {} else { defaults.set("10", forKey: "NumberOfThreads")}
             if defaults.object(forKey: "fontSize") != nil {} else {        defaults.set("regular", forKey: "fontSize")}
+            
             if defaults.object(forKey: "theme") != nil {} else {           defaults.set("blue", forKey: "theme")}
-            if defaults.object(forKey: "themeBlue") != nil {} else {       defaults.set(FlatSkyBlue().getRGBAComponents()?.blue, forKey: "themeBlue")}
-            if defaults.object(forKey: "themGreen") != nil {} else {       defaults.set(FlatSkyBlue().getRGBAComponents()?.green, forKey: "themGreen")}
-            if defaults.object(forKey: "themeRed") != nil {} else {        defaults.set(FlatSkyBlue().getRGBAComponents()?.red, forKey: "themeRed")}
+            if defaults.object(forKey: "themeBlue") != nil {} else {       defaults.set(0.860000014305115, forKey: "themeBlue")}
+            if defaults.object(forKey: "themGreen") != nil {} else {       defaults.set(0.598560035228729, forKey: "themeGreen")}
+            if defaults.object(forKey: "themeRed") != nil {} else {        defaults.set(0.206400007009506, forKey: "themeRed")}
         
         }
 

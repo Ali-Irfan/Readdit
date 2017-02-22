@@ -71,8 +71,8 @@ class SubredditTableViewCell: UITableViewCell {
     }
     
     
-    func updateSubreddit() {
-        if Utils.hasAppropriateConnection() {
+    func updateSubreddit(updatingAll:Bool = false) {
+        if Utils.hasAppropriateConnection(updatingAll: updatingAll) {
             Async.background {
                 var arrayOfThreads:[ThreadData] = []
                 let subreddit = self.subredditTitle.currentTitle!
@@ -175,22 +175,4 @@ class SubredditTableViewCell: UITableViewCell {
     }
     
     
-}
-
-
-extension UIApplication {
-    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
-        if let navigationController = controller as? UINavigationController {
-            return topViewController(controller: navigationController.visibleViewController)
-        }
-        if let tabController = controller as? UITabBarController {
-            if let selected = tabController.selectedViewController {
-                return topViewController(controller: selected)
-            }
-        }
-        if let presented = controller?.presentedViewController {
-            return topViewController(controller: presented)
-        }
-        return controller
-    }
 }

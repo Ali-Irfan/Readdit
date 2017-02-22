@@ -16,8 +16,17 @@ class TextSizeTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        
+        let textSize = UserDefaults().string(forKey: "fontSize")
+
+        if textSize == "regular" {
+            textSizeButton.setTitle("Regular", for: .normal)
+        } else if textSize == "large" {
+            textSizeButton.setTitle("Large", for: .normal)
+        } else {
+            textSizeButton.setTitle("Small", for: .normal)
+        }
+    
+    
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -17,9 +17,9 @@ class Utils {
         targetVC.present(alert, animated: true, completion: nil)
     }
     
-    static func hasAppropriateConnection() -> Bool {
+    static func hasAppropriateConnection(updatingAll:Bool = false) -> Bool {
+        print("Checking")
         if Reachability()!.isReachable {
-            
             let connectionSetting = UserDefaults.standard.string(forKey: "network")
             
             if connectionSetting == "wifi" && Reachability()!.isReachableViaWiFi {
@@ -34,8 +34,19 @@ class Utils {
                 print("Internet connection OK - both")
                 return true
                 
+            } else {
+                if !updatingAll{
+                if let topController = UIApplication.topViewController() {
+                    displayTheAlert(targetVC: topController, title: "Error", message: "Something was wrong with the internet connection.")
+                }
+                }
             }
         } else {
+            if !updatingAll{
+                if let topController = UIApplication.topViewController() {
+                    displayTheAlert(targetVC: topController, title: "Error", message: "Something was wrong with the internet connection.")
+                }
+            }
             return false
         }
         return false

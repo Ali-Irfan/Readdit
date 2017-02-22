@@ -224,19 +224,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         //print(arrayOfThreads)
     }
     
-    func updateThreads() {
-        
-        if Utils.hasAppropriateConnection() {
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
-            Async.background {
-                Downloader.downloadJSON(subreddit: self.subreddit)
-                self.displayThreads()
-                self.navigationItem.rightBarButtonItem?.isEnabled = true
-            }
-        } //END ASYNC
-    }
-
-    
     
     
     

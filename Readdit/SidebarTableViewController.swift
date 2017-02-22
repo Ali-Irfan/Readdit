@@ -31,6 +31,35 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         return arrayOfSubreddits
     }
     
+    @IBAction func testNotification(_ sender: Any) {
+    
+        let notification = UILocalNotification()
+        //sender.setTitle("Not Manual", for: .normal)
+        
+        /* Time and timezone settings */
+        notification.fireDate = NSDate(timeIntervalSinceNow: 8.0) as Date
+        notification.timeZone = NSCalendar.current.timeZone
+        notification.alertBody = "Reminder: Click here to update your subreddits!"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        /* Action settings */
+        notification.hasAction = true
+        notification.alertAction = "View"
+        
+        /* Additional information, user info */
+        notification.userInfo = [
+            "Key 1" : "Value 1",
+            "Key 2" : "Value 2"
+        ]
+        
+        /* Schedule the notification */
+        UIApplication.shared.scheduleLocalNotification(notification)
+
+    
+    
+    }
+    
+    
+    
     @IBOutlet weak var sidebarTable: UITableView!
     override func viewDidLoad() {
         
@@ -251,10 +280,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     func updateAllSubredditsWithoutAlert(notification: Notification?) {
         updateAllSubreddits(showAlert: false)
     }
-    
-    func gotNotifToUpdateSubreddits(notification: Notification){
-       // updateAllSubreddits()
-    }
+
     
     func segueToSubreddits() {
         let myVC = self.storyboard?.instantiateViewController(withIdentifier: "Subreddits") as! SidebarTableViewController
@@ -265,7 +291,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         if !showAlert! {
             for cell in self.sidebarTable.visibleCells {
                 if let subredditCell = cell as? SubredditTableViewCell {
-                    subredditCell.updateSubreddit()
+                    subredditCell.updateSubreddit(updatingAll: true)
                 }
             }
             
@@ -278,7 +304,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         alert.addAction(PMAlertAction(title: "Update", style: .default, color: Theme.getGeneralColor(), action: { () in
             for cell in self.sidebarTable.visibleCells {
                 if let subredditCell = cell as? SubredditTableViewCell {
-                    subredditCell.updateSubreddit()
+                    subredditCell.updateSubreddit(updatingAll: true)
                 }
             }
             

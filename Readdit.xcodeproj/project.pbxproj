@@ -18,13 +18,10 @@
 		363916921E1086A70053EDCE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363916911E1086A70053EDCE /* Utils.swift */; };
 		363916961E120DE70053EDCE /* FindSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363916951E120DE70053EDCE /* FindSize.swift */; };
 		365AFE3D1E4AE4A700EE0395 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AFE3C1E4AE4A700EE0395 /* InitialViewController.swift */; };
-		365F1BD61DFA8D29007FBF9C /* IntroUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */; };
 		366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D61DEFB9B000696250 /* SettingsViewController.swift */; };
 		366903DA1DEFBCC100696250 /* TextSizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */; };
 		366903DC1DEFBCE200696250 /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903DB1DEFBCE200696250 /* ThemeTableViewCell.swift */; };
 		366903DE1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903DD1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift */; };
-		366903E01DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */; };
-		366903E21DEFBD0200696250 /* ReportABugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */; };
 		366903E41DEFBD0C00696250 /* ClearAllDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */; };
 		3678F4F91E04D4DB005A3F8A /* ThreadNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */; };
 		367FD6BA1E44EFAB00C9EDB3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FD6B91E44EFAB00C9EDB3 /* Extensions.swift */; };
@@ -86,13 +83,10 @@
 		363916911E1086A70053EDCE /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		363916951E120DE70053EDCE /* FindSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindSize.swift; sourceTree = "<group>"; };
 		365AFE3C1E4AE4A700EE0395 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
-		365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroUIView.swift; sourceTree = "<group>"; };
 		366903D61DEFB9B000696250 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SettingsViewController.swift; path = ../SettingsViewController.swift; sourceTree = "<group>"; };
 		366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSizeTableViewCell.swift; sourceTree = "<group>"; };
 		366903DB1DEFBCE200696250 /* ThemeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTableViewCell.swift; sourceTree = "<group>"; };
 		366903DD1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadSettingsTableViewCell.swift; sourceTree = "<group>"; };
-		366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideNSFWPostsTableViewCell.swift; sourceTree = "<group>"; };
-		366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportABugTableViewCell.swift; sourceTree = "<group>"; };
 		366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearAllDataTableViewCell.swift; sourceTree = "<group>"; };
 		3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadNavigationController.swift; sourceTree = "<group>"; };
 		367FD6B91E44EFAB00C9EDB3 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -311,10 +305,7 @@
 				366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */,
 				366903DB1DEFBCE200696250 /* ThemeTableViewCell.swift */,
 				366903DD1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift */,
-				366903DF1DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift */,
-				366903E11DEFBD0200696250 /* ReportABugTableViewCell.swift */,
 				366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */,
-				365F1BD51DFA8D29007FBF9C /* IntroUIView.swift */,
 				36F608F21E09E96000604B6D /* NumberOfThreadsTableViewCell.swift */,
 				36F608F41E09F47D00604B6D /* ThreadNumberField.swift */,
 				36E9D20F1E23309A00F65FC5 /* AutoDownloadTableViewCell.swift */,
@@ -555,7 +546,6 @@
 				368A4BF11DD0DFC7002D0480 /* General.swift in Sources */,
 				36EE380C1E08A35900AA5D48 /* TypeOfSortCell.swift in Sources */,
 				363916961E120DE70053EDCE /* FindSize.swift in Sources */,
-				365F1BD61DFA8D29007FBF9C /* IntroUIView.swift in Sources */,
 				3636E2991DCFF8DC0030F77D /* ThreadViewController.swift in Sources */,
 				3636E29B1DD001530030F77D /* ThreadData.swift in Sources */,
 				36F608F31E09E96000604B6D /* NumberOfThreadsTableViewCell.swift in Sources */,
@@ -571,8 +561,6 @@
 				36982E3C1DF5386700336A3F /* THREADTableViewCell.swift in Sources */,
 				36DB561E1DCEB76200E7B764 /* ThreadListViewController.swift in Sources */,
 				367FD6BA1E44EFAB00C9EDB3 /* Extensions.swift in Sources */,
-				366903E21DEFBD0200696250 /* ReportABugTableViewCell.swift in Sources */,
-				366903E01DEFBCF800696250 /* HideNSFWPostsTableViewCell.swift in Sources */,
 				366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */,
 				366903E41DEFBD0C00696250 /* ClearAllDataTableViewCell.swift in Sources */,
 			);
