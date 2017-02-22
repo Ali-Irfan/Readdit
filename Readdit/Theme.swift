@@ -83,4 +83,41 @@ class Theme {
         return FlatBlack()
     }
     
+    static func getGeneralDarkColor() -> UIColor{
+        let theme = UserDefaults.standard.string(forKey: "theme")!
+        switch theme {
+            
+        case "white":
+            return FlatWhiteDark()
+            
+        case "mint":
+            return FlatMintDark()
+            
+        case "purple":
+            return FlatPurpleDark()
+            
+        case "magenta":
+            return FlatMagentaDark()
+            
+        case "lime":
+            return FlatLimeDark()
+            
+        case "blue":
+            return FlatSkyBlueDark()
+            
+        case "red":
+            return FlatRedDark()
+            
+        case "dark":
+            return FlatBlackDark()
+            
+        case "white":
+            return FlatBlackDark()
+            
+        default:
+            break
+        }
+        return FlatBlack()
+    }
+    
 }

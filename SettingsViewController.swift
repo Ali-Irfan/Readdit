@@ -106,9 +106,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             self.defaults.set("data", forKey: "network")
         })
         
-        let wifiOnly = Action("Wi-Fi Only", style: .default, handler: { action in
-            sender.setTitle("Wi-Fi Only", for: .normal)
-            print("Wi-Fi Only")
+        let wifiOnly = Action("Wifi Only", style: .default, handler: { action in
+            sender.setTitle("Wifi Only", for: .normal)
+            print("Wifi Only")
             self.defaults.set("wifi", forKey: "network")
         })
 
@@ -581,10 +581,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func addAndShowPicker(sender: UIButton) {
         print("got it")
+        let arr = UserDefaults.standard.object(forKey: "reminderDate") as! [String]
+
+        
         ActionSheetMultipleStringPicker.show(withTitle: "Select Daily Time", rows: [
             ["Disabled", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
             ["AM", "PM"]
-            ], initialSelection: [7, 0], doneBlock: {
+            ], initialSelection: [arr[0], arr[1]], doneBlock: {
                 picker, indexes, values in
                 var data = values as! [String]
                 

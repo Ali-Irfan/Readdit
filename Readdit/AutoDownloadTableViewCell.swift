@@ -15,12 +15,12 @@ class AutoDownloadTableViewCell: UITableViewCell {
     @IBOutlet weak var pickerButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
-        let arr = UserDefaults.standard.object(forKey: "reminderDate") as! [String]
+        if  let arr = UserDefaults.standard.object(forKey: "reminderDate") as? [String] {
         let h = arr[0]
         let a = arr[1]
         pickerButton.setTitle(h + " " + a, for: .normal)
         // Initialization code
-        
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

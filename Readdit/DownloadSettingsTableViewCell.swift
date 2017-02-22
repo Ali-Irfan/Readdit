@@ -21,9 +21,9 @@ class DownloadSettingsTableViewCell: UITableViewCell {
         let setting = UserDefaults().string(forKey: "network")
         print("CURRENT SETTING: \(setting)")
         if setting == "both" {
-            downloadSettingsButton.setTitle("WiFi + Data", for: .normal)
+            downloadSettingsButton.setTitle("Wifi + Data", for: .normal)
         } else if setting == "wifi" {
-            downloadSettingsButton.setTitle("WiFi Only", for: .normal)
+            downloadSettingsButton.setTitle("Wifi Only", for: .normal)
         } else {
             downloadSettingsButton.setTitle("Data Only", for: .normal)
         }

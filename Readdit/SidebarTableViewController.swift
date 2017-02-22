@@ -20,8 +20,12 @@ var mainCellColor = UIColor()
 class SidebarTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var logo: UILabel!
     
+    @IBOutlet weak var settingsButtonIcon: UIButton!
     @IBOutlet weak var addASubreddit: UIButton!
     
+    @IBOutlet weak var updateAllIcon: UIButton!
+    @IBOutlet weak var updateAllButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     
     var arrayOfIdentifiers: [String] = []
     var numberOfSubreddits = 0
@@ -30,6 +34,8 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     func getSubreddits() -> [String] {
         return arrayOfSubreddits
     }
+
+    
     
     @IBAction func testNotification(_ sender: Any) {
     
@@ -58,7 +64,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     
     }
     
-    
+   
     
     @IBOutlet weak var sidebarTable: UITableView!
     override func viewDidLoad() {
@@ -79,19 +85,42 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         sidebarTable.allowsSelection = true
         
         
+        settingsButton.addTarget(self, action: #selector(goToSubreddit(_:)), for: .touchUpInside)
+        settingsButton.backgroundColor = ClearColor()
+        settingsButton.setTitleColor(UIColor.white, for: .normal)
+        let settingsImageIcon = FAKMaterialIcons.settingsIcon(withSize: 40)
+        settingsImageIcon?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
+        settingsButtonIcon.setAttributedTitle(settingsImageIcon?.attributedString(), for: .normal)
         
+        let stopButtonIcon = FAKMaterialIcons.timeRestoreIcon(withSize: 35)
+        stopButtonIcon?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
+        updateAllIcon.setAttributedTitle(stopButtonIcon?.attributedString(), for: .normal)
+        updateAllButton.addTarget(self, action: #selector(updateAllSubredditsSelector), for: .touchUpInside)
         
+
         
-//        arrayOfIdentifiers.append("subredditHeader")
         for _ in arrayOfSubreddits {
             arrayOfIdentifiers.append("subreddit")
             numberOfSubreddits = numberOfSubreddits + 1
         }
         
-        arrayOfIdentifiers.append("settingsHeader")
-        arrayOfIdentifiers.append("updateAll")
         setupTheme()
+
+        let otherView =  UIView(frame: CGRect(x: sidebarTable.frame.origin.x, y: sidebarTable.frame.origin.y, width: sidebarTable.frame.width, height: 15))
+        
+        otherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherView.bounds, colors: [Theme.getGeneralDarkColor(), Theme.getGeneralDarkColor().withAlphaComponent(0)])
+        
+        self.view.addSubview(otherView)
+        
+        let otherOtherView =  UIView(frame: CGRect(x: sidebarTable.frame.origin.x, y: sidebarTable.frame.maxY-35, width: sidebarTable.frame.width, height:15))
+        //otherOtherView.backgroundColor = FlatRed()
+        otherOtherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherOtherView.bounds, colors: [Theme.getGeneralDarkColor().withAlphaComponent(0), Theme.getGeneralDarkColor()])
+        
+        self.view.addSubview(otherOtherView)
+        
     }
+    
+    
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -208,6 +237,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     
     
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -231,14 +261,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         
         sidebarTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         switch identifier {
-//        case "subredditHeader":
-//            let cell:SubredditHeaderTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subredditHeader") as! SubredditHeaderTableViewCell
-//            cell.addSubreddit.addTarget(self, action: #selector(addSubreddit), for: .touchUpInside)
-//            cell.backgroundColor = mainCellColor
-//            cell.addSubreddit.setTitleColor(mainTextColor, for: .normal)
-//            cell.selectionStyle = UITableViewCellSelectionStyle.none
-//            //cell.subredditButton.addTarget(self, action: #selector(segueToSubreddits), for: .touchUpInside)
-//            return cell
+
         case "subreddit":
             let cell:SubredditTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subreddit") as! SubredditTableViewCell
             cell.subredditTitle.setTitle(arrayOfSubreddits[indexPath.row], for: .normal)
@@ -247,26 +270,8 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             cell.subredditTitle.setTitleColor(mainTextColor, for: .normal)
             cell.backgroundColor = mainCellColor
             return cell
-            
-        case "settingsHeader":
-            let cell:SettingsHeaderTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "settingsHeader") as! SettingsHeaderTableViewCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-            cell.settingsButton.addTarget(self, action: #selector(goToSubreddit(_:)), for: .touchUpInside)
-            cell.backgroundColor = mainCellColor
-            cell.settingsButton.setTitleColor(mainTextColor, for: .normal)
-            
-            return cell
-            
-        case "updateAll":
-            let cell:UpdateAllTableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "updateAll") as! UpdateAllTableViewCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-            cell.updateAll.addTarget(self, action: #selector(updateAllSubredditsSelector), for: .touchUpInside)
-            cell.backgroundColor = mainCellColor
-            cell.updateAll.setTitleColor(mainTextColor, for: .normal)
-            return cell
-            
         default:
-            let cell:UITableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "settingsCell")! as UITableViewCell
+            let cell:UITableViewCell = sidebarTable.dequeueReusableCell(withIdentifier: "subreddit")! as UITableViewCell
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
             
@@ -368,7 +373,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             actualView.subreddit = subreddit
             //present(myVC, animated: true, completion: nil)
             self.revealViewController().pushFrontViewController(myVC, animated: true)
-        } else if sender.superview?.superview is SettingsHeaderTableViewCell {
+        } else if sender.currentTitle == "Settings" {
             let myVC = self.storyboard?.instantiateViewController(withIdentifier: "Settings") as! UINavigationController
             self.revealViewController().pushFrontViewController(myVC, animated: true)
         }
@@ -396,7 +401,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             if subredditToAdd != "" && !arrayOfSubreddits.contains(where: {$0.caseInsensitiveCompare(subredditToAdd!) == .orderedSame}) && !(subredditToAdd?.contains("+"))!{
                 arrayOfSubreddits.append(subredditToAdd!)
                 UserDefaults.standard.set(arrayOfSubreddits, forKey: "arrayOfSubreddits")
-                self.arrayOfIdentifiers.insert("subreddit", at: self.arrayOfIdentifiers.count-2)
+                self.arrayOfIdentifiers.insert("subreddit", at: self.arrayOfIdentifiers.count)
                 self.sidebarTable.reloadData()
                 Async.main{
                     for cell in self.sidebarTable.visibleCells {
