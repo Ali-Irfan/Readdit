@@ -83,7 +83,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         sidebarTable.estimatedRowHeight = 250.0
         sidebarTable.rowHeight = UITableViewAutomaticDimension
         sidebarTable.allowsSelection = true
-        
+        sidebarTable.contentInset = UIEdgeInsetsMake(15, 0, 0, 0) //Lower it a little for the fade
         
         settingsButton.addTarget(self, action: #selector(goToSubreddit(_:)), for: .touchUpInside)
         settingsButton.backgroundColor = ClearColor()
@@ -112,7 +112,10 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         
         self.view.addSubview(otherView)
         
-        let otherOtherView =  UIView(frame: CGRect(x: sidebarTable.frame.origin.x, y: sidebarTable.frame.maxY-35, width: sidebarTable.frame.width, height:15))
+        let otherOtherView =  UIView(frame: CGRect(x: sidebarTable.frame.origin.x, y: sidebarTable.frame.origin.y+sidebarTable.frame.height-17, width: sidebarTable.frame.width, height:15))
+        
+    
+        
         //otherOtherView.backgroundColor = FlatRed()
         otherOtherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherOtherView.bounds, colors: [Theme.getGeneralDarkColor().withAlphaComponent(0), Theme.getGeneralDarkColor()])
         
