@@ -33,7 +33,7 @@ class SubredditTableViewCell: UITableViewCell {
         
         //updateButton.setImage(#imageLiteral(resourceName: "update"), for: .normal)
         
-        let updateCircle = FAKMaterialIcons.timeRestoreIcon(withSize: 30)
+        let updateCircle = FAKMaterialIcons.refreshIcon(withSize: 30)
         updateCircle?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
         updateButton.setAttributedTitle(updateCircle?.attributedString(), for: .normal)
         
@@ -72,12 +72,12 @@ class SubredditTableViewCell: UITableViewCell {
     
     
     func updateSubreddit(updatingAll:Bool = false) {
+        var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
+        let subreddit = self.subredditTitle.currentTitle!
         if Utils.hasAppropriateConnection(updatingAll: updatingAll) {
             Async.background {
                 var arrayOfThreads:[ThreadData] = []
-                let subreddit = self.subredditTitle.currentTitle!
                 Async.main {
-                    var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
                     downloadsInProgress.append(subreddit)
                     UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
 

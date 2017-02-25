@@ -17,6 +17,8 @@ class CommentData {
     var collapse = "[-]"
     var isMainComment = false
     var minimized = false
+    var commentCount: Int = 0
+
     
 
 }

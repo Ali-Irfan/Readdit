@@ -22,11 +22,12 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var arrayOfEverything: [AnyObject] = []
     @IBOutlet weak var commentTable: UITableView!
     let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-    
+    var emptyOverlay = UIView()
     var heightDictionary:[IndexPath:CGFloat] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emptyOverlay.isHidden = true
         overlay = UIView(frame: view.frame)
         overlay!.backgroundColor = UIColor.white
         overlay!.alpha = 0.9
@@ -35,6 +36,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if Theme.getGeneralColor() == FlatBlack() {
             overlay!.backgroundColor = FlatBlackDark()
             activityView.color = FlatWhite()
+            color = UIColor.white
             commentTable.backgroundColor = FlatBlackDark()
             self.view.backgroundColor = FlatBlackDark()
         } else {
@@ -48,6 +50,34 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         overlay?.addSubview(activityView)
         view.addSubview(overlay!)
+        
+        let oopsLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width-100, height: 200))
+        oopsLabel.center = self.view.center
+        oopsLabel.textAlignment = .center
+        oopsLabel.center.y = view.center.y - 50
+        oopsLabel.center.x = view.center.x
+        oopsLabel.numberOfLines = 0
+        
+        let oopsLabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width-75, height: 200))
+        oopsLabel2.center = self.view.center
+        oopsLabel2.textAlignment = .center
+        oopsLabel2.center.y = view.center.y + 50
+        oopsLabel2.center.x = view.center.x
+        oopsLabel2.numberOfLines = 0
+        
+        let emptyCircle = FAKMaterialIcons.alertCircleOIcon(withSize: 145)
+        emptyCircle?.addAttribute(NSForegroundColorAttributeName, value: Theme.getGeneralColor())
+        oopsLabel.attributedText = emptyCircle?.attributedString()
+        
+        emptyOverlay.isHidden = true
+        oopsLabel2.text = "Something went wrong! \nTry downloading the subreddit again."
+        oopsLabel2.textColor = Theme.getGeneralColor()
+        emptyOverlay.addSubview(oopsLabel)
+        emptyOverlay.addSubview(oopsLabel2)
+
+        view.addSubview(emptyOverlay)
+        print("added")
+        
         
         addMoreButton()
         
@@ -73,7 +103,13 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        if Theme.getGeneralColor() == FlatBlack() {
+            color = UIColor.white
+        } else {
+            color = FlatBlack()
+        }
+    }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // use as? or as! to cast UITableViewCell to your desired type
         heightDictionary[indexPath] = cell.frame.size.height
@@ -83,7 +119,6 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let height = heightDictionary[indexPath]
-        
         
         if bleh[indexPath.row].hiddenComment {
             return 0.00
@@ -181,8 +216,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func showThreadComments(sortType: String) {
-        
         let jsonRaw = Downloader.getThreadJSON(threadURL: threadURL, threadID: threadID, sortType: sortType, subreddit: subreddit)
+
         bleh.removeAll()
         if (jsonRaw != "Error") {
             if let data = jsonRaw.data(using: String.Encoding.utf8) {
@@ -190,6 +225,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let mainCommentTitle = json[0]["data"]["children"][0]["data"]["title"].string!
                 let mainCommentSelftext = json[0]["data"]["children"][0]["data"]["selftext"].string!
                 let mainComment = CommentData()
+                let commentCount = json[0]["data"]["children"][0]["data"]["num_comments"].int!
+                mainComment.commentCount = commentCount
                 mainComment.title = mainCommentTitle
                 mainComment.isMainComment = true
                 mainComment.selftext = mainCommentSelftext
@@ -201,6 +238,10 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 recursion(object: json[1], level: 0)
                 commentTable.reloadData()
             }
+        } else {
+            print("Else")
+            emptyOverlay.isHidden = false
+            
         }
         overlay.removeFromSuperview()
     }
@@ -266,6 +307,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         var size: CGFloat = 0.0
         
+        if cell.hiddenComment {
+            cell.isHidden = true
+        }
         
         cell.layer.shouldRasterize = true
         cell.layer.rasterizationScale = UIScreen.main.scale //Slightly faster tableviews
@@ -274,7 +318,11 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.seperatorView.isHidden = true
             cell.contentView.layoutMargins.left = 10
             cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
-            cell.upvoteLabel?.text = ""
+            cell.upvoteLabel?.text = "\(subreddit) • \(bleh[indexPath.row].commentCount) comments"
+            cell.upvoteLabel.textColor = FlatGray()
+            
+            
+            
             if bleh[indexPath.row].author == author {
                 print("Author is \(bleh[indexPath.row].author), adding BG")
                 //cell.authorLabel.backgroundColor = Utils.hexStringToUIColor(hex: "E1E1E1")
@@ -357,6 +405,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     cell.arrayOfSeperators[i].backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
                 } else {
                     cell.arrayOfSeperators[i].backgroundColor = FlatGrayDark()
+                    cell.arrayOfSeperators[i].backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
+
                 }
             }
             
@@ -473,7 +523,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //commentTable.endUpdates()
         //commentTable.reloadData()
         Async.main{
-            self.commentTable.reloadRows(at: [indexPath], with: .fade)
+                self.commentTable.beginUpdates()
+                self.commentTable.reloadRows(at: [indexPath], with: .fade)
+                self.commentTable.endUpdates()
         }
         
     }

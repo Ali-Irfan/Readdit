@@ -19,6 +19,8 @@ var mainCellColor = UIColor()
 
 class SidebarTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var logo: UILabel!
+    var otherView = UIView() //Top Fade
+    var otherOtherView = UIView() //Bottom fade
     
     @IBOutlet weak var settingsButtonIcon: UIButton!
     @IBOutlet weak var addASubreddit: UIButton!
@@ -106,13 +108,13 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         
         setupTheme()
 
-        let otherView =  UIView(frame: CGRect(x: sidebarTable.frame.origin.x, y: sidebarTable.frame.origin.y, width: sidebarTable.frame.width, height: 15))
+        otherView =  UIView(frame: CGRect(x: sidebarTable.frame.origin.x, y: sidebarTable.frame.origin.y, width: sidebarTable.frame.width, height: 15))
         
         otherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherView.bounds, colors: [Theme.getGeneralDarkColor(), Theme.getGeneralDarkColor().withAlphaComponent(0)])
         
         self.view.addSubview(otherView)
         
-        let otherOtherView =  UIView(frame: CGRect(x: sidebarTable.frame.origin.x, y: sidebarTable.frame.origin.y+sidebarTable.frame.height-17, width: sidebarTable.frame.width, height:15))
+        otherOtherView =  UIView(frame: CGRect(x: sidebarTable.frame.origin.x, y: sidebarTable.frame.origin.y+sidebarTable.frame.height-17, width: sidebarTable.frame.width, height:15))
         
     
         
@@ -142,6 +144,13 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             btn1.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
             vc.view.addSubview(btn1)
         }
+    
+        
+        otherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherView.bounds, colors: [Theme.getGeneralDarkColor(), Theme.getGeneralDarkColor().withAlphaComponent(0)])
+
+        otherOtherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherOtherView.bounds, colors: [Theme.getGeneralDarkColor().withAlphaComponent(0), Theme.getGeneralDarkColor()])
+        
+        
     }
     
     func catchNotification(notification:Notification) -> Void {
