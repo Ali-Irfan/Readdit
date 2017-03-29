@@ -6,6 +6,7 @@ import ChameleonFramework
 import Async
 import StringExtensionHTML
 import FontAwesomeKit
+import BonMot
 
 class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let defaults = UserDefaults.standard
@@ -66,12 +67,22 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         oopsLabel2.numberOfLines = 0
         
         let emptyCircle = FAKMaterialIcons.alertCircleOIcon(withSize: 145)
-        emptyCircle?.addAttribute(NSForegroundColorAttributeName, value: Theme.getGeneralColor())
+        if Theme.getGeneralColor() != FlatBlack(){
+            emptyCircle?.addAttribute(NSForegroundColorAttributeName, value: Theme.getGeneralColor())
+
+        } else {
+            emptyCircle?.addAttribute(NSForegroundColorAttributeName, value: FlatWhite())
+
+        }
         oopsLabel.attributedText = emptyCircle?.attributedString()
         
         emptyOverlay.isHidden = true
         oopsLabel2.text = "Something went wrong! \nTry downloading the subreddit again."
+        if Theme.getGeneralColor() == FlatBlack(){
+            oopsLabel2.textColor = FlatWhite()
+        } else {
         oopsLabel2.textColor = Theme.getGeneralColor()
+        }
         emptyOverlay.addSubview(oopsLabel)
         emptyOverlay.addSubview(oopsLabel2)
 
@@ -299,6 +310,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     {
         return 1
     }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
@@ -319,27 +331,21 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.contentView.layoutMargins.left = 10
             cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
             cell.upvoteLabel?.text = "\(subreddit) • \(bleh[indexPath.row].commentCount) comments"
-            cell.upvoteLabel.textColor = FlatGray()
-            
-            
-            
-            if bleh[indexPath.row].author == author {
-                print("Author is \(bleh[indexPath.row].author), adding BG")
-                //cell.authorLabel.backgroundColor = Utils.hexStringToUIColor(hex: "E1E1E1")
-                
-                let att      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size), NSForegroundColorAttributeName: color] as [String : Any]
-                let attributedText = cell.authorLabel.text
-                cell.authorLabel.attributedText = NSAttributedString(string: attributedText!, attributes: att)
-                
-                
-            }
+
             cell.collapseLabel?.text = ""
             
             let titleText = bleh[indexPath.row].title.stringByDecodingHTMLEntities
             let selftext = bleh[indexPath.row].selftext.stringByDecodingHTMLEntities
             
-            print("\(titleText)\n\(selftext)")
-            cell.mainLabel.text = "\(titleText)\n\(selftext)"
+            if selftext == "" {
+                cell.mainLabel.text = titleText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            } else {
+                cell.mainLabel.text = titleText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) + "\n\n" + selftext.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            }
+
+            
+            
+            cell.mainLabel.sizeToFit()
             
             if UserDefaults.standard.string(forKey: "fontSize") == "small" {
                 size = 14
@@ -369,7 +375,6 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             
         } else if !bleh[indexPath.row].hiddenComment && !bleh[indexPath.row].isMainComment {
-            
             
             
             cell.contentView.layoutIfNeeded()
@@ -404,8 +409,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 if Theme.getGeneralColor() != FlatBlack() {
                     cell.arrayOfSeperators[i].backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
                 } else {
-                    cell.arrayOfSeperators[i].backgroundColor = FlatGrayDark()
-                    cell.arrayOfSeperators[i].backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
+                    //cell.arrayOfSeperators[i].backgroundColor = FlatGrayDark()
+                    cell.arrayOfSeperators[i].backgroundColor = Utils.hexStringToUIColor(hex: "808080")
 
                 }
             }
@@ -444,37 +449,10 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.seperatorView.backgroundColor = FlatBlack()
             }
             cell.authorLabel?.text = "/u/" + bleh[indexPath.row].author
-            cell.authorLabel.textColor = FlatBlack()//Utils.hexStringToUIColor(hex: "808080")
-            if bleh[indexPath.row].author == author {
-               // print("Author is \(bleh[indexPath.row].author), adding BG")
-                
-                //cell.authorLabel.backgroundColor = FlatGray()//Utils.hexStringToUIColor(hex: "E1E1E1")
-                cell.authorLabel.textColor = color
-                let att = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: otherSize), NSForegroundColorAttributeName: color] as [String : Any]
-                let attributedText = cell.authorLabel.text
-                cell.authorLabel.attributedText = NSAttributedString(string: attributedText!, attributes: att)
-                //cell.authorLabel.textColor = UIColor.white
-            } else {
-                //cell.authorLabel.backgroundColor = UIColor.white
-                cell.authorLabel.textColor = FlatBlack()
-                
-                
-            }
             
             let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(bleh[indexPath.row].utcCreated)))
-            cell.upvoteLabel?.text = " • " + String(bleh[indexPath.row].upvotes)
-            
-            
-            
-            let firstWord   = dateText
-            let secondWord = String(bleh[indexPath.row].upvotes)
-            let attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: otherSize), NSForegroundColorAttributeName: color] as [String : Any]
-            let attributedText = NSMutableAttributedString(string:firstWord)
-            attributedText.append(NSMutableAttributedString(string: " • "))
-            attributedText.append(NSAttributedString(string: secondWord, attributes: attrs))
-            cell.upvoteLabel?.attributedText = attributedText
-            //cell.upvoteLabel.textColor = Utils.hexStringToUIColor(hex: "808080")
-            cell.collapseLabel?.text = bleh[indexPath.row].collapse
+            cell.upvoteLabel?.text = dateText + " • " + String(bleh[indexPath.row].upvotes)
+
             
             
         } else {

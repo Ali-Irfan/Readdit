@@ -25,7 +25,6 @@
 		366903E41DEFBD0C00696250 /* ClearAllDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903E31DEFBD0C00696250 /* ClearAllDataTableViewCell.swift */; };
 		3678F4F91E04D4DB005A3F8A /* ThreadNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */; };
 		367FD6BA1E44EFAB00C9EDB3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367FD6B91E44EFAB00C9EDB3 /* Extensions.swift */; };
-		3684C7CC1E071A9400754372 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3684C7CB1E071A9400754372 /* SWRevealViewController.m */; };
 		3687C8811E299FBF00B16BC6 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3687C8801E299FBF00B16BC6 /* PaddingLabel.swift */; };
 		368A4BEF1DD0CABF002D0480 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368A4BEE1DD0CABF002D0480 /* CommentData.swift */; };
 		368A4BF11DD0DFC7002D0480 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368A4BF01DD0DFC7002D0480 /* General.swift */; };
@@ -33,6 +32,7 @@
 		369710001DE936E60070DC33 /* MainPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36970FFE1DE936E60070DC33 /* MainPostTableViewCell.xib */; };
 		36982E3C1DF5386700336A3F /* THREADTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36982E3B1DF5386700336A3F /* THREADTableViewCell.swift */; };
 		36A29EFA1E2D944D0073FB32 /* UpdateAllTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A29EF91E2D944D0073FB32 /* UpdateAllTableViewCell.swift */; };
+		36A591F01E8A0A4500CB2A8E /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A591EF1E8A0A4500CB2A8E /* SWRevealViewController.m */; };
 		36B2680B1E306D6B009FC008 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B2680A1E306D6B009FC008 /* Theme.swift */; };
 		36C451341DCD4A2F0066A76E /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C451331DCD4A2F0066A76E /* Downloader.swift */; };
 		36D255A41DCC3B2C00B1779E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D255A31DCC3B2C00B1779E /* AppDelegate.swift */; };
@@ -91,8 +91,6 @@
 		3678F4F81E04D4DB005A3F8A /* ThreadNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadNavigationController.swift; sourceTree = "<group>"; };
 		367FD6B91E44EFAB00C9EDB3 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3684C7C91E071A9400754372 /* Readdit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Readdit-Bridging-Header.h"; sourceTree = "<group>"; };
-		3684C7CA1E071A9400754372 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
-		3684C7CB1E071A9400754372 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
 		3687C8801E299FBF00B16BC6 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		368A4BEE1DD0CABF002D0480 /* CommentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentData.swift; sourceTree = "<group>"; };
 		368A4BF01DD0DFC7002D0480 /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
@@ -100,6 +98,8 @@
 		36970FFE1DE936E60070DC33 /* MainPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPostTableViewCell.xib; sourceTree = "<group>"; };
 		36982E3B1DF5386700336A3F /* THREADTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THREADTableViewCell.swift; sourceTree = "<group>"; };
 		36A29EF91E2D944D0073FB32 /* UpdateAllTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UpdateAllTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		36A591EE1E8A0A4500CB2A8E /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		36A591EF1E8A0A4500CB2A8E /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		36B2680A1E306D6B009FC008 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Theme.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		36C451331DCD4A2F0066A76E /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		36D255A01DCC3B2C00B1779E /* Readdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Readdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,8 +181,8 @@
 		3684C7C81E071A8700754372 /* SWReveal */ = {
 			isa = PBXGroup;
 			children = (
-				3684C7CA1E071A9400754372 /* SWRevealViewController.h */,
-				3684C7CB1E071A9400754372 /* SWRevealViewController.m */,
+				36A591EE1E8A0A4500CB2A8E /* SWRevealViewController.h */,
+				36A591EF1E8A0A4500CB2A8E /* SWRevealViewController.m */,
 				3684C7C91E071A9400754372 /* Readdit-Bridging-Header.h */,
 				36EE38001E0889FE00AA5D48 /* RevealViewController.swift */,
 			);
@@ -527,12 +527,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				36EE38011E0889FE00AA5D48 /* RevealViewController.swift in Sources */,
+				36A591F01E8A0A4500CB2A8E /* SWRevealViewController.m in Sources */,
 				3678F4F91E04D4DB005A3F8A /* ThreadNavigationController.swift in Sources */,
 				366903DC1DEFBCE200696250 /* ThemeTableViewCell.swift in Sources */,
 				36E7215D1DD6F43C004B5EAA /* CommentViewCell.swift in Sources */,
 				36EE380A1E08A08600AA5D48 /* RightSidebarViewController.swift in Sources */,
 				36D255A61DCC3B2C00B1779E /* ViewController.swift in Sources */,
-				3684C7CC1E071A9400754372 /* SWRevealViewController.m in Sources */,
 				366903DE1DEFBCEB00696250 /* DownloadSettingsTableViewCell.swift in Sources */,
 				36970FFF1DE936E60070DC33 /* MainPostTableViewCell.swift in Sources */,
 				363916921E1086A70053EDCE /* Utils.swift in Sources */,

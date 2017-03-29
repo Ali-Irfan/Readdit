@@ -20,6 +20,8 @@ target 'Readdit' do
   #pod 'XLActionController/Twitter'
   pod 'XLActionController/Youtube'
     pod 'StringExtensionHTML'
+pod 'BonMot'
+
 pod 'FontAwesomeKit’, :git => 'https://github.com/PrideChung/FontAwesomeKit.git'
 pod 'ActionSheetPicker-3.0'
 
