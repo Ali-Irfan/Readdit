@@ -169,7 +169,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhk-ZH-EGu">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhk-ZH-EGu">
                                                     <rect key="frame" x="8" y="52" width="359" height="72"/>
                                                     <string key="text">TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTeåstTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTeåstTestTestTest</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -178,62 +178,62 @@
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/u/TestUser123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FlY-jM-fpz" customClass="PaddingLabel" customModule="Readdit" customModuleProvider="target">
-                                                    <rect key="frame" x="266" y="10.5" width="101" height="24.5"/>
+                                                    <rect key="frame" x="280" y="20" width="87" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XJ2-Su-M3U">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XJ2-Su-M3U">
                                                     <rect key="frame" x="0.0" y="0.0" width="1" height="1200"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Zt-gB-1gn">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Zt-gB-1gn">
                                                     <rect key="frame" x="15" y="0.0" width="1" height="1200"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2zy-fR-t7r">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2zy-fR-t7r">
                                                     <rect key="frame" x="30" y="0.0" width="1" height="1200"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8h-xy-iXQ">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8h-xy-iXQ">
                                                     <rect key="frame" x="45" y="0.0" width="1" height="1200"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q3u-Qg-ba3">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q3u-Qg-ba3">
                                                     <rect key="frame" x="60" y="0.0" width="1" height="1200"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pFC-Z9-mdD">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pFC-Z9-mdD">
                                                     <rect key="frame" x="75" y="0.0" width="1" height="1200"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HZE-OH-Ix9">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HZE-OH-Ix9">
                                                     <rect key="frame" x="90" y="0.0" width="1" height="1200"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcy-UT-qwE">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcy-UT-qwE">
                                                     <rect key="frame" x="105" y="0.0" width="1" height="1200"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6T-Jw-Bdu">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6T-Jw-Bdu">
                                                     <rect key="frame" x="120" y="0.0" width="1" height="1200"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6er-oS-qfa">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6er-oS-qfa">
                                                     <rect key="frame" x="135" y="0.0" width="1" height="1200"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldd-9M-gHr">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldd-9M-gHr">
                                                     <rect key="frame" x="150" y="0.0" width="1" height="1200"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -912,20 +912,23 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Threads per Subreddit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwM-sL-gb3">
-                                                    <rect key="frame" x="23" y="35" width="172" height="21"/>
+                                                    <rect key="frame" x="23" y="35" width="237" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" placeholder="100" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o8y-qL-TW6" customClass="ThreadNumberField" customModule="Readdit" customModuleProvider="target">
                                                     <rect key="frame" x="287" y="30" width="75" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="7jO-NU-AHy"/>
+                                                    </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="o8y-qL-TW6" firstAttribute="leading" secondItem="WwM-sL-gb3" secondAttribute="trailing" constant="92" id="3l0-jG-NrY"/>
+                                                <constraint firstItem="o8y-qL-TW6" firstAttribute="leading" secondItem="WwM-sL-gb3" secondAttribute="trailing" constant="27" id="3l0-jG-NrY"/>
                                                 <constraint firstItem="BSd-MB-biR" firstAttribute="leading" secondItem="qYy-GK-mAf" secondAttribute="leading" id="ImQ-AA-suJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="BSd-MB-biR" secondAttribute="bottom" id="ObP-6N-Pmg"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="o8y-qL-TW6" secondAttribute="trailing" constant="5" id="W2P-Ct-6QR"/>
@@ -1007,13 +1010,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIM-J1-QZL">
-                                                            <rect key="frame" x="230" y="15" width="127" height="30"/>
+                                                            <rect key="frame" x="170" y="15" width="187" height="30"/>
                                                             <state key="normal" title="Disabled"/>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="oIM-J1-QZL" firstAttribute="leading" secondItem="hha-cf-eLZ" secondAttribute="trailing" constant="94" id="51o-Qc-eCV"/>
+                                                        <constraint firstItem="oIM-J1-QZL" firstAttribute="leading" secondItem="hha-cf-eLZ" secondAttribute="trailing" constant="34" id="51o-Qc-eCV"/>
                                                         <constraint firstItem="hha-cf-eLZ" firstAttribute="centerY" secondItem="oIM-J1-QZL" secondAttribute="centerY" id="FCb-uv-JS8"/>
                                                         <constraint firstItem="hha-cf-eLZ" firstAttribute="leading" secondItem="E3Y-hj-iTh" secondAttribute="leading" constant="21" id="bmg-ZN-VuJ"/>
                                                         <constraint firstItem="hha-cf-eLZ" firstAttribute="centerY" secondItem="E3Y-hj-iTh" secondAttribute="centerY" id="hA9-MN-Fdl"/>

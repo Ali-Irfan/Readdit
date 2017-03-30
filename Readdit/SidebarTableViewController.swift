@@ -87,6 +87,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         sidebarTable.allowsSelection = true
         sidebarTable.contentInset = UIEdgeInsetsMake(15, 0, 0, 0) //Lower it a little for the fade
         
+        
         settingsButton.addTarget(self, action: #selector(goToSubreddit(_:)), for: .touchUpInside)
         settingsButton.backgroundColor = ClearColor()
         settingsButton.setTitleColor(UIColor.white, for: .normal)
@@ -131,6 +132,9 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidAppear(_ animated: Bool) {
         setupTheme()
         checkCurrentDownloads()
+        addASubreddit.backgroundColor = Theme.getGeneralColor()
+        addASubreddit.setTitleColor(FlatWhite(), for: .normal)
+        
         for cell in sidebarTable.visibleCells { //For theme
             cell.awakeFromNib()
         }
@@ -316,7 +320,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             
             
         let alert = PMAlertController(title: "Update all subreddits", color: Theme.getGeneralColor(), description: "This may take a while. Are you sure?", image: nil, style: .alert)
-        alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
+        
         // 3. Grab the value from the text field, and print it when the user clicks OK.
         alert.addAction(PMAlertAction(title: "Update", style: .default, color: Theme.getGeneralColor(), action: { () in
             for cell in self.sidebarTable.visibleCells {
@@ -324,6 +328,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
                     subredditCell.updateSubreddit(updatingAll: true)
                 }
             }
+            alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
             
             
         }))
@@ -350,7 +355,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
                 print(cell.subredditTitle.currentTitle!)
                 arrayOfSubreddits = arrayOfSubreddits.filter() { $0 != cell.subredditTitle.currentTitle! }
                 UserDefaults.standard.set(arrayOfSubreddits, forKey: "arrayOfSubreddits")
-                self.arrayOfIdentifiers.remove(at: self.arrayOfIdentifiers.count-3)
+                self.arrayOfIdentifiers.remove(at: self.arrayOfIdentifiers.count-1)
                 do {
                     let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
                     let subredditPath = documentsPath.appendingPathComponent(cell.subredditTitle.currentTitle!)
@@ -403,12 +408,14 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         alert.addTextField { (textField) in
             textField!.text = ""
             textField!.placeholder = "e.g. AskReddit"
+            textField!.becomeFirstResponder()
         }
-        alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
+        
         
         // 3. Grab the value from the text field, and print it when the user clicks OK.
         alert.addAction(PMAlertAction(title: "Add", style: .default, color: Theme.getGeneralColor(), action: { () in
             let textField = alert.textFields[0] // Force unwrapping because we know it exists.
+            
             let subredditToAdd = textField.text?.stringByRemovingWhitespaces.capitalizingFirstLetter()
             if subredditToAdd != "" && !arrayOfSubreddits.contains(where: {$0.caseInsensitiveCompare(subredditToAdd!) == .orderedSame}) && !(subredditToAdd?.contains("+"))!{
                 arrayOfSubreddits.append(subredditToAdd!)
@@ -425,8 +432,10 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
                     }
                 }
             }
+            
         }))
-        
+        alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
+
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
     }

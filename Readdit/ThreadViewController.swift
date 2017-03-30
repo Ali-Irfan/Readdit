@@ -234,6 +234,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if let data = jsonRaw.data(using: String.Encoding.utf8) {
                 let json = JSON(data: data)
                 let mainCommentTitle = json[0]["data"]["children"][0]["data"]["title"].string!
+                self.title = mainCommentTitle
                 let mainCommentSelftext = json[0]["data"]["children"][0]["data"]["selftext"].string!
                 let mainComment = CommentData()
                 let commentCount = json[0]["data"]["children"][0]["data"]["num_comments"].int!
@@ -374,12 +375,14 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             
+            
+            
         } else if !bleh[indexPath.row].hiddenComment && !bleh[indexPath.row].isMainComment {
             
             
             cell.contentView.layoutIfNeeded()
             
-            if (indexPath.row+1) <= indexPath.count {
+            if (indexPath.row+1) < indexPath.count {
                 if bleh[indexPath.row + 1].level == 0 {
                     for sep in cell.arrayOfSeperators {
                        // print("cell.frame.size.height: \(cell.frame.size.height)")
@@ -405,6 +408,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             
             for i in 0...cell.indentationLevel {
+                //cell.arrayOfSeperators[0].bounds = CGRect(x: cell.mainLabel.bounds.origin.x-20, y: 0, width: 10, height: 30)
                 cell.arrayOfSeperators[i].isHidden = false
                 if Theme.getGeneralColor() != FlatBlack() {
                     cell.arrayOfSeperators[i].backgroundColor = Utils.hexStringToUIColor(hex: "DCDCDC")
