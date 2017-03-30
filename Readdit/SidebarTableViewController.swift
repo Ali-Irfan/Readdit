@@ -25,6 +25,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var settingsButtonIcon: UIButton!
     @IBOutlet weak var addASubreddit: UIButton!
     
+    @IBOutlet weak var bottomColorView: UIView!
     @IBOutlet weak var updateAllIcon: UIButton!
     @IBOutlet weak var updateAllButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
@@ -38,6 +39,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     
+    @IBOutlet weak var testNotif: UIButton!
     
     @IBAction func testNotification(_ sender: Any) {
     
@@ -73,6 +75,10 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         
         super.viewDidLoad()
         
+        //THIS IS JUST SO I CAN SEE IT WITHOUT THE TEST
+        testNotif.isHidden = true
+        //END OF SHOWING TEST NOTIFICATION
+        
         addASubreddit.layer.cornerRadius = 5
         addASubreddit.addTarget(self, action: #selector(addSubreddit), for: .touchUpInside)
         
@@ -91,7 +97,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         settingsButton.addTarget(self, action: #selector(goToSubreddit(_:)), for: .touchUpInside)
         settingsButton.backgroundColor = ClearColor()
         settingsButton.setTitleColor(UIColor.white, for: .normal)
-        let settingsImageIcon = FAKMaterialIcons.settingsIcon(withSize: 40)
+        let settingsImageIcon = FAKMaterialIcons.settingsIcon(withSize: 35)
         settingsImageIcon?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
         settingsButtonIcon.setAttributedTitle(settingsImageIcon?.attributedString(), for: .normal)
         
@@ -149,7 +155,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             vc.view.addSubview(btn1)
         }
     
-        
+        bottomColorView.backgroundColor = Theme.getGeneralColor()
         otherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherView.bounds, colors: [Theme.getGeneralDarkColor(), Theme.getGeneralDarkColor().withAlphaComponent(0)])
 
         otherOtherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherOtherView.bounds, colors: [Theme.getGeneralDarkColor().withAlphaComponent(0), Theme.getGeneralDarkColor()])
@@ -293,6 +299,16 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             
         }
     }
+    
+    @IBAction func clickedUpdateButtonImage(_ sender: Any) {
+        updateAllButton.sendActions(for: UIControlEvents.touchUpInside)
+    }
+    
+    @IBAction func clickedSettingsIconButton(_ sender: Any) {
+        settingsButton.sendActions(for: UIControlEvents.touchUpInside)
+
+    }
+
     
     func updateAllSubredditsSelector() {
         updateAllSubreddits()
