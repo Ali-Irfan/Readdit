@@ -344,11 +344,11 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
                     subredditCell.updateSubreddit(updatingAll: true)
                 }
             }
-            alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
+            
             
             
         }))
-            
+           alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor())) 
     
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)

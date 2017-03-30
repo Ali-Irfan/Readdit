@@ -461,9 +461,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
         case "Clear All Data":
             let cell:ClearAllDataTableViewCell = settingsTable.dequeueReusableCell(withIdentifier: "ClearAll") as! ClearAllDataTableViewCell
-            cell.clearData.setTitle("Clear All Data", for: .normal)
+            cell.clearData.setTitle("Delete All Thread Data", for: .normal)
             Async.main {
-                cell.clearData.setTitle("Clear All Data (" + getCacheSize() + ")", for: .normal)
+                cell.clearData.setTitle("Delete All Thread Data (" + getCacheSize() + ")", for: .normal)
             }
             cell.clearData.addTarget(self, action: #selector(clearAll(_:)), for: .touchUpInside)
             Theme.setButtonColor(button:  cell.clearData, color: themeColor)
@@ -544,7 +544,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func clearData(sender: UIButton) {
         //Delete all files/folders in the documents directory
-        Async.background{
+        Async.main{
             let fileManager = FileManager.default
             let documentsUrl =  try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) as NSURL
             let documentsPath = documentsUrl.path
@@ -561,7 +561,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     
                     let files = try fileManager.contentsOfDirectory(atPath: "\(documentPath)")
                     print("all files in cache after deleting images: \(files)")
-                    sender.setTitle("Clear All Data (" + getCacheSize() + ")", for: .normal)
+                    sender.setTitle("Delete All Thread Data (" + getCacheSize() + ")", for: .normal)
                 }
                 
             } catch {
