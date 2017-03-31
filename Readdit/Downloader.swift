@@ -12,15 +12,12 @@ var Network = NetworkManager().manager!
 let arrayOfSubredditSort = ["Hot", "Controversial", "Top", "Rising", "New"]
 let arrayOfThreadSort    = ["Top", "New", "Controversial", "Best", "Old", "QA"]
 var request:Alamofire.Request?
-
 public class Downloader: UIViewController {
     
     
     class func stopDownloads() {
-
-        for request in currentRequests! {
-            request.cancel()
-        }
+        downloadsAreStopped = true
+        print("Stopped download")
         
         var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
         
@@ -32,12 +29,15 @@ public class Downloader: UIViewController {
     
     
     class func downloadJSON(subreddit:String){
+        var completed:Bool = false
+        
+        
         
         let threadNumber = UserDefaults.standard.string(forKey: "NumberOfThreads")
 
         
         for sortType in arrayOfSubredditSort {
-            
+
             var urlString = "https://www.reddit.com/r/"
                 urlString.append(subreddit)
                 urlString.append("/" + sortType.lowercased() + "/.json?limit=" + threadNumber!)
@@ -59,9 +59,9 @@ public class Downloader: UIViewController {
                 return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
             }
             
-            var completed:Bool = false
             
-             Network.download(urlString, to: destination).downloadProgress { progress in
+            
+             request = Network.download(urlString, to: destination).downloadProgress { progress in
                 print("Download Progress: \(progress.fractionCompleted)")
                 }.validate(statusCode: 200..<300).response{ response in
                     completed = true
@@ -77,8 +77,8 @@ public class Downloader: UIViewController {
     
     
     class func downloadThreadJSON(subreddit: String, threadURL:String, threadID: String) {
-        
         for sortType in arrayOfThreadSort {
+            
             let urlString = "https://reddit.com" + threadURL + "/.json?sort=" + sortType.lowercased()
             let fileName = threadID + ".txt"
             let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
@@ -98,8 +98,8 @@ public class Downloader: UIViewController {
                 return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
             }
             //print("Created file path for thread with ID: \(threadID)")
-            usleep(100000)
-            Network.download(urlString, to: destination).downloadProgress { progress in
+            usleep(100000)//Don't overload server requests for 429
+            request = Network.download(urlString, to: destination).downloadProgress { progress in
 
                 }
                 .validate(statusCode: 200..<300)

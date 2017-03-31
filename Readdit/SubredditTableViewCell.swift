@@ -14,6 +14,7 @@ import ChameleonFramework
 import FontAwesomeKit
 
 var downloadCount = 1
+var downloadsAreStopped:Bool = false
 
 class SubredditTableViewCell: UITableViewCell {
     
@@ -72,6 +73,7 @@ class SubredditTableViewCell: UITableViewCell {
     
     
     func updateSubreddit(updatingAll:Bool = false) {
+        downloadsAreStopped = false
         var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
         let subreddit = self.subredditTitle.currentTitle!
         if Utils.hasAppropriateConnection(updatingAll: updatingAll) {
@@ -134,16 +136,25 @@ class SubredditTableViewCell: UITableViewCell {
                         downloadDictionary[subreddit] = 0
                         print("Number of threads : \(numOfThreads)")
                         print("arrayofthreadcount: \(arrayOfThreads.count)")
-                        for thread in arrayOfThreads {
-                            print("Downloading \(count)/\(numOfThreads)")
-                            count = count + 1
-                            //print("Sending \(thread.id) to download")
-                            Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
-                        }
-                        print("DOWNLOAD DISCTIONARY FOR \(subreddit) is \(downloadDictionary[subreddit])")
-                        while downloadDictionary[subreddit]!/6 < arrayOfThreads.count {print("w")
-                        sleep(1)}
                         
+                        
+                            for thread in arrayOfThreads {
+                                print("Downloading \(count)/\(numOfThreads)")
+                                count = count + 1
+                                //print("Sending \(thread.id) to download")
+                                if !downloadsAreStopped {
+                                Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
+                                }
+                            }
+                        if !downloadsAreStopped{
+                            while (downloadDictionary[subreddit]!/6 < arrayOfThreads.count)   {
+                                print("w")
+                                sleep(1)
+                            }
+                        }
+                        
+                        
+                
                         print("Done downloading.")
                         Async.main {
                             var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]

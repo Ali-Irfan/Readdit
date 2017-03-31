@@ -348,7 +348,7 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
             
             
         }))
-           alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor())) 
+           alert.addAction(PMAlertAction(title: "Cancel", style: .cancel, color: Theme.getGeneralColor()))
     
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
@@ -456,6 +456,9 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         self.present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func stop(_ sender: Any) {
+        Downloader.stopDownloads()
+    }
 }
 
 
