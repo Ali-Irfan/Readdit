@@ -109,7 +109,8 @@ class RightSidebarViewController: UIViewController, UITableViewDelegate, UITable
                 let vc = currentThreadView as! ThreadViewController
                 vc.sortBy(sortType: currentCell.mainTextLabel.text!)
             } else if (currentThreadView?.isKind(of: ThreadListViewController.self))!{
-                    
+                let vc = currentThreadView as! ThreadListViewController
+                vc.displayThreads(sortType: currentCell.mainTextLabel.text!)
             }
             
             

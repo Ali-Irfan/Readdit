@@ -3,6 +3,7 @@ import UIKit
 import SwiftyJSON
 import Async
 import ChameleonFramework
+import FontAwesomeKit
 
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var overlay : UIView?
@@ -101,6 +102,17 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         navigationController?.navigationItem.setHidesBackButton(true, animated: true)
         threadTable.backgroundColor = FlatWhite()
 
+        let btn2 = UIButton(type: .custom)
+        //btn2.setImage(#imageLiteral(resourceName: "more").maskWithColor(color: tint), for: .normal)
+        let moreIcon = FAKMaterialIcons.moreIcon(withSize: 35)
+        moreIcon?.addAttribute(NSForegroundColorAttributeName, value: UIColor.white)
+        btn2.setAttributedTitle(moreIcon?.attributedString(), for: .normal)
+        btn2.frame = CGRect(x: 0, y: 0, width: 36, height: 36)
+        btn2.addTarget(revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)), for: .touchUpInside)
+        let item2 = UIBarButtonItem(customView: btn2)
+        navigationItem.rightBarButtonItem = item2
+
+        
         setupTheme()
         Async.main{
             self.displayThreads()
@@ -227,8 +239,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     
-    func displayThreads() {
-        jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Hot")
+    func displayThreads(sortType:String = "Hot") {
+        jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: sortType)
         if (jsonRaw != "Error") {
             arrayOfThreads.removeAll()
             emptyOverlay.isHidden = true
