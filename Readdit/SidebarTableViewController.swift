@@ -19,9 +19,10 @@ var mainCellColor = UIColor()
 
 class SidebarTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var logo: UILabel!
-    var otherView = UIView() //Top Fade
-    var otherOtherView = UIView() //Bottom fade
+    //var otherView = UIView() //Top Fade
+    //var otherOtherView = UIView() //Bottom fade
     
+    @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var settingsButtonIcon: UIButton!
     @IBOutlet weak var addASubreddit: UIButton!
     
@@ -74,6 +75,8 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         
         super.viewDidLoad()
+
+        
         
         //THIS IS JUST SO I CAN SEE IT WITHOUT THE TEST
         testNotif.isHidden = true
@@ -115,21 +118,30 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         
         setupTheme()
 
-        otherView =  UIView(frame: CGRect(x: sidebarTable.frame.origin.x, y: sidebarTable.frame.origin.y, width: sidebarTable.frame.width, height: 15))
+        //otherView =  UIView(frame: CGRect(x: sidebarTable.frame.origin.x, y: sidebarTable.frame.origin.y, width: sidebarTable.frame.width, height: 15))
         
-        otherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherView.bounds, colors: [Theme.getGeneralDarkColor(), Theme.getGeneralDarkColor().withAlphaComponent(0)])
+        //otherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherView.bounds, colors: [Theme.getGeneralDarkColor(), Theme.getGeneralDarkColor().withAlphaComponent(0)])
         
-        self.view.addSubview(otherView)
+        //self.view.addSubview(otherView)
         
-        otherOtherView =  UIView(frame: CGRect(x: sidebarTable.frame.origin.x, y: sidebarTable.frame.origin.y+sidebarTable.frame.height-17, width: sidebarTable.frame.width, height:15))
+        //otherOtherView =  UIView(frame: CGRect(x: sidebarTable.frame.origin.x, y: sidebarTable.frame.origin.y+sidebarTable.frame.height-17, width: sidebarTable.frame.width, height:15))
         
     
         
         //otherOtherView.backgroundColor = FlatRed()
-        otherOtherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherOtherView.bounds, colors: [Theme.getGeneralDarkColor().withAlphaComponent(0), Theme.getGeneralDarkColor()])
+        //otherOtherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherOtherView.bounds, colors: [Theme.getGeneralDarkColor().withAlphaComponent(0), Theme.getGeneralDarkColor()])
         
-        self.view.addSubview(otherOtherView)
-        
+        //self.view.addSubview(otherOtherView)
+        addASubreddit.setTitleColor(FlatWhite(), for: .normal)
+//        if revealViewController().frontViewController.isKind(of: SidebarTableViewController.self) {
+//            let vc = revealViewController().frontViewController as! SidebarTableViewController
+//            let btn1 = UIButton(type: .custom)
+//            
+//            btn1.setImage(#imageLiteral(resourceName: "menu-2").maskWithColor(color: mainTextColor), for: .normal)
+//            btn1.frame = CGRect(x: 15, y: 45 , width: 36, height: 36)
+//            btn1.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+//            vc.view.addSubview(btn1)
+//        }
     }
     
     
@@ -139,26 +151,17 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
         setupTheme()
         checkCurrentDownloads()
         addASubreddit.backgroundColor = Theme.getGeneralColor()
-        addASubreddit.setTitleColor(FlatWhite(), for: .normal)
         
         for cell in sidebarTable.visibleCells { //For theme
             cell.awakeFromNib()
         }
-        print(NSStringFromClass(revealViewController().frontViewController.classForCoder))
-        if revealViewController().frontViewController.isKind(of: SidebarTableViewController.self) {
-            let vc = revealViewController().frontViewController as! SidebarTableViewController
-            let btn1 = UIButton(type: .custom)
-            
-            btn1.setImage(#imageLiteral(resourceName: "menu-2").maskWithColor(color: mainTextColor), for: .normal)
-            btn1.frame = CGRect(x: 15, y: 45 , width: 36, height: 36)
-            btn1.addTarget(revealViewController, action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
-            vc.view.addSubview(btn1)
-        }
+        //print(NSStringFromClass(revealViewController().frontViewController.classForCoder))
+ 
     
         bottomColorView.backgroundColor = Theme.getGeneralColor()
-        otherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherView.bounds, colors: [Theme.getGeneralDarkColor(), Theme.getGeneralDarkColor().withAlphaComponent(0)])
+        //otherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherView.bounds, colors: [Theme.getGeneralDarkColor(), Theme.getGeneralDarkColor().withAlphaComponent(0)])
 
-        otherOtherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherOtherView.bounds, colors: [Theme.getGeneralDarkColor().withAlphaComponent(0), Theme.getGeneralDarkColor()])
+        //otherOtherView.backgroundColor = GradientColor(UIGradientStyle.topToBottom, frame: otherOtherView.bounds, colors: [Theme.getGeneralDarkColor().withAlphaComponent(0), Theme.getGeneralDarkColor()])
         
         
     }

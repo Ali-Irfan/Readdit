@@ -78,7 +78,6 @@ public class Downloader: UIViewController {
     
     class func downloadThreadJSON(subreddit: String, threadURL:String, threadID: String) {
         for sortType in arrayOfThreadSort {
-            
             let urlString = "https://reddit.com" + threadURL + "/.json?sort=" + sortType.lowercased()
             let fileName = threadID + ".txt"
             let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
@@ -106,17 +105,15 @@ public class Downloader: UIViewController {
                 .response{ response in
                     //print(response.response?.statusCode)
                     do {
+                        //downloadThreadImage(subredit: subreddit, threadURL: threadURL, threadID: threadID)
+
                         //Zip the files after they are downloaded and remove their original file
                         let zipFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".zip")
                         let txtFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".txt")
                         try Zip.zipFiles(paths: [filePath!], zipFilePath: zipFilePath!, password: nil, progress: nil)
                         try FileManager.default.removeItem(at: txtFilePath!)
-                       // print("Created zip path for thread with ID: \(threadID)")
-                        //print("completed response")
-                        //downloadCount = downloadCount + 1
+
                         downloadDictionary[subreddit] = downloadDictionary[subreddit]! + 1
-                       //print("Updated dictionary")
-                       // print("Download count: \(downloadCount)")
 
                     } catch let error as NSError {
                         print("An error took place(DownloadThread): \(error) with filepath: \(threadID)")
@@ -129,6 +126,12 @@ public class Downloader: UIViewController {
     }
     
     
+    
+    func downloadThreadImage(subreddit: String, threadURL:String, threadID: String) {
+    
+    
+    
+    }
     
     
     class func getJSON(subreddit:String, sortType: String) -> String {

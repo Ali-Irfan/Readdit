@@ -218,8 +218,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidAppear(_ animated: Bool) {
         self.navigationItem.hidesBackButton = true
-        revealViewController().rearViewRevealWidth = 250
-        view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
+        //revealViewController().rearViewRevealWidth = 250
+        //view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
         checkCurrentDownloads()
         //print(arrayOfThreads)
     }
@@ -242,7 +242,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                     //if threadCount < numOfThreads {
                     let thisThread = ThreadData()
                     print(thread["data"]["stickied"])
-                    if !(thread["data"]["stickied"].boolValue){
+                    //if !(thread["data"]["stickied"].boolValue){
                     thisThread.title = thread["data"]["title"].string!
                     thisThread.author = thread["data"]["author"].string!
                     thisThread.upvotes = thread["data"]["ups"].int!
@@ -252,7 +252,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                     thisThread.permalink = thread["data"]["permalink"].string!
                     thisThread.utcCreated = thread["data"]["created_utc"].double!
                     arrayOfThreads.append(thisThread)
-                    }
+                    //}
                     //}
                 threadCount = threadCount + 1
                 }
