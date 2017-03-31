@@ -218,8 +218,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidAppear(_ animated: Bool) {
         self.navigationItem.hidesBackButton = true
-        //revealViewController().rearViewRevealWidth = 250
-        //view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
+        revealViewController().rearViewRevealWidth = 250
+        view.addGestureRecognizer(self.revealViewController().rearViewController.revealViewController().panGestureRecognizer())
         checkCurrentDownloads()
         //print(arrayOfThreads)
     }
