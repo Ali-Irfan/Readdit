@@ -3,7 +3,7 @@ import SwiftyJSON
 import Alamofire
 import Alamofire_Synchronous
 import Zip
-
+import SwiftyJSON
 
 
 var Network = NetworkManager().manager!
@@ -97,7 +97,7 @@ public class Downloader: UIViewController {
                 return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
             }
             //print("Created file path for thread with ID: \(threadID)")
-            usleep(100000)//Don't overload server requests for 429
+            usleep(100000)//Don't overloadserver requests for 429
             request = Network.download(urlString, to: destination).downloadProgress { progress in
 
                 }
@@ -105,8 +105,41 @@ public class Downloader: UIViewController {
                 .response{ response in
                     //print(response.response?.statusCode)
                     do {
-                        //downloadThreadImage(subredit: subreddit, threadURL: threadURL, threadID: threadID)
+                        
+                        //Now that the thread info is downloaded, download the image if it has one
+                        do {
+                            let imageFileExtensions = ["jpg", "png", "jpeg", "gif"]
+                            let downloadedJSON = try String(contentsOf: filePath!, encoding: String.Encoding.utf8)
+                            let json = JSON(data: downloadedJSON.data(using: String.Encoding.utf8)!)
+                            var directURL:String
+                            let imageURL:NSString = json[0]["data"]["children"][0]["data"]["url"].string as! NSString
+                            let imageName = imageURL.pathComponents[2]
+                            print(imageName)
+                            
+                            let imgDestination: DownloadRequest.DownloadFileDestination = { _, _ in
+                                let fileURL = documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID)
+                                return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
+                            }
+                            
+                            if imageFileExtensions.contains(imageURL.pathExtension.lowercased()) {
+                                print(imageURL.pathExtension)
+                                directURL = imageURL as String
+                                Network.download(directURL, to: imgDestination)
 
+                            } else if imageURL.lowercased.contains("imgur.com") {
+                                print("It's an IMGUR")
+                                directURL = imageURL.appending(".png")
+                                Network.download(directURL, to: imgDestination)
+
+                            }
+                            
+
+                        
+                        
+                            
+                        }
+                        catch {/* error handling here */}
+                        
                         //Zip the files after they are downloaded and remove their original file
                         let zipFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".zip")
                         let txtFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".txt")
@@ -127,10 +160,19 @@ public class Downloader: UIViewController {
     
     
     
-    func downloadThreadImage(subreddit: String, threadURL:String, threadID: String) {
-    
-    
-    
+    class func downloadThreadImage(subreddit: String, threadURL: String, threadID: String) {
+//    
+//        Network.request("https://reddit.com/" + subreddit + "/.json") .responseJSON
+//            {
+//                (data) in
+//                var jsonRaw = ""
+//                let dataa = jsonRaw.data(using: String.Encoding.utf8)
+//                var json = JSON(data: dataa!)
+//                
+//                print(json)
+//                
+//        }
+
     }
     
     
@@ -166,7 +208,7 @@ public class Downloader: UIViewController {
     }
     
     
-    class func getThreadJSON(threadURL:String, threadID: String, sortType: String, subreddit: String) -> String {
+    class func getThreadJSON(threadURL: String, threadID: String, sortType: String, subreddit: String) -> String {
         let fileName = threadID + ".txt"
         var filePath = ""
         // Read file content. Example in Swift

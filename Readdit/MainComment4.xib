@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="157" id="KGk-i7-Jjw" customClass="MainComment4" customModule="Readdit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="157"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="156.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPP-Wt-AOs">
+                        <rect key="frame" x="8" y="36" width="304" height="109"/>
+                        <attributedString key="attributedText">
+                            <fragment>
+                                <string key="content">TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTeåstTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTeåstTestTestTest</string>
+                                <attributes>
+                                    <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/u/TestUser123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQb-ai-XUL" customClass="PaddingLabel" customModule="Readdit" customModuleProvider="target">
+                        <rect key="frame" x="225" y="13" width="87" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99 hours ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smi-0r-e1A">
+                        <rect key="frame" x="8" y="13" width="76" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Smi-0r-e1A" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="5pa-9d-mOM"/>
+                    <constraint firstItem="Smi-0r-e1A" firstAttribute="leading" secondItem="tPP-Wt-AOs" secondAttribute="leading" id="HbH-SL-a6d"/>
+                    <constraint firstItem="tPP-Wt-AOs" firstAttribute="top" secondItem="Smi-0r-e1A" secondAttribute="bottom" constant="8" symbolic="YES" id="NUO-pH-a8k"/>
+                    <constraint firstItem="Smi-0r-e1A" firstAttribute="baseline" secondItem="TQb-ai-XUL" secondAttribute="baseline" id="VL2-HL-Y6Z"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="tPP-Wt-AOs" secondAttribute="bottom" constant="3.5" id="hSZ-RX-15x"/>
+                    <constraint firstItem="TQb-ai-XUL" firstAttribute="trailing" secondItem="tPP-Wt-AOs" secondAttribute="trailing" id="iY5-vm-7pY"/>
+                    <constraint firstItem="Smi-0r-e1A" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="lNG-iB-o3u"/>
+                    <constraint firstItem="TQb-ai-XUL" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="mND-fy-wEC"/>
+                    <constraint firstItem="Smi-0r-e1A" firstAttribute="firstBaseline" secondItem="TQb-ai-XUL" secondAttribute="firstBaseline" id="xdT-R8-pQ1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="authorLabel" destination="TQb-ai-XUL" id="CxU-yA-qdA"/>
+                <outlet property="titleLabel" destination="tPP-Wt-AOs" id="xMh-X3-m5g"/>
+                <outlet property="upvoteLabel" destination="Smi-0r-e1A" id="Piu-hd-A0v"/>
+            </connections>
+            <point key="canvasLocation" x="25" y="108.5"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -108,6 +108,7 @@ class SubredditTableViewCell: UITableViewCell {
                 
                 if (jsonRaw != "Error") {
                     print(jsonRaw)
+                    
                     arrayOfThreads.removeAll()
                     if let data = jsonRaw.data(using: String.Encoding.utf8) {
                         let json = JSON(data: data)
@@ -151,7 +152,15 @@ class SubredditTableViewCell: UITableViewCell {
                                 print("w")
                                 sleep(1)
                             }
-                        }
+                            
+                            
+                            for thread in arrayOfThreads {
+                                if !downloadsAreStopped {
+                                    Downloader.downloadThreadImage(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
+                                }
+                            }
+                            
+                        
                         
                         
                 
@@ -181,9 +190,10 @@ class SubredditTableViewCell: UITableViewCell {
 
     
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
     
+    }
 }

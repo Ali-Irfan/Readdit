@@ -166,11 +166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/ThreadViewController.swift"
-            timestampString = "512587523.781461"
+            timestampString = "512716359.915399"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "538"
-            endingLineNumber = "538"
+            startingLineNumber = "631"
+            endingLineNumber = "631"
             landmarkName = "closeAllChildren(parentID:newIndex:currentIndentationLevel:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -358,11 +358,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "512678213.932446"
+            timestampString = "512696437.552063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "getThreadJSON(threadURL:threadID:sortType:subreddit:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -374,11 +374,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "512678213.932446"
+            timestampString = "512696437.552063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "getThreadJSON(threadURL:threadID:sortType:subreddit:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -390,11 +390,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "512678213.932446"
+            timestampString = "512696437.552063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
             landmarkName = "getThreadJSON(threadURL:threadID:sortType:subreddit:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -470,11 +470,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "512678213.932446"
+            timestampString = "512696437.552063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251">
+            startingLineNumber = "293"
+            endingLineNumber = "293">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -484,11 +484,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/SubredditTableViewCell.swift"
-            timestampString = "512673771.125633"
+            timestampString = "512694083.472021"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "updateSubreddit(updatingAll:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -770,11 +770,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "512678213.932446"
+            timestampString = "512696437.552063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231">
+            startingLineNumber = "273"
+            endingLineNumber = "273">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -784,11 +784,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "512678213.932446"
+            timestampString = "512696437.552063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241">
+            startingLineNumber = "283"
+            endingLineNumber = "283">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -798,11 +798,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "512678213.932446"
+            timestampString = "512696437.552063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240">
+            startingLineNumber = "282"
+            endingLineNumber = "282">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -940,11 +940,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/SubredditTableViewCell.swift"
-            timestampString = "512673714.989326"
+            timestampString = "512694083.472021"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "updateSubreddit(updatingAll:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1090,6 +1090,70 @@
             startingLineNumber = "255"
             endingLineNumber = "255"
             landmarkName = "displayThreads(sortType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Readdit/SidebarTableViewController.swift"
+            timestampString = "512690485.43581"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "453"
+            endingLineNumber = "453"
+            landmarkName = "addSubreddit()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Readdit.SidebarTableViewController.(addSubreddit () -&gt; ()).(closure #2)"
+                  moduleName = "Readdit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aliirfan/Dropbox/Readdit/Readdit/SidebarTableViewController.swift"
+                  timestampString = "512690489.677567"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "453"
+                  endingLineNumber = "453"
+                  offsetFromSymbolStart = "3260">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Readdit.SidebarTableViewController.(addSubreddit () -&gt; ()).(closure #2).(closure #2)"
+                  moduleName = "Readdit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aliirfan/Dropbox/Readdit/Readdit/SidebarTableViewController.swift"
+                  timestampString = "512690489.681127"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "453"
+                  endingLineNumber = "453"
+                  offsetFromSymbolStart = "1144">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Readdit/ThreadViewController.swift"
+            timestampString = "512715229.029384"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

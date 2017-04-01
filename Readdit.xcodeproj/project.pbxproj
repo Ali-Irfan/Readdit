@@ -18,6 +18,13 @@
 		363916921E1086A70053EDCE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363916911E1086A70053EDCE /* Utils.swift */; };
 		363916961E120DE70053EDCE /* FindSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363916951E120DE70053EDCE /* FindSize.swift */; };
 		365AFE3D1E4AE4A700EE0395 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AFE3C1E4AE4A700EE0395 /* InitialViewController.swift */; };
+		365C85F71E8F25A50000913A /* MainCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365C85F61E8F25A50000913A /* MainCommentCell.swift */; };
+		365C85FA1E8F60DD0000913A /* MainComment2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365C85F81E8F60DD0000913A /* MainComment2.swift */; };
+		365C85FB1E8F60DD0000913A /* MainComment2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365C85F91E8F60DD0000913A /* MainComment2.xib */; };
+		365C85FE1E8F61160000913A /* MainComment3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365C85FC1E8F61160000913A /* MainComment3.swift */; };
+		365C85FF1E8F61160000913A /* MainComment3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365C85FD1E8F61160000913A /* MainComment3.xib */; };
+		365C86021E8F61260000913A /* MainComment4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365C86001E8F61260000913A /* MainComment4.swift */; };
+		365C86031E8F61260000913A /* MainComment4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365C86011E8F61260000913A /* MainComment4.xib */; };
 		366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D61DEFB9B000696250 /* SettingsViewController.swift */; };
 		366903DA1DEFBCC100696250 /* TextSizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */; };
 		366903DC1DEFBCE200696250 /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903DB1DEFBCE200696250 /* ThemeTableViewCell.swift */; };
@@ -83,6 +90,13 @@
 		363916911E1086A70053EDCE /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		363916951E120DE70053EDCE /* FindSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindSize.swift; sourceTree = "<group>"; };
 		365AFE3C1E4AE4A700EE0395 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		365C85F61E8F25A50000913A /* MainCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCommentCell.swift; sourceTree = "<group>"; };
+		365C85F81E8F60DD0000913A /* MainComment2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainComment2.swift; sourceTree = "<group>"; };
+		365C85F91E8F60DD0000913A /* MainComment2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainComment2.xib; sourceTree = "<group>"; };
+		365C85FC1E8F61160000913A /* MainComment3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainComment3.swift; sourceTree = "<group>"; };
+		365C85FD1E8F61160000913A /* MainComment3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainComment3.xib; sourceTree = "<group>"; };
+		365C86001E8F61260000913A /* MainComment4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainComment4.swift; sourceTree = "<group>"; };
+		365C86011E8F61260000913A /* MainComment4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainComment4.xib; sourceTree = "<group>"; };
 		366903D61DEFB9B000696250 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SettingsViewController.swift; path = ../SettingsViewController.swift; sourceTree = "<group>"; };
 		366903D91DEFBCC100696250 /* TextSizeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSizeTableViewCell.swift; sourceTree = "<group>"; };
 		366903DB1DEFBCE200696250 /* ThemeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTableViewCell.swift; sourceTree = "<group>"; };
@@ -256,6 +270,13 @@
 				36DB561D1DCEB76200E7B764 /* ThreadListViewController.swift */,
 				36E7215C1DD6F43C004B5EAA /* CommentViewCell.swift */,
 				3687C8801E299FBF00B16BC6 /* PaddingLabel.swift */,
+				365C85F61E8F25A50000913A /* MainCommentCell.swift */,
+				365C85F81E8F60DD0000913A /* MainComment2.swift */,
+				365C85FC1E8F61160000913A /* MainComment3.swift */,
+				365C86001E8F61260000913A /* MainComment4.swift */,
+				365C86011E8F61260000913A /* MainComment4.xib */,
+				365C85FD1E8F61160000913A /* MainComment3.xib */,
+				365C85F91E8F60DD0000913A /* MainComment2.xib */,
 			);
 			name = "Thread Lists";
 			sourceTree = "<group>";
@@ -450,8 +471,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				365C86031E8F61260000913A /* MainComment4.xib in Resources */,
 				369710001DE936E60070DC33 /* MainPostTableViewCell.xib in Resources */,
 				36D255AE1DCC3B2C00B1779E /* LaunchScreen.storyboard in Resources */,
+				365C85FF1E8F61160000913A /* MainComment3.xib in Resources */,
+				365C85FB1E8F60DD0000913A /* MainComment2.xib in Resources */,
 				36D255AB1DCC3B2C00B1779E /* Assets.xcassets in Resources */,
 				36D255A91DCC3B2C00B1779E /* Main.storyboard in Resources */,
 			);
@@ -530,6 +554,7 @@
 				36A591F01E8A0A4500CB2A8E /* SWRevealViewController.m in Sources */,
 				3678F4F91E04D4DB005A3F8A /* ThreadNavigationController.swift in Sources */,
 				366903DC1DEFBCE200696250 /* ThemeTableViewCell.swift in Sources */,
+				365C86021E8F61260000913A /* MainComment4.swift in Sources */,
 				36E7215D1DD6F43C004B5EAA /* CommentViewCell.swift in Sources */,
 				36EE380A1E08A08600AA5D48 /* RightSidebarViewController.swift in Sources */,
 				36D255A61DCC3B2C00B1779E /* ViewController.swift in Sources */,
@@ -544,6 +569,7 @@
 				365AFE3D1E4AE4A700EE0395 /* InitialViewController.swift in Sources */,
 				36D255A41DCC3B2C00B1779E /* AppDelegate.swift in Sources */,
 				368A4BF11DD0DFC7002D0480 /* General.swift in Sources */,
+				365C85F71E8F25A50000913A /* MainCommentCell.swift in Sources */,
 				36EE380C1E08A35900AA5D48 /* TypeOfSortCell.swift in Sources */,
 				363916961E120DE70053EDCE /* FindSize.swift in Sources */,
 				3636E2991DCFF8DC0030F77D /* ThreadViewController.swift in Sources */,
@@ -557,9 +583,11 @@
 				362104F31DF73925002E13D2 /* SubredditHeaderTableViewCell.swift in Sources */,
 				366903DA1DEFBCC100696250 /* TextSizeTableViewCell.swift in Sources */,
 				36EE380E1E08A36F00AA5D48 /* MainSortCell.swift in Sources */,
+				365C85FE1E8F61160000913A /* MainComment3.swift in Sources */,
 				36A29EFA1E2D944D0073FB32 /* UpdateAllTableViewCell.swift in Sources */,
 				36982E3C1DF5386700336A3F /* THREADTableViewCell.swift in Sources */,
 				36DB561E1DCEB76200E7B764 /* ThreadListViewController.swift in Sources */,
+				365C85FA1E8F60DD0000913A /* MainComment2.swift in Sources */,
 				367FD6BA1E44EFAB00C9EDB3 /* Extensions.swift in Sources */,
 				366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */,
 				366903E41DEFBD0C00696250 /* ClearAllDataTableViewCell.swift in Sources */,

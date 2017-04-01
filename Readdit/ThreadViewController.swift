@@ -315,14 +315,102 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+
+        let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+        let hasImage:Bool = FileManager.default.fileExists(atPath: ((documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID))?.path)!)
+        if indexPath.row == 0 {
+            
+            if hasImage && bleh[0].selftext != "" {
+                //Image with selftext
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "mainCommentCell", for: indexPath) as! MainCommentCell
+
+                let image: UIImage = UIImage(contentsOfFile: (documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID)?.path)!)!
+                cell.threadImageView?.image = image
+                
+                cell.authorLabel?.text = "/u/" + bleh[0].author
+                cell.upvoteLabel?.text = "\(subreddit) • \(bleh[0].commentCount) comments"
+                
+                let titleText = bleh[0].title.stringByDecodingHTMLEntities
+                let selftext = bleh[0].selftext.stringByDecodingHTMLEntities
+                cell.titleLabel?.text = titleText
+                cell.selftextLabel?.text = selftext
+                cell.layer.shouldRasterize = true
+                cell.layer.rasterizationScale = UIScreen.main.scale //Slightly faster tableviews
+                print("Using type 1")
+                return cell
+                
+            } else if hasImage && bleh[0].selftext == "" { //Image with no selftext //TYPE 2
+            
+                let cell = tableView.dequeueReusableCell(withIdentifier: "mainCommentCell2", for: indexPath) as! MainComment2
+                print("Using type 2")
+                let image: UIImage = UIImage(contentsOfFile: (documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID)?.path)!)!
+                cell.threadImageView?.image = image
+                
+                cell.authorLabel?.text = "/u/" + bleh[0].author
+                cell.upvoteLabel?.text = "\(subreddit) • \(bleh[0].commentCount) comments"
+                
+                let titleText = bleh[0].title.stringByDecodingHTMLEntities
+                cell.titleLabel?.text = titleText
+                cell.layer.shouldRasterize = true
+                cell.layer.rasterizationScale = UIScreen.main.scale //Slightly faster tableviews
+                return cell
+                
+            } else if !hasImage && bleh[0].selftext != "" { //No Image, but has selftext //TYPE 3
+            print("Using type 3")
+                let cell = tableView.dequeueReusableCell(withIdentifier: "mainCommentCell3", for: indexPath) as! MainComment3
+                
+                cell.authorLabel?.text = "/u/" + bleh[0].author
+                cell.upvoteLabel?.text = "\(subreddit) • \(bleh[0].commentCount) comments"
+                
+                let titleText = bleh[0].title.stringByDecodingHTMLEntities
+                let selftext = bleh[0].selftext.stringByDecodingHTMLEntities
+                cell.titleLabel?.text = titleText
+                cell.selfTextLabel?.text = selftext
+                
+                cell.layer.shouldRasterize = true
+                cell.layer.rasterizationScale = UIScreen.main.scale //Slightly faster tableviews
+                return cell
+            
+            } else { //No image, No selftext (title only) //TYPE 4
+                print("Using type 4")
+                let cell = tableView.dequeueReusableCell(withIdentifier: "mainCommentCell4", for: indexPath) as! MainComment4
+            
+                cell.authorLabel?.text = "/u/" + bleh[0].author
+                cell.upvoteLabel?.text = "\(subreddit) • \(bleh[0].commentCount) comments"
+                
+                let titleText = bleh[0].title.stringByDecodingHTMLEntities
+                cell.titleLabel?.text = titleText
+                cell.layer.shouldRasterize = true
+                cell.layer.rasterizationScale = UIScreen.main.scale //Slightly faster tableviews
+                return cell
+            }
+            
+            
+            
+            
+        }//Index 0
         
-        let cell:CommentViewCell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentViewCell
+            
+            
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentViewCell
+    
+        
+        
+      
+
+        
+
+
+        
         
         var size: CGFloat = 0.0
         
         if cell.hiddenComment {
             cell.isHidden = true
         }
+        
         
         cell.layer.shouldRasterize = true
         cell.layer.rasterizationScale = UIScreen.main.scale //Slightly faster tableviews
@@ -334,6 +422,10 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.upvoteLabel?.text = "\(subreddit) • \(bleh[indexPath.row].commentCount) comments"
 
             cell.collapseLabel?.text = ""
+            
+            
+            
+            
             
             let titleText = bleh[indexPath.row].title.stringByDecodingHTMLEntities
             let selftext = bleh[indexPath.row].selftext.stringByDecodingHTMLEntities
@@ -478,7 +570,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow! //optional, to get from any UIButton for example
-        let currentCell = tableView.cellForRow(at: indexPath) as! CommentViewCell
+        if let currentCell = tableView.cellForRow(at: indexPath) as? CommentViewCell {
         
         //print("I clicked on cell with author: \(currentCell.authorLabel.text)")
         
@@ -510,6 +602,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.commentTable.endUpdates()
         }
         
+        }
     }
     
     
@@ -538,8 +631,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
     }
+    }
     
-    
-}
+
 
 

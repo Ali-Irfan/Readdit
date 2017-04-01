@@ -253,7 +253,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 for (_, thread):(String, JSON) in threads {
                     //if threadCount < numOfThreads {
                     let thisThread = ThreadData()
-                    print(thread["data"]["stickied"])
+                    //print(thread["data"]["stickied"])
                     //if !(thread["data"]["stickied"].boolValue){
                     thisThread.title = thread["data"]["title"].string!
                     thisThread.author = thread["data"]["author"].string!

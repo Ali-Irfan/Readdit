@@ -440,6 +440,17 @@ class SidebarTableViewController: UIViewController, UITableViewDelegate, UITable
                 arrayOfSubreddits.append(subredditToAdd!)
                 UserDefaults.standard.set(arrayOfSubreddits, forKey: "arrayOfSubreddits")
                 self.arrayOfIdentifiers.insert("subreddit", at: self.arrayOfIdentifiers.count)
+                // First figure out how many sections there are
+                let lastSectionIndex = self.sidebarTable!.numberOfSections - 1
+                
+                // Then grab the number of rows in the last section
+                let lastRowIndex = self.sidebarTable!.numberOfRows(inSection: lastSectionIndex) - 1
+                
+                // Now just construct the index path
+                let pathToLastRow = NSIndexPath(row: lastRowIndex, section: lastSectionIndex)
+                
+                // Make the last row visible
+                self.sidebarTable?.scrollToRow(at: pathToLastRow as IndexPath, at: UITableViewScrollPosition.none, animated: true)
                 self.sidebarTable.reloadData()
                 Async.main{
                     for cell in self.sidebarTable.visibleCells {
