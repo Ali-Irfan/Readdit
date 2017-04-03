@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		360488401E3C46C900A45B75 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3604883F1E3C46C900A45B75 /* NetworkManager.swift */; };
+		36172F1D1E9183BA0075612B /* MainComment3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36172F1C1E9183BA0075612B /* MainComment3.swift */; };
 		362104F31DF73925002E13D2 /* SubredditHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F21DF73925002E13D2 /* SubredditHeaderTableViewCell.swift */; };
 		362104F51DF73939002E13D2 /* SubredditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */; };
 		362104F91DF73951002E13D2 /* SettingsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */; };
@@ -21,8 +22,6 @@
 		365C85F71E8F25A50000913A /* MainCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365C85F61E8F25A50000913A /* MainCommentCell.swift */; };
 		365C85FA1E8F60DD0000913A /* MainComment2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365C85F81E8F60DD0000913A /* MainComment2.swift */; };
 		365C85FB1E8F60DD0000913A /* MainComment2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365C85F91E8F60DD0000913A /* MainComment2.xib */; };
-		365C85FE1E8F61160000913A /* MainComment3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365C85FC1E8F61160000913A /* MainComment3.swift */; };
-		365C85FF1E8F61160000913A /* MainComment3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365C85FD1E8F61160000913A /* MainComment3.xib */; };
 		365C86021E8F61260000913A /* MainComment4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365C86001E8F61260000913A /* MainComment4.swift */; };
 		365C86031E8F61260000913A /* MainComment4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365C86011E8F61260000913A /* MainComment4.xib */; };
 		366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366903D61DEFB9B000696250 /* SettingsViewController.swift */; };
@@ -80,6 +79,7 @@
 
 /* Begin PBXFileReference section */
 		3604883F1E3C46C900A45B75 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		36172F1C1E9183BA0075612B /* MainComment3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainComment3.swift; sourceTree = "<group>"; };
 		362104F21DF73925002E13D2 /* SubredditHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SubredditHeaderTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SubredditTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsHeaderTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -93,8 +93,6 @@
 		365C85F61E8F25A50000913A /* MainCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCommentCell.swift; sourceTree = "<group>"; };
 		365C85F81E8F60DD0000913A /* MainComment2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainComment2.swift; sourceTree = "<group>"; };
 		365C85F91E8F60DD0000913A /* MainComment2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainComment2.xib; sourceTree = "<group>"; };
-		365C85FC1E8F61160000913A /* MainComment3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainComment3.swift; sourceTree = "<group>"; };
-		365C85FD1E8F61160000913A /* MainComment3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainComment3.xib; sourceTree = "<group>"; };
 		365C86001E8F61260000913A /* MainComment4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainComment4.swift; sourceTree = "<group>"; };
 		365C86011E8F61260000913A /* MainComment4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainComment4.xib; sourceTree = "<group>"; };
 		366903D61DEFB9B000696250 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SettingsViewController.swift; path = ../SettingsViewController.swift; sourceTree = "<group>"; };
@@ -272,11 +270,10 @@
 				3687C8801E299FBF00B16BC6 /* PaddingLabel.swift */,
 				365C85F61E8F25A50000913A /* MainCommentCell.swift */,
 				365C85F81E8F60DD0000913A /* MainComment2.swift */,
-				365C85FC1E8F61160000913A /* MainComment3.swift */,
 				365C86001E8F61260000913A /* MainComment4.swift */,
 				365C86011E8F61260000913A /* MainComment4.xib */,
-				365C85FD1E8F61160000913A /* MainComment3.xib */,
 				365C85F91E8F60DD0000913A /* MainComment2.xib */,
+				36172F1C1E9183BA0075612B /* MainComment3.swift */,
 			);
 			name = "Thread Lists";
 			sourceTree = "<group>";
@@ -474,7 +471,6 @@
 				365C86031E8F61260000913A /* MainComment4.xib in Resources */,
 				369710001DE936E60070DC33 /* MainPostTableViewCell.xib in Resources */,
 				36D255AE1DCC3B2C00B1779E /* LaunchScreen.storyboard in Resources */,
-				365C85FF1E8F61160000913A /* MainComment3.xib in Resources */,
 				365C85FB1E8F60DD0000913A /* MainComment2.xib in Resources */,
 				36D255AB1DCC3B2C00B1779E /* Assets.xcassets in Resources */,
 				36D255A91DCC3B2C00B1779E /* Main.storyboard in Resources */,
@@ -574,6 +570,7 @@
 				363916961E120DE70053EDCE /* FindSize.swift in Sources */,
 				3636E2991DCFF8DC0030F77D /* ThreadViewController.swift in Sources */,
 				3636E29B1DD001530030F77D /* ThreadData.swift in Sources */,
+				36172F1D1E9183BA0075612B /* MainComment3.swift in Sources */,
 				36F608F31E09E96000604B6D /* NumberOfThreadsTableViewCell.swift in Sources */,
 				362104F91DF73951002E13D2 /* SettingsHeaderTableViewCell.swift in Sources */,
 				3687C8811E299FBF00B16BC6 /* PaddingLabel.swift in Sources */,
@@ -583,7 +580,6 @@
 				362104F31DF73925002E13D2 /* SubredditHeaderTableViewCell.swift in Sources */,
 				366903DA1DEFBCC100696250 /* TextSizeTableViewCell.swift in Sources */,
 				36EE380E1E08A36F00AA5D48 /* MainSortCell.swift in Sources */,
-				365C85FE1E8F61160000913A /* MainComment3.swift in Sources */,
 				36A29EFA1E2D944D0073FB32 /* UpdateAllTableViewCell.swift in Sources */,
 				36982E3C1DF5386700336A3F /* THREADTableViewCell.swift in Sources */,
 				36DB561E1DCEB76200E7B764 /* ThreadListViewController.swift in Sources */,

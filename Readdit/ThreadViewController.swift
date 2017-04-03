@@ -133,6 +133,7 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if bleh[indexPath.row].hiddenComment {
             return 0.00
+            
         } else if bleh[indexPath.row].minimized {
             return 40.00
         } else {
@@ -358,7 +359,8 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
             } else if !hasImage && bleh[0].selftext != "" { //No Image, but has selftext //TYPE 3
             print("Using type 3")
-                let cell = tableView.dequeueReusableCell(withIdentifier: "mainCommentCell3", for: indexPath) as! MainComment3
+                let cell = tableView.dequeueReusableCell(withIdentifier: "mainCommentCell", for: indexPath) as! MainCommentCell
+                
                 
                 cell.authorLabel?.text = "/u/" + bleh[0].author
                 cell.upvoteLabel?.text = "\(subreddit) • \(bleh[0].commentCount) comments"
@@ -366,11 +368,11 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let titleText = bleh[0].title.stringByDecodingHTMLEntities
                 let selftext = bleh[0].selftext.stringByDecodingHTMLEntities
                 cell.titleLabel?.text = titleText
-                cell.selfTextLabel?.text = selftext
-                
+                cell.selftextLabel?.text = selftext
                 cell.layer.shouldRasterize = true
                 cell.layer.rasterizationScale = UIScreen.main.scale //Slightly faster tableviews
                 return cell
+
             
             } else { //No image, No selftext (title only) //TYPE 4
                 print("Using type 4")
