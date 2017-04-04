@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		360488401E3C46C900A45B75 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3604883F1E3C46C900A45B75 /* NetworkManager.swift */; };
 		36172F1D1E9183BA0075612B /* MainComment3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36172F1C1E9183BA0075612B /* MainComment3.swift */; };
+		36172F1F1E91D0D40075612B /* THREADTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36172F1E1E91D0D40075612B /* THREADTableViewCell2.swift */; };
 		362104F31DF73925002E13D2 /* SubredditHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F21DF73925002E13D2 /* SubredditHeaderTableViewCell.swift */; };
 		362104F51DF73939002E13D2 /* SubredditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */; };
 		362104F91DF73951002E13D2 /* SettingsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */; };
@@ -80,6 +81,7 @@
 /* Begin PBXFileReference section */
 		3604883F1E3C46C900A45B75 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		36172F1C1E9183BA0075612B /* MainComment3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainComment3.swift; sourceTree = "<group>"; };
+		36172F1E1E91D0D40075612B /* THREADTableViewCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THREADTableViewCell2.swift; sourceTree = "<group>"; };
 		362104F21DF73925002E13D2 /* SubredditHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SubredditHeaderTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		362104F41DF73939002E13D2 /* SubredditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SubredditTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		362104F81DF73951002E13D2 /* SettingsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsHeaderTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -274,6 +276,7 @@
 				365C86011E8F61260000913A /* MainComment4.xib */,
 				365C85F91E8F60DD0000913A /* MainComment2.xib */,
 				36172F1C1E9183BA0075612B /* MainComment3.swift */,
+				36172F1E1E91D0D40075612B /* THREADTableViewCell2.swift */,
 			);
 			name = "Thread Lists";
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				36982E3C1DF5386700336A3F /* THREADTableViewCell.swift in Sources */,
 				36DB561E1DCEB76200E7B764 /* ThreadListViewController.swift in Sources */,
 				365C85FA1E8F60DD0000913A /* MainComment2.swift in Sources */,
+				36172F1F1E91D0D40075612B /* THREADTableViewCell2.swift in Sources */,
 				367FD6BA1E44EFAB00C9EDB3 /* Extensions.swift in Sources */,
 				366903D71DEFB9B000696250 /* SettingsViewController.swift in Sources */,
 				366903E41DEFBD0C00696250 /* ClearAllDataTableViewCell.swift in Sources */,

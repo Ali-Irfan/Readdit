@@ -108,11 +108,12 @@ public class Downloader: UIViewController {
                         
                         //Now that the thread info is downloaded, download the image if it has one
                         do {
-                            let imageFileExtensions = ["jpg", "png", "jpeg", "gif"]
+                            let imageFileExtensions = ["jpg", "png", "jpeg", "gif", "gifv"]
                             let downloadedJSON = try String(contentsOf: filePath!, encoding: String.Encoding.utf8)
                             let json = JSON(data: downloadedJSON.data(using: String.Encoding.utf8)!)
                             var directURL:String
                             let imageURL:NSString = json[0]["data"]["children"][0]["data"]["url"].string as! NSString
+                            print("url of image: \(imageURL)")
                             let imageName = imageURL.pathComponents[2]
                             print(imageName)
                             
@@ -128,7 +129,8 @@ public class Downloader: UIViewController {
 
                             } else if imageURL.lowercased.contains("imgur.com") {
                                 print("It's an IMGUR")
-                                directURL = imageURL.appending(".png")
+                                directURL = "https://i.imgur.com/" + imageName + ".png"
+                                print("Downloading imgur from: " + directURL)
                                 Network.download(directURL, to: imgDestination)
 
                             }

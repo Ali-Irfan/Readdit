@@ -296,6 +296,71 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+        let hasImage:Bool = FileManager.default.fileExists(atPath: ((documentsPath.appendingPathComponent("/" + subreddit + "/images/" + arrayOfThreads[indexPath.row].id))?.path)!)
+        
+        if hasImage {
+        let cell:THREADTableViewCell2 = tableView.dequeueReusableCell(withIdentifier: "mycell3") as! THREADTableViewCell2
+        cell.selectionStyle = UITableViewCellSelectionStyle.none;
+            if let image: UIImage = UIImage(contentsOfFile: (documentsPath.appendingPathComponent("/" + subreddit + "/images/" + arrayOfThreads[indexPath.row].id)?.path)!) {
+                cell.threadImageView?.image = image
+            }
+        
+            
+            var size:CGFloat = 0.0
+            
+            //Set up font size based on user defaults
+            if UserDefaults.standard.string(forKey: "fontSize") == "small" {
+                size = 10
+                cell.mainText.font = UIFont(name: cell.mainText.font.fontName, size: 15)
+                cell.authorLabel.font = UIFont(name: cell.authorLabel.font.fontName, size: 10)
+                cell.hoursText.font = UIFont(name: cell.hoursText.font.fontName, size: 10)
+            } else if UserDefaults.standard.string(forKey: "fontSize") == "regular" {
+                size = 12
+                cell.mainText.font = UIFont(name: cell.mainText.font.fontName, size: 17)
+                cell.hoursText.font = UIFont(name: cell.hoursText.font.fontName, size: 12)
+                cell.authorLabel.font = UIFont(name: cell.authorLabel.font.fontName, size: 12)
+                
+            } else if UserDefaults.standard.string(forKey: "fontSize") == "large" {
+                size = 14
+                cell.mainText.font = UIFont(name: cell.mainText.font.fontName, size: 19)
+                cell.hoursText.font = UIFont(name: cell.hoursText.font.fontName, size: 14)
+                cell.authorLabel.font = UIFont(name: cell.authorLabel.font.fontName, size: 14)
+            }
+            
+            
+            //Set up main labels of cell
+            cell.mainText?.text = arrayOfThreads[indexPath.row].title
+            cell.authorLabel?.text = "/u/" + arrayOfThreads[indexPath.row].author
+            let dateText = Utils.timeAgoSince(Date(timeIntervalSince1970: Double(arrayOfThreads[indexPath.row].utcCreated)))
+            cell.hoursText?.text = " • " + String(arrayOfThreads[indexPath.row].upvotes)
+            
+            //Create attributed string with the upvotes bolded
+            let firstWord   = dateText
+            let secondWord = String(arrayOfThreads[indexPath.row].upvotes)
+            var attrs:[String:Any] = [:]
+            if Theme.getGeneralColor() == FlatBlack() {
+                
+                attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size), NSForegroundColorAttributeName: FlatWhite()] as
+                    [String : Any]
+            } else {
+                attrs      = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: size), NSForegroundColorAttributeName: generalColor] as [String : Any]
+            }
+            let attributedText = NSMutableAttributedString(string:firstWord)
+            attributedText.append(NSMutableAttributedString(string: " • "))
+            attributedText.append(NSAttributedString(string: secondWord, attributes: attrs))
+            cell.hoursText?.attributedText = attributedText
+            
+            //Set dynamic height
+            
+            cell.textLabel?.numberOfLines=0;
+            
+
+        return cell
+        }
+
+        
+        
         let cell:THREADTableViewCell = tableView.dequeueReusableCell(withIdentifier: "mycell2") as! THREADTableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
         var size:CGFloat = 0.0
@@ -352,29 +417,52 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Get Cell Label
         let indexPath = tableView.indexPathForSelectedRow!
-        let currentCell = tableView.cellForRow(at: indexPath)! as! THREADTableViewCell
-        
-        var threadURL = ""
-        var threadID = ""
-        
-        if (jsonRaw != "Error") {
-            if let data = jsonRaw.data(using: String.Encoding.utf8) {
-                let json = JSON(data: data)
-                let threads = json["data"]["children"]
-                for (_, thread):(String, JSON) in threads {
-                    let title = thread["data"]["title"]
-                    if title.string! == currentCell.mainText?.text {
-                        threadURL = ( thread["data"]["permalink"].string! )
-                        threadID = thread["data"]["id"].string!
+        if let currentCell = tableView.cellForRow(at: indexPath)! as? THREADTableViewCell {
+            var threadURL = ""
+            var threadID = ""
+            
+            if (jsonRaw != "Error") {
+                if let data = jsonRaw.data(using: String.Encoding.utf8) {
+                    let json = JSON(data: data)
+                    let threads = json["data"]["children"]
+                    for (_, thread):(String, JSON) in threads {
+                        let title = thread["data"]["title"]
+                        if title.string! == currentCell.mainText?.text {
+                            threadURL = ( thread["data"]["permalink"].string! )
+                            threadID = thread["data"]["id"].string!
+                        }
                     }
                 }
+                
+                let myVC = storyboard?.instantiateViewController(withIdentifier: "ThreadView") as! ThreadViewController
+                myVC.threadURL = "https://reddit.com" + threadURL
+                myVC.threadID = threadID
+                myVC.subreddit = subreddit
+                navigationController?.pushViewController(myVC, animated: true)
             }
+        } else if let currentCell = tableView.cellForRow(at: indexPath)! as? THREADTableViewCell2 {
+            var threadURL = ""
+            var threadID = ""
             
-            let myVC = storyboard?.instantiateViewController(withIdentifier: "ThreadView") as! ThreadViewController
-            myVC.threadURL = "https://reddit.com" + threadURL
-            myVC.threadID = threadID
-            myVC.subreddit = subreddit
-            navigationController?.pushViewController(myVC, animated: true)
+            if (jsonRaw != "Error") {
+                if let data = jsonRaw.data(using: String.Encoding.utf8) {
+                    let json = JSON(data: data)
+                    let threads = json["data"]["children"]
+                    for (_, thread):(String, JSON) in threads {
+                        let title = thread["data"]["title"]
+                        if title.string! == currentCell.mainText?.text {
+                            threadURL = ( thread["data"]["permalink"].string! )
+                            threadID = thread["data"]["id"].string!
+                        }
+                    }
+                }
+                
+                let myVC = storyboard?.instantiateViewController(withIdentifier: "ThreadView") as! ThreadViewController
+                myVC.threadURL = "https://reddit.com" + threadURL
+                myVC.threadID = threadID
+                myVC.subreddit = subreddit
+                navigationController?.pushViewController(myVC, animated: true)
+            }
         }
     }
 }
