@@ -347,11 +347,17 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print("Using type 2")
                   let image: UIImage = UIImage(contentsOfFile: (documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID)?.path)!)!
                 
-                cell.threadImageView.frame.size.height = image.size.height
                 cell.threadImageView?.image = image
+                // calculate the correct height of the image given the current width of the image view.
+                let multiplier = (cell.threadImageView.bounds.width / image.size.width);
+                
+                // update the height constraint with the new known constant (height)
+                cell.heightConstraint.constant = (multiplier * image.size.height)
+                self.view.layoutIfNeeded()
+
                 
                 cell.authorLabel?.text = "/u/" + bleh[0].author
-                cell.upvoteLabel?.text = "\(subreddit) • \(bleh[0].commentCount) comments"
+                cell.upvoteLabel?.text = "\(subreddit) • \(bleh[0].commentCount) comments" 
                 
                 let titleText = bleh[0].title.stringByDecodingHTMLEntities
                 cell.titleLabel?.text = titleText

@@ -300,21 +300,19 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         let hasImage:Bool = FileManager.default.fileExists(atPath: ((documentsPath.appendingPathComponent("/" + subreddit + "/images/" + arrayOfThreads[indexPath.row].id))?.path)!)
         
         if hasImage {
+            
         let cell:THREADTableViewCell2 = tableView.dequeueReusableCell(withIdentifier: "mycell3") as! THREADTableViewCell2
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
+            cell.threadImageView.image = nil
             if let image: UIImage = UIImage(contentsOfFile: (documentsPath.appendingPathComponent("/" + subreddit + "/images/" + arrayOfThreads[indexPath.row].id)?.path)!) {
-                print("Cell imageview height: \(cell.threadImageView.frame.size.height)")
-                print("Image actual height: \(image.size.height)")
-                //cell.threadImageView.frame = CGRect(x: cell.threadImageView.frame.origin.x, y: cell.threadImageView.bounds.origin.y, width: cell.threadImageView.frame.size.width, height: image.size.height)
-                //cell.threadImageView.autoresizesSubviews = true
-                
+
                 cell.threadImageView?.image = image
                 // calculate the correct height of the image given the current width of the image view.
                 let multiplier = (cell.threadImageView.bounds.width / image.size.width);
                 
                 // update the height constraint with the new known constant (height)
                 cell.heightConstraint.constant = (multiplier * image.size.height)
-                self.view.layoutIfNeeded()3
+                self.view.layoutIfNeeded()
             }
         
             

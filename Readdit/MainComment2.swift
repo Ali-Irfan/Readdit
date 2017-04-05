@@ -14,6 +14,7 @@ class MainComment2: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
 
     @IBOutlet weak var authorLabel: PaddingLabel!
