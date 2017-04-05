@@ -345,7 +345,9 @@ class ThreadViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
                 let cell = tableView.dequeueReusableCell(withIdentifier: "mainCommentCell2", for: indexPath) as! MainComment2
                 print("Using type 2")
-                let image: UIImage = UIImage(contentsOfFile: (documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID)?.path)!)!
+                  let image: UIImage = UIImage(contentsOfFile: (documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID)?.path)!)!
+                
+                cell.threadImageView.frame.size.height = image.size.height
                 cell.threadImageView?.image = image
                 
                 cell.authorLabel?.text = "/u/" + bleh[0].author

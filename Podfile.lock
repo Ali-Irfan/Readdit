@@ -34,6 +34,7 @@ PODS:
   - ReachabilitySwift (3)
   - SlideMenuControllerSwift (3.0.1)
   - StringExtensionHTML (0.2.0)
+  - SwiftyGif (3.0.3)
   - SwiftyJSON (3.1.4)
   - XLActionController (3.0.1):
     - XLActionController/Core (= 3.0.1)
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - ReachabilitySwift (~> 3)
   - SlideMenuControllerSwift
   - StringExtensionHTML
+  - SwiftyGif
   - SwiftyJSON
   - XLActionController
   - XLActionController/Skype
@@ -90,10 +92,11 @@ SPEC CHECKSUMS:
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
   StringExtensionHTML: 80fdb1b3a83669e371d27bfe2f208f067e2db328
+  SwiftyGif: 89a0bb19709bdb6990e10405ad456d8bea804a65
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XLActionController: 57fe0ce1642e2eed971b188b490762345fdbf963
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: c8bf85e29978b5567570a8c2194fba037400c232
+PODFILE CHECKSUM: 80aea1b7c1856c44dfe29e505e8f769dd350a07d
 
 COCOAPODS: 1.2.0

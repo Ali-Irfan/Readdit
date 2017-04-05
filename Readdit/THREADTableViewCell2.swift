@@ -10,6 +10,7 @@ import UIKit
 import ChameleonFramework
 
 class THREADTableViewCell2: UITableViewCell {
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var hoursText: UILabel!
     @IBOutlet weak var topViewBar: UIView!
 

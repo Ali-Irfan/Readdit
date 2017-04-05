@@ -10,6 +10,8 @@ target 'Readdit' do
     pod 'Alamofire', '~> 4.0'
     pod 'Alamofire-Synchronous', '~> 4.0'
     pod 'Zip', '~> 0.6'
+pod 'SwiftyGif'
+
     pod 'PMAlertController'
     pod 'XLActionController'
   # Uncomment depending on the examples that you want to install
