@@ -102,7 +102,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojj-J0-aZe">
-                                                    <rect key="frame" x="8" y="56" width="353" height="21"/>
+                                                    <rect key="frame" x="8" y="51" width="353" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -124,31 +124,46 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEG-Ob-Jdc">
-                                                    <rect key="frame" x="0.0" y="36" width="375" height="7"/>
+                                                    <rect key="frame" x="0.0" y="36" width="375" height="2"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zht-Jg-5Tx">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="8"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sad" translatesAutoresizingMaskIntoConstraints="NO" id="uec-rc-zy5">
-                                                    <rect key="frame" x="0.0" y="86" width="375" height="27"/>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPW-y0-Wqz">
+                                                    <rect key="frame" x="0.0" y="80" width="375" height="27"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sad" translatesAutoresizingMaskIntoConstraints="NO" id="uec-rc-zy5">
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="27"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="27" id="VkG-xx-ph2"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="27" id="VkG-xx-ph2"/>
+                                                        <constraint firstItem="uec-rc-zy5" firstAttribute="centerY" secondItem="dPW-y0-Wqz" secondAttribute="centerY" id="6cS-5J-9Mn"/>
+                                                        <constraint firstItem="uec-rc-zy5" firstAttribute="leading" secondItem="dPW-y0-Wqz" secondAttribute="leading" id="AKT-2A-D07"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="uec-rc-zy5" secondAttribute="bottom" constant="-8" id="KMO-P8-iQ2"/>
+                                                        <constraint firstAttribute="trailing" secondItem="uec-rc-zy5" secondAttribute="trailing" id="KzT-wG-VkG"/>
+                                                        <constraint firstItem="uec-rc-zy5" firstAttribute="centerX" secondItem="dPW-y0-Wqz" secondAttribute="centerX" id="gGe-3N-WcF"/>
+                                                        <constraint firstItem="uec-rc-zy5" firstAttribute="top" secondItem="dPW-y0-Wqz" secondAttribute="top" id="kQd-Pm-g9n"/>
                                                     </constraints>
-                                                </imageView>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="V9L-4n-Kx5" id="khR-oY-f7a"/>
+                                                    </connections>
+                                                </scrollView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Zht-Jg-5Tx" firstAttribute="leading" secondItem="eEG-Ob-Jdc" secondAttribute="leading" id="2MY-jW-nuY"/>
                                                 <constraint firstItem="ojj-J0-aZe" firstAttribute="top" secondItem="eEG-Ob-Jdc" secondAttribute="bottom" constant="13" id="2qD-gV-NrL"/>
-                                                <constraint firstItem="uec-rc-zy5" firstAttribute="trailing" secondItem="eEG-Ob-Jdc" secondAttribute="trailing" id="3yC-j2-7iy"/>
                                                 <constraint firstItem="ojj-J0-aZe" firstAttribute="leading" secondItem="m5N-lD-y5f" secondAttribute="leading" id="4pa-z1-cFK"/>
                                                 <constraint firstItem="ojj-J0-aZe" firstAttribute="trailing" secondItem="f3s-lV-LdD" secondAttribute="trailing" id="6O8-K1-2HI"/>
                                                 <constraint firstItem="Zht-Jg-5Tx" firstAttribute="trailing" secondItem="eEG-Ob-Jdc" secondAttribute="trailing" id="EHf-DX-eva"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="dPW-y0-Wqz" secondAttribute="trailing" constant="-8" id="GkM-uU-TgC"/>
                                                 <constraint firstItem="m5N-lD-y5f" firstAttribute="baseline" secondItem="f3s-lV-LdD" secondAttribute="baseline" id="GwO-n7-00K"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dPW-y0-Wqz" secondAttribute="bottom" constant="6" id="Phf-D6-L1F"/>
                                                 <constraint firstItem="m5N-lD-y5f" firstAttribute="leading" secondItem="sFg-89-Tnu" secondAttribute="leadingMargin" id="Phm-gJ-fph"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="uec-rc-zy5" secondAttribute="bottom" id="R7a-5z-S3w"/>
-                                                <constraint firstItem="uec-rc-zy5" firstAttribute="leading" secondItem="eEG-Ob-Jdc" secondAttribute="leading" id="Yqf-wy-1Pk"/>
                                                 <constraint firstItem="Zht-Jg-5Tx" firstAttribute="leading" secondItem="sFg-89-Tnu" secondAttribute="leading" id="aJ9-Jz-MoI"/>
                                                 <constraint firstItem="m5N-lD-y5f" firstAttribute="firstBaseline" secondItem="f3s-lV-LdD" secondAttribute="firstBaseline" id="e9b-gh-OhS"/>
                                                 <constraint firstItem="f3s-lV-LdD" firstAttribute="leading" secondItem="m5N-lD-y5f" secondAttribute="trailing" constant="-17" id="enn-mK-U99"/>
@@ -156,8 +171,9 @@
                                                 <constraint firstItem="eEG-Ob-Jdc" firstAttribute="top" secondItem="m5N-lD-y5f" secondAttribute="bottom" constant="4" id="iS5-a2-sjo"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="f3s-lV-LdD" secondAttribute="trailing" constant="6" id="mlV-it-5EU"/>
                                                 <constraint firstAttribute="trailing" secondItem="Zht-Jg-5Tx" secondAttribute="trailing" id="mum-KT-qdz"/>
-                                                <constraint firstItem="uec-rc-zy5" firstAttribute="top" secondItem="ojj-J0-aZe" secondAttribute="bottom" constant="9" id="nIQ-Vg-y4Y"/>
                                                 <constraint firstItem="m5N-lD-y5f" firstAttribute="top" secondItem="sFg-89-Tnu" secondAttribute="topMargin" constant="3" id="rdO-au-ti4"/>
+                                                <constraint firstItem="dPW-y0-Wqz" firstAttribute="top" secondItem="ojj-J0-aZe" secondAttribute="bottom" constant="8" id="sud-1U-hFu"/>
+                                                <constraint firstItem="dPW-y0-Wqz" firstAttribute="leading" secondItem="sFg-89-Tnu" secondAttribute="leadingMargin" constant="-8" id="wU7-31-aVo"/>
                                                 <constraint firstItem="Zht-Jg-5Tx" firstAttribute="top" secondItem="sFg-89-Tnu" secondAttribute="top" id="woe-zD-3Av"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -166,6 +182,7 @@
                                             <outlet property="heightConstraint" destination="VkG-xx-ph2" id="HZF-FR-4AX"/>
                                             <outlet property="hoursText" destination="m5N-lD-y5f" id="yf7-D4-CMy"/>
                                             <outlet property="mainText" destination="ojj-J0-aZe" id="Xsj-FH-icv"/>
+                                            <outlet property="scrollVIew" destination="dPW-y0-Wqz" id="UyJ-nn-8zk"/>
                                             <outlet property="threadImageView" destination="uec-rc-zy5" id="PEh-hA-cCP"/>
                                             <outlet property="topViewBar" destination="Zht-Jg-5Tx" id="7N3-5w-Lex"/>
                                         </connections>

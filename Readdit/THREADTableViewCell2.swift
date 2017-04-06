@@ -9,9 +9,10 @@
 import UIKit
 import ChameleonFramework
 
-class THREADTableViewCell2: UITableViewCell {
+class THREADTableViewCell2: UITableViewCell, UIScrollViewDelegate {
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var hoursText: UILabel!
+    @IBOutlet weak var scrollVIew: UIScrollView!
     @IBOutlet weak var topViewBar: UIView!
 
     @IBOutlet weak var threadImageView: UIImageView!
@@ -21,6 +22,14 @@ class THREADTableViewCell2: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         // Initialization code
+        
+        scrollVIew.minimumZoomScale = 1.0
+        scrollVIew.maximumZoomScale = 5.0
+        
+        scrollVIew.delegate = self
+       
+
+        
         let theme = UserDefaults.standard.string(forKey: "theme")!
         switch theme {
             
@@ -38,7 +47,18 @@ class THREADTableViewCell2: UITableViewCell {
         
         
     }
-    
+
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        print("DONE")
+        if scale > 1.0 {
+        scrollVIew.setZoomScale(1.0, animated: true)
+        }
+    }
+
+func viewForZooming(in scrollView: UIScrollView) -> UIView?
+{
+    return threadImageView
+}
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
