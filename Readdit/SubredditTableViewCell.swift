@@ -75,12 +75,11 @@ class SubredditTableViewCell: UITableViewCell {
     func updateSubreddit(updatingAll:Bool = false) {
 
         downloadsAreStopped = false
-        var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
 
         let subreddit = self.subredditTitle.currentTitle!
         if Utils.hasAppropriateConnection(updatingAll: updatingAll) {
-            print("Updating..")
             Async.main {
+                var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
                 downloadsInProgress.append(subreddit)
                 UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
                 
@@ -158,6 +157,8 @@ class SubredditTableViewCell: UITableViewCell {
                         
                         Async.main {
                             //Remove current subreddit from downloads in progress array
+                            var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
+
                             downloadsInProgress = downloadsInProgress.filter { $0 != subreddit }
                             UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
                             
