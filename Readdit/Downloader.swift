@@ -4,6 +4,7 @@ import Alamofire
 import Alamofire_Synchronous
 import Zip
 import SwiftyJSON
+import Async
 
 
 var Network = NetworkManager().manager!
@@ -14,7 +15,7 @@ let arrayOfThreadSort    = ["Top", "New", "Controversial", "Best", "Old", "QA"]
 var request:Alamofire.Request?
 public class Downloader: UIViewController {
     
-    
+
     class func stopDownloads() {
         downloadsAreStopped = true
         print("Stopped download")
@@ -41,7 +42,7 @@ public class Downloader: UIViewController {
             var urlString = "https://www.reddit.com/r/"
                 urlString.append(subreddit)
                 urlString.append("/" + sortType.lowercased() + "/.json?limit=" + threadNumber!)
-            print("Getting data from URL: \(urlString)")
+            //print("Getting data from URL: \(urlString)")
             let fileName = subreddit + ".txt"
             
             let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
@@ -62,14 +63,14 @@ public class Downloader: UIViewController {
             
             
              request = Network.download(urlString, to: destination).downloadProgress { progress in
-                print("Download Progress: \(progress.fractionCompleted)")
+                //print("Download Progress: \(progress.fractionCompleted)")
                 }.validate(statusCode: 200..<300).response{ response in
                     completed = true
             }
             while !completed {
                 //print("Not completed yet...")
             }
-            print("Completed subreddit!")
+            //print("Completed subreddit!")
 
         } //END OF LOOP
     }
@@ -77,7 +78,12 @@ public class Downloader: UIViewController {
     
     
     class func downloadThreadJSON(subreddit: String, threadURL:String, threadID: String) {
+        let group = AsyncGroup()
+
         for sortType in arrayOfThreadSort {
+            
+            group.enter()
+            
             let urlString = "https://reddit.com" + threadURL + "/.json?sort=" + sortType.lowercased()
             let fileName = threadID + ".txt"
             let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
@@ -101,7 +107,7 @@ public class Downloader: UIViewController {
             request = Network.download(urlString, to: destination).downloadProgress { progress in
 
                 }
-                .validate(statusCode: 200..<300)
+                //.validate(statusCode: 200..<300)
                 .response{ response in
                     //print(response.response?.statusCode)
                     do {
@@ -113,25 +119,46 @@ public class Downloader: UIViewController {
                             let json = JSON(data: downloadedJSON.data(using: String.Encoding.utf8)!)
                             var directURL:String
                             let imageURL:NSString = json[0]["data"]["children"][0]["data"]["url"].string as! NSString
-                            print("url of image: \(imageURL)")
+                            //print("url of image: \(imageURL)")
                             let imageName = imageURL.pathComponents[2]
-                            print(imageName)
+                            //print(imageName)
+                            
                             
                             let imgDestination: DownloadRequest.DownloadFileDestination = { _, _ in
                                 let fileURL = documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID)
                                 return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
                             }
-                            
                             if imageFileExtensions.contains(imageURL.pathExtension.lowercased()) {
-                                print(imageURL.pathExtension)
+                                //print(imageURL.pathExtension)
                                 directURL = imageURL as String
-                                Network.download(directURL, to: imgDestination)
+                                directURL = directURL.replacingOccurrences(of: "http://", with: "")
+                                directURL = directURL.replacingOccurrences(of: "https://", with: "")
+
+                                if directURL.contains(".gifv") {
+                                    directURL = directURL.replacingOccurrences(of: ".gifv", with: ".gif")
+                                }
+                                var realURL = "https://images.weserv.nl/?url="+directURL+"&w=700&q=60"
+
+                                Network.download(realURL, to: imgDestination)
 
                             } else if imageURL.lowercased.contains("imgur.com") {
-                                print("It's an IMGUR")
-                                directURL = "https://i.imgur.com/" + imageName + ".png"
-                                print("Downloading imgur from: " + directURL)
-                                Network.download(directURL, to: imgDestination)
+                                //print("It's an IMGUR")
+                                directURL = "i.imgur.com/" + imageName + ".png"
+                                var realURL = "https://images.weserv.nl/?url="+directURL+"&w=700&q=60"
+
+                                //print("Downloading imgur from: " + directURL)
+                                Network.download(realURL, to: imgDestination).response{
+                                    response in
+                                    do {
+                                        let zipImagePath = documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID + ".zip")
+                                        let originalImagePath = documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID)
+                                        try Zip.zipFiles(paths: [originalImagePath!], zipFilePath: zipImagePath!, password: nil, progress: nil)
+                                        try FileManager.default.removeItem(at: originalImagePath!)
+
+                                    } catch {
+                                        print(error)
+                                    }
+                                }
 
                             }
                             
@@ -147,35 +174,23 @@ public class Downloader: UIViewController {
                         let txtFilePath = documentsPath.appendingPathComponent(subreddit + "/comments_" + sortType + "/" + threadID + ".txt")
                         try Zip.zipFiles(paths: [filePath!], zipFilePath: zipFilePath!, password: nil, progress: nil)
                         try FileManager.default.removeItem(at: txtFilePath!)
-
                         downloadDictionary[subreddit] = downloadDictionary[subreddit]! + 1
+
 
                     } catch let error as NSError {
                         print("An error took place(DownloadThread): \(error) with filepath: \(threadID)")
                         downloadDictionary[subreddit] = downloadDictionary[subreddit]! + 1
 
                     }
+                    group.leave()
+
             }
             
         }
+        group.wait()
+    
     }
-    
-    
-    
-    class func downloadThreadImage(subreddit: String, threadURL: String, threadID: String) {
-//    
-//        Network.request("https://reddit.com/" + subreddit + "/.json") .responseJSON
-//            {
-//                (data) in
-//                var jsonRaw = ""
-//                let dataa = jsonRaw.data(using: String.Encoding.utf8)
-//                var json = JSON(data: dataa!)
-//                
-//                print(json)
-//                
-//        }
 
-    }
     
     
     class func getJSON(subreddit:String, sortType: String) -> String {
@@ -191,7 +206,7 @@ public class Downloader: UIViewController {
             while !FileManager.default.fileExists(atPath: filePath) && downloadsInProgress.contains(subreddit){
                 //print("File doesn't exist)")
             }
-            print("Local path = \(filePath)")
+            //print("Local path = \(filePath)")
         } else {
             print("Could not find local directory to store file")
             
@@ -216,14 +231,13 @@ public class Downloader: UIViewController {
         // Read file content. Example in Swift
         // Fine documents directory on device
         
-        
         let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
         
         
         let dir = dirs[0] //documents directory
         filePath = dir.appending("/" + subreddit + "/comments_" + sortType + "/" + fileName)
 
-        print("Fetching thread comments from= \(filePath)")
+        //print("Fetching thread comments from= \(filePath)")
         
         
         let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
@@ -240,11 +254,11 @@ public class Downloader: UIViewController {
         
         do {
             // Read file content
-            print("Trying to read content from \(filePath)")
+            //print("Trying to read content from \(filePath)")
             let contentFromFile = try NSString(contentsOfFile: filePath , encoding: String.Encoding.utf8.rawValue)
             let filemanager:FileManager = FileManager()
             try filemanager.removeItem(at: txtPath!)
-            print("Removed item at \(txtPath)")
+            //print("Removed item at \(txtPath)")
             return contentFromFile as String
         }
         catch let error as NSError {

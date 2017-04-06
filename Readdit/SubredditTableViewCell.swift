@@ -73,19 +73,23 @@ class SubredditTableViewCell: UITableViewCell {
     
     
     func updateSubreddit(updatingAll:Bool = false) {
+
         downloadsAreStopped = false
         var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
+
         let subreddit = self.subredditTitle.currentTitle!
         if Utils.hasAppropriateConnection(updatingAll: updatingAll) {
+            print("Updating..")
+            Async.main {
+                downloadsInProgress.append(subreddit)
+                UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
+                
+                //Send notification that this subreddit is downloading (to produce overlay of ViewController)
+                self.nc.post(name:updateViewNotification, object: nil, userInfo:["message":"", "date":Date()])
+            }
+            
             Async.background {
                 var arrayOfThreads:[ThreadData] = []
-                Async.main {
-                    downloadsInProgress.append(subreddit)
-                    UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
-
-                    //Send notification that this subreddit is downloading (to produce overlay of ViewController)
-                    self.nc.post(name:updateViewNotification, object: nil, userInfo:["message":"", "date":Date()])
-                }
                 
                 //Delete all current items before you download the new batch
                 do {
@@ -103,11 +107,11 @@ class SubredditTableViewCell: UITableViewCell {
                 
                 
                 
-                print("Getting subreddits")
+                //print("Getting subreddits")
                 let jsonRaw = Downloader.getJSON(subreddit: subreddit, sortType: "Hot")
                 
                 if (jsonRaw != "Error") {
-                    print(jsonRaw)
+                    //print(jsonRaw)
                     
                     arrayOfThreads.removeAll()
                     if let data = jsonRaw.data(using: String.Encoding.utf8) {
@@ -138,8 +142,12 @@ class SubredditTableViewCell: UITableViewCell {
                         print("Number of threads : \(numOfThreads)")
                         print("arrayofthreadcount: \(arrayOfThreads.count)")
                         
+                        var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
+                        
+
                         
                             for thread in arrayOfThreads {
+
                                 print("Downloading \(count)/\(numOfThreads)")
                                 count = count + 1
                                 //print("Sending \(thread.id) to download")
@@ -147,27 +155,8 @@ class SubredditTableViewCell: UITableViewCell {
                                 Downloader.downloadThreadJSON(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
                                 }
                             }
-                        if !downloadsAreStopped{
-                            while (downloadDictionary[subreddit]!/6 < arrayOfThreads.count)   {
-                                print("w")
-                                sleep(1)
-                            }
-                            
-                            
-                            for thread in arrayOfThreads {
-                                if !downloadsAreStopped {
-                                    Downloader.downloadThreadImage(subreddit: subreddit, threadURL: thread.permalink, threadID: thread.id)
-                                }
-                            }
-                            
                         
-                        
-                        
-                
-                        print("Done downloading.")
                         Async.main {
-                            var downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
-
                             //Remove current subreddit from downloads in progress array
                             downloadsInProgress = downloadsInProgress.filter { $0 != subreddit }
                             UserDefaults.standard.set(downloadsInProgress, forKey: "inProgress")
@@ -175,8 +164,11 @@ class SubredditTableViewCell: UITableViewCell {
                             //Send notification again because the download has been completed
                             self.nc.post(name:updateViewNotification,
                                     object: nil,
-                                    userInfo:["message":"Hello there!", "date":Date()])                }
-                    }//ASYNC
+                                    userInfo:["message":"Hello there!", "date":Date()])
+                            
+                        }
+                    }
+                    
                 } else {
                     
                     Utils.displayTheAlert(targetVC: (UIApplication.shared.keyWindow?.rootViewController)!, title: "Error", message: "You need a valid internet connection to download threads.")
@@ -185,15 +177,16 @@ class SubredditTableViewCell: UITableViewCell {
         }
         
     }
-    
+
+
 
 
     
     
-    func setSelected(_ selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
     
     }
-}
+

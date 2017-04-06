@@ -202,7 +202,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func checkCurrentDownloads() {
         let downloadsInProgress = UserDefaults.standard.object(forKey: "inProgress") as! [String]
-        print(downloadsInProgress)
+        print("Downloads in progress: \(downloadsInProgress)")
         if downloadsInProgress.contains(subreddit) {
             
             overlay?.isHidden = false
