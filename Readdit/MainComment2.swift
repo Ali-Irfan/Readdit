@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class MainComment2: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let theme = UserDefaults.standard.string(forKey: "theme")!
+        switch theme {
+            
+        case "dark":
+            self.backgroundColor = FlatBlackDark()
+            
+            self.authorLabel.textColor = FlatWhite()
+            self.titleLabel.textColor = FlatWhite()
+            self.upvoteLabel.textColor = FlatWhite()
+            
+        default: break
+        }
     }
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
@@ -25,5 +38,6 @@ class MainComment2: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
     
 }

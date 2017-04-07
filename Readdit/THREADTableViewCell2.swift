@@ -27,7 +27,8 @@ class THREADTableViewCell2: UITableViewCell, UIScrollViewDelegate {
         scrollVIew.maximumZoomScale = 5.0
         
         scrollVIew.delegate = self
-       
+        scrollVIew.bounces = false
+        scrollVIew.bouncesZoom = false
 
         
         let theme = UserDefaults.standard.string(forKey: "theme")!
@@ -49,7 +50,6 @@ class THREADTableViewCell2: UITableViewCell, UIScrollViewDelegate {
     }
 
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        print("DONE")
         if scale > 1.0 {
         scrollVIew.setZoomScale(1.0, animated: true)
         }

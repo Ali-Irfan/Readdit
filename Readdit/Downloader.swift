@@ -133,27 +133,36 @@ public class Downloader: UIViewController {
                                 directURL = imageURL as String
                                 directURL = directURL.replacingOccurrences(of: "http://", with: "")
                                 directURL = directURL.replacingOccurrences(of: "https://", with: "")
+                                var realURL = ""
 
                                 if directURL.contains(".gifv") {
                                     directURL = directURL.replacingOccurrences(of: ".gifv", with: ".gif")
+                                    realURL = directURL
+                                } else {
+                                    realURL = "https://images.weserv.nl/?url="+directURL+"&w=700&q=60"
                                 }
-                                var realURL = "https://images.weserv.nl/?url="+directURL+"&w=700&q=60"
 
                                 Network.download(realURL, to: imgDestination)
 
-                            } else if imageURL.lowercased.contains("imgur.com") {
+                            if imageURL.lowercased.contains("imgur.com") {
                                 //print("It's an IMGUR")
-                                directURL = "i.imgur.com/" + imageName + ".png"
-                                var realURL = "https://images.weserv.nl/?url="+directURL+"&w=700&q=60"
+                                var realURL = ""
 
+                                if imageURL.contains(".gifv") || imageURL.contains(".gif") {
+                                    directURL = "i.imgur.com/" + imageName + ".gif"
+                                    realURL = directURL
+                                } else {
+                                    realURL = "https://images.weserv.nl/?url="+directURL+"&w=700&q=60"
+                                }
+                                
                                 //print("Downloading imgur from: " + directURL)
                                 Network.download(realURL, to: imgDestination).response{
                                     response in
                                     do {
-                                        let zipImagePath = documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID + ".zip")
-                                        let originalImagePath = documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID)
-                                        try Zip.zipFiles(paths: [originalImagePath!], zipFilePath: zipImagePath!, password: nil, progress: nil)
-                                        try FileManager.default.removeItem(at: originalImagePath!)
+//                                        let zipImagePath = documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID + ".zip")
+//                                        let originalImagePath = documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID)
+//                                        try Zip.zipFiles(paths: [originalImagePath!], zipFilePath: zipImagePath!, password: nil, progress: nil)
+//                                        try FileManager.default.removeItem(at: originalImagePath!)
 
                                     } catch {
                                         print(error)
@@ -162,7 +171,7 @@ public class Downloader: UIViewController {
 
                             }
                             
-
+                            }
                         
                         
                             

@@ -358,11 +358,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "513177742.443951"
+            timestampString = "513216304.637772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "getThreadJSON(threadURL:threadID:sortType:subreddit:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -374,11 +374,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "513177742.443951"
+            timestampString = "513216304.637772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "getThreadJSON(threadURL:threadID:sortType:subreddit:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -390,11 +390,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "513177742.443951"
+            timestampString = "513216304.637772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
             landmarkName = "getThreadJSON(threadURL:threadID:sortType:subreddit:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -470,11 +470,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "513177742.443951"
+            timestampString = "513216304.637772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "309"
-            endingLineNumber = "309">
+            startingLineNumber = "318"
+            endingLineNumber = "318">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -754,11 +754,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "513177742.443951"
+            timestampString = "513216304.637772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289">
+            startingLineNumber = "298"
+            endingLineNumber = "298">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -768,11 +768,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "513177742.443951"
+            timestampString = "513216304.637772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299">
+            startingLineNumber = "308"
+            endingLineNumber = "308">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -782,11 +782,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Readdit/Downloader.swift"
-            timestampString = "513177742.443951"
+            timestampString = "513216304.637772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298">
+            startingLineNumber = "307"
+            endingLineNumber = "307">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
