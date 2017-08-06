@@ -5,14 +5,13 @@ import Alamofire_Synchronous
 import Zip
 import SwiftyJSON
 import Async
-
+import SDWebImage
 
 var Network = NetworkManager().manager!
-
-
 let arrayOfSubredditSort = ["Hot", "Controversial", "Top", "Rising", "New"]
 let arrayOfThreadSort    = ["Top", "New", "Controversial", "Best", "Old", "QA"]
 var request:Alamofire.Request?
+var lastImgURL = ""
 public class Downloader: UIViewController {
     
 
@@ -31,7 +30,8 @@ public class Downloader: UIViewController {
     
     class func downloadJSON(subreddit:String){
         var completed:Bool = false
-        
+        Network.session.configuration.timeoutIntervalForRequest = 10
+
         
         
         let threadNumber = UserDefaults.standard.string(forKey: "NumberOfThreads")
@@ -117,61 +117,89 @@ public class Downloader: UIViewController {
                             let imageFileExtensions = ["jpg", "png", "jpeg", "gif", "gifv"]
                             let downloadedJSON = try String(contentsOf: filePath!, encoding: String.Encoding.utf8)
                             let json = JSON(data: downloadedJSON.data(using: String.Encoding.utf8)!)
-                            var directURL:String
                             let imageURL:NSString = json[0]["data"]["children"][0]["data"]["url"].string as! NSString
-                            //print("url of image: \(imageURL)")
-                            let imageName = imageURL.pathComponents[2]
-                            //print(imageName)
+                            let imgExtension = imageURL.pathExtension
+                            var url:URL = URL(string: imageURL as String)!
                             
+                            do {
+                                try FileManager.default.createDirectory(at: documentsPath.appendingPathComponent(subreddit + "/images")!, withIntermediateDirectories: true, attributes: nil)
+                            } catch let error as NSError {
+                                NSLog("Unable to create directory \(error.debugDescription)")
+                            }
                             
                             let imgDestination: DownloadRequest.DownloadFileDestination = { _, _ in
-                                let fileURL = documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID)
+                                let fileURL = documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID + ".gif")
                                 return (fileURL!, [.removePreviousFile, .createIntermediateDirectories])
+                                //
                             }
-                            if imageFileExtensions.contains(imageURL.pathExtension.lowercased()) {
-                                //print(imageURL.pathExtension)
-                                directURL = imageURL as String
-                                directURL = directURL.replacingOccurrences(of: "http://", with: "")
-                                directURL = directURL.replacingOccurrences(of: "https://", with: "")
-                                var realURL = ""
 
-                                if directURL.contains(".gifv") {
-                                    directURL = directURL.replacingOccurrences(of: ".gifv", with: ".gif")
-                                    realURL = directURL
-                                } else {
-                                    realURL = "https://images.weserv.nl/?url="+directURL+"&w=700&q=60"
+                            if imageFileExtensions.contains(imgExtension) {
+//                                let compressedURL:URL = getCompressedURL(sentURL: url.absoluteString)
+//                                Network.download(compressedURL, to: imgDestination).response{ response in
+//                                 print(response)
+//                                }
+                                getCompressedURL(sentURL: url.absoluteString) { (cURL) -> () in
+                                    print("CURL: " + cURL)
+                                    Network.download(URL(string: cURL)!, to: imgDestination)
                                 }
-
-                                Network.download(realURL, to: imgDestination)
-
-                            if imageURL.lowercased.contains("imgur.com") {
-                                //print("It's an IMGUR")
-                                var realURL = ""
-
-                                if imageURL.contains(".gifv") || imageURL.contains(".gif") {
-                                    directURL = "i.imgur.com/" + imageName + ".gif"
-                                    realURL = directURL
-                                } else {
-                                    realURL = "https://images.weserv.nl/?url="+directURL+"&w=700&q=60"
-                                }
-                                
-                                //print("Downloading imgur from: " + directURL)
-                                Network.download(realURL, to: imgDestination).response{
-                                    response in
-                                    do {
-//                                        let zipImagePath = documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID + ".zip")
-//                                        let originalImagePath = documentsPath.appendingPathComponent("/" + subreddit + "/images/" + threadID)
-//                                        try Zip.zipFiles(paths: [originalImagePath!], zipFilePath: zipImagePath!, password: nil, progress: nil)
-//                                        try FileManager.default.removeItem(at: originalImagePath!)
-
-                                    } catch {
-                                        print(error)
-                                    }
-                                }
-
                             }
                             
-                            }
+                    
+                            
+                            
+                            
+                            
+                            //Replace all extenions with gif
+                            
+                            //If it's an imgur file
+                            
+                            //If it's an imgur album
+                            
+                            //If it's a not those, but ends in png, jpg, jpeg, gif, gifv
+                            
+                            //MAKE SURE IM NOT DOWNLOADING A PLAIN GIF FILE FOR TESTING
+                            
+                            
+                            
+//                            if imageFileExtensions.contains((imageURL.pathExtension?.lowercased())!) {
+//                                //print(imageURL.pathExtension)
+//                                directURL = imageURL as String
+//                                directURL = directURL.replacingOccurrences(of: "http://", with: "")
+//                                directURL = directURL.replacingOccurrences(of: "https://", with: "")
+//                                var realURL = ""
+//
+//                                if directURL.contains(".gifv") {
+//                                    directURL = directURL.replacingOccurrences(of: ".gifv", with: ".gif")
+//                                    realURL = directURL
+//                                    print("Downloading \(realURL)")
+//                                } else {
+//                                    realURL = "https://images.weserv.nl/?url="+directURL+"&w=700&q=60"
+//                                    print("Downloading \(realURL)")
+//
+//                                }
+
+//                                Network.download(realURL, to: imgDestination)
+//
+//                            if imageURL.lowercased.contains("imgur.com") {
+//                                //print("It's an IMGUR")
+//                                var realURL = ""
+//
+//                                if imageURL.contains(".gifv") || imageURL.contains(".gif") {
+//                                    directURL = "i.imgur.com/" + imageName + ".gif"
+//                                    realURL = directURL
+//                                    print("Downloading \(realURL)")
+//
+//                                } else {
+//                                    //realURL = "https://images.weserv.nl/?url="+directURL+"&w=700&q=60"
+//                                    realURL = directURL
+//                                    print("Downloading \(realURL)")
+//
+//                                }
+                            
+//
+//                            }
+                            
+//                            }
                         
                         
                             
@@ -200,6 +228,37 @@ public class Downloader: UIViewController {
     
     }
 
+    
+    
+    
+    class func getCompressedURL(sentURL: String, completed: @escaping (String) -> Void) {
+        Network.session.configuration.timeoutIntervalForRequest = 30
+        Network.session.configuration.timeoutIntervalForResource = 30
+        Alamofire.SessionManager.default.session.configuration.timeoutIntervalForRequest = 300
+        Alamofire.SessionManager.default.session.configuration.timeoutIntervalForResource = 300
+
+        let moddedURL = sentURL.replacingOccurrences(of: "http:", with: "https:")
+        let newURL = "https://api.gifs.com/media/import?source=\(moddedURL)"
+        let urlToUse:URL = URL(string: newURL)!
+        var cURL:String = ""
+        print("Using newURL: \(newURL)")
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForResource = 300
+        configuration.timeoutIntervalForRequest = 300
+        let sessionManager = Alamofire.SessionManager(configuration: configuration)
+        SessionManager.default.session.configuration.timeoutIntervalForRequest = 300
+
+        Alamofire.request(urlToUse).responseJSON { response in
+            print(response)
+            if let value = response.result.value {
+                let json = JSON(value)
+                cURL = json["success"]["files"]["gif"].string!
+                completed(cURL)
+            }
+
+        }
+    }
     
     
     class func getJSON(subreddit:String, sortType: String) -> String {

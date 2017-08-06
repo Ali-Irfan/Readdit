@@ -9,6 +9,7 @@ PODS:
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - Dollar (6.1.0)
+  - FLAnimatedImage (1.0.12)
   - FontAwesomeKit (2.2.1):
     - FontAwesomeKit/Core (= 2.2.1)
     - FontAwesomeKit/FontAwesome (= 2.2.1)
@@ -30,11 +31,42 @@ PODS:
     - FontAwesomeKit/Core
   - FontAwesomeKit/Zocial (2.2.1):
     - FontAwesomeKit/Core
+  - libwebp (0.5.1):
+    - libwebp/core (= 0.5.1)
+    - libwebp/dec (= 0.5.1)
+    - libwebp/demux (= 0.5.1)
+    - libwebp/dsp (= 0.5.1)
+    - libwebp/enc (= 0.5.1)
+    - libwebp/mux (= 0.5.1)
+    - libwebp/utils (= 0.5.1)
+    - libwebp/webp (= 0.5.1)
+  - libwebp/core (0.5.1):
+    - libwebp/webp
+  - libwebp/dec (0.5.1):
+    - libwebp/core
+  - libwebp/demux (0.5.1):
+    - libwebp/core
+  - libwebp/dsp (0.5.1):
+    - libwebp/core
+  - libwebp/enc (0.5.1):
+    - libwebp/core
+  - libwebp/mux (0.5.1):
+    - libwebp/core
+  - libwebp/utils (0.5.1):
+    - libwebp/core
+  - libwebp/webp (0.5.1)
   - PMAlertController (2.1.0)
   - ReachabilitySwift (3)
+  - SDWebImage/Core (4.0.0)
+  - SDWebImage/GIF (4.0.0):
+    - FLAnimatedImage (~> 1.0)
+    - SDWebImage/Core
+  - SDWebImage/WebP (4.0.0):
+    - libwebp
+    - SDWebImage/Core
   - SlideMenuControllerSwift (3.0.1)
   - StringExtensionHTML (0.2.0)
-  - SwiftyGif (3.0.3)
+  - SwiftGifOrigin (1.6.1)
   - SwiftyJSON (3.1.4)
   - XLActionController (3.0.1):
     - XLActionController/Core (= 3.0.1)
@@ -56,9 +88,11 @@ DEPENDENCIES:
   - FontAwesomeKit (from `https://github.com/PrideChung/FontAwesomeKit.git`)
   - PMAlertController
   - ReachabilitySwift (~> 3)
+  - SDWebImage/GIF
+  - SDWebImage/WebP
   - SlideMenuControllerSwift
   - StringExtensionHTML
-  - SwiftyGif
+  - SwiftGifOrigin (~> 1.6.1)
   - SwiftyJSON
   - XLActionController
   - XLActionController/Skype
@@ -87,16 +121,19 @@ SPEC CHECKSUMS:
   BonMot: 9dbd59135974d2fa591a2084b3489bdc0e15e8f8
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   FontAwesomeKit: 3614979b3dbb0ec3f7fac1bd760b91f66c31db67
+  libwebp: b9126f8982a95370cf4eaad9bb3fefd57f052c15
   PMAlertController: 2d2c19af12edb50753d636395f9456c8cde1e858
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
   StringExtensionHTML: 80fdb1b3a83669e371d27bfe2f208f067e2db328
-  SwiftyGif: 89a0bb19709bdb6990e10405ad456d8bea804a65
+  SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XLActionController: 57fe0ce1642e2eed971b188b490762345fdbf963
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 80aea1b7c1856c44dfe29e505e8f769dd350a07d
+PODFILE CHECKSUM: ad9c941548463bb5af539748686e84bb4f0c86dc
 
 COCOAPODS: 1.2.0

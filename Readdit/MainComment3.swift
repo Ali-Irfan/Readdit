@@ -22,7 +22,8 @@ class MainComment3: UITableViewCell {
             
         case "dark":
             self.backgroundColor = FlatBlackDark()
-            
+            self.selfTextLabel.textColor = FlatWhite()
+
             self.authorLabel.textColor = FlatWhite()
             self.titleLabel.textColor = FlatWhite()
             self.upvoteLabel.textColor = FlatWhite()

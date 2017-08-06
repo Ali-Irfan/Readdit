@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ChameleonFramework
 class MainCommentCell: UITableViewCell {
 
 
@@ -19,6 +19,18 @@ class MainCommentCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let theme = UserDefaults.standard.string(forKey: "theme")!
+        switch theme {
+            
+        case "dark":
+            self.backgroundColor = FlatBlackDark()
+            self.selftextLabel.textColor = FlatWhite()
+            self.authorLabel.textColor = FlatWhite()
+            self.titleLabel.textColor = FlatWhite()
+            self.upvoteLabel.textColor = FlatWhite()
+            
+        default: break
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

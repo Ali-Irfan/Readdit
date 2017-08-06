@@ -4,6 +4,7 @@ import SwiftyJSON
 import Async
 import ChameleonFramework
 import FontAwesomeKit
+import SwiftGifOrigin
 
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var overlay : UIView?
@@ -297,16 +298,28 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
-        let hasImage:Bool = FileManager.default.fileExists(atPath: ((documentsPath.appendingPathComponent("/" + subreddit + "/images/" + arrayOfThreads[indexPath.row].id))?.path)!)
-        
+        let hasImage:Bool = FileManager.default.fileExists(atPath: ((documentsPath.appendingPathComponent("/" + subreddit + "/images/" + arrayOfThreads[indexPath.row].id + ".gif"))?.path)!)
+        print("checking if it exists at \(((documentsPath.appendingPathComponent("/" + subreddit + "/images/" + arrayOfThreads[indexPath.row].id + ".gif"))?.path)))")
+        print(hasImage)
         if hasImage {
-            
         let cell:THREADTableViewCell2 = tableView.dequeueReusableCell(withIdentifier: "mycell3") as! THREADTableViewCell2
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
             cell.threadImageView.image = nil
-            if let image: UIImage = UIImage(contentsOfFile: (documentsPath.appendingPathComponent("/" + subreddit + "/images/" + arrayOfThreads[indexPath.row].id)?.path)!) {
+            
+            if let image: UIImage = UIImage(contentsOfFile: (documentsPath.appendingPathComponent("/" + subreddit + "/images/" + arrayOfThreads[indexPath.row].id + ".gif")?.path)!) {
+                
+                let imageName = documentsPath.appendingPathComponent("/" + subreddit + "/images/" + arrayOfThreads[indexPath.row].id + ".gif")
+            
+                do {
+                let imageData:Data  = try Data(contentsOf: imageName!)
+                    print(imageData)
+                    let gif = UIImage.gif(data: imageData)
+                    cell.threadImageView.image = gif
+                } catch {
+                    print(error)
+                }
 
-                cell.threadImageView?.image = image
+                //cell.threadImageView?.image = image
                 // calculate the correct height of the image given the current width of the image view.
                 let multiplier = (cell.threadImageView.bounds.width / image.size.width);
                 
